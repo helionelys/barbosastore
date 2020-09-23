@@ -31,7 +31,7 @@ public class TelaLoginView extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnEntrarLogin = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnCancelarLogin = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -75,11 +75,11 @@ public class TelaLoginView extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelarLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
+        btnCancelarLogin.setText("Cancelar");
+        btnCancelarLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCancelarLoginActionPerformed(evt);
             }
         });
 
@@ -106,7 +106,7 @@ public class TelaLoginView extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEntrarLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCancelarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextField1)
                     .addComponent(jPasswordField1))
                 .addContainerGap())
@@ -133,7 +133,7 @@ public class TelaLoginView extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnEntrarLogin)
-                            .addComponent(jButton3))
+                            .addComponent(btnCancelarLogin))
                         .addGap(32, 32, 32)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -149,10 +149,15 @@ public class TelaLoginView extends javax.swing.JDialog {
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnEntrarLoginActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCancelarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarLoginActionPerformed
         // TODO add your handling code here:
-         System.exit(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
+         //System.exit(0);
+         TelaVendasView telaVenda = new TelaVendasView();
+         telaVenda.setLocationRelativeTo(this);
+         telaVenda.setVisible(true);
+         this.dispose();
+         
+    }//GEN-LAST:event_btnCancelarLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,8 +209,8 @@ public class TelaLoginView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelarLogin;
     private javax.swing.JButton btnEntrarLogin;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

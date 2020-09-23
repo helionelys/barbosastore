@@ -47,7 +47,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnClientes = new javax.swing.JButton();
         btnProdutos = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
+        btnVendas = new javax.swing.JButton();
         btnServico = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
@@ -151,11 +151,16 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             }
         });
 
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Cart-32.png"))); // NOI18N
-        jButton13.setText("Vendas");
-        jButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton13.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Cart-32.png"))); // NOI18N
+        btnVendas.setText("Vendas");
+        btnVendas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVendas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnVendas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendasActionPerformed(evt);
+            }
+        });
 
         btnServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Tools-32.png"))); // NOI18N
         btnServico.setText("Serviços");
@@ -189,7 +194,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnProdutos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton13)
+                .addComponent(btnVendas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnServico)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -198,13 +203,13 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 .addComponent(jButton15))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnProdutos, btnServico, jButton13, jButton15, jButton16});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnProdutos, btnServico, btnVendas, jButton15, jButton16});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnClientes)
             .addComponent(btnProdutos)
-            .addComponent(jButton13)
+            .addComponent(btnVendas)
             .addComponent(btnServico)
             .addComponent(jButton16)
             .addComponent(jButton15)
@@ -334,6 +339,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenu8.add(MenuMovimentoVendaConsulta);
 
         MenuMovimentoVendaRegistrar.setText("Registrar Venda");
+        MenuMovimentoVendaRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuMovimentoVendaRegistrarActionPerformed(evt);
+            }
+        });
         jMenu8.add(MenuMovimentoVendaRegistrar);
 
         MenuMovimento.add(jMenu8);
@@ -492,6 +502,19 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         telaunidademedida.setVisible(true);
     }//GEN-LAST:event_MenuCadastroCadAuxUniMedidaActionPerformed
 
+    private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
+        // TODO add your handling code here:
+        MenuMovimentoVendaRegistrarActionPerformed(evt);
+    }//GEN-LAST:event_btnVendasActionPerformed
+
+    private void MenuMovimentoVendaRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoVendaRegistrarActionPerformed
+        // TODO add your handling code here:
+       // TelaVendasView2 telaVendas = new TelaVendasView2(this, rootPaneCheckingEnabled);
+       TelaVendasView telaVendas = new TelaVendasView();
+        telaVendas.setLocationRelativeTo(this);
+        telaVendas.setVisible(true);
+    }//GEN-LAST:event_MenuMovimentoVendaRegistrarActionPerformed
+
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -527,7 +550,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnServico;
-    private javax.swing.JButton jButton13;
+    private javax.swing.JButton btnVendas;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JLabel jLabel1;
