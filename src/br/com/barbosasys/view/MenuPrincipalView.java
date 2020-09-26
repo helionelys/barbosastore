@@ -509,10 +509,15 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
     private void MenuMovimentoVendaRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoVendaRegistrarActionPerformed
         // TODO add your handling code here:
-       // TelaVendasView2 telaVendas = new TelaVendasView2(this, rootPaneCheckingEnabled);
-       TelaVendasView telaVendas = new TelaVendasView();
+        TelaVendasView2 telaVendas = new TelaVendasView2(this, rootPaneCheckingEnabled);
+//       TelaVendasView telaVendas = new TelaVendasView();
         telaVendas.setLocationRelativeTo(this);
         telaVendas.setVisible(true);
+        
+//        TelaVendasView telaVenda = new TelaVendasView();
+//         telaVenda.setLocationRelativeTo(this);
+//         telaVenda.setVisible(true);
+//         this.dispose();
     }//GEN-LAST:event_MenuMovimentoVendaRegistrarActionPerformed
 
   
