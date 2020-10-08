@@ -71,6 +71,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
         MenuMovimentoVendaConsulta = new javax.swing.JMenuItem();
         MenuMovimentoVendaRegistrar = new javax.swing.JMenuItem();
+        MenuMovimentoVendaPdv = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         MenuMovimentoAjusteEstoque = new javax.swing.JMenuItem();
         MenuFinanceiro = new javax.swing.JMenu();
@@ -346,6 +347,14 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(MenuMovimentoVendaRegistrar);
 
+        MenuMovimentoVendaPdv.setText("PDV");
+        MenuMovimentoVendaPdv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuMovimentoVendaPdvActionPerformed(evt);
+            }
+        });
+        jMenu8.add(MenuMovimentoVendaPdv);
+
         MenuMovimento.add(jMenu8);
         MenuMovimento.add(jSeparator4);
 
@@ -358,9 +367,19 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuFinanceiro.setText("Financeiro");
 
         MenuFinanceiroContaPagar.setText("Contas a Pagar");
+        MenuFinanceiroContaPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuFinanceiroContaPagarActionPerformed(evt);
+            }
+        });
         MenuFinanceiro.add(MenuFinanceiroContaPagar);
 
         MenuFinanceiroContaReceber.setText("Contas a Receber");
+        MenuFinanceiroContaReceber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuFinanceiroContaReceberActionPerformed(evt);
+            }
+        });
         MenuFinanceiro.add(MenuFinanceiroContaReceber);
 
         MenuFinanceiroFluxoCaixa.setText("Fluxo de Caixa");
@@ -509,7 +528,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
     private void MenuMovimentoVendaRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoVendaRegistrarActionPerformed
         // TODO add your handling code here:
-        TelaVendasView2 telaVendas = new TelaVendasView2(this, rootPaneCheckingEnabled);
+        VendasView telaVendas = new VendasView(this, rootPaneCheckingEnabled);
 //       TelaVendasView telaVendas = new TelaVendasView();
         telaVendas.setLocationRelativeTo(this);
         telaVendas.setVisible(true);
@@ -519,6 +538,28 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 //         telaVenda.setVisible(true);
 //         this.dispose();
     }//GEN-LAST:event_MenuMovimentoVendaRegistrarActionPerformed
+
+    private void MenuMovimentoVendaPdvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoVendaPdvActionPerformed
+        // TODO add your handling code here:
+         TelaVendasView telaVenda = new TelaVendasView();
+         telaVenda.setLocationRelativeTo(this);
+         telaVenda.setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_MenuMovimentoVendaPdvActionPerformed
+
+    private void MenuFinanceiroContaPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFinanceiroContaPagarActionPerformed
+        // TODO add your handling code here:
+        ContasPagarView telaContasPagar = new ContasPagarView(this, rootPaneCheckingEnabled);
+        telaContasPagar.setLocationRelativeTo(this);
+        telaContasPagar.setVisible(true);
+    }//GEN-LAST:event_MenuFinanceiroContaPagarActionPerformed
+
+    private void MenuFinanceiroContaReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFinanceiroContaReceberActionPerformed
+        // TODO add your handling code here:
+        ContasReceberView telaContasReceberView = new ContasReceberView(this, rootPaneCheckingEnabled);
+        telaContasReceberView.setLocationRelativeTo(this);
+        telaContasReceberView.setVisible(true);
+    }//GEN-LAST:event_MenuFinanceiroContaReceberActionPerformed
 
   
 
@@ -541,6 +582,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuMovimentoOrcamento;
     private javax.swing.JMenuItem MenuMovimentoServicos;
     private javax.swing.JMenuItem MenuMovimentoVendaConsulta;
+    private javax.swing.JMenuItem MenuMovimentoVendaPdv;
     private javax.swing.JMenuItem MenuMovimentoVendaRegistrar;
     private javax.swing.JMenu MenuOpcoes;
     private javax.swing.JMenuItem MenuOpcoesLogff;

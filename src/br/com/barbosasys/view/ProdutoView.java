@@ -563,7 +563,7 @@ public class ProdutoView extends javax.swing.JDialog {
         //Captura valor código do cliente da linha selecionada
         int codigo = (Integer) tblProdutos.getValueAt(linhaTabela, 0);
 
-        //jTabbedPaneProduto.setSelectedIndex(1);
+        jTabbedPaneProduto.setSelectedIndex(1);
 //        cbUnidadeProduto.removeAll();
 //        cbCategoriaProduto.removeAll();
 //        cbFornecedorProduto.removeAll();

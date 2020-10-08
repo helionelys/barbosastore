@@ -501,9 +501,9 @@ public class TelaVendasView2 extends javax.swing.JDialog {
 
     private void MenuComandosFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuComandosFinalizarVendaActionPerformed
         // TODO add your handling code here:
-        PagamentosView telaPagamanento = new PagamentosView(this, rootPaneCheckingEnabled);
-        telaPagamanento.setLocationRelativeTo(this);
-        telaPagamanento.setVisible(true);
+        //PagamentosView telaPagamanento = new PagamentosView(this, rootPaneCheckingEnabled);
+        //telaPagamanento.setLocationRelativeTo(this);
+        //telaPagamanento.setVisible(true);
         
     }//GEN-LAST:event_MenuComandosFinalizarVendaActionPerformed
 
