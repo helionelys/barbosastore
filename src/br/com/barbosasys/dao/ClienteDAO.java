@@ -21,7 +21,7 @@ public class ClienteDAO extends ConexaoBanco {
     public int salvarClienteDAO(Cliente cliente) {
         try {
             this.conectar();
-                return this.insertSQL(
+            return this.insertSQL(
                     "INSERT INTO TBL_CLIENTE ("
                     + "TIPOCLIENTE,"
                     + "DATANASCIMENTO,"
@@ -68,6 +68,33 @@ public class ClienteDAO extends ConexaoBanco {
         }
     }
 
+    public Cliente getClienteDAONomeRazaoSocial(String cpfCnpj) {
+        Cliente cliente = new Cliente();
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "CPF_CNPJ, "
+                    + "NOME_RAZAOSOCIAL"
+                    + " FROM"
+                    + " TBL_CLIENTE"
+                    + " WHERE CPF_CNPJ = '" + cpfCnpj + "'"
+                    + ";"
+            );
+
+            while (this.getResultSet().next()) {
+                cliente.setCpfCnpj(this.getResultSet().getString(1));
+                cliente.setNomeRazaoSocial(this.getResultSet().getString(2));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return cliente;
+    }
+
     // Recupera cliente através do codigo
     public Cliente getClienteDAO(int codigo) {
         Cliente cliente = new Cliente();
@@ -102,7 +129,7 @@ public class ClienteDAO extends ConexaoBanco {
             );
 
             while (this.getResultSet().next()) {
-                                
+
                 cliente.setCodigo(this.getResultSet().getInt(1));
                 cliente.setPessoaTipo(this.getResultSet().getInt(2));
                 cliente.setDataNascimento(this.getResultSet().getString(3));
@@ -117,11 +144,11 @@ public class ClienteDAO extends ConexaoBanco {
                 cliente.setNumero(this.getResultSet().getString(12));
                 cliente.setBairro(this.getResultSet().getString(13));
                 cliente.setComplemento(this.getResultSet().getString(14));
-                
+
                 cliente.setCelular(this.getResultSet().getString(15));
                 cliente.setTelefone(this.getResultSet().getString(16));
                 cliente.setEmail(this.getResultSet().getString(17));
-                
+
                 cliente.setDataCadastramento(this.getResultSet().getString(18));
 
             }
@@ -169,14 +196,14 @@ public class ClienteDAO extends ConexaoBanco {
             while (this.getResultSet().next()) {
                 Endereco end = new Endereco();
                 Contato cont = new Contato();
-                                
+
                 cliente.setCodigo(this.getResultSet().getInt(1));
                 cliente.setPessoaTipo(this.getResultSet().getInt(2));
                 cliente.setDataNascimento(this.getResultSet().getString(3));
                 cliente.setNomeRazaoSocial(this.getResultSet().getString(4));
                 cliente.setApelidoNomeFantasia(this.getResultSet().getString(5));
                 cliente.setCpfCnpj(this.getResultSet().getString(6));
-                
+
                 cliente.setCep(this.getResultSet().getString(7));
                 cliente.setCidade(this.getResultSet().getString(8));
                 cliente.setUf(this.getResultSet().getString(9));
@@ -184,11 +211,11 @@ public class ClienteDAO extends ConexaoBanco {
                 cliente.setNumero(this.getResultSet().getString(11));
                 cliente.setBairro(this.getResultSet().getString(12));
                 cliente.setComplemento(this.getResultSet().getString(13));
-                
+
                 cliente.setCelular(this.getResultSet().getString(14));
                 cliente.setTelefone(this.getResultSet().getString(15));
                 cliente.setEmail(this.getResultSet().getString(16));
-                
+
                 cliente.setDataCadastramento(this.getResultSet().getString(17));
 
             }
@@ -268,7 +295,6 @@ public class ClienteDAO extends ConexaoBanco {
 //        }
 //        return listaCliente;
 //    }
-    
     public ArrayList<Cliente> getListaClienteDAO() {
         ArrayList<Cliente> listaCliente = new ArrayList();
         Cliente cliente = new Cliente();
@@ -289,13 +315,13 @@ public class ClienteDAO extends ConexaoBanco {
             );
 
             while (this.getResultSet().next()) {
-                cliente = new Cliente();                                
+                cliente = new Cliente();
                 cliente.setCodigo(this.getResultSet().getInt(1));
                 cliente.setNomeRazaoSocial(this.getResultSet().getString(2));
                 cliente.setPessoaTipo(this.getResultSet().getInt(3));
                 cliente.setCpfCnpj(this.getResultSet().getString(4));
                 cliente.setEmail(this.getResultSet().getString(5));
-  
+
                 listaCliente.add(cliente);
             }
 
@@ -318,7 +344,7 @@ public class ClienteDAO extends ConexaoBanco {
                     + "APELIDO_NOMEFANTASIA = '" + cliente.getApelidoNomeFantasia() + "',"
                     + "CPF_CNPJ = '" + cliente.getCpfCnpj() + "',"
                     + "RG_INSCRICAOESTADUAL = '" + cliente.getRgInscricaoEstadual() + "',"
-                    + "CEP = '" + cliente.getCep()+ "',"
+                    + "CEP = '" + cliente.getCep() + "',"
                     + "CIDADE = '" + cliente.getCidade() + "',"
                     + "UF = '" + cliente.getUf() + "',"
                     + "LOGRADOURO = '" + cliente.getLogradouro() + "',"
@@ -329,7 +355,7 @@ public class ClienteDAO extends ConexaoBanco {
                     + "TELEFONE = '" + cliente.getTelefone() + "',"
                     + "EMAIL = '" + cliente.getEmail() + "'"
                     + "WHERE "
-                        + "CODCLIENTE = '" + cliente.getCodigo() + "'"
+                    + "CODCLIENTE = '" + cliente.getCodigo() + "'"
                     + ";"
             );
             return true;

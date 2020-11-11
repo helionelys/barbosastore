@@ -228,7 +228,7 @@
                                       <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btnCepPesquisaCidadeUF" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="btnCpfCnpjPesquisarTelaVendas" min="-2" pref="32" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -253,7 +253,7 @@
                                   <Component id="jLabel5" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Component id="txtCnpjCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="btnCepPesquisaCidadeUF" max="32767" attributes="0"/>
+                              <Component id="btnCpfCnpjPesquisarTelaVendas" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" pref="25" max="-2" attributes="0"/>
@@ -357,12 +357,15 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnCepPesquisaCidadeUF">
+                <Component class="javax.swing.JButton" name="btnCpfCnpjPesquisarTelaVendas">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/br/com/barbosasys/images/pesquisar.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCpfCnpjPesquisarTelaVendasActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

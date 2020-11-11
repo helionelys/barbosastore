@@ -1,5 +1,6 @@
 package br.com.barbosasys.view;
 
+import br.com.barbosasys.controller.ClienteController;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
@@ -14,7 +15,9 @@ import javax.swing.JOptionPane;
  * @author helionelys
  */
 public class TelaVendasView extends javax.swing.JFrame {
-
+    
+    ClienteController clienteDados = new ClienteController();
+    
     /**
      * Creates new form TelaVendasView
      */
@@ -45,7 +48,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtNomeRazaoSocialCliente = new javax.swing.JTextField();
-        btnCepPesquisaCidadeUF = new javax.swing.JButton();
+        btnCpfCnpjPesquisarTelaVendas = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btnCepPesquisaCidadeUF1 = new javax.swing.JButton();
@@ -138,7 +141,12 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         txtNomeRazaoSocialCliente.setFont(new java.awt.Font("Cantarell", 0, 28)); // NOI18N
 
-        btnCepPesquisaCidadeUF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
+        btnCpfCnpjPesquisarTelaVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
+        btnCpfCnpjPesquisarTelaVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCpfCnpjPesquisarTelaVendasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -169,7 +177,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                                     .addComponent(rbTipoPJuridicaCliente)))
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCepPesquisaCidadeUF, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCpfCnpjPesquisarTelaVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -188,7 +196,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                         .addComponent(txtCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtCnpjCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnCepPesquisaCidadeUF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCpfCnpjPesquisarTelaVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -604,14 +612,20 @@ public class TelaVendasView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_MenuComandoItSairActionPerformed
 
+    private void btnCpfCnpjPesquisarTelaVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCpfCnpjPesquisarTelaVendasActionPerformed
+        // TODO add your handling code here:
+        clienteDadosPdv = clienteDados.getClienteControllerCpfCnpj(cpfCnpj);
+    }//GEN-LAST:event_btnCpfCnpjPesquisarTelaVendasActionPerformed
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuComandoItCancelarProduto;
     private javax.swing.JMenuItem MenuComandoItCancelarVenda;
     private javax.swing.JMenuItem MenuComandoItFinalizarVenda;
     private javax.swing.JMenuItem MenuComandoItSair;
-    private javax.swing.JButton btnCepPesquisaCidadeUF;
     private javax.swing.JButton btnCepPesquisaCidadeUF1;
+    private javax.swing.JButton btnCpfCnpjPesquisarTelaVendas;
     private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktop_Vendas;
     private javax.swing.JLabel jLabel10;
