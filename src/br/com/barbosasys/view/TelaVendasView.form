@@ -2,6 +2,8 @@
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="rbGroupClientes">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
@@ -267,6 +269,9 @@
               <SubComponents>
                 <Component class="javax.swing.JRadioButton" name="rbTipoPFisicaCliente">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="rbGroupClientes"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Pessoa F&#xed;sica"/>
                   </Properties>
                   <Events>
@@ -278,6 +283,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rbTipoPJuridicaCliente">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="rbGroupClientes"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Pessoa Jur&#xed;dica"/>
                   </Properties>
                   <Events>
@@ -350,8 +358,9 @@
                 <Component class="javax.swing.JTextField" name="txtNomeRazaoSocialCliente">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Cantarell" size="28" style="0"/>
+                      <Font name="Cantarell" size="24" style="0"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>

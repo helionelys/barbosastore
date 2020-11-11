@@ -1,6 +1,7 @@
 package br.com.barbosasys.view;
 
 import br.com.barbosasys.controller.ClienteController;
+import br.com.barbosasys.model.Cliente;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class TelaVendasView extends javax.swing.JFrame {
     
-    ClienteController clienteDados = new ClienteController();
+    Cliente cliente = new Cliente();
     
     /**
      * Creates new form TelaVendasView
@@ -29,6 +30,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        rbGroupClientes = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         ImageIcon icon = new ImageIcon(getClass().getResource("/br/com/barbosasys/images/telafundomenu.jpg"));
         Image image = icon.getImage();
@@ -97,6 +99,7 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         jDesktop_Vendas.setPreferredSize(new java.awt.Dimension(995, 600));
 
+        rbGroupClientes.add(rbTipoPFisicaCliente);
         rbTipoPFisicaCliente.setText("Pessoa Física");
         rbTipoPFisicaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +107,7 @@ public class TelaVendasView extends javax.swing.JFrame {
             }
         });
 
+        rbGroupClientes.add(rbTipoPJuridicaCliente);
         rbTipoPJuridicaCliente.setText("Pessoa Jurídica");
         rbTipoPJuridicaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +143,8 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel7.setText("Nome / Razão Social");
 
-        txtNomeRazaoSocialCliente.setFont(new java.awt.Font("Cantarell", 0, 28)); // NOI18N
+        txtNomeRazaoSocialCliente.setFont(new java.awt.Font("Cantarell", 0, 24)); // NOI18N
+        txtNomeRazaoSocialCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnCpfCnpjPesquisarTelaVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
         btnCpfCnpjPesquisarTelaVendas.addActionListener(new java.awt.event.ActionListener() {
@@ -614,7 +619,18 @@ public class TelaVendasView extends javax.swing.JFrame {
 
     private void btnCpfCnpjPesquisarTelaVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCpfCnpjPesquisarTelaVendasActionPerformed
         // TODO add your handling code here:
-        clienteDadosPdv = clienteDados.getClienteControllerCpfCnpj(cpfCnpj);
+        
+        ClienteController clienteDados = new ClienteController();
+        if (rbTipoPFisicaCliente.isSelected()) {
+             cliente = clienteDados.getClienteControllerCpfCnpj(txtCpfCliente.getText());
+        txtNomeRazaoSocialCliente.setText(cliente.getNomeRazaoSocial());
+        } else {
+            cliente = clienteDados.getClienteControllerCpfCnpj(txtCnpjCliente.getText());
+            txtNomeRazaoSocialCliente.setText(cliente.getNomeRazaoSocial());
+        }
+        
+        
+       
     }//GEN-LAST:event_btnCpfCnpjPesquisarTelaVendasActionPerformed
     
     
@@ -663,6 +679,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.ButtonGroup rbGroupClientes;
     protected javax.swing.JRadioButton rbTipoPFisicaCliente;
     protected javax.swing.JRadioButton rbTipoPJuridicaCliente;
     protected javax.swing.JFormattedTextField txtCnpjCliente;
