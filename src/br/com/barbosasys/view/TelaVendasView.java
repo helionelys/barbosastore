@@ -639,6 +639,9 @@ public class TelaVendasView extends javax.swing.JFrame {
     private void MenuComandoItSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuComandoItSairActionPerformed
         // TODO add your handling code here:
         this.dispose();
+        MenuPrincipalView telaprincipal = new MenuPrincipalView();
+        telaprincipal.setLocationRelativeTo(this);
+        telaprincipal.setVisible(true);
     }//GEN-LAST:event_MenuComandoItSairActionPerformed
 
     private void btnCpfCnpjPesquisarTelaVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCpfCnpjPesquisarTelaVendasActionPerformed
