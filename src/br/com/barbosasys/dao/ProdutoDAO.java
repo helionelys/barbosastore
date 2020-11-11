@@ -98,6 +98,37 @@ public class ProdutoDAO extends ConexaoBanco {
         return produto;
     }
 
+    // Recupera produto através do codigo
+    public Produto getProdutoVendaDAO(int codigo) {
+        Produto produto = new Produto();
+
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "DESCRICAO," //1
+                    + "VALOR," //2
+                    + " FROM"
+                    + " TBL_PRODUTO"
+                    + " WHERE"
+                    + " CODPRODUTO = '" + codigo + "'"
+                    + ";"
+            );
+
+            while (this.getResultSet().next()) {
+
+                produto.setDescricao(this.getResultSet().getString(3));
+                produto.setValor(Double.parseDouble(this.getResultSet().getString(6)));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return produto;
+    }
+    
     public Produto getProdutoDAO(String nome) {
         Produto produto = new Produto();
         try {

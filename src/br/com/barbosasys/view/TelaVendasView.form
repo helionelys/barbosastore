@@ -357,6 +357,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtNomeRazaoSocialCliente">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Cantarell" size="24" style="0"/>
                     </Property>
@@ -389,16 +390,16 @@
                               <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextField7" min="-2" pref="294" max="-2" attributes="0"/>
+                                  <Component id="txtCodigoProdutoVenda" min="-2" pref="294" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btnCepPesquisaCidadeUF1" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <Component id="btnBuscarProdutosVendas" min="-2" pref="103" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jButton1" alignment="0" pref="408" max="32767" attributes="0"/>
-                                  <Component id="jTextField4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextField6" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextField5" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnAdicionarProdutoVenda" alignment="0" pref="408" max="32767" attributes="0"/>
+                                  <Component id="txtQuantidadeProdutoVenda" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtPrecoProdutoVenda" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtDescricaoProdutoVenda" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -413,23 +414,23 @@
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnCepPesquisaCidadeUF1" max="32767" attributes="0"/>
-                              <Component id="jTextField7" pref="48" max="32767" attributes="0"/>
+                              <Component id="btnBuscarProdutosVendas" max="32767" attributes="0"/>
+                              <Component id="txtCodigoProdutoVenda" pref="48" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                          <Component id="jTextField5" min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="txtDescricaoProdutoVenda" min="-2" pref="48" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField6" min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="txtPrecoProdutoVenda" min="-2" pref="48" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField4" min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="txtQuantidadeProdutoVenda" min="-2" pref="48" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="btnAdicionarProdutoVenda" min="-2" pref="45" max="-2" attributes="0"/>
                           <EmptySpace pref="24" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -444,15 +445,18 @@
                     <Property name="text" type="java.lang.String" value="C&#xf3;digo:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnCepPesquisaCidadeUF1">
+                <Component class="javax.swing.JButton" name="btnBuscarProdutosVendas">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/br/com/barbosasys/images/pesquisar.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarProdutosVendasActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField4">
+                <Component class="javax.swing.JTextField" name="txtQuantidadeProdutoVenda">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="sansserif" size="36" style="0"/>
@@ -471,14 +475,16 @@
                     <Property name="text" type="java.lang.String" value="Pre&#xe7;o Unit&#xe1;rio:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField5">
+                <Component class="javax.swing.JTextField" name="txtDescricaoProdutoVenda">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="sansserif" size="24" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
@@ -489,8 +495,9 @@
                     <Property name="text" type="java.lang.String" value="Produto:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField6">
+                <Component class="javax.swing.JTextField" name="txtPrecoProdutoVenda">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="sansserif" size="36" style="0"/>
                     </Property>
@@ -500,12 +507,15 @@
                     <Property name="horizontalAlignment" type="int" value="4"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="btnAdicionarProdutoVenda">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Adicionar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdicionarProdutoVendaActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField7">
+                <Component class="javax.swing.JTextField" name="txtCodigoProdutoVenda">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="sansserif" size="24" style="0"/>
@@ -513,6 +523,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17">
@@ -589,7 +600,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable1">
+                    <Component class="javax.swing.JTable" name="tblProdutosVendas">
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
@@ -603,7 +614,7 @@
                           </Table>
                         </Property>
                         <Property name="autoResizeMode" type="int" value="4"/>
-                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="if (jTable1.getColumnModel().getColumnCount() &gt; 0) {&#xa;    jTable1.getColumnModel().getColumn(0).setMinWidth(40);&#xa;    jTable1.getColumnModel().getColumn(0).setMaxWidth(40);&#xa;    jTable1.getColumnModel().getColumn(1).setMinWidth(80);&#xa;    jTable1.getColumnModel().getColumn(1).setMaxWidth(80);&#xa;    jTable1.getColumnModel().getColumn(2).setMinWidth(250);&#xa;    //jTable1.getColumnModel().getColumn(2).setMaxWidth(250);&#xa;    jTable1.getColumnModel().getColumn(3).setMinWidth(90);&#xa;    jTable1.getColumnModel().getColumn(3).setMaxWidth(90);&#xa;    jTable1.getColumnModel().getColumn(4).setMinWidth(110);&#xa;    jTable1.getColumnModel().getColumn(4).setMaxWidth(110);&#xa;    jTable1.getColumnModel().getColumn(5).setMinWidth(100);&#xa;    jTable1.getColumnModel().getColumn(5).setMaxWidth(100);&#xa;}">
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="if (tblProdutosVendas.getColumnModel().getColumnCount() &gt; 0) {&#xa;    tblProdutosVendas.getColumnModel().getColumn(0).setMinWidth(40);&#xa;    tblProdutosVendas.getColumnModel().getColumn(0).setMaxWidth(40);&#xa;    tblProdutosVendas.getColumnModel().getColumn(1).setMinWidth(80);&#xa;    tblProdutosVendas.getColumnModel().getColumn(1).setMaxWidth(80);&#xa;    tblProdutosVendas.getColumnModel().getColumn(2).setMinWidth(250);&#xa;    //jTable1.getColumnModel().getColumn(2).setMaxWidth(250);&#xa;    tblProdutosVendas.getColumnModel().getColumn(3).setMinWidth(90);&#xa;    tblProdutosVendas.getColumnModel().getColumn(3).setMaxWidth(90);&#xa;    tblProdutosVendas.getColumnModel().getColumn(4).setMinWidth(110);&#xa;    tblProdutosVendas.getColumnModel().getColumn(4).setMaxWidth(110);&#xa;    tblProdutosVendas.getColumnModel().getColumn(5).setMinWidth(100);&#xa;    tblProdutosVendas.getColumnModel().getColumn(5).setMaxWidth(100);&#xa;}">
                           <TableColumnModel selectionModel="0">
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>

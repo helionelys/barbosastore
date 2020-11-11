@@ -588,8 +588,8 @@ public class ProdutoView extends javax.swing.JDialog {
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String valorTela = df.format(valorRetorno);
             this.txtValorProduto.setText(valorTela);
-            //System.out.println(valorTela);
 
+            //System.out.println(valorTela);
             this.cbFornecedorProduto.setSelectedItem(fornecedorController.getFornecedorController(produto.getCodFornecedor()).getNomeRazaoSocial());
             this.txtFabricanteProduto.setText(produto.getFabricante());
             this.txtObservacaoProduto.setText(produto.getObservacao());

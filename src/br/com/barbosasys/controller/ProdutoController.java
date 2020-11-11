@@ -16,6 +16,10 @@ public class ProdutoController {
         return this.produtoDAO.getProdutoDAO(codigo);
     }
     
+    public Produto getProdutoControllerCodigoVenda(int codigo){
+        return this.produtoDAO.getProdutoDAO(codigo);
+    }
+    
     public Produto getProdutoController(String nome){
         return this.produtoDAO.getProdutoDAO(nome);
     }
