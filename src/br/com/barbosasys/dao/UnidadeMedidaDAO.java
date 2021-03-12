@@ -23,9 +23,11 @@ public class UnidadeMedidaDAO extends ConexaoBanco {
             this.conectar();
             return this.insertSQL(
                     "INSERT INTO TBL_UNIDADEMEDIDA ("
-                    + "DESCRICAO"
+                    + "DESCRICAO,"
+                    + "DESCRICAOCOMPLETA"        
                     + ") VALUES ("
-                    + "'" + unidadeMedida.getDescricao() + "'"
+                    + "'" + unidadeMedida.getDescricao() + "',"
+                    + "'" + unidadeMedida.getDescricaoCompleta()+ "'"
                     + ");"
             );
         } catch (Exception e) {

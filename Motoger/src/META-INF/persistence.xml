@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="MotogerPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>model.Categoria</class>
+    <class>model.Cliente</class>
+    <class>model.Compra</class>
+    <class>model.ContaPagar</class>
+    <class>model.Estoque</class>
+    <class>model.Fornecedor</class>
+    <class>model.Grupo</class>
+    <class>model.ItemDaCompra</class>
+    <class>model.ItemDaOS</class>
+    <class>model.ItemDaVenda</class>
+    <class>model.MarcaMoto</class>
+    <class>model.MarcaProduto</class>
+    <class>model.ModeloMoto</class>
+    <class>model.OrdemServico</class>
+    <class>model.Produto</class>
+    <class>model.ProdutoModMoto</class>
+    <class>model.Servico</class>
+    <class>model.Usuario</class>
+    <class>model.Veiculo</class>
+    <class>model.Venda</class>
+    <class>model.Parcela</class>
+    <class>model.Movimento</class>
+    <class>model.ServicoDaVenda</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dbmotoger"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="ifsp"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>
