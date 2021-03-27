@@ -35,7 +35,6 @@ public class VendasView extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         txtVendaNumero = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        cbVendaDescricaoProduto = new javax.swing.JComboBox<>();
         txtVendaQuantidade = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnRemoverProduto = new javax.swing.JButton();
@@ -51,6 +50,8 @@ public class VendasView extends javax.swing.JDialog {
         btnVendaSalvar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btnVendaNova = new javax.swing.JButton();
+        txtVendaNomeCliente1 = new javax.swing.JTextField();
+        btnIncluirProduto1 = new javax.swing.JButton();
         jPanelConsultarVendas = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtConsultaVenda = new javax.swing.JTextField();
@@ -63,6 +64,7 @@ public class VendasView extends javax.swing.JDialog {
         btnConsultaVendaAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Barbosa Store - Vendas");
 
         jPanel5.setBackground(new java.awt.Color(94, 209, 7));
 
@@ -90,9 +92,9 @@ public class VendasView extends javax.swing.JDialog {
             .addGap(0, 21, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("Codigo ");
+        jLabel1.setText("Codigo:");
 
-        jLabel2.setText("Cliente");
+        jLabel2.setText("Cliente:");
 
         txtVendaNomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,9 +106,7 @@ public class VendasView extends javax.swing.JDialog {
 
         jLabel4.setText("Produto:");
 
-        cbVendaDescricaoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel5.setText("Quantidade:");
+        jLabel5.setText("QTD:");
 
         btnRemoverProduto.setText("Remover");
 
@@ -138,11 +138,23 @@ public class VendasView extends javax.swing.JDialog {
 
         jLabel8.setText("Total");
 
-        btnVendaSalvar.setText("Salvar");
+        btnVendaSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/inativar.png"))); // NOI18N
+        btnVendaSalvar.setText("Cancelar");
 
-        jButton4.setText("Cancelar");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_incluir.png"))); // NOI18N
+        jButton4.setText("Incluir");
 
-        btnVendaNova.setText("Nova");
+        btnVendaNova.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/salvar.png"))); // NOI18N
+        btnVendaNova.setText("Salvar");
+
+        txtVendaNomeCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVendaNomeCliente1ActionPerformed(evt);
+            }
+        });
+
+        btnIncluirProduto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
+        btnIncluirProduto1.setText("Buscar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -186,18 +198,19 @@ public class VendasView extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVendaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                .addComponent(txtVendaNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(cbVendaDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtVendaNomeCliente1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnIncluirProduto1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(4, 4, 4)
                                 .addComponent(txtVendaQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnIncluirProduto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnRemoverProduto)
-                                .addGap(0, 1, Short.MAX_VALUE)))))
+                                .addComponent(btnRemoverProduto)))))
                 .addContainerGap())
         );
 
@@ -219,27 +232,28 @@ public class VendasView extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cbVendaDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(txtVendaQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIncluirProduto)
-                    .addComponent(btnRemoverProduto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRemoverProduto)
+                    .addComponent(txtVendaNomeCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIncluirProduto1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbVendasTipoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(txtVendaDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(txtVendaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVendaSalvar)
-                    .addComponent(btnVendaNova)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 15, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnVendaNova, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVendaSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnVendaNova, btnVendaSalvar, jButton4});
@@ -248,21 +262,19 @@ public class VendasView extends javax.swing.JDialog {
         jPanelVendas.setLayout(jPanelVendasLayout);
         jPanelVendasLayout.setHorizontalGroup(
             jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelVendasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelVendasLayout.setVerticalGroup(
             jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVendasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Operacão Vendas", jPanelVendas);
 
-        jLabel9.setText("Buscar");
+        jLabel9.setText("Codigo:");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -286,16 +298,19 @@ public class VendasView extends javax.swing.JDialog {
 
         btnConsultaVendaPesquisar.setText("Pesquisar");
 
-        btnConsultaVendaCancelar.setText("Cancelar");
+        btnConsultaVendaCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_excluir.png"))); // NOI18N
+        btnConsultaVendaCancelar.setText("Excluir");
         btnConsultaVendaCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultaVendaCancelarActionPerformed(evt);
             }
         });
 
-        btnConsultaVendaExcluir.setText("Excluir");
+        btnConsultaVendaExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_editar.png"))); // NOI18N
+        btnConsultaVendaExcluir.setText("Alterar");
 
-        btnConsultaVendaAlterar.setText("Alterar");
+        btnConsultaVendaAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
+        btnConsultaVendaAlterar.setText("Cancelar");
 
         javax.swing.GroupLayout jPanelConsultarVendasLayout = new javax.swing.GroupLayout(jPanelConsultarVendas);
         jPanelConsultarVendas.setLayout(jPanelConsultarVendasLayout);
@@ -307,12 +322,12 @@ public class VendasView extends javax.swing.JDialog {
                     .addComponent(jScrollPane2)
                     .addGroup(jPanelConsultarVendasLayout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtConsultaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtConsultaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConsultaVendaPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConsultaVendaImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+                        .addComponent(btnConsultaVendaImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelConsultarVendasLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnConsultaVendaCancelar)
@@ -341,7 +356,7 @@ public class VendasView extends javax.swing.JDialog {
                     .addComponent(btnConsultaVendaCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultaVendaExcluir)
                     .addComponent(btnConsultaVendaAlterar))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelConsultarVendasLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnConsultaVendaAlterar, btnConsultaVendaCancelar, btnConsultaVendaExcluir});
@@ -377,6 +392,10 @@ public class VendasView extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConsultaVendaCancelarActionPerformed
 
+    private void txtVendaNomeCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVendaNomeCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVendaNomeCliente1ActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -386,10 +405,10 @@ public class VendasView extends javax.swing.JDialog {
     private javax.swing.JButton btnConsultaVendaImprimir;
     private javax.swing.JButton btnConsultaVendaPesquisar;
     private javax.swing.JButton btnIncluirProduto;
+    private javax.swing.JButton btnIncluirProduto1;
     private javax.swing.JButton btnRemoverProduto;
     private javax.swing.JButton btnVendaNova;
     private javax.swing.JButton btnVendaSalvar;
-    private javax.swing.JComboBox<String> cbVendaDescricaoProduto;
     private javax.swing.JComboBox<String> cbVendasTipoPagamento;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -415,6 +434,7 @@ public class VendasView extends javax.swing.JDialog {
     private javax.swing.JTextField txtVendaCodCliente;
     private javax.swing.JTextField txtVendaDesconto;
     private javax.swing.JTextField txtVendaNomeCliente;
+    private javax.swing.JTextField txtVendaNomeCliente1;
     private javax.swing.JTextField txtVendaNumero;
     private javax.swing.JTextField txtVendaQuantidade;
     private javax.swing.JTextField txtVendaTotal;
