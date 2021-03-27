@@ -41,7 +41,7 @@ public class TelaLoginView extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Barbosa Store - Comércio e Serviços");
 
-        jPanel1.setBackground(new java.awt.Color(13, 153, 39));
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -54,7 +54,7 @@ public class TelaLoginView extends javax.swing.JDialog {
             .addGap(0, 33, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(13, 153, 39));
+        jPanel3.setBackground(new java.awt.Color(51, 153, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
