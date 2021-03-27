@@ -107,7 +107,7 @@ public class ProdutoView extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Barbosa Store - Produtos");
 
-        jPanel4.setBackground(new java.awt.Color(94, 209, 7));
+        jPanel4.setBackground(new java.awt.Color(51, 153, 255));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -120,7 +120,7 @@ public class ProdutoView extends javax.swing.JDialog {
             .addGap(0, 21, Short.MAX_VALUE)
         );
 
-        jPanel5.setBackground(new java.awt.Color(94, 209, 7));
+        jPanel5.setBackground(new java.awt.Color(51, 153, 255));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
