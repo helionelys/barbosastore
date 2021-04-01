@@ -16,7 +16,7 @@ public class ConexaoBanco {
     private ResultSet resultSet;
 
     private String server = "localhost";
-    private String baseName = "DBBARBOSASHOP";
+    private String baseName = "dbbarbosashop";
     private String user = "root";
     private String password = "root1234";
 
@@ -38,7 +38,7 @@ public class ConexaoBanco {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
             // Local do banco, nome do banco, usuário e senha
-            String url = "jdbc:mysql://" + server + "/" + baseName;
+            String url = "jdbc:mysql://" + server + "/" + baseName +"?useTimezone=true&serverTimezone=UTC" ;
             this.setCon((Connection) DriverManager.getConnection(url, user, password));
 
             this.status = true;
