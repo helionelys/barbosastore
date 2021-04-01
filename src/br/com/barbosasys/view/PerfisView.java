@@ -69,7 +69,7 @@ public class PerfisView extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Barbosa Store - Categoria de Produtos");
+        setTitle("Barbosa Store - Perfis de Usuários");
 
         jPanel4.setBackground(new java.awt.Color(51, 153, 255));
 

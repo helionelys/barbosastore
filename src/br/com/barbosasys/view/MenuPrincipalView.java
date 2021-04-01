@@ -400,9 +400,19 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuSeguranca.setText("Segurança");
 
         MenuSegurancaUsuarios.setText("Usuários");
+        MenuSegurancaUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuSegurancaUsuariosActionPerformed(evt);
+            }
+        });
         MenuSeguranca.add(MenuSegurancaUsuarios);
 
         MenuSegurancaPerfis.setText("Perfils");
+        MenuSegurancaPerfis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuSegurancaPerfisActionPerformed(evt);
+            }
+        });
         MenuSeguranca.add(MenuSegurancaPerfis);
 
         MenuSegurancaDadosEmpresas.setText("Dados da Empresa");
@@ -560,6 +570,20 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         telaContasReceberView.setLocationRelativeTo(this);
         telaContasReceberView.setVisible(true);
     }//GEN-LAST:event_MenuFinanceiroContaReceberActionPerformed
+
+    private void MenuSegurancaUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSegurancaUsuariosActionPerformed
+        // TODO add your handling code here:
+        UsuariosView telaUsuariosView = new UsuariosView(this, rootPaneCheckingEnabled);
+        telaUsuariosView.setLocationRelativeTo(this);
+        telaUsuariosView.setVisible(true);
+    }//GEN-LAST:event_MenuSegurancaUsuariosActionPerformed
+
+    private void MenuSegurancaPerfisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSegurancaPerfisActionPerformed
+        // TODO add your handling code here:
+        PerfisView telaPerfisView = new PerfisView(this, rootPaneCheckingEnabled);
+        telaPerfisView.setLocationRelativeTo(this);
+        telaPerfisView.setVisible(true);
+    }//GEN-LAST:event_MenuSegurancaPerfisActionPerformed
 
   
 
