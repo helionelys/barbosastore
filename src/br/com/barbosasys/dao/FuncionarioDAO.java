@@ -19,7 +19,7 @@ public class FuncionarioDAO extends ConexaoBanco {
     public int salvarFuncionarioDAO(Funcionario funcionario) {
         try {
             this.conectar();
-                return this.insertSQL(
+            return this.insertSQL(
                     "INSERT INTO TBL_FUNCIONARIO ("
                     + "NOME,"
                     + "DATANASCIMENTO,"
@@ -44,19 +44,19 @@ public class FuncionarioDAO extends ConexaoBanco {
                     + "CELULAR,"
                     + "EMAIL"
                     + ") VALUES ("
-                    + "'" + funcionario.getNomeRazaoSocial()+ "',"
+                    + "'" + funcionario.getNomeRazaoSocial() + "',"
                     + "'" + funcionario.getDataNascimento() + "',"
-                    + "'" + funcionario.getSexo()+ "',"
+                    + "'" + funcionario.getSexo() + "',"
                     + "'" + funcionario.getCpfCnpj() + "',"
                     + "'" + funcionario.getRgInscricaoEstadual() + "',"
                     + "'" + funcionario.getRgOrgaoExpedidor() + "',"
-                    + "'" + funcionario.getNomeMae()+ "',"
-                    + "'" + funcionario.getNomePai()+ "',"
-                    + "'" + funcionario.getEscolaridade()+ "',"
-                    + "'" + funcionario.getEstadoCivil()+ "',"
-                    + "'" + funcionario.getSalario()+ "',"
-                    + "'" + funcionario.getFuncao()+ "',"
-                    + "'" + funcionario.getDepartamento()+ "',"
+                    + "'" + funcionario.getNomeMae() + "',"
+                    + "'" + funcionario.getNomePai() + "',"
+                    + "'" + funcionario.getEscolaridade() + "',"
+                    + "'" + funcionario.getEstadoCivil() + "',"
+                    + "'" + funcionario.getSalario() + "',"
+                    + "'" + funcionario.getFuncao() + "',"
+                    + "'" + funcionario.getDepartamento() + "',"
                     + "'" + funcionario.getCep() + "',"
                     + "'" + funcionario.getCidade() + "',"
                     + "'" + funcionario.getUf() + "',"
@@ -76,7 +76,36 @@ public class FuncionarioDAO extends ConexaoBanco {
         }
     }
 
-    // Recupera funcionario através do codigo
+    // Recupera funcionario através do codigo para uso no cadastro de usuários, retorna apenas código e nome
+    public Funcionario getFuncionarioSimplesDAO(int codigo) {
+        Funcionario funcionario = new Funcionario();
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "CODFUNCIONARIO," //1
+                    + "NOME" //2
+                    + " FROM"
+                    + " TBL_FUNCIONARIO"
+                    + " WHERE"
+                    + " CODFUNCIONARIO = '" + codigo + "'"
+                    + ";"
+            );
+            
+             while (this.getResultSet().next()) {
+
+            funcionario.setCodigo(this.getResultSet().getInt(1));
+            funcionario.setNomeRazaoSocial(this.getResultSet().getString(2));
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        } 
+        return funcionario;
+        }
+       
+        // Recupera funcionario através do codigo
     public Funcionario getFuncionarioDAO(int codigo) {
         Funcionario funcionario = new Funcionario();
 
@@ -115,7 +144,7 @@ public class FuncionarioDAO extends ConexaoBanco {
             );
 
             while (this.getResultSet().next()) {
-                                
+
                 funcionario.setCodigo(this.getResultSet().getInt(1));
                 funcionario.setNomeRazaoSocial(this.getResultSet().getString(2));
                 funcionario.setDataNascimento(this.getResultSet().getString(3));
@@ -139,7 +168,6 @@ public class FuncionarioDAO extends ConexaoBanco {
                 funcionario.setComplemento(this.getResultSet().getString(21));
                 funcionario.setCelular(this.getResultSet().getString(22));
                 funcionario.setEmail(this.getResultSet().getString(23));
-                
 
             }
         } catch (Exception e) {
@@ -155,7 +183,7 @@ public class FuncionarioDAO extends ConexaoBanco {
         try {
             this.conectar();
             this.executarSQL(
-                   "SELECT "
+                    "SELECT "
                     + "CODFUNCIONARIO,"
                     + "NOME,"
                     + "DATANASCIMENTO,"
@@ -187,7 +215,7 @@ public class FuncionarioDAO extends ConexaoBanco {
             );
 
             while (this.getResultSet().next()) {
-                                
+
                 funcionario.setCodigo(this.getResultSet().getInt(1));
                 funcionario.setNomeRazaoSocial(this.getResultSet().getString(2));
                 funcionario.setDataNascimento(this.getResultSet().getString(3));
@@ -290,7 +318,6 @@ public class FuncionarioDAO extends ConexaoBanco {
 //        }
 //        return listaFuncionario;
 //    }
-    
     public ArrayList<Funcionario> getListaFuncionarioDAO() {
         ArrayList<Funcionario> listaFuncionario = new ArrayList();
         Funcionario funcionario = new Funcionario();
@@ -311,13 +338,13 @@ public class FuncionarioDAO extends ConexaoBanco {
             );
 
             while (this.getResultSet().next()) {
-                funcionario = new Funcionario();                                
+                funcionario = new Funcionario();
                 funcionario.setCodigo(this.getResultSet().getInt(1));
                 funcionario.setNomeRazaoSocial(this.getResultSet().getString(2));
                 funcionario.setCpfCnpj(this.getResultSet().getString(3));
                 funcionario.setNomeMae(this.getResultSet().getString(4));
                 funcionario.setEmail(this.getResultSet().getString(5));
-  
+
                 listaFuncionario.add(funcionario);
             }
 
@@ -347,7 +374,7 @@ public class FuncionarioDAO extends ConexaoBanco {
                     + "SALARIO = '" + funcionario.getSalario() + "',"
                     + "FUNCAO = '" + funcionario.getFuncao() + "',"
                     + "DEPARTAMENTO = '" + funcionario.getDepartamento() + "',"
-                    + "CEP = '" + funcionario.getCep()+ "',"
+                    + "CEP = '" + funcionario.getCep() + "',"
                     + "CIDADE = '" + funcionario.getCidade() + "',"
                     + "UF = '" + funcionario.getUf() + "',"
                     + "LOGRADOURO = '" + funcionario.getLogradouro() + "',"
@@ -357,7 +384,7 @@ public class FuncionarioDAO extends ConexaoBanco {
                     + "CELULAR = '" + funcionario.getCelular() + "',"
                     + "EMAIL = '" + funcionario.getEmail() + "'"
                     + "WHERE "
-                        + "CODFUNCIONARIO = '" + funcionario.getCodigo() + "'"
+                    + "CODFUNCIONARIO = '" + funcionario.getCodigo() + "'"
                     + ";"
             );
             return true;

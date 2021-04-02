@@ -30,6 +30,7 @@ public class UsuariosView extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.carregarUsuarios();
+        BuscarFuncionarioView telaBuscarFuncionarios = new BuscarFuncionarioView(this, true);
     }
 
 //    BuscaCliente() {
@@ -67,13 +68,14 @@ public class UsuariosView extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         txtLoginCadUsuarios = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtSenhaCadUsuarios = new javax.swing.JTextField();
         btnBucarNomeFuncionarioCadUsuarios = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        txtConfirmarSenhaCadUsuarios = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         cbPerfilCadUsuarios = new javax.swing.JComboBox<>();
+        txtCodifgoFuncionarioCadUsuario = new javax.swing.JTextField();
+        txtSenhaCadUsuarios = new javax.swing.JPasswordField();
+        txtConfirmarSenhaCadUsuarios = new javax.swing.JPasswordField();
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -207,7 +209,9 @@ public class UsuariosView extends javax.swing.JDialog {
 
         jTabbedPaneCadUsuarios.addTab("Consultar", jpConsultarCadUsuarios);
 
+        txtNomeFuncionarioCadUsuarios.setEditable(false);
         txtNomeFuncionarioCadUsuarios.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtNomeFuncionarioCadUsuarios.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtCodigoCadUsuarios.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         txtCodigoCadUsuarios.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -236,8 +240,6 @@ public class UsuariosView extends javax.swing.JDialog {
 
         jLabel5.setText("Senha:");
 
-        txtSenhaCadUsuarios.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
         btnBucarNomeFuncionarioCadUsuarios.setText("Buscar");
         btnBucarNomeFuncionarioCadUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,13 +249,14 @@ public class UsuariosView extends javax.swing.JDialog {
 
         jLabel6.setText("Confirme Senha:");
 
-        txtConfirmarSenhaCadUsuarios.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
         jLabel7.setText("Codigo:");
 
         jLabel8.setText("Perfil de Segurança:");
 
         cbPerfilCadUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txtCodifgoFuncionarioCadUsuario.setEditable(false);
+        txtCodifgoFuncionarioCadUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jpCadastrarCadUsuariosLayout = new javax.swing.GroupLayout(jpCadastrarCadUsuarios);
         jpCadastrarCadUsuarios.setLayout(jpCadastrarCadUsuariosLayout);
@@ -261,23 +264,26 @@ public class UsuariosView extends javax.swing.JDialog {
             jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCadastrarCadUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jpCadastrarCadUsuariosLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCodigoCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(341, 341, 341))
-                    .addGroup(jpCadastrarCadUsuariosLayout.createSequentialGroup()
-                        .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jpCadastrarCadUsuariosLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCodigoCadUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpCadastrarCadUsuariosLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNomeFuncionarioCadUsuarios)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBucarNomeFuncionarioCadUsuarios))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCadastrarCadUsuariosLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(txtCodifgoFuncionarioCadUsuario)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNomeFuncionarioCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBucarNomeFuncionarioCadUsuarios))
+                    .addGroup(jpCadastrarCadUsuariosLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jpCadastrarCadUsuariosLayout.createSequentialGroup()
                                 .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jpCadastrarCadUsuariosLayout.createSequentialGroup()
                                         .addComponent(jLabel4)
@@ -295,13 +301,11 @@ public class UsuariosView extends javax.swing.JDialog {
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cbPerfilCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(129, 129, 129)))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCadastrarCadUsuariosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalvarCadUsuarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFecharCadUsuarios)
+                                .addGap(129, 129, 129))
+                            .addGroup(jpCadastrarCadUsuariosLayout.createSequentialGroup()
+                                .addComponent(btnSalvarCadUsuarios)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnFecharCadUsuarios)))))
                 .addContainerGap())
         );
         jpCadastrarCadUsuariosLayout.setVerticalGroup(
@@ -315,15 +319,16 @@ public class UsuariosView extends javax.swing.JDialog {
                 .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBucarNomeFuncionarioCadUsuarios)
                     .addComponent(txtNomeFuncionarioCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(txtCodifgoFuncionarioCadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLoginCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSenhaCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(txtSenhaCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -461,6 +466,8 @@ public class UsuariosView extends javax.swing.JDialog {
         //telaBuscaFuncionario.setLocationRelativeTo(this);
         telaBuscaFuncionario.setVisible(true);
         
+        txtCodifgoFuncionarioCadUsuario.setText(String.valueOf(telaBuscaFuncionario.getCodigoFuncionario()));
+        txtNomeFuncionarioCadUsuarios.setText(telaBuscaFuncionario.getNomeFuncionario());
     }//GEN-LAST:event_btnBucarNomeFuncionarioCadUsuariosActionPerformed
 
     private void carregarUsuarios() {
@@ -583,11 +590,12 @@ public class UsuariosView extends javax.swing.JDialog {
     private javax.swing.JPanel jpCadastrarCadUsuarios;
     private javax.swing.JPanel jpConsultarCadUsuarios;
     private javax.swing.JTable tblCadUsuarios;
+    private javax.swing.JTextField txtCodifgoFuncionarioCadUsuario;
     private javax.swing.JTextField txtCodigoCadUsuarios;
-    private javax.swing.JTextField txtConfirmarSenhaCadUsuarios;
+    private javax.swing.JPasswordField txtConfirmarSenhaCadUsuarios;
     private javax.swing.JTextField txtLoginCadUsuarios;
     private javax.swing.JTextField txtNomeFuncionarioCadUsuarios;
     private javax.swing.JTextField txtPesquisarLoginCadUsuarios;
-    private javax.swing.JTextField txtSenhaCadUsuarios;
+    private javax.swing.JPasswordField txtSenhaCadUsuarios;
     // End of variables declaration//GEN-END:variables
 }

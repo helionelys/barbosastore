@@ -16,6 +16,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BuscarFuncionarioView extends javax.swing.JDialog {
 
+
+    //Variavel para armazendas Código e Nome do funcionario
+    private int codigoFuncionario;
+    private String nomeFuncionario;
+    
     Funcionario funcionario = new Funcionario();
 
     FuncionarioController funcionarioController = new FuncionarioController();
@@ -31,7 +36,28 @@ public class BuscarFuncionarioView extends javax.swing.JDialog {
         this.carregarFuncionario();
     }
 
-    private void carregarFuncionario() {
+    private boolean recuperarFuncionario() {
+
+        //Armazena a linha selecionada
+        int linhaTabela = this.tblBuscarFuncionariosCadUsuario.getSelectedRow();
+
+        //Captura valor código do funcionário da linha selecionada
+        int codigo = (Integer) tblBuscarFuncionariosCadUsuario.getValueAt(linhaTabela, 0);
+
+        try {
+            //retorna os dados do banco de dados
+            funcionario = funcionarioController.getFuncionarioControllerSimples(codigo);
+            this.codigoFuncionario = Integer.valueOf(funcionario.getCodigo());
+            this.nomeFuncionario = (funcionario.getNomeRazaoSocial());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+
+private void carregarFuncionario() {
         listaFuncionario = funcionarioController.getListaFuncionarioController();
         DefaultTableModel modelo = (DefaultTableModel) tblBuscarFuncionariosCadUsuario.getModel();
         modelo.setNumRows(0);
@@ -64,7 +90,7 @@ public class BuscarFuncionarioView extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSelecionarBuscaFuncionario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBuscarFuncionariosCadUsuario = new javax.swing.JTable();
 
@@ -99,7 +125,12 @@ public class BuscarFuncionarioView extends javax.swing.JDialog {
 
         jLabel1.setText("Funcionário:");
 
-        jButton1.setText("Selecionar");
+        btnSelecionarBuscaFuncionario.setText("Selecionar");
+        btnSelecionarBuscaFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarBuscaFuncionarioActionPerformed(evt);
+            }
+        });
 
         tblBuscarFuncionariosCadUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,7 +163,7 @@ public class BuscarFuncionarioView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnSelecionarBuscaFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -142,7 +173,7 @@ public class BuscarFuncionarioView extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnSelecionarBuscaFuncionario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
                 .addContainerGap())
@@ -170,12 +201,33 @@ public class BuscarFuncionarioView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSelecionarBuscaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarBuscaFuncionarioActionPerformed
+        // TODO add your handling code here:
+        recuperarFuncionario();
+        this.dispose();
+    }//GEN-LAST:event_btnSelecionarBuscaFuncionarioActionPerformed
+
+        public int getCodigoFuncionario() {
+        return codigoFuncionario;
+    }
+
+    public void setCodigoFuncionario(int codigoFuncionario) {
+        this.codigoFuncionario = codigoFuncionario;
+    }
+  public String getNomeFuncionario() {
+        return nomeFuncionario;
+    }
+    public void setNomeFuncionario(String nomeFuncionario) {
+        this.nomeFuncionario = nomeFuncionario;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSelecionarBuscaFuncionario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;

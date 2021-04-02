@@ -16,6 +16,10 @@ public class FuncionarioController {
         return this.funcionarioDAO.getFuncionarioDAO(codigo);
     }
     
+    public Funcionario getFuncionarioControllerSimples(int codigo){
+        return this.funcionarioDAO.getFuncionarioSimplesDAO(codigo);
+    }
+    
     public Funcionario getFuncionarioController(String nome){
         return this.funcionarioDAO.getFuncionarioDAO(nome);
     }
