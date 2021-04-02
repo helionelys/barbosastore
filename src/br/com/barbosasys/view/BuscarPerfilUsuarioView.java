@@ -14,8 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Helionelys
  */
-public class PerfilUsuarioView extends javax.swing.JDialog {
-
+public class BuscarPerfilUsuarioView extends javax.swing.JDialog {
+    
+     //Variavel para armazemar Código e Nome do perfil do usuario
+    private int codigoPerfilUsuario;
+    private String nomePerfilUsuario;
+    
     PerfilUsuario perfilUsuario = new PerfilUsuario();
     PerfilUsuarioController perfilUsuarioController = new PerfilUsuarioController();
     ArrayList<PerfilUsuario> listaPerfilUsuario = new ArrayList<>();
@@ -24,8 +28,8 @@ public class PerfilUsuarioView extends javax.swing.JDialog {
     /**
      * Creates new form BuscaClientes
      */
-    public PerfilUsuarioView(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public BuscarPerfilUsuarioView(UsuariosView owner, boolean modal) {
+        super(owner, modal);
         initComponents();
         this.carregarPerfilUsuarios();
     }
@@ -46,6 +50,9 @@ public class PerfilUsuarioView extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPerfilUsuario = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtPesquisarPerfil = new javax.swing.JTextField();
+        btnPerfilSelecionar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -82,16 +89,39 @@ public class PerfilUsuarioView extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblPerfilUsuario);
 
+        jLabel1.setText("Perfil:");
+
+        btnPerfilSelecionar.setText("Selecionar");
+        btnPerfilSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilSelecionarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPesquisarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPerfilSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtPesquisarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPerfilSelecionar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -130,6 +160,31 @@ public class PerfilUsuarioView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPerfilSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilSelecionarActionPerformed
+        // TODO add your handling code here:
+        recuperarPerfilUsuario();
+        this.dispose();
+    }//GEN-LAST:event_btnPerfilSelecionarActionPerformed
+    
+    private boolean recuperarPerfilUsuario(){
+        
+       //Armazena a linha selecionada
+       int linhaTabela = this.tblPerfilUsuario.getSelectedRow();
+       
+       //Captura valor código do funcionário da linha selecionada
+       int codigo = (Integer) tblPerfilUsuario.getValueAt(linhaTabela, 0);
+       
+        try {
+        //retorna os dados do banco de dados
+        perfilUsuario = perfilUsuarioController.getPerfilUsuarioControllerSimples(codigo);
+        this.codigoPerfilUsuario = Integer.valueOf(perfilUsuario.getCodPerfil());
+        this.nomePerfilUsuario = (perfilUsuario.getNome());
+        return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }    
+    
     private void carregarPerfilUsuarios() {
         listaPerfilUsuario = perfilUsuarioController.getListaPerfilUsuarioController();
         DefaultTableModel modelo = (DefaultTableModel) tblPerfilUsuario.getModel();
@@ -143,17 +198,38 @@ public class PerfilUsuarioView extends javax.swing.JDialog {
             });
         }
     }
+    
+    
 
 
     /**
      * @param args the command line arguments
      */
 
+    public int getCodigoPerfilUsuario() {
+        return codigoPerfilUsuario;
+    }
+
+    public void setCodigoPerfilUsuario(int codigoPerfilUsuario) {
+        this.codigoPerfilUsuario = codigoPerfilUsuario;
+    }
+
+    public String getNomePerfilUsuario() {
+        return nomePerfilUsuario;
+    }
+
+    public void setNomePerfilUsuario(String nomePerfilUsuario) {
+        this.nomePerfilUsuario = nomePerfilUsuario;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPerfilSelecionar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPerfilUsuario;
+    private javax.swing.JTextField txtPesquisarPerfil;
     // End of variables declaration//GEN-END:variables
 }

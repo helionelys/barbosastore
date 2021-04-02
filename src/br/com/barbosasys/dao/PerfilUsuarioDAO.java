@@ -14,7 +14,34 @@ import java.util.ArrayList;
  * @author hbarbosa
  */
 public class PerfilUsuarioDAO extends ConexaoBanco {
-
+    
+    public PerfilUsuario getPerfilUsuarioSimplesDAO(int codigo){
+        PerfilUsuario perfilUsuario = new PerfilUsuario();
+        try {
+            this.conectar();
+            this.executarSQL(
+            "SELECT "
+                    + "CODPERFIL,"
+                    + "NOME"
+                    + " FROM"
+                    + " TBL_PERFILUSUARIO"
+                    + " WHERE"
+                    + " CODPERFIL = '" + codigo + "'"
+                    + ";"
+            );
+            
+            while (this.getResultSet().next()){
+                perfilUsuario.setCodPerfil(this.getResultSet().getInt(1));
+                perfilUsuario.setNome(this.getResultSet().getString(2));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            this.fecharConexao();
+        }
+        return perfilUsuario;
+    }
+    
     // Recupera usuario através do codigo
     public ArrayList<PerfilUsuario> getListaPerfilUsuarioDAO() {
         ArrayList<PerfilUsuario> listaPerfilUsuario = new ArrayList();

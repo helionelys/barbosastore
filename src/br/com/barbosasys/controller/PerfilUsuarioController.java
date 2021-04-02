@@ -11,5 +11,9 @@ public class PerfilUsuarioController {
     public ArrayList<PerfilUsuario> getListaPerfilUsuarioController() {
         return this.perfilUsuarioDAO.getListaPerfilUsuarioDAO();
     }
+    
+    public PerfilUsuario getPerfilUsuarioControllerSimples(int codigo){
+        return this.perfilUsuarioDAO.getPerfilUsuarioSimplesDAO(codigo);
+    }
 
 }
