@@ -10,7 +10,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Barbosa Store - Funcion&#xe1;rios"/>
+    <Property name="title" type="java.lang.String" value="Barbosa Store - Buscar Funcion&#xe1;rios"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>

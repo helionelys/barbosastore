@@ -5,9 +5,10 @@
  */
 package br.com.barbosasys.view;
 
-import br.com.barbosasys.controller.CategoriaProdutoController;
-import br.com.barbosasys.model.CategoriaProduto;
+import br.com.barbosasys.controller.UsuarioController;
+import br.com.barbosasys.model.Usuario;
 import java.util.ArrayList;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,9 +18,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UsuariosView extends javax.swing.JDialog {
 
-    CategoriaProduto categoriaProduto = new CategoriaProduto();
-    CategoriaProdutoController categoriaProdutoController = new CategoriaProdutoController();
-    ArrayList<CategoriaProduto> listaCategoriaProduto = new ArrayList<>();
+    Usuario usuario = new Usuario();
+    UsuarioController usuarioController = new UsuarioController();
+    ArrayList<Usuario> listaUsuario = new ArrayList<>();
     String tipoCadastro;
 
     /**
@@ -28,7 +29,7 @@ public class UsuariosView extends javax.swing.JDialog {
     public UsuariosView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.carregarCategoriaProduto();
+        this.carregarUsuarios();
     }
 
 //    BuscaCliente() {
@@ -238,6 +239,11 @@ public class UsuariosView extends javax.swing.JDialog {
         txtSenhaCadUsuarios.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         btnBucarNomeFuncionarioCadUsuarios.setText("Buscar");
+        btnBucarNomeFuncionarioCadUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBucarNomeFuncionarioCadUsuariosActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Confirme Senha:");
 
@@ -327,9 +333,9 @@ public class UsuariosView extends javax.swing.JDialog {
                     .addComponent(jLabel8)
                     .addComponent(cbPerfilCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
-                .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalvarCadUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnFecharCadUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnFecharCadUsuarios))
                 .addGap(460, 460, 460))
         );
 
@@ -386,7 +392,7 @@ public class UsuariosView extends javax.swing.JDialog {
 
     private void btnIncluirCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirCadUsuariosActionPerformed
         // TODO add your handling code here:
-        incluirCategoriaProduto();
+        incluirUsuario();
         txtCodigoCadUsuarios.setEditable(false);
     }//GEN-LAST:event_btnIncluirCadUsuariosActionPerformed
 
@@ -402,10 +408,10 @@ public class UsuariosView extends javax.swing.JDialog {
                     + " excluir o registro:\n" + descricao + "?", "Atenção", JOptionPane.YES_NO_OPTION);
             //se sim exclui, se não não faz nada
             if (opcao == JOptionPane.OK_OPTION) {
-                if (categoriaProdutoController.excluirCategoriaProdutoController(codigo)) {
+                if (usuarioController.excluirUsuarioController(codigo)) {
                     JOptionPane.showMessageDialog(this, "Registro excluído com sucesso!");
-                    incluirCategoriaProduto();
-                    carregarCategoriaProduto();
+                    incluirUsuario();
+                    carregarUsuarios();
                     jTabbedPaneCadUsuarios.setSelectedIndex(0);
 
                 } else {
@@ -429,41 +435,50 @@ public class UsuariosView extends javax.swing.JDialog {
     private void btnSalvarCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCadUsuariosActionPerformed
         // TODO add your handling code here:
         if (txtNomeFuncionarioCadUsuarios.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "É necessário atribuir uma descricao a unidade de medida");
+            JOptionPane.showMessageDialog(this, "É necessário atribuir preencher todos os campos");
             txtNomeFuncionarioCadUsuarios.grabFocus();
         } else if (tipoCadastro.equals("novo")) {
-            salvarCategoriaProduto();
+            salvarUsuario();
 
         } else if (tipoCadastro.equals("alteracao")) {
-            alterarCategoriaProduto();
+            alterarUsuario();
         }
     }//GEN-LAST:event_btnSalvarCadUsuariosActionPerformed
 
     private void btnAlterarCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarCadUsuariosActionPerformed
         // TODO add your handling code here:
         if (testarSelecao() == true) {
-            recuperaCategoriaProduto();
+            recuperaUsuario();
             tipoCadastro = "alteracao";
             txtCodigoCadUsuarios.setEditable(false);
 
         }
     }//GEN-LAST:event_btnAlterarCadUsuariosActionPerformed
 
-    private void carregarCategoriaProduto() {
-        listaCategoriaProduto = categoriaProdutoController.getListaCategoriaProdutoController();
+    private void btnBucarNomeFuncionarioCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBucarNomeFuncionarioCadUsuariosActionPerformed
+        // TODO add your handling code here:
+        BuscarFuncionarioView telaBuscaFuncionario = new BuscarFuncionarioView(this,rootPaneCheckingEnabled);
+        //telaBuscaFuncionario.setLocationRelativeTo(this);
+        telaBuscaFuncionario.setVisible(true);
+        
+    }//GEN-LAST:event_btnBucarNomeFuncionarioCadUsuariosActionPerformed
+
+    private void carregarUsuarios() {
+        listaUsuario = usuarioController.getListaUsuarioController();
         DefaultTableModel modelo = (DefaultTableModel) tblCadUsuarios.getModel();
         modelo.setNumRows(0);
         //CARREGA OS DADOS DA LISTA NA TABELA
-        int cont = listaCategoriaProduto.size();
+        int cont = listaUsuario.size();
         for (int i = 0; i < cont; i++) {
             modelo.addRow(new Object[]{
-                listaCategoriaProduto.get(i).getCodigo(),
-                listaCategoriaProduto.get(i).getDescricao()
+                listaUsuario.get(i).getCodigo(),
+                listaUsuario.get(i).getLogin(),
+                listaUsuario.get(i).getNomeRazaoSocial(),
             });
         }
     }
 
-    private boolean recuperaCategoriaProduto() {
+    private boolean recuperaUsuario() {
         //Armazena a linha selecionada
         int linhaTabela = this.tblCadUsuarios.getSelectedRow();
         //Captura valor código da unidade da linha selecionada
@@ -471,9 +486,10 @@ public class UsuariosView extends javax.swing.JDialog {
         jTabbedPaneCadUsuarios.setSelectedIndex(1);
 
         try {
-            categoriaProduto = categoriaProdutoController.getCategoriaProdutoController(codigo);
-            this.txtCodigoCadUsuarios.setText(String.valueOf(categoriaProduto.getCodigo()));
-            this.txtNomeFuncionarioCadUsuarios.setText(categoriaProduto.getDescricao());
+            usuario = usuarioController.getUsuarioController(codigo);
+            this.txtCodigoCadUsuarios.setText(String.valueOf(usuario.getCodigo()));
+            this.txtNomeFuncionarioCadUsuarios.setText(usuario.getNomeRazaoSocial());
+            this.cbPerfilCadUsuarios.setSelectedItem(usuario.getNomePerfil());
 
             return true;
         } catch (Exception e) {
@@ -491,21 +507,28 @@ public class UsuariosView extends javax.swing.JDialog {
         return true;
     }
 
-    private void incluirCategoriaProduto() {
+    private void incluirUsuario() {
         jTabbedPaneCadUsuarios.setSelectedIndex(1);
         txtCodigoCadUsuarios.setText("novo");
         txtNomeFuncionarioCadUsuarios.setText(null);
+        txtSenhaCadUsuarios.setText(null);
+        txtConfirmarSenhaCadUsuarios.setText(null);
+        cbPerfilCadUsuarios.setSelectedItem(null);
         tipoCadastro = "novo";
     }
 
-    private boolean alterarCategoriaProduto() {
-        categoriaProduto.setCodigo((Integer.parseInt(this.txtCodigoCadUsuarios.getText())));
-        categoriaProduto.setDescricao(this.txtNomeFuncionarioCadUsuarios.getText());
+    private boolean alterarUsuario() {
+        usuario.setCodigo((Integer.parseInt(this.txtCodigoCadUsuarios.getText())));
+        usuario.setLogin(this.txtLoginCadUsuarios.getText());
+        usuario.setNomeRazaoSocial(this.txtNomeFuncionarioCadUsuarios.getText());
+        usuario.setSenha(this.txtSenhaCadUsuarios.getText());
+        usuario.setNomePerfil((String)this.cbPerfilCadUsuarios.getSelectedItem());
+        
 
-        if (categoriaProdutoController.atualizarCategoriaProdutoController(categoriaProduto)) {
+        if (usuarioController.atualizarUsuarioController(usuario)) {
             JOptionPane.showMessageDialog(this, "Registro alterado com sucesso!");
-            this.incluirCategoriaProduto();
-            this.carregarCategoriaProduto();
+            this.incluirUsuario();
+            this.carregarUsuarios();
             jTabbedPaneCadUsuarios.setSelectedIndex(0);
 
             return true;
@@ -515,13 +538,13 @@ public class UsuariosView extends javax.swing.JDialog {
         }
     }
 
-    private boolean salvarCategoriaProduto() {
-        categoriaProduto.setDescricao(this.txtNomeFuncionarioCadUsuarios.getText());
+    private boolean salvarUsuario() {
+        usuario.setLogin(this.txtLoginCadUsuarios.getText());
 
-        if (categoriaProdutoController.salvarCategoriaProdutoController(categoriaProduto) > 0) {
+        if (usuarioController.salvarUsuarioController(usuario) > 0) {
             JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
-            this.incluirCategoriaProduto();
-            this.carregarCategoriaProduto();
+            this.incluirUsuario();
+            this.carregarUsuarios();
             jTabbedPaneCadUsuarios.setSelectedIndex(0);
             return true;
         } else {

@@ -117,7 +117,7 @@ public class FuncionarioView extends javax.swing.JDialog {
         btnCancelarFuncionario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Barbosa Store - Funcionários");
+        setTitle("Barbosa Store - Buscar Funcionários");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
