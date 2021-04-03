@@ -10,6 +10,7 @@ package br.com.barbosasys.model;
  * @author helionelys
  */
 public class Usuario extends Pessoa{
+    private int codUsuario;
     private String login;
     private String senha;
     private int codigoPerfil;
@@ -17,7 +18,15 @@ public class Usuario extends Pessoa{
 
     public Usuario() {
     }
-
+    
+    public int getCodUsuario(){
+        return codUsuario;
+    }
+    
+    public void setCodUsuario(int codUsuario){
+        this.codUsuario = codUsuario;
+    }
+    
     public String getLogin() {
         return login;
     }

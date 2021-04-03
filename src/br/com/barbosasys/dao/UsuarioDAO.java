@@ -27,7 +27,7 @@ public class UsuarioDAO extends ConexaoBanco {
                     + "CODPERFIL"
                     + ") VALUES ("
                     + "'" + usuario.getLogin() + "',"
-                    + "'" + usuario.getSenha() + "',"
+                    + "MD5('" + usuario.getSenha() + "'),"
                     + "'" + usuario.getCodigo() + "',"
                     + "'" + usuario.getCodigoPerfil() + "'"
                     + ");"
@@ -49,8 +49,11 @@ public class UsuarioDAO extends ConexaoBanco {
             this.executarSQL(
                     "SELECT "
                     + "TBL_USUARIO.CODUSUARIO,"
-                    + "TBL_USUARIO.LOGIN, "
+                    + "TBL_USUARIO.CODFUNCIONARIO, "
                     + "TBL_FUNCIONARIO.NOME,"
+                    + "TBL_USUARIO.LOGIN,"        
+                    + "TBL_USUARIO.SENHA,"        
+                    + "TBL_USUARIO.CODPERFIL,"
                     + "TBL_PERFILUSUARIO.NOME"
                     + " FROM"
                     + " TBL_USUARIO"
@@ -64,11 +67,14 @@ public class UsuarioDAO extends ConexaoBanco {
             );
 
             while (this.getResultSet().next()) {
-
-                usuario.setCodigo(this.getResultSet().getInt(1));
-                usuario.setLogin(this.getResultSet().getString(2));
-                usuario.setNomeRazaoSocial(this.getResultSet().getString(3));
-                usuario.setNomePerfil(this.getResultSet().getString(4));
+                
+                usuario.setCodUsuario(this.getResultSet().getInt(1));
+                usuario.setCodigo(this.getResultSet().getInt(2));
+                usuario.setNomeRazaoSocial(this.getResultSet().getString(3));                
+                usuario.setLogin(this.getResultSet().getString(4));
+                usuario.setSenha(this.getResultSet().getString(5));
+                usuario.setCodigoPerfil(this.getResultSet().getInt(6));
+                usuario.setNomePerfil(this.getResultSet().getString(7));
 
             }
         } catch (Exception e) {
@@ -113,6 +119,34 @@ public class UsuarioDAO extends ConexaoBanco {
             this.fecharConexao();
         }
         return usuario;
+    }
+    
+    public boolean getUsuarioDAO(Usuario usuario){
+        try {
+            this.conectar();
+            this.executarSQL(
+                "SELECT "
+                + "CODUSUARIO,"
+                + "LOGIN,"
+                + "SENHA"
+                + " FROM "
+                + " TBL_USUARIO"
+                + " WHERE"
+                + " LOGIN = '" + usuario.getLogin()+"' AND SENHA = '" + usuario.getSenha()+"'"
+                + ";"    
+            );
+            
+            if (getResultSet().next()){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally{
+            this.fecharConexao();
+        }
     }
 
     public ArrayList<Usuario> getListaUsuarioDAO() {

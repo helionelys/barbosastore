@@ -214,7 +214,6 @@ public class UsuariosView extends javax.swing.JDialog {
 
         txtNomeFuncionarioCadUsuarios.setEditable(false);
         txtNomeFuncionarioCadUsuarios.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txtNomeFuncionarioCadUsuarios.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtCodigoCadUsuarios.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         txtCodigoCadUsuarios.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -294,13 +293,10 @@ public class UsuariosView extends javax.swing.JDialog {
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel7))
                                 .addGap(18, 18, 18)
-                                .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jpCadastrarCadUsuariosLayout.createSequentialGroup()
-                                        .addComponent(txtCodigoCadUsuarios)
-                                        .addGap(19, 19, 19))
-                                    .addGroup(jpCadastrarCadUsuariosLayout.createSequentialGroup()
-                                        .addComponent(txtCodifgoFuncionarioCadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCodigoCadUsuarios)
+                                    .addComponent(txtCodifgoFuncionarioCadUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtNomeFuncionarioCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpCadastrarCadUsuariosLayout.createSequentialGroup()
                                 .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -341,13 +337,13 @@ public class UsuariosView extends javax.swing.JDialog {
                     .addComponent(txtLoginCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(17, 17, 17)
-                .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtSenhaCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtConfirmarSenhaCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtConfirmarSenhaCadUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jpCadastrarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -473,16 +469,19 @@ public class UsuariosView extends javax.swing.JDialog {
             recuperaUsuario();
             tipoCadastro = "alteracao";
             txtCodigoCadUsuarios.setEditable(false);
+            txtLoginCadUsuarios.setEditable(false);
+            txtLoginCadUsuarios.setEnabled(false);
+            btnBucarNomeFuncionarioCadUsuarios.setEnabled(false);
 
         }
     }//GEN-LAST:event_btnAlterarCadUsuariosActionPerformed
 
     private void btnBucarNomeFuncionarioCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBucarNomeFuncionarioCadUsuariosActionPerformed
         // TODO add your handling code here:
-        BuscarFuncionarioView telaBuscaFuncionario = new BuscarFuncionarioView(this,rootPaneCheckingEnabled);
+        BuscarFuncionarioView telaBuscaFuncionario = new BuscarFuncionarioView(this, rootPaneCheckingEnabled);
         //telaBuscaFuncionario.setLocationRelativeTo(this);
         telaBuscaFuncionario.setVisible(true);
-        
+
         txtCodifgoFuncionarioCadUsuario.setText(String.valueOf(telaBuscaFuncionario.getCodigoFuncionario()));
         txtNomeFuncionarioCadUsuarios.setText(telaBuscaFuncionario.getNomeFuncionario());
     }//GEN-LAST:event_btnBucarNomeFuncionarioCadUsuariosActionPerformed
@@ -491,10 +490,10 @@ public class UsuariosView extends javax.swing.JDialog {
         // TODO add your handling code here:
         BuscarPerfilUsuarioView telaBuscarPerfilUsuario = new BuscarPerfilUsuarioView(this, rootPaneCheckingEnabled);
         telaBuscarPerfilUsuario.setVisible(true);
-        
+
         txtCodPerfilCadUsuarios.setText(String.valueOf(telaBuscarPerfilUsuario.getCodigoPerfilUsuario()));
         txtNomePerfilCadUsuarios.setText(telaBuscarPerfilUsuario.getNomePerfilUsuario());
-        
+
     }//GEN-LAST:event_btnBucarNomePerfilCadUsuariosActionPerformed
 
     private void carregarUsuarios() {
@@ -507,12 +506,9 @@ public class UsuariosView extends javax.swing.JDialog {
             modelo.addRow(new Object[]{
                 listaUsuario.get(i).getCodigo(),
                 listaUsuario.get(i).getLogin(),
-                listaUsuario.get(i).getNomeRazaoSocial(),
-            });
+                listaUsuario.get(i).getNomeRazaoSocial(),});
         }
     }
-    
-
 
     private boolean recuperaUsuario() {
         //Armazena a linha selecionada
@@ -523,9 +519,14 @@ public class UsuariosView extends javax.swing.JDialog {
 
         try {
             usuario = usuarioController.getUsuarioController(codigo);
-            this.txtCodigoCadUsuarios.setText(String.valueOf(usuario.getCodigo()));
+            this.txtCodigoCadUsuarios.setText(String.valueOf(usuario.getCodUsuario()));
+            this.txtCodifgoFuncionarioCadUsuario.setText(String.valueOf(usuario.getCodigo()));
             this.txtNomeFuncionarioCadUsuarios.setText(usuario.getNomeRazaoSocial());
+            this.txtLoginCadUsuarios.setText(usuario.getLogin());
+            this.txtSenhaCadUsuarios.setText(String.valueOf(usuario.getSenha()));
+            this.txtConfirmarSenhaCadUsuarios.setText(String.valueOf(usuario.getSenha()));
             this.txtCodPerfilCadUsuarios.setText(String.valueOf(usuario.getCodigoPerfil()));
+            this.txtNomePerfilCadUsuarios.setText(usuario.getNomePerfil());
 
             return true;
         } catch (Exception e) {
@@ -555,28 +556,53 @@ public class UsuariosView extends javax.swing.JDialog {
     }
 
     private boolean alterarUsuario() {
-        usuario.setCodigo((Integer.parseInt(this.txtCodigoCadUsuarios.getText())));
-        usuario.setLogin(this.txtLoginCadUsuarios.getText());
-        usuario.setNomeRazaoSocial(this.txtNomeFuncionarioCadUsuarios.getText());
-        usuario.setSenha(this.txtSenhaCadUsuarios.getText());
-        usuario.setNomePerfil(this.txtNomePerfilCadUsuarios.getText());
-        
 
-        if (usuarioController.atualizarUsuarioController(usuario)) {
-            JOptionPane.showMessageDialog(this, "Registro alterado com sucesso!");
-            this.incluirUsuario();
-            this.carregarUsuarios();
-            jTabbedPaneCadUsuarios.setSelectedIndex(0);
+        String password, passwordConfirm;
+        password = new String(this.txtSenhaCadUsuarios.getPassword());
+        passwordConfirm = new String(this.txtConfirmarSenhaCadUsuarios.getPassword());
 
-            return true;
+        // Valida se as senhas inseridas são iguais
+        if (password.equals(passwordConfirm)) {
+            usuario.setSenha(new String(this.txtSenhaCadUsuarios.getPassword()));
+            usuario.setCodigoPerfil(Integer.parseInt(this.txtCodPerfilCadUsuarios.getText()));
+
+            if (usuarioController.atualizarUsuarioController(usuario)) {
+
+                JOptionPane.showMessageDialog(this, "Registro alterado com sucesso!");
+                this.incluirUsuario();
+                this.carregarUsuarios();
+                jTabbedPaneCadUsuarios.setSelectedIndex(0);
+
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao alterar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
         } else {
-            JOptionPane.showMessageDialog(this, "Erro ao alterar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "As senhas inseridas não são iguais", "Atemnção!", JOptionPane.WARNING_MESSAGE);
             return false;
         }
+
+//        if (usuarioController.atualizarUsuarioController(usuario)) {
+//         
+//            JOptionPane.showMessageDialog(this, "Registro alterado com sucesso!");
+//            this.incluirUsuario();
+//            this.carregarUsuarios();
+//            jTabbedPaneCadUsuarios.setSelectedIndex(0);
+//
+//            return true;
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Erro ao alterar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
+//            return false;
+//        }
     }
 
     private boolean salvarUsuario() {
+        usuario.setCodigo(Integer.parseInt(this.txtCodifgoFuncionarioCadUsuario.getText()));
         usuario.setLogin(this.txtLoginCadUsuarios.getText());
+        usuario.setSenha(new String(this.txtSenhaCadUsuarios.getPassword()));
+        usuario.setCodigoPerfil(Integer.parseInt(this.txtCodPerfilCadUsuarios.getText()));
 
         if (usuarioController.salvarUsuarioController(usuario) > 0) {
             JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");

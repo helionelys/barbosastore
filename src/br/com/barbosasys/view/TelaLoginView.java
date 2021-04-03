@@ -5,12 +5,19 @@
  */
 package br.com.barbosasys.view;
 
+import br.com.barbosasys.controller.UsuarioController;
+import br.com.barbosasys.model.Usuario;
+import br.com.barbosasys.model.UsuarioSessao;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hbarbosa
  */
 public class TelaLoginView extends javax.swing.JDialog {
-
+    
+    private UsuarioSessao usuarioSessao = new UsuarioSessao();
+    
     /**
      * Creates new form PrincipalView
      */
@@ -34,8 +41,8 @@ public class TelaLoginView extends javax.swing.JDialog {
         btnCancelarLogin = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtUsuarioLogin = new javax.swing.JTextField();
+        txtSenhaLogin = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -87,6 +94,12 @@ public class TelaLoginView extends javax.swing.JDialog {
 
         jLabel3.setText("Senha:");
 
+        txtSenhaLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaLoginActionPerformed(evt);
+            }
+        });
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/icon_login.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,8 +120,8 @@ public class TelaLoginView extends javax.swing.JDialog {
                         .addComponent(btnEntrarLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField1)
-                    .addComponent(jPasswordField1))
+                    .addComponent(txtUsuarioLogin)
+                    .addComponent(txtSenhaLogin))
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -124,12 +137,12 @@ public class TelaLoginView extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsuarioLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnEntrarLogin)
@@ -143,10 +156,11 @@ public class TelaLoginView extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarLoginActionPerformed
-        MenuPrincipalView telaprincipal = new MenuPrincipalView();
-        telaprincipal.setLocationRelativeTo(this);
-        telaprincipal.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
+//        MenuPrincipalView telaprincipal = new MenuPrincipalView();
+//        telaprincipal.setLocationRelativeTo(this);
+//        telaprincipal.setVisible(true);
+//        this.dispose();        // TODO add your handling code here:
+          autenticar();
     }//GEN-LAST:event_btnEntrarLoginActionPerformed
 
     private void btnCancelarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarLoginActionPerformed
@@ -159,6 +173,31 @@ public class TelaLoginView extends javax.swing.JDialog {
          
     }//GEN-LAST:event_btnCancelarLoginActionPerformed
 
+    private void txtSenhaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaLoginActionPerformed
+        // TODO add your handling code here:
+        autenticar();
+    }//GEN-LAST:event_txtSenhaLoginActionPerformed
+
+    private void autenticar (){
+        Usuario usuario = new Usuario();
+        UsuarioController usuarioController = new UsuarioController();
+        usuario.setLogin(this.txtUsuarioLogin.getText());
+        usuario.setSenha(new String (this.txtSenhaLogin.getPassword()));
+        
+        if (usuarioController.getUsuarioController(usuario)){
+            usuarioSessao.nome = usuarioController.getUsuarioController(usuario.getLogin()).getNomeRazaoSocial();
+            MenuPrincipalView telaprincipal = new MenuPrincipalView();
+            telaprincipal.setVisible(true);
+            telaprincipal.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuário ou Senhas incorretos", "Atenção", JOptionPane.WARNING_MESSAGE);
+            txtUsuarioLogin.setText("");
+            txtSenhaLogin.setText("");
+            txtUsuarioLogin.grabFocus();
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -216,8 +255,8 @@ public class TelaLoginView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtSenhaLogin;
+    private javax.swing.JTextField txtUsuarioLogin;
     // End of variables declaration//GEN-END:variables
 
 }

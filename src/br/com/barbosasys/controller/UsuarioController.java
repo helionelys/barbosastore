@@ -6,29 +6,37 @@ import java.util.ArrayList;
 
 public class UsuarioController {
 
-    private UsuarioDAO categoriaProdutoDAO = new UsuarioDAO();
+    private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-    public int salvarUsuarioController(Usuario categoriaProduto) {
-        return this.categoriaProdutoDAO.salvarUsuarioDAO(categoriaProduto);
+    //1
+    public int salvarUsuarioController(Usuario usuario) {
+        return this.usuarioDAO.salvarUsuarioDAO(usuario);
     }
     
+    //2
     public Usuario getUsuarioController(int codigo){
-        return this.categoriaProdutoDAO.getUsuarioDAO(codigo);
+        return this.usuarioDAO.getUsuarioDAO(codigo);
     }
     
-    public Usuario getUsuarioController(String nome){
-        return this.categoriaProdutoDAO.getUsuarioDAO(nome);
+    //3
+    public Usuario getUsuarioController(String login){
+        return this.usuarioDAO.getUsuarioDAO(login);
+    } 
+    
+    //4
+    public boolean getUsuarioController(Usuario usuario){
+        return this.usuarioDAO.getUsuarioDAO(usuario);
     }
     
     public ArrayList<Usuario> getListaUsuarioController(){
-        return this.categoriaProdutoDAO.getListaUsuarioDAO();
+        return this.usuarioDAO.getListaUsuarioDAO();
     }
     
     public boolean atualizarUsuarioController(Usuario categoriaProduto){
-        return this.categoriaProdutoDAO.atualizarUsuarioDAO(categoriaProduto);
+        return this.usuarioDAO.atualizarUsuarioDAO(categoriaProduto);
     }
     
     public boolean excluirUsuarioController(int codigo){
-        return this.categoriaProdutoDAO.excluirUsuarioDAO(codigo);
+        return this.usuarioDAO.excluirUsuarioDAO(codigo);
     }
 }
