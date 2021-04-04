@@ -6,6 +6,7 @@
 package br.com.barbosasys.view;
 
 
+import br.com.barbosasys.model.UsuarioSessao;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -16,6 +17,8 @@ import javax.swing.JOptionPane;
  * @author Helionelys
  */
 public class MenuPrincipalView extends javax.swing.JFrame {
+    
+    String nomeFuncionarioLogin;
     
     /**
      * Creates new form MenuPrincipalView
@@ -44,8 +47,9 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         };
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblNomeFuncionarioLogado = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        lblDataUltimoLogin = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnClientes = new javax.swing.JButton();
         btnProdutos = new javax.swing.JButton();
@@ -100,14 +104,18 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
         jPanel2.setMinimumSize(new java.awt.Dimension(0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Funcionário:");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel2.setText("jLabel2");
+        lblNomeFuncionarioLogado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblNomeFuncionarioLogado.setForeground(new java.awt.Color(204, 0, 0));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("Data:");
+
+        lblDataUltimoLogin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblDataUltimoLogin.setForeground(new java.awt.Color(204, 0, 0));
+        lblDataUltimoLogin.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,17 +125,23 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNomeFuncionarioLogado, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 606, Short.MAX_VALUE))
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblDataUltimoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(lblDataUltimoLogin))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNomeFuncionarioLogado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/People-32.png"))); // NOI18N
@@ -235,13 +249,13 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(Painel_desktopLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 348, Short.MAX_VALUE))
         );
         Painel_desktopLayout.setVerticalGroup(
             Painel_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Painel_desktopLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 485, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 471, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -628,6 +642,16 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MenuOpcoesSairActionPerformed
     
+    public String retornarUsuarioLogado() {
+        return new UsuarioSessao().nome;
+    }
+    
+    public void configurar(){
+        nomeFuncionarioLogin = retornarUsuarioLogado();
+        lblNomeFuncionarioLogado.setText(nomeFuncionarioLogin);
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu MenuCadastro;
     private javax.swing.JMenuItem MenuCadastroCadAuxCatProduto;
@@ -666,7 +690,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton btnVendas;
     private javax.swing.JButton jButton16;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
@@ -678,5 +701,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    public javax.swing.JLabel lblDataUltimoLogin;
+    public javax.swing.JLabel lblNomeFuncionarioLogado;
     // End of variables declaration//GEN-END:variables
 }

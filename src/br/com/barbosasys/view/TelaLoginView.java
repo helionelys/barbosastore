@@ -166,10 +166,12 @@ public class TelaLoginView extends javax.swing.JDialog {
     private void btnCancelarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarLoginActionPerformed
         // TODO add your handling code here:
          //System.exit(0);
-         TelaVendasView telaVenda = new TelaVendasView();
-         telaVenda.setLocationRelativeTo(this);
-         telaVenda.setVisible(true);
-         this.dispose();
+//         TelaVendasView telaVenda = new TelaVendasView();
+//         telaVenda.setLocationRelativeTo(this);
+//         telaVenda.setVisible(true);
+//         this.dispose();
+            System.exit(0);
+
          
     }//GEN-LAST:event_btnCancelarLoginActionPerformed
 
@@ -189,6 +191,7 @@ public class TelaLoginView extends javax.swing.JDialog {
             MenuPrincipalView telaprincipal = new MenuPrincipalView();
             telaprincipal.setVisible(true);
             telaprincipal.setVisible(true);
+            //telaprincipal.lblNomeFuncionarioLogado.setText(usuarioSessao.nome);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Usuário ou Senhas incorretos", "Atenção", JOptionPane.WARNING_MESSAGE);

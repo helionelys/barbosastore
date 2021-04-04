@@ -715,8 +715,15 @@ public class ClienteView extends javax.swing.JDialog {
             txtNomeRazaoSocialCliente.grabFocus();
         } else if (tipoCadastro.equals("novo")) {
             salvarCliente();
+            carregarCliente();
+            incluirCliente();
+            jTabbedPaneCliente.setSelectedIndex(0);
+            
         } else if (tipoCadastro.equals("alteracao")) {
             alteraCliente();
+            carregarCliente();
+            incluirCliente();
+            jTabbedPaneCliente.setSelectedIndex(0);
         }
 
     }//GEN-LAST:event_btnSalvarClienteActionPerformed
@@ -758,6 +765,7 @@ public class ClienteView extends javax.swing.JDialog {
     private void btnIncluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirClienteActionPerformed
         // TODO add your handling code here:
         incluirCliente();
+        this.camposAtivados();
         txtCnpjCliente.setEnabled(false);
         txtInscricaoEstadualCliente.setEnabled(false);
 
@@ -773,6 +781,7 @@ public class ClienteView extends javax.swing.JDialog {
         if (testarSelecao() == true) {
             //  incluirCliente();
             recuperarCliente();
+            this.camposAtivados();
             tipoCadastro = "alteracao";
         }
     }//GEN-LAST:event_btnAlterarClienteActionPerformed
@@ -827,7 +836,7 @@ public class ClienteView extends javax.swing.JDialog {
             });
 
         }
-
+        this.camposDesativados();
     }
 
     private boolean recuperarCliente() {
@@ -987,7 +996,57 @@ public class ClienteView extends javax.swing.JDialog {
         }
 
     }
-
+    
+    //Campos desabilitados ao carregar janela de cadastro sem usar botão incluir
+    private void camposAtivados(){
+        rbTipoPFisicaCliente.setEnabled(true);
+        rbTipoPJuridicaCliente.setEnabled(true);
+        txtDataNascimentoCliente.setEnabled(true);
+        txtNomeRazaoSocialCliente.setEnabled(true);
+        txtApelidoNomeFantasiaCliente.setEnabled(true);
+        txtCpfCliente.setEnabled(true);
+        txtRgCliente.setEnabled(true);
+        txtCnpjCliente.setEnabled(true);
+        txtInscricaoEstadualCliente.setEnabled(true);
+        txtCepCliente.setEnabled(true);
+        txtCidadeCliente.setEnabled(true);
+        cbUfCliente.setEnabled(true);
+        txtLogradouroCliente.setEnabled(true);
+        txtNumeroCliente.setEnabled(true);
+        txtBairroCliente.setEnabled(true);
+        txtComplementoCliente.setEnabled(true);
+        txtCelularCliente.setEnabled(true);
+        txtTelefoneCliente.setEnabled(true);
+        txtEmailCliente.setEnabled(true);
+        txtCodigoCliente.setEnabled(true);
+        txtDataCadastramentoCliente.setEnabled(true);
+    }
+    
+    //Campos ATIVADOS ao carregar janela de cadastro sem usar botão incluir
+    private void camposDesativados(){
+        rbTipoPFisicaCliente.setEnabled(false);
+        rbTipoPJuridicaCliente.setEnabled(false);
+        txtDataNascimentoCliente.setEnabled(false);
+        txtNomeRazaoSocialCliente.setEnabled(false);
+        txtApelidoNomeFantasiaCliente.setEnabled(false);
+        txtCpfCliente.setEnabled(false);
+        txtRgCliente.setEnabled(false);
+        txtCnpjCliente.setEnabled(false);
+        txtInscricaoEstadualCliente.setEnabled(false);
+        txtCepCliente.setEnabled(false);
+        txtCidadeCliente.setEnabled(false);
+        cbUfCliente.setEnabled(false);
+        txtLogradouroCliente.setEnabled(false);
+        txtNumeroCliente.setEnabled(false);
+        txtBairroCliente.setEnabled(false);
+        txtComplementoCliente.setEnabled(false);
+        txtCelularCliente.setEnabled(false);
+        txtTelefoneCliente.setEnabled(false);
+        txtEmailCliente.setEnabled(false);
+        txtCodigoCliente.setEnabled(false);
+        txtDataCadastramentoCliente.setEnabled(false);
+    }
+    
     private boolean salvarCliente() {
 
         if (rbTipoPFisicaCliente.isSelected()) {
