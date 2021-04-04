@@ -32,8 +32,8 @@ public class UsuarioController {
         return this.usuarioDAO.getListaUsuarioDAO();
     }
     
-    public boolean atualizarUsuarioController(Usuario categoriaProduto){
-        return this.usuarioDAO.atualizarUsuarioDAO(categoriaProduto);
+    public boolean atualizarUsuarioController(Usuario usuario){
+        return this.usuarioDAO.atualizarUsuarioDAO(usuario);
     }
     
     public boolean excluirUsuarioController(int codigo){

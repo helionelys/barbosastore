@@ -27,6 +27,7 @@ public class UsuarioDAO extends ConexaoBanco {
                     + "CODPERFIL"
                     + ") VALUES ("
                     + "'" + usuario.getLogin() + "',"
+                    //+ "'" + usuario.getSenha() + "',"
                     + "MD5('" + usuario.getSenha() + "'),"
                     + "'" + usuario.getCodigo() + "',"
                     + "'" + usuario.getCodigoPerfil() + "'"
@@ -132,7 +133,7 @@ public class UsuarioDAO extends ConexaoBanco {
                 + " FROM "
                 + " TBL_USUARIO"
                 + " WHERE"
-                + " LOGIN = '" + usuario.getLogin()+"' AND SENHA = '" + usuario.getSenha()+"'"
+                + " LOGIN = '" + usuario.getLogin()+"' AND SENHA = MD5('" + usuario.getSenha()+"')"
                 + ";"    
             );
             
@@ -193,10 +194,10 @@ public class UsuarioDAO extends ConexaoBanco {
             this.conectar();
             this.executarUpdateDeleteSQL(
                     "UPDATE TBL_USUARIO SET "
-                    + "SENHA = '" + usuario.getSenha()+ "',"
+                    + "SENHA = MD5('" + usuario.getSenha()+ "'),"
                     + "CODPERFIL = '" + usuario.getCodigoPerfil()+ "'"
                     + "WHERE "
-                    + "CODUSUARIO = '" + usuario.getCodigo() + "'"
+                    + "CODUSUARIO = '" + usuario.getCodUsuario()+ "'"
                     + ";"
             );
             return true;

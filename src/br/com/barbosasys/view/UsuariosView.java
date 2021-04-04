@@ -7,6 +7,7 @@ package br.com.barbosasys.view;
 
 import br.com.barbosasys.controller.UsuarioController;
 import br.com.barbosasys.model.Usuario;
+import br.com.barbosasys.model.UsuarioSessao;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JOptionPane;
@@ -17,6 +18,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Helionelys
  */
 public class UsuariosView extends javax.swing.JDialog {
+
+    String nomeUsuario;
+    boolean alteracao = false;
 
     Usuario usuario = new Usuario();
     UsuarioController usuarioController = new UsuarioController();
@@ -452,13 +456,21 @@ public class UsuariosView extends javax.swing.JDialog {
 
     private void btnSalvarCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCadUsuariosActionPerformed
         // TODO add your handling code here:
-        if (txtNomeFuncionarioCadUsuarios.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "É necessário atribuir preencher todos os campos");
-            txtNomeFuncionarioCadUsuarios.grabFocus();
-        } else if (tipoCadastro.equals("novo")) {
-            salvarUsuario();
-
-        } else if (tipoCadastro.equals("alteracao")) {
+        nomeUsuario = retornaUsuarioLogado();
+        if (alteracao == false) {
+            if (txtNomeFuncionarioCadUsuarios.getText().equals("") || txtLoginCadUsuarios.getText().equals("")
+                    || txtSenhaCadUsuarios.getPassword().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Você deve informar o nome, o login e a senha para salvar!", "Atenção!", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+          if (validarSenhas() == true){
+              this.salvarUsuario();
+          } else {
+             // JOptionPane.showMessageDialog(rootPane, "As senhas não são iguais","Atenção",JOptionPane.WARNING_MESSAGE);
+                this.txtSenhaCadUsuarios.setText(null);
+                this.txtConfirmarSenhaCadUsuarios.setText(null);
+          }
+        } else{
             alterarUsuario();
         }
     }//GEN-LAST:event_btnSalvarCadUsuariosActionPerformed
@@ -467,7 +479,7 @@ public class UsuariosView extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (testarSelecao() == true) {
             recuperaUsuario();
-            tipoCadastro = "alteracao";
+            alteracao = true;
             txtCodigoCadUsuarios.setEditable(false);
             txtLoginCadUsuarios.setEditable(false);
             txtLoginCadUsuarios.setEnabled(false);
@@ -544,6 +556,27 @@ public class UsuariosView extends javax.swing.JDialog {
         return true;
     }
 
+    public String retornaUsuarioLogado() {
+        return new UsuarioSessao().nome;
+    }
+    
+    private boolean validarSenhas(){
+        String password, confirmPassword;
+            password = new String (this.txtSenhaCadUsuarios.getPassword());
+            confirmPassword = new String (this.txtConfirmarSenhaCadUsuarios.getPassword());
+            
+            //valida se as senhas inseridas são iguais
+            if (password.equals(confirmPassword)){
+                return true;
+            } else{
+                JOptionPane.showMessageDialog(rootPane, "As senhas não são iguais","Atenção",JOptionPane.WARNING_MESSAGE);
+//                this.txtSenhaCadUsuarios.setText(null);
+//                this.txtConfirmarSenhaCadUsuarios.setText(null);
+                return false;
+                
+            }
+    }
+    
     private void incluirUsuario() {
         jTabbedPaneCadUsuarios.setSelectedIndex(1);
         txtCodigoCadUsuarios.setText("novo");
@@ -556,49 +589,34 @@ public class UsuariosView extends javax.swing.JDialog {
     }
 
     private boolean alterarUsuario() {
-
-        String password, passwordConfirm;
-        password = new String(this.txtSenhaCadUsuarios.getPassword());
-        passwordConfirm = new String(this.txtConfirmarSenhaCadUsuarios.getPassword());
-
-        // Valida se as senhas inseridas são iguais
-        if (password.equals(passwordConfirm)) {
+        usuario.setCodUsuario(Integer.parseInt(this.txtCodigoCadUsuarios.getText()));
+        //usuario.setSenha(new String(this.txtSenhaCadUsuarios.getPassword()));
+        usuario.setCodigoPerfil(Integer.parseInt(this.txtCodPerfilCadUsuarios.getText()));
+        
+            String password, confirmPassword;
+            password = new String (this.txtSenhaCadUsuarios.getPassword());
+            confirmPassword = new String (this.txtConfirmarSenhaCadUsuarios.getPassword());
+            
+            //valida se as senhas inseridas são iguais
+            if (password.equals(confirmPassword)){
             usuario.setSenha(new String(this.txtSenhaCadUsuarios.getPassword()));
-            usuario.setCodigoPerfil(Integer.parseInt(this.txtCodPerfilCadUsuarios.getText()));
-
-            if (usuarioController.atualizarUsuarioController(usuario)) {
-
-                JOptionPane.showMessageDialog(this, "Registro alterado com sucesso!");
-                this.incluirUsuario();
-                this.carregarUsuarios();
-                jTabbedPaneCadUsuarios.setSelectedIndex(0);
-
-                return true;
+            usuarioController.atualizarUsuarioController(usuario);
+            JOptionPane.showMessageDialog(this,"Dados atualizados com sucesso");
+            this.carregarUsuarios();
+            jTabbedPaneCadUsuarios.setSelectedIndex(0);
+            return true;
             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao alterar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                 JOptionPane.showMessageDialog(rootPane, "As senhas não são iguais","Atenção",JOptionPane.WARNING_MESSAGE);
+                this.txtSenhaCadUsuarios.setText(null);
+                this.txtConfirmarSenhaCadUsuarios.setText(null);
                 return false;
+
             }
-
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "As senhas inseridas não são iguais", "Atemnção!", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-
-//        if (usuarioController.atualizarUsuarioController(usuario)) {
-//         
-//            JOptionPane.showMessageDialog(this, "Registro alterado com sucesso!");
-//            this.incluirUsuario();
-//            this.carregarUsuarios();
-//            jTabbedPaneCadUsuarios.setSelectedIndex(0);
-//
-//            return true;
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Erro ao alterar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
-//            return false;
-//        }
+        
     }
 
     private boolean salvarUsuario() {
+
         usuario.setCodigo(Integer.parseInt(this.txtCodifgoFuncionarioCadUsuario.getText()));
         usuario.setLogin(this.txtLoginCadUsuarios.getText());
         usuario.setSenha(new String(this.txtSenhaCadUsuarios.getPassword()));
@@ -606,8 +624,8 @@ public class UsuariosView extends javax.swing.JDialog {
 
         if (usuarioController.salvarUsuarioController(usuario) > 0) {
             JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
-            this.incluirUsuario();
             this.carregarUsuarios();
+            this.incluirUsuario();
             jTabbedPaneCadUsuarios.setSelectedIndex(0);
             return true;
         } else {

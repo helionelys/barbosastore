@@ -5,6 +5,7 @@
  */
 package br.com.barbosasys.view;
 
+
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -15,12 +16,13 @@ import javax.swing.JOptionPane;
  * @author Helionelys
  */
 public class MenuPrincipalView extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form MenuPrincipalView
      */
     public MenuPrincipalView() {
         initComponents();
+        
     }
 
     /**
@@ -50,7 +52,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         btnVendas = new javax.swing.JButton();
         btnServico = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        btnSairLogout = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastro = new javax.swing.JMenu();
         MenuCadastroCliente = new javax.swing.JMenuItem();
@@ -180,11 +182,16 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jButton16.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jButton16.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Exit-32_1.png"))); // NOI18N
-        jButton15.setText("Sair");
-        jButton15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton15.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSairLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Exit-32_1.png"))); // NOI18N
+        btnSairLogout.setText("Sair");
+        btnSairLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSairLogout.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSairLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSairLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -201,10 +208,10 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton15))
+                .addComponent(btnSairLogout))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnProdutos, btnServico, btnVendas, jButton15, jButton16});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnProdutos, btnSairLogout, btnServico, btnVendas, jButton16});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +220,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             .addComponent(btnVendas)
             .addComponent(btnServico)
             .addComponent(jButton16)
-            .addComponent(jButton15)
+            .addComponent(btnSairLogout)
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClientes, btnProdutos});
@@ -424,9 +431,19 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuOpcoes.setText("Opções");
 
         MenuOpcoesLogff.setText("Logoff");
+        MenuOpcoesLogff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuOpcoesLogffActionPerformed(evt);
+            }
+        });
         MenuOpcoes.add(MenuOpcoesLogff);
 
         MenuOpcoesSair.setText("Sair");
+        MenuOpcoesSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuOpcoesSairActionPerformed(evt);
+            }
+        });
         MenuOpcoes.add(MenuOpcoesSair);
 
         MenuOpcoesSobre.setText("Sobre");
@@ -585,8 +602,32 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         telaPerfisUsuarios.setVisible(true);
     }//GEN-LAST:event_MenuSegurancaPerfisActionPerformed
 
-  
+    private void btnSairLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairLogoutActionPerformed
+        // TODO add your handling code here:
+        MenuOpcoesLogffActionPerformed(evt);
+       
+    }//GEN-LAST:event_btnSairLogoutActionPerformed
 
+    private void MenuOpcoesLogffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOpcoesLogffActionPerformed
+        // TODO add your handling code here:
+        int confirma = JOptionPane.showConfirmDialog(null, "Deseja finalizar sua sessão ?", "Atenção",
+                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (confirma == 0) {
+                TelaLoginView tela = new TelaLoginView(this, rootPaneCheckingEnabled);
+                this.dispose();
+                tela.setVisible(true);
+        }
+    }//GEN-LAST:event_MenuOpcoesLogffActionPerformed
+
+    private void MenuOpcoesSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOpcoesSairActionPerformed
+        // TODO add your handling code here:
+        int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair ?", "Atenção",
+                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (confirma == 0) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_MenuOpcoesSairActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu MenuCadastro;
     private javax.swing.JMenuItem MenuCadastroCadAuxCatProduto;
@@ -620,9 +661,9 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JDesktopPane Painel_desktop;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnProdutos;
+    private javax.swing.JButton btnSairLogout;
     private javax.swing.JButton btnServico;
     private javax.swing.JButton btnVendas;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
