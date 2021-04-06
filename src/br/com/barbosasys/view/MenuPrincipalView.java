@@ -442,6 +442,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuSeguranca.add(MenuSegurancaPerfis);
 
         MenuSegurancaDadosEmpresas.setText("Dados da Empresa");
+        MenuSegurancaDadosEmpresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuSegurancaDadosEmpresasActionPerformed(evt);
+            }
+        });
         MenuSeguranca.add(MenuSegurancaDadosEmpresas);
 
         jMenuBar1.add(MenuSeguranca);
@@ -653,6 +658,13 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_MenuOpcoesSairActionPerformed
+
+    private void MenuSegurancaDadosEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSegurancaDadosEmpresasActionPerformed
+        // TODO add your handling code here:
+        DadosEmpresaView telaDadosEmpresa = new DadosEmpresaView(this, rootPaneCheckingEnabled);
+        telaDadosEmpresa.setLocationRelativeTo(this);
+        telaDadosEmpresa.setVisible(true);
+    }//GEN-LAST:event_MenuSegurancaDadosEmpresasActionPerformed
     
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;
@@ -661,7 +673,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     public void configurar(){
         nomeFuncionarioLogado = retornarUsuarioLogado();
         lblNomeFuncionarioLogado.setText(nomeFuncionarioLogado);
-        System.out.println("Usuario: "+nomeFuncionarioLogado);
+        //System.out.println("Usuario: "+nomeFuncionarioLogado);
     }
     
     

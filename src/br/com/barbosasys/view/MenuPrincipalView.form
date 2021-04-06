@@ -216,6 +216,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dados da Empresa"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuSegurancaDadosEmpresasActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
