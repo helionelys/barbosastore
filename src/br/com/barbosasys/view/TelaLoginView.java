@@ -9,21 +9,24 @@ import br.com.barbosasys.controller.UsuarioController;
 import br.com.barbosasys.model.Usuario;
 import br.com.barbosasys.model.UsuarioSessao;
 import javax.swing.JOptionPane;
+import org.graalvm.compiler.nodes.BreakpointNode;
 
 /**
  *
  * @author hbarbosa
  */
 public class TelaLoginView extends javax.swing.JDialog {
-    
+
     private UsuarioSessao usuarioSessao = new UsuarioSessao();
-    
+
     /**
      * Creates new form PrincipalView
      */
     public TelaLoginView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -156,42 +159,27 @@ public class TelaLoginView extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarLoginActionPerformed
-//        MenuPrincipalView telaprincipal = new MenuPrincipalView();
-//        telaprincipal.setLocationRelativeTo(this);
-//        telaprincipal.setVisible(true);
-//        this.dispose();        // TODO add your handling code here:
-          autenticar();
+        autenticar();
     }//GEN-LAST:event_btnEntrarLoginActionPerformed
 
     private void btnCancelarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarLoginActionPerformed
-        // TODO add your handling code here:
-         //System.exit(0);
-//         TelaVendasView telaVenda = new TelaVendasView();
-//         telaVenda.setLocationRelativeTo(this);
-//         telaVenda.setVisible(true);
-//         this.dispose();
-            System.exit(0);
-
-         
+        System.exit(0);
     }//GEN-LAST:event_btnCancelarLoginActionPerformed
 
     private void txtSenhaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaLoginActionPerformed
-        // TODO add your handling code here:
         autenticar();
     }//GEN-LAST:event_txtSenhaLoginActionPerformed
 
-    private void autenticar (){
+    private void autenticar() {
         Usuario usuario = new Usuario();
         UsuarioController usuarioController = new UsuarioController();
         usuario.setLogin(this.txtUsuarioLogin.getText());
-        usuario.setSenha(new String (this.txtSenhaLogin.getPassword()));
-        
-        if (usuarioController.getUsuarioController(usuario)){
+        usuario.setSenha(new String(this.txtSenhaLogin.getPassword()));
+
+        if (usuarioController.getUsuarioController(usuario)) {
             usuarioSessao.nome = usuarioController.getUsuarioController(usuario.getLogin()).getNomeRazaoSocial();
-            MenuPrincipalView telaprincipal = new MenuPrincipalView();
-            telaprincipal.setVisible(true);
-            telaprincipal.setVisible(true);
-            //telaprincipal.lblNomeFuncionarioLogado.setText(usuarioSessao.nome);
+            MenuPrincipalView telaMenuPrincipal = new MenuPrincipalView();
+            telaMenuPrincipal.setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Usuário ou Senhas incorretos", "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -199,8 +187,9 @@ public class TelaLoginView extends javax.swing.JDialog {
             txtSenhaLogin.setText("");
             txtUsuarioLogin.grabFocus();
         }
-        
+
     }
+
     /**
      * @param args the command line arguments
      */

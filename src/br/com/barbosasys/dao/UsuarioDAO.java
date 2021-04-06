@@ -52,8 +52,8 @@ public class UsuarioDAO extends ConexaoBanco {
                     + "TBL_USUARIO.CODUSUARIO,"
                     + "TBL_USUARIO.CODFUNCIONARIO, "
                     + "TBL_FUNCIONARIO.NOME,"
-                    + "TBL_USUARIO.LOGIN,"        
-                    + "TBL_USUARIO.SENHA,"        
+                    + "TBL_USUARIO.LOGIN,"
+                    + "TBL_USUARIO.SENHA,"
                     + "TBL_USUARIO.CODPERFIL,"
                     + "TBL_PERFILUSUARIO.NOME"
                     + " FROM"
@@ -68,10 +68,10 @@ public class UsuarioDAO extends ConexaoBanco {
             );
 
             while (this.getResultSet().next()) {
-                
+
                 usuario.setCodUsuario(this.getResultSet().getInt(1));
                 usuario.setCodigo(this.getResultSet().getInt(2));
-                usuario.setNomeRazaoSocial(this.getResultSet().getString(3));                
+                usuario.setNomeRazaoSocial(this.getResultSet().getString(3));
                 usuario.setLogin(this.getResultSet().getString(4));
                 usuario.setSenha(this.getResultSet().getString(5));
                 usuario.setCodigoPerfil(this.getResultSet().getInt(6));
@@ -103,7 +103,7 @@ public class UsuarioDAO extends ConexaoBanco {
                     + " INNER JOIN TBL_PERFILUSUARIO"
                     + " ON TBL_PERFILUSUARIO.CODPERFIL = TBL_USUARIO.CODPERFIL"
                     + " WHERE"
-                    + " CODUSUARIO = '" + login + "'"
+                    + " LOGIN = '" + login + "'"
                     + ";"
             );
 
@@ -121,23 +121,28 @@ public class UsuarioDAO extends ConexaoBanco {
         }
         return usuario;
     }
-    
-    public boolean getUsuarioDAO(Usuario usuario){
+
+    public boolean getUsuarioDAO(Usuario usuario) {
         try {
             this.conectar();
             this.executarSQL(
-                "SELECT "
-                + "CODUSUARIO,"
-                + "LOGIN,"
-                + "SENHA"
-                + " FROM "
-                + " TBL_USUARIO"
-                + " WHERE"
-                + " LOGIN = '" + usuario.getLogin()+"' AND SENHA = MD5('" + usuario.getSenha()+"')"
-                + ";"    
+                    "SELECT "
+                    + "TBL_USUARIO.CODUSUARIO,"
+                    + "TBL_USUARIO.LOGIN, "
+                    + "TBL_FUNCIONARIO.NOME,"
+                    + "TBL_PERFILUSUARIO.NOME"
+                    + " FROM"
+                    + " TBL_USUARIO"
+                    + " INNER JOIN TBL_FUNCIONARIO"
+                    + " ON TBL_FUNCIONARIO.CODFUNCIONARIO = TBL_USUARIO.CODFUNCIONARIO"
+                    + " INNER JOIN TBL_PERFILUSUARIO"
+                    + " ON TBL_PERFILUSUARIO.CODPERFIL = TBL_USUARIO.CODPERFIL"
+                    + " WHERE"
+                    + " LOGIN = '" + usuario.getLogin() + "' AND SENHA = MD5('" + usuario.getSenha() + "')"
+                    + ";"
             );
-            
-            if (getResultSet().next()){
+
+            if (getResultSet().next()) {
                 return true;
             } else {
                 return false;
@@ -145,7 +150,7 @@ public class UsuarioDAO extends ConexaoBanco {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        } finally{
+        } finally {
             this.fecharConexao();
         }
     }
@@ -194,10 +199,10 @@ public class UsuarioDAO extends ConexaoBanco {
             this.conectar();
             this.executarUpdateDeleteSQL(
                     "UPDATE TBL_USUARIO SET "
-                    + "SENHA = MD5('" + usuario.getSenha()+ "'),"
-                    + "CODPERFIL = '" + usuario.getCodigoPerfil()+ "'"
+                    + "SENHA = MD5('" + usuario.getSenha() + "'),"
+                    + "CODPERFIL = '" + usuario.getCodigoPerfil() + "'"
                     + "WHERE "
-                    + "CODUSUARIO = '" + usuario.getCodUsuario()+ "'"
+                    + "CODUSUARIO = '" + usuario.getCodUsuario() + "'"
                     + ";"
             );
             return true;

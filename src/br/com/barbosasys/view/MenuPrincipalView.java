@@ -10,6 +10,8 @@ import br.com.barbosasys.model.UsuarioSessao;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 /**
@@ -18,13 +20,15 @@ import javax.swing.JOptionPane;
  */
 public class MenuPrincipalView extends javax.swing.JFrame {
     
-    String nomeFuncionarioLogin;
+    public String nomeFuncionarioLogado;
     
     /**
      * Creates new form MenuPrincipalView
      */
     public MenuPrincipalView() {
+        setExtendedState(this.MAXIMIZED_BOTH);
         initComponents();
+        configurar();
         
     }
 
@@ -107,13 +111,14 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Funcionário:");
 
-        lblNomeFuncionarioLogado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblNomeFuncionarioLogado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNomeFuncionarioLogado.setForeground(new java.awt.Color(204, 0, 0));
+        lblNomeFuncionarioLogado.setText("Funcionariio");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Data:");
 
-        lblDataUltimoLogin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblDataUltimoLogin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblDataUltimoLogin.setForeground(new java.awt.Color(204, 0, 0));
         lblDataUltimoLogin.setText("jLabel2");
 
@@ -494,8 +499,15 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuCadastroFuncionarioActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        this.setExtendedState(this.MAXIMIZED_BOTH);
-        this.setVisible(true);    
+        Date agora = new Date();
+
+        SimpleDateFormat dataBr = new SimpleDateFormat("dd/MM/yyyy");
+        String dataformatada = dataBr.format(agora);
+        lblDataUltimoLogin.setText(dataformatada);
+//
+//        
+//        this.setExtendedState(this.MAXIMIZED_BOTH);
+//        this.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
@@ -647,8 +659,9 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     }
     
     public void configurar(){
-        nomeFuncionarioLogin = retornarUsuarioLogado();
-        lblNomeFuncionarioLogado.setText(nomeFuncionarioLogin);
+        nomeFuncionarioLogado = retornarUsuarioLogado();
+        lblNomeFuncionarioLogado.setText(nomeFuncionarioLogado);
+        System.out.println("Usuario: "+nomeFuncionarioLogado);
     }
     
     
@@ -702,6 +715,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     public javax.swing.JLabel lblDataUltimoLogin;
-    public javax.swing.JLabel lblNomeFuncionarioLogado;
+    private javax.swing.JLabel lblNomeFuncionarioLogado;
     // End of variables declaration//GEN-END:variables
 }

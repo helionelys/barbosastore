@@ -59,6 +59,11 @@ public class Usuario extends Pessoa{
         this.nomePerfil = nomePerfil;
     }
     
-    
+    @Override
+    public String toString(){
+        return "Usuario {" + "::codUsuario = "+ this.codUsuario + "::login = "+ this.login + 
+                             "::senha = " + this.senha + "::codigoPerfil = " + this.codigoPerfil + 
+                             "::nomePerfil =" + this.nomePerfil +"}";
+    }
     
 }
