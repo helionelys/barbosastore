@@ -765,7 +765,7 @@ public class ClienteView extends javax.swing.JDialog {
     private void btnIncluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirClienteActionPerformed
         // TODO add your handling code here:
         incluirCliente();
-        this.camposAtivados();
+        this.camposAtivadosPessoaFisica();
         txtCnpjCliente.setEnabled(false);
         txtInscricaoEstadualCliente.setEnabled(false);
 
@@ -781,7 +781,7 @@ public class ClienteView extends javax.swing.JDialog {
         if (testarSelecao() == true) {
             //  incluirCliente();
             recuperarCliente();
-            this.camposAtivados();
+            //this.camposAtivados();
             tipoCadastro = "alteracao";
         }
     }//GEN-LAST:event_btnAlterarClienteActionPerformed
@@ -857,7 +857,7 @@ public class ClienteView extends javax.swing.JDialog {
 
             if (cliente.getPessoaTipo() == 1) {
                 this.rbTipoPFisicaCliente.setSelected(true);
-
+                this.camposAtivadosPessoaFisica();
                 String dataRetorno = cliente.getDataNascimento();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -873,6 +873,7 @@ public class ClienteView extends javax.swing.JDialog {
                 this.txtInscricaoEstadualCliente.setText(null);
 
             } else if (cliente.getPessoaTipo() == 2) {
+                this.camposAtivadosPessoaJuridica();
                 this.rbTipoPJuridicaCliente.setSelected(true);
                 this.txtDataNascimentoCliente.setEnabled(false);
                 this.txtDataNascimentoCliente.setText("0001-01-01");
@@ -997,8 +998,8 @@ public class ClienteView extends javax.swing.JDialog {
 
     }
     
-    //Campos desabilitados ao carregar janela de cadastro sem usar botão incluir
-    private void camposAtivados(){
+    //Campos ativados ao clicar no botão incluir 
+    private void camposAtivadosPessoaFisica(){
         rbTipoPFisicaCliente.setEnabled(true);
         rbTipoPJuridicaCliente.setEnabled(true);
         txtDataNascimentoCliente.setEnabled(true);
@@ -1006,6 +1007,31 @@ public class ClienteView extends javax.swing.JDialog {
         txtApelidoNomeFantasiaCliente.setEnabled(true);
         txtCpfCliente.setEnabled(true);
         txtRgCliente.setEnabled(true);
+        txtCnpjCliente.setEnabled(false);
+        txtInscricaoEstadualCliente.setEnabled(false);
+        txtCepCliente.setEnabled(true);
+        txtCidadeCliente.setEnabled(true);
+        cbUfCliente.setEnabled(true);
+        txtLogradouroCliente.setEnabled(true);
+        txtNumeroCliente.setEnabled(true);
+        txtBairroCliente.setEnabled(true);
+        txtComplementoCliente.setEnabled(true);
+        txtCelularCliente.setEnabled(true);
+        txtTelefoneCliente.setEnabled(true);
+        txtEmailCliente.setEnabled(true);
+        txtCodigoCliente.setEnabled(true);
+        txtDataCadastramentoCliente.setEnabled(true);
+        btnSalvarCliente.setEnabled(true);
+    }
+    
+        private void camposAtivadosPessoaJuridica(){
+        rbTipoPFisicaCliente.setEnabled(true);
+        rbTipoPJuridicaCliente.setEnabled(true);
+        txtDataNascimentoCliente.setEnabled(true);
+        txtNomeRazaoSocialCliente.setEnabled(true);
+        txtApelidoNomeFantasiaCliente.setEnabled(true);
+        txtCpfCliente.setEnabled(false);
+        txtRgCliente.setEnabled(false);
         txtCnpjCliente.setEnabled(true);
         txtInscricaoEstadualCliente.setEnabled(true);
         txtCepCliente.setEnabled(true);
@@ -1020,9 +1046,10 @@ public class ClienteView extends javax.swing.JDialog {
         txtEmailCliente.setEnabled(true);
         txtCodigoCliente.setEnabled(true);
         txtDataCadastramentoCliente.setEnabled(true);
+        btnSalvarCliente.setEnabled(true);
     }
     
-    //Campos ATIVADOS ao carregar janela de cadastro sem usar botão incluir
+    //Campos DESATIVADOS ao carregar janela de cadastro sem usar botão incluir
     private void camposDesativados(){
         rbTipoPFisicaCliente.setEnabled(false);
         rbTipoPJuridicaCliente.setEnabled(false);
@@ -1045,6 +1072,7 @@ public class ClienteView extends javax.swing.JDialog {
         txtEmailCliente.setEnabled(false);
         txtCodigoCliente.setEnabled(false);
         txtDataCadastramentoCliente.setEnabled(false);
+        btnSalvarCliente.setEnabled(false);
     }
     
     private boolean salvarCliente() {
