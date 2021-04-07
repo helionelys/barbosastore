@@ -6,6 +6,7 @@
 package br.com.barbosasys.view;
 
 
+import br.com.barbosasys.model.DadosEmpresa;
 import br.com.barbosasys.model.UsuarioSessao;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
@@ -135,7 +136,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblDataUltimoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -670,9 +671,20 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         return new UsuarioSessao().nome;
     }
     
+    public String retonraDadosEmpresaNomeFantasia(){
+        return new DadosEmpresa().getApelidoNomeFantasia();
+    }
+    
+    public String retonraDadosEmpresaCnpj(){
+        return new DadosEmpresa().getCpfCnpj();
+    }
+    
     public void configurar(){
         nomeFuncionarioLogado = retornarUsuarioLogado();
+//        nomeFantasia = retonraDadosEmpresaNomeFantasia();
+//        cnpjEmpresa = retonraDadosEmpresaCnpj();
         lblNomeFuncionarioLogado.setText(nomeFuncionarioLogado);
+//        lblCnpjEmpresa.setText(cnpjEmpresa);
         //System.out.println("Usuario: "+nomeFuncionarioLogado);
     }
     
