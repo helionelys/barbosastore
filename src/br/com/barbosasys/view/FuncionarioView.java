@@ -105,7 +105,6 @@ public class FuncionarioView extends javax.swing.JDialog {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtComplementoFuncionario = new javax.swing.JTextField();
-        btnCepPesquisaCidadeUF = new javax.swing.JButton();
         jPanelContatoCliente = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         txtEmailFuncionario = new javax.swing.JTextField();
@@ -538,8 +537,6 @@ public class FuncionarioView extends javax.swing.JDialog {
 
         txtComplementoFuncionario.setFont(new java.awt.Font("Cantarell", 0, 11)); // NOI18N
 
-        btnCepPesquisaCidadeUF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanelEnderecoClienteLayout = new javax.swing.GroupLayout(jPanelEnderecoCliente);
         jPanelEnderecoCliente.setLayout(jPanelEnderecoClienteLayout);
         jPanelEnderecoClienteLayout.setHorizontalGroup(
@@ -554,13 +551,11 @@ public class FuncionarioView extends javax.swing.JDialog {
                 .addGroup(jPanelEnderecoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtComplementoFuncionario)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEnderecoClienteLayout.createSequentialGroup()
-                        .addComponent(txtCepFuncionario)
+                        .addComponent(txtCepFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCepPesquisaCidadeUF, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCidadeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCidadeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -580,15 +575,13 @@ public class FuncionarioView extends javax.swing.JDialog {
         jPanelEnderecoClienteLayout.setVerticalGroup(
             jPanelEnderecoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEnderecoClienteLayout.createSequentialGroup()
-                .addGroup(jPanelEnderecoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCepPesquisaCidadeUF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanelEnderecoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCepFuncionario)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCidadeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbUfFuncionario)))
+                .addGroup(jPanelEnderecoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCepFuncionario)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCidadeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbUfFuncionario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEnderecoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1108,7 +1101,6 @@ public class FuncionarioView extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscarFuncionario;
     private javax.swing.JButton btnCancelarBuscaFuncionario;
     private javax.swing.JButton btnCancelarFuncionario;
-    private javax.swing.JButton btnCepPesquisaCidadeUF;
     private javax.swing.JButton btnExcluirFuncionario;
     private javax.swing.JButton btnIncluirFuncionario;
     private javax.swing.JButton btnSalvarFuncionario;
