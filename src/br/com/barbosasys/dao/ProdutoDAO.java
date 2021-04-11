@@ -51,7 +51,39 @@ public class ProdutoDAO extends ConexaoBanco {
             this.fecharConexao();
         }
     }
+    
+        // Recupera funcionario através do codigo para uso no cadastro de usuários, retorna apenas código e nome
+    public Produto getProdutoSimplesDAO(int codigo) {
+        Produto produto = new Produto();
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "CODPRODUTO," //1
+                    + "DESCRICAO" //2
+                    + "VALOR" //3
+                    + " FROM"
+                    + " TBL_PRODUTO"
+                    + " WHERE"
+                    + " CODPRODUTO = '" + codigo + "'"
+                    + ";"
+            );
+            
+             while (this.getResultSet().next()) {
 
+            produto.setCodProduto(this.getResultSet().getInt(1));
+            produto.setDescricao(this.getResultSet().getString(2));
+            produto.setValor(Double.parseDouble(this.getResultSet().getString(3)));
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        } 
+        return produto;
+        }
+    
+    
     // Recupera produto através do codigo
     public Produto getProdutoDAO(int codigo) {
         Produto produto = new Produto();

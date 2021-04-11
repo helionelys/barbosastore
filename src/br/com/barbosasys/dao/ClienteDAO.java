@@ -95,8 +95,40 @@ public class ClienteDAO extends ConexaoBanco {
         return cliente;
     }
 
-    // Recupera cliente através do codigo
-    public Cliente getClienteDAO(int codigo) {
+    public Cliente getClienteSimplesDAO(int codigo) {
+ Cliente cliente = new Cliente();
+
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "CODCLIENTE,"
+                    + "NOME_RAZAOSOCIAL,"
+                    + "CPF_CNPJ,"
+                    + " FROM"
+                    + " TBL_CLIENTE"
+                    + " WHERE"
+                    + " CODCLIENTE = '" + codigo + "'"
+                    + ";"
+            );
+
+            while (this.getResultSet().next()) {
+
+                cliente.setCodigo(this.getResultSet().getInt(1));
+                cliente.setNomeRazaoSocial(this.getResultSet().getString(2));
+                cliente.setCpfCnpj(this.getResultSet().getString(3));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return cliente;
+}
+// Recupera cliente através do codigo
+
+public Cliente getClienteDAO(int codigo) {
         Cliente cliente = new Cliente();
 
         try {

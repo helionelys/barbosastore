@@ -16,6 +16,10 @@ public class ClienteController {
         return this.clienteDAO.getClienteDAO(codigo);
     }
     
+    public Cliente getClienteControllerSimples(int codigo){
+        return this.clienteDAO.getClienteSimplesDAO(codigo);
+    }
+    
     public Cliente getClienteControllerCpfCnpj(String cpfCnpj){
         return this.clienteDAO.getClienteDAONomeRazaoSocial(cpfCnpj);
     }

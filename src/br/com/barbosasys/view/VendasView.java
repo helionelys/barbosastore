@@ -16,6 +16,7 @@ import br.com.barbosasys.model.Produto;
 import br.com.barbosasys.model.TipoPagamento;
 import br.com.barbosasys.model.Venda;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -45,15 +46,8 @@ public class VendasView extends javax.swing.JDialog {
     public VendasView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        carregarClientes();
-        carregarProdutos();
         carregarTipoPagamento();
         this.carregarVendas();
-    }
-    
-    private void carregarProdutos(){
-        listaProduto = produtoController.getListaProdutoController();
-        
     }
     
     private void carregarClientes(){
@@ -73,7 +67,6 @@ public class VendasView extends javax.swing.JDialog {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelVendas = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         txtVendaCodCliente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtVendaNomeCliente = new javax.swing.JTextField();
@@ -85,7 +78,7 @@ public class VendasView extends javax.swing.JDialog {
         btnRemoverProduto = new javax.swing.JButton();
         btnIncluirProduto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblListaProdutos = new javax.swing.JTable();
+        tblListaItensVendas = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         cbVendaTipoPagamento = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -95,18 +88,19 @@ public class VendasView extends javax.swing.JDialog {
         btnVendaSalvar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btnVendaNova = new javax.swing.JButton();
-        txtVendaNomeCliente1 = new javax.swing.JTextField();
-        btnIncluirProduto1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtVendaDescricaoProduto = new javax.swing.JTextField();
+        btnBuscarProduto = new javax.swing.JButton();
+        btnBuscarCliente = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtVendaDataVencimento = new javax.swing.JFormattedTextField();
         btnCompraReprovar = new javax.swing.JButton();
         btnComprasAprovar = new javax.swing.JButton();
+        txtVendaCodProduto = new javax.swing.JTextField();
         jPanelConsultarVendas = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtConsultaVenda = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblVendasRealizadas = new javax.swing.JTable();
         btnConsultaVendaImprimir = new javax.swing.JButton();
         btnConsultaVendaPesquisar = new javax.swing.JButton();
         btnConsultaVendaCancelar = new javax.swing.JButton();
@@ -142,7 +136,7 @@ public class VendasView extends javax.swing.JDialog {
             .addGap(0, 21, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("Codigo:");
+        txtVendaCodCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel2.setText("Cliente:");
 
@@ -162,7 +156,7 @@ public class VendasView extends javax.swing.JDialog {
 
         btnIncluirProduto.setText("Incluir");
 
-        tblListaProdutos.setModel(new javax.swing.table.DefaultTableModel(
+        tblListaItensVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -178,7 +172,7 @@ public class VendasView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblListaProdutos);
+        jScrollPane1.setViewportView(tblListaItensVendas);
 
         jLabel6.setText("Tipo de Pagamento:");
 
@@ -197,17 +191,27 @@ public class VendasView extends javax.swing.JDialog {
         btnVendaNova.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/salvar.png"))); // NOI18N
         btnVendaNova.setText("Salvar");
 
-        txtVendaNomeCliente1.addActionListener(new java.awt.event.ActionListener() {
+        txtVendaDescricaoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtVendaNomeCliente1ActionPerformed(evt);
+                txtVendaDescricaoProdutoActionPerformed(evt);
             }
         });
 
-        btnIncluirProduto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-        btnIncluirProduto1.setText("Buscar");
+        btnBuscarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
+        btnBuscarProduto.setText("...");
+        btnBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarProdutoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-        jButton2.setText("...");
+        btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
+        btnBuscarCliente.setText("...");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Vencimento:");
 
@@ -225,6 +229,9 @@ public class VendasView extends javax.swing.JDialog {
         btnComprasAprovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/aceitar.png"))); // NOI18N
         btnComprasAprovar.setText("Aprovar");
 
+        txtVendaCodProduto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtVendaCodProduto.setToolTipText("");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -234,27 +241,19 @@ public class VendasView extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtVendaCodCliente)
+                            .addComponent(txtVendaCodProduto))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtVendaCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtVendaDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVendaNomeCliente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVendaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtVendaNomeCliente1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnIncluirProduto1)
+                                .addComponent(btnBuscarProduto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)
                                 .addGap(4, 4, 4)
@@ -262,7 +261,15 @@ public class VendasView extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnIncluirProduto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnRemoverProduto))))
+                                .addComponent(btnRemoverProduto))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(txtVendaNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBuscarCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtVendaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(btnComprasAprovar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -301,13 +308,12 @@ public class VendasView extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(txtVendaCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(txtVendaNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(txtVendaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(btnBuscarCliente))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -315,8 +321,9 @@ public class VendasView extends javax.swing.JDialog {
                     .addComponent(txtVendaQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIncluirProduto)
                     .addComponent(btnRemoverProduto)
-                    .addComponent(txtVendaNomeCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIncluirProduto1))
+                    .addComponent(txtVendaDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarProduto)
+                    .addComponent(txtVendaCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -360,23 +367,23 @@ public class VendasView extends javax.swing.JDialog {
 
         jLabel9.setText("Codigo:");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblVendasRealizadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nº da Venda", "Cliente", "Valor"
+                "Nº da Venda", "Cliente", "Valor", "Data"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblVendasRealizadas);
 
         btnConsultaVendaImprimir.setText("Imprimir");
 
@@ -476,13 +483,46 @@ public class VendasView extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConsultaVendaCancelarActionPerformed
 
-    private void txtVendaNomeCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVendaNomeCliente1ActionPerformed
+    private void txtVendaDescricaoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVendaDescricaoProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtVendaNomeCliente1ActionPerformed
+    }//GEN-LAST:event_txtVendaDescricaoProdutoActionPerformed
 
+    private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
+        // TODO add your handling code here:
+        BuscarProdutosView telaBuscaProduto = new BuscarProdutosView(this, rootPaneCheckingEnabled);
+        telaBuscaProduto.setVisible(true);
+        
+        txtVendaCodProduto.setText(String.valueOf(telaBuscaProduto.getCodigoProduto()));
+        txtVendaDescricaoProduto.setText(telaBuscaProduto.getDescricaoProduto());
+    }//GEN-LAST:event_btnBuscarProdutoActionPerformed
+
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        // TODO add your handling code here:
+        BuscarClientesView telaBuscaCliente = new BuscarClientesView(this, rootPaneCheckingEnabled);
+        telaBuscaCliente.setVisible(true);
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+    
+    private void carregarVendas(){
+        listaVendas = vendasController.getListaVendaController();
+        DefaultTableModel modelo = (DefaultTableModel) tblVendasRealizadas.getModel();
+        modelo.setRowCount(0);
+        // Carrega dados da lista na tabela
+        int cont = listaCliente.size();
+        for (int i=0; i < cont; i++){
+            modelo.addRow(new Object[]{
+                listaVendas.get(i).getCodVenda(),
+                listaVendas.get(i).getNomeRazaoSocial(),
+                listaVendas.get(i).getValorTotal(),
+                listaVendas.get(i).getDataVenda()
+                
+            });
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarCliente;
+    private javax.swing.JButton btnBuscarProduto;
     private javax.swing.JButton btnCompraReprovar;
     private javax.swing.JButton btnComprasAprovar;
     private javax.swing.JButton btnConsultaVendaAlterar;
@@ -491,14 +531,11 @@ public class VendasView extends javax.swing.JDialog {
     private javax.swing.JButton btnConsultaVendaImprimir;
     private javax.swing.JButton btnConsultaVendaPesquisar;
     private javax.swing.JButton btnIncluirProduto;
-    private javax.swing.JButton btnIncluirProduto1;
     private javax.swing.JButton btnRemoverProduto;
     private javax.swing.JButton btnVendaNova;
     private javax.swing.JButton btnVendaSalvar;
     private javax.swing.JComboBox<String> cbVendaTipoPagamento;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -516,14 +553,15 @@ public class VendasView extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable tblListaProdutos;
+    private javax.swing.JTable tblListaItensVendas;
+    private javax.swing.JTable tblVendasRealizadas;
     private javax.swing.JTextField txtConsultaVenda;
     private javax.swing.JTextField txtVendaCodCliente;
+    private javax.swing.JTextField txtVendaCodProduto;
     protected javax.swing.JFormattedTextField txtVendaDataVencimento;
     private javax.swing.JTextField txtVendaDesconto;
+    private javax.swing.JTextField txtVendaDescricaoProduto;
     private javax.swing.JTextField txtVendaNomeCliente;
-    private javax.swing.JTextField txtVendaNomeCliente1;
     private javax.swing.JTextField txtVendaNumero;
     private javax.swing.JTextField txtVendaQuantidade;
     private javax.swing.JTextField txtVendaTotal;

@@ -5,6 +5,7 @@
  */
 package br.com.barbosasys.model;
 
+import br.com.barbosasys.model.Cliente;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -16,10 +17,11 @@ public class Venda {
     private int codVenda;
     private int codProduto;
     private int codCliente;
+    private String nomeRazaoSocial;
     private Date dataVenda;
     private int quantidade;
     private Double valor;
-    private float valorTotal;
+    private Double valorTotal;
     private float valorDesconto;
     private int tipoPagamento;
     private ArrayList<Venda> listaVenda;
@@ -76,11 +78,11 @@ public class Venda {
         this.valor = valor;
     }
 
-    public float getValorTotal() {
+    public double getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(float valorTotal) {
+    public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
 
@@ -120,4 +122,14 @@ public class Venda {
     public void setCodStatusVenda(int codStatusVenda) {
         this.codStatusVenda = codStatusVenda;
     }
+
+    public String getNomeRazaoSocial() {
+        return nomeRazaoSocial;
+    }
+
+    public void setNomeRazaoSocial(String nomeRazaoSocial) {
+        this.nomeRazaoSocial = nomeRazaoSocial;
+    }
+    
+    
 }

@@ -6,6 +6,7 @@
 package br.com.barbosasys.dao;
 
 import br.com.barbosasys.jdbc.ConexaoBanco;
+import br.com.barbosasys.model.Cliente;
 import br.com.barbosasys.model.Venda;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author helionelys
  */
-public class VendasDAO extends ConexaoBanco {
+public class VendaDAO extends ConexaoBanco {
 
     // Inserir informações de venda dentro banco de dados
     public int salvarVendasDAO(Venda venda) {
@@ -117,11 +118,45 @@ public class VendasDAO extends ConexaoBanco {
             this.conectar();
             this.executarSQL(
                     "SELECT "
+                    + "TBL_VENDA.CODVENDA,"
+                    + "TBL_CLIENTE.NOME_RAZAOSOCIAL,"
+                    + "TBL_VENDA.TOTALVENDA,"
+                    + "TBL_VENDA.DATAVENDA"
+                    + " FROM"
+                    + " TBL_VENDA"
+                    + " INNER JOIN TBL_CLIENTE"
+                    + " ON TBL_VENDA.CODCLIENTE = TBL_CLIENTE.CODCLIENTE"
+                    + ";"
+            );
+
+            while (this.getResultSet().next()) {
+                venda = new Venda();
+                venda.setCodVenda(this.getResultSet().getInt(1));
+                venda.setNomeRazaoSocial(this.getResultSet().getString(2));
+                venda.setValorTotal(this.getResultSet().getDouble(3));
+                venda.setDataVenda(this.getResultSet().getDate(4));
+                listaVenda.add(venda);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return listaVenda;
+    }
+
+    public ArrayList<Venda> getListaVendaDAO(int codigo) {
+        ArrayList<Venda> listaVenda = new ArrayList();
+        Venda venda = new Venda();
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
                     + "CODVENDA,"
                     + "CODCLIENTE,"
                     + "DATAVENDA,"
                     + "FROM"
-                    + "TBL_VENDA"
+                    + "TBL_VENDA WHERE CODVENDA = '" + codigo + "'"
                     + ";"
             );
 
@@ -140,6 +175,7 @@ public class VendasDAO extends ConexaoBanco {
         return listaVenda;
     }
 
+    
     public boolean atualizarVendaDAO(Venda venda) {
         try {
             this.conectar();
