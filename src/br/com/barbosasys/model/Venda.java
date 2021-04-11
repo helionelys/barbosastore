@@ -23,6 +23,7 @@ public class Venda {
     private float valorDesconto;
     private int tipoPagamento;
     private ArrayList<Venda> listaVenda;
+    private int codStatusVenda;
 
     public Venda() {
     }
@@ -110,5 +111,13 @@ public class Venda {
     @Override
     public String toString(){
         return "Vendas {" + "::codigoVenda = " + this.codVenda + "::codigoProduto = " + this.codProduto + "::codigoCliente = " + this.codCliente + "::dataVenda = " + this.dataVenda + "::quantidade = " + this.quantidade +  "}";
+    }
+
+    public int getCodStatusVenda() {
+        return codStatusVenda;
+    }
+
+    public void setCodStatusVenda(int codStatusVenda) {
+        this.codStatusVenda = codStatusVenda;
     }
 }

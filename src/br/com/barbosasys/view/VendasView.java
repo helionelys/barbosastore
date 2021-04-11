@@ -5,18 +5,63 @@
  */
 package br.com.barbosasys.view;
 
+import br.com.barbosasys.controller.CaixaController;
+import br.com.barbosasys.controller.ClienteController;
+import br.com.barbosasys.controller.ProdutoController;
+import br.com.barbosasys.controller.TipoPagamentoController;
+import br.com.barbosasys.controller.VendaController;
+import br.com.barbosasys.model.Caixa;
+import br.com.barbosasys.model.Cliente;
+import br.com.barbosasys.model.Produto;
+import br.com.barbosasys.model.TipoPagamento;
+import br.com.barbosasys.model.Venda;
+import java.util.ArrayList;
+
 /**
  *
  * @author helionelys
  */
 public class VendasView extends javax.swing.JDialog {
 
+    VendaController vendasController = new VendaController();
+    Venda venda = new Venda();
+    Produto produto = new Produto();
+    ArrayList<Venda> listaVendas = new ArrayList<>();
+    ArrayList<Produto> listaProduto = new ArrayList<>();
+    ArrayList<Cliente> listaCliente = new ArrayList<>();
+    ClienteController clienteController = new ClienteController();
+    ProdutoController produtoController = new ProdutoController();
+    Caixa caixa = new Caixa();
+    CaixaController caixaController = new CaixaController();
+    TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
+    ArrayList<TipoPagamento> listaTipoPagamento = new ArrayList<>();
+    float valorCartao, valorCheque, valorDinheiro, valorVale;
+    boolean alteração = false;
+    
+    
     /**
      * Creates new form VendasView
      */
     public VendasView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        carregarClientes();
+        carregarProdutos();
+        carregarTipoPagamento();
+        this.carregarVendas();
+    }
+    
+    private void carregarProdutos(){
+        listaProduto = produtoController.getListaProdutoController();
+        
+    }
+    
+    private void carregarClientes(){
+        
+    }
+    
+    private void carregarTipoPagamento(){
+        
     }
 
     @SuppressWarnings("unchecked")
