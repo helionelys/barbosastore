@@ -2,7 +2,7 @@ package br.com.barbosasys.model;
 
 public class ItemVenda {
     private int codItemVenda;
-    private Vendas venda;
+    private Venda venda;
     private Produto produto;
     private int quantidade;
     private Double subtotal;
@@ -19,11 +19,11 @@ public class ItemVenda {
         this.codItemVenda = codItemVenda;
     }
 
-    public Vendas getVenda() {
+    public Venda getVenda() {
         return venda;
     }
 
-    public void setVenda(Vendas venda) {
+    public void setVenda(Venda venda) {
         this.venda = venda;
     }
 

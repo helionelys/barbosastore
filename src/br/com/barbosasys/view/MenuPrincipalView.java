@@ -62,6 +62,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         btnServico = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         btnSairLogout = new javax.swing.JButton();
+        btnCompras = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastro = new javax.swing.JMenu();
         MenuCadastroCliente = new javax.swing.JMenuItem();
@@ -76,14 +77,16 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuCadastroCadAuxUniMedida = new javax.swing.JMenuItem();
         MenuMovimento = new javax.swing.JMenu();
         MenuMovimentoOrcamento = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         MenuMovimentoServicos = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenu8 = new javax.swing.JMenu();
         MenuMovimentoVendaConsulta = new javax.swing.JMenuItem();
         MenuMovimentoVendaRegistrar = new javax.swing.JMenuItem();
         MenuMovimentoVendaPdv = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        MenuMovimentoConsultarCompras = new javax.swing.JMenuItem();
+        MenuMovimentoRegistrarCompras = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         MenuMovimentoAjusteEstoque = new javax.swing.JMenuItem();
         MenuFinanceiro = new javax.swing.JMenu();
         MenuFinanceiroContaPagar = new javax.swing.JMenuItem();
@@ -174,7 +177,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             }
         });
 
-        btnVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Cart-32.png"))); // NOI18N
+        btnVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/CashBox32.png"))); // NOI18N
         btnVendas.setText("Vendas");
         btnVendas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnVendas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -213,6 +216,17 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             }
         });
 
+        btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Cart-32.png"))); // NOI18N
+        btnCompras.setText("Compras");
+        btnCompras.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCompras.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnCompras.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -224,6 +238,8 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVendas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnServico)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton16)
@@ -231,7 +247,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 .addComponent(btnSairLogout))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnProdutos, btnSairLogout, btnServico, btnVendas, jButton16});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnCompras, btnProdutos, btnSairLogout, btnServico, btnVendas, jButton16});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,9 +257,12 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             .addComponent(btnServico)
             .addComponent(jButton16)
             .addComponent(btnSairLogout)
+            .addComponent(btnCompras)
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClientes, btnProdutos});
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCompras, btnVendas});
 
         Painel_desktop.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         Painel_desktop.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -255,7 +274,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(Painel_desktopLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 348, Short.MAX_VALUE))
+                .addGap(0, 241, Short.MAX_VALUE))
         );
         Painel_desktopLayout.setVerticalGroup(
             Painel_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,11 +374,9 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
         MenuMovimentoOrcamento.setText("Orçamento");
         MenuMovimento.add(MenuMovimentoOrcamento);
-        MenuMovimento.add(jSeparator2);
 
         MenuMovimentoServicos.setText("Serviços");
         MenuMovimento.add(MenuMovimentoServicos);
-        MenuMovimento.add(jSeparator3);
 
         jMenu8.setText("Vendas");
 
@@ -383,7 +400,23 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenu8.add(MenuMovimentoVendaPdv);
 
         MenuMovimento.add(jMenu8);
+
+        jMenu1.setText("Compras");
+
+        MenuMovimentoConsultarCompras.setText("Consultar Compras");
+        jMenu1.add(MenuMovimentoConsultarCompras);
+
+        MenuMovimentoRegistrarCompras.setText("Registrar Compras");
+        MenuMovimentoRegistrarCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuMovimentoRegistrarComprasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuMovimentoRegistrarCompras);
+
+        MenuMovimento.add(jMenu1);
         MenuMovimento.add(jSeparator4);
+        MenuMovimento.add(jSeparator2);
 
         MenuMovimentoAjusteEstoque.setText("Ajuste de Estoque de Produto");
         MenuMovimento.add(MenuMovimentoAjusteEstoque);
@@ -666,6 +699,18 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         telaDadosEmpresa.setLocationRelativeTo(this);
         telaDadosEmpresa.setVisible(true);
     }//GEN-LAST:event_MenuSegurancaDadosEmpresasActionPerformed
+
+    private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
+        // TODO add your handling code here:
+        MenuMovimentoRegistrarComprasActionPerformed(evt);
+    }//GEN-LAST:event_btnComprasActionPerformed
+
+    private void MenuMovimentoRegistrarComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoRegistrarComprasActionPerformed
+        // TODO add your handling code here:
+        ComprasView telaCompras = new ComprasView(this, rootPaneCheckingEnabled);
+        telaCompras.setLocationRelativeTo(this);
+        telaCompras.setVisible(true);
+    }//GEN-LAST:event_MenuMovimentoRegistrarComprasActionPerformed
     
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;
@@ -705,7 +750,9 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuFinanceiroFluxoCaixa;
     private javax.swing.JMenu MenuMovimento;
     private javax.swing.JMenuItem MenuMovimentoAjusteEstoque;
+    private javax.swing.JMenuItem MenuMovimentoConsultarCompras;
     private javax.swing.JMenuItem MenuMovimentoOrcamento;
+    private javax.swing.JMenuItem MenuMovimentoRegistrarCompras;
     private javax.swing.JMenuItem MenuMovimentoServicos;
     private javax.swing.JMenuItem MenuMovimentoVendaConsulta;
     private javax.swing.JMenuItem MenuMovimentoVendaPdv;
@@ -721,6 +768,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuSegurancaUsuarios;
     private javax.swing.JDesktopPane Painel_desktop;
     private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnSairLogout;
     private javax.swing.JButton btnServico;
@@ -728,6 +776,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton16;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
@@ -736,7 +785,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     public javax.swing.JLabel lblDataUltimoLogin;
     private javax.swing.JLabel lblNomeFuncionarioLogado;
