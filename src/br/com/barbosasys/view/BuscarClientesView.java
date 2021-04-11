@@ -209,19 +209,19 @@ public class BuscarClientesView extends javax.swing.JDialog {
      * @param args the command line arguments
      */
 
-    public int getCodigoPerfilUsuario() {
+    public int getCodigoCliente() {
         return codigoCliente;
     }
 
-    public void setCodigoPerfilUsuario(int codigoCliente) {
+    public void setCodigoCliente(int codigoCliente) {
         this.codigoCliente = codigoCliente;
     }
 
-    public String getNomePerfilUsuario() {
+    public String getNomeCliente() {
         return nomeRazaoSocialCliente;
     }
 
-    public void setNomePerfilUsuario(String nomeRazaoSocialCliente) {
+    public void setNomeCliente(String nomeRazaoSocialCliente) {
         this.nomeRazaoSocialCliente = nomeRazaoSocialCliente;
     }
 

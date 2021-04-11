@@ -52,7 +52,7 @@ public class ProdutoDAO extends ConexaoBanco {
         }
     }
     
-        // Recupera funcionario através do codigo para uso no cadastro de usuários, retorna apenas código e nome
+        // Recupera funcionario através do codigo para uso no cadastro de produtos, retorna apenas código e nome
     public Produto getProdutoSimplesDAO(int codigo) {
         Produto produto = new Produto();
         try {
@@ -60,7 +60,7 @@ public class ProdutoDAO extends ConexaoBanco {
             this.executarSQL(
                     "SELECT "
                     + "CODPRODUTO," //1
-                    + "DESCRICAO" //2
+                    + "DESCRICAO," //2
                     + "VALOR" //3
                     + " FROM"
                     + " TBL_PRODUTO"
@@ -296,6 +296,40 @@ public class ProdutoDAO extends ConexaoBanco {
                 produto.setCodProduto(this.getResultSet().getInt(1));
                 produto.setDescricao(this.getResultSet().getString(2));
                 produto.setDescricaoUnidadeMedida(this.getResultSet().getString(3));
+
+                listaProduto.add(produto);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return listaProduto;
+    }
+    
+       public ArrayList<Produto> getListaProdutoSimplesDAO() {
+        ArrayList<Produto> listaProduto = new ArrayList();
+        Produto produto = new Produto();
+
+        try {
+
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "TBL_PRODUTO.CODPRODUTO,"
+                    + "TBL_PRODUTO.DESCRICAO,"
+                    + "TBL_PRODUTO.VALOR"
+                    + " FROM"
+                    + " TBL_PRODUTO "
+                    + ";"
+            );
+
+            while (this.getResultSet().next()) {
+                produto = new Produto();
+                produto.setCodProduto(this.getResultSet().getInt(1));
+                produto.setDescricao(this.getResultSet().getString(2));
+                produto.setValor(Double.parseDouble(this.getResultSet().getString(3)));
 
                 listaProduto.add(produto);
             }

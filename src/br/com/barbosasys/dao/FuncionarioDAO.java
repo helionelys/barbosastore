@@ -91,21 +91,21 @@ public class FuncionarioDAO extends ConexaoBanco {
                     + " CODFUNCIONARIO = '" + codigo + "'"
                     + ";"
             );
-            
-             while (this.getResultSet().next()) {
 
-            funcionario.setCodigo(this.getResultSet().getInt(1));
-            funcionario.setNomeRazaoSocial(this.getResultSet().getString(2));
-        }
+            while (this.getResultSet().next()) {
+
+                funcionario.setCodigo(this.getResultSet().getInt(1));
+                funcionario.setNomeRazaoSocial(this.getResultSet().getString(2));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             this.fecharConexao();
-        } 
-        return funcionario;
         }
-       
-        // Recupera funcionario através do codigo
+        return funcionario;
+    }
+
+    // Recupera funcionario através do codigo
     public Funcionario getFuncionarioDAO(int codigo) {
         Funcionario funcionario = new Funcionario();
 

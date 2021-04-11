@@ -32,6 +32,10 @@ public class ProdutoController {
         return this.produtoDAO.getListaProdutoDAO();
     }
     
+    public ArrayList<Produto> getListaProdutoControllerSimples(){
+        return this.produtoDAO.getListaProdutoSimplesDAO();
+    }
+    
     public boolean atualizarProdutoController(Produto produto){
         return this.produtoDAO.atualizarProdutoDAO(produto);
     }

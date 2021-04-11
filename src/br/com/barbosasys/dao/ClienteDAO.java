@@ -104,7 +104,7 @@ public class ClienteDAO extends ConexaoBanco {
                     "SELECT "
                     + "CODCLIENTE,"
                     + "NOME_RAZAOSOCIAL,"
-                    + "CPF_CNPJ,"
+                    + "CPF_CNPJ"
                     + " FROM"
                     + " TBL_CLIENTE"
                     + " WHERE"
