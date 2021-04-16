@@ -20,7 +20,8 @@ public class BuscarProdutosView extends javax.swing.JDialog {
      //Variavel para armazemar Código e Nome do perfil do usuario
     private int codigoProduto;
     private String descricaoProduto;
-    private String valorProduto;
+    private String valorProdutoFormatado;
+    private Double valorProduto;
     
     Produto produto = new Produto();
     ProdutoController produtoController = new ProdutoController();
@@ -181,10 +182,11 @@ public class BuscarProdutosView extends javax.swing.JDialog {
         produto = produtoController.getProdutoControllerSimples(codigo);
         this.codigoProduto = Integer.valueOf(produto.getCodProduto());
         this.descricaoProduto = (produto.getDescricao());
+        this.valorProduto = Double.valueOf(produto.getValor());
         Double valorRetorno = (produto.getValor());
         DecimalFormat df = new DecimalFormat("#,##0.00");
         String valorTela = df.format(valorRetorno);
-        this.valorProduto = valorTela;
+        this.valorProdutoFormatado = valorTela;
         
         return true;
         } catch (Exception e) {
@@ -230,13 +232,23 @@ public class BuscarProdutosView extends javax.swing.JDialog {
         this.descricaoProduto = descricaoProduto;
     }
     
-    public String getValorProduto(){
+    public Double getValorProduto(){
         return valorProduto;
     }
     
-    public void setValorProduto(String valorProduto){
+    public void setValorProduto(Double valorProduto){
         this.valorProduto = valorProduto;
     }
+    
+    public String getValorProdutoFormatado(){
+        return valorProdutoFormatado;
+    }
+    
+    public void valorProdutoFormatado(String valorProduto){
+        this.valorProdutoFormatado = valorProdutoFormatado;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnProdutoSelecionar;
