@@ -972,7 +972,7 @@ public class FuncionarioView extends javax.swing.JDialog {
         funcionario.setEstadoCivil((String)this.cbEstadoCivelFuncionario.getSelectedItem());
         
         String salario = this.txtSalarioFuncionario.getText();
-        String resultadoFormatado = salario.replace(".","");
+        String resultadoFormatado = salario.replace(".", "");
         String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
         Double salarioBanco = Double.parseDouble(resultadoFormatado2);
         funcionario.setSalario(salarioBanco);

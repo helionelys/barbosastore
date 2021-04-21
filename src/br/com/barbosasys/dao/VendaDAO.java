@@ -6,7 +6,7 @@
 package br.com.barbosasys.dao;
 
 import br.com.barbosasys.jdbc.ConexaoBanco;
-import br.com.barbosasys.model.Cliente;
+import br.com.barbosasys.model.ItemVenda;
 import br.com.barbosasys.model.Venda;
 import java.util.ArrayList;
 
@@ -21,20 +21,22 @@ public class VendaDAO extends ConexaoBanco {
         try {
             this.conectar();
             return this.insertSQL(
-                    "INSERT INTO TBL_VENDAS ("
+                    "INSERT INTO TBL_VENDA ("
                     + "CODCLIENTE,"
                     + "DATAVENDA,"
-                    + "TOTALDAVENDA,"
+                    + "TOTALVENDA,"
                     + "DESCONTO,"
-                    + "TIPODEPAGAMENTO,"
-                    + "CODSTATUSVENDA) "
+                    + "CODTIPOPAGAMENTO,"
+                    //+ "CODSTATUSVENDA,"
+                    + "OBSERVACAO) "
                     + "VALUES ("
                     + "'" + venda.getCodCliente() + "',"
                     + "'" + venda.getDataVenda() + "',"
                     + "'" + venda.getValorTotal() + "',"
                     + "'" + venda.getValorDesconto() + "',"
                     + "'" + venda.getTipoPagamento() + "',"
-                    + "'" + venda.getCodStatusVenda() + "'"
+                    //+ "'" + venda.getCodStatusVenda() + "',"
+                    + "'" + venda.getObservavao() + "'"
                     + ");"
             );
         } catch (Exception e) {
@@ -45,23 +47,21 @@ public class VendaDAO extends ConexaoBanco {
         }
     }
 
-    public boolean salvarItensVendasDAO(Venda venda) {
+    public boolean salvarItensVendasDAO(ItemVenda itemVenda) {
         try {
             this.conectar();
-            int tamanhoLista = venda.getListaVenda().size();
+            int tamanhoLista = itemVenda.getListaItemVenda().size();
             for (int i = 0; i < tamanhoLista; i++) {
                 this.insertSQL(
-                        "INSERT INT TBL_ITENSVENDA "
-                        + "( "
-                        + ("CODVENDA,")
-                        + ("CODPRODUTO,")
-                        + ("QUANTIDADE,")
-                        + ("SUBTOTAL")
+                        "INSERT INTO TBL_ITENSVENDA "
+                        + "(CODVENDA,CODPRODUTO,QUANTIDADE,SUBTOTAL)"
                         + "VALUES ("
-                        + "'" + venda.getListaVenda().get(i).getListaVenda() + "',"
-                        + "'" + venda.getCodVenda() + "',"
-                        + "'" + venda.getListaVenda().get(i).getQuantidade() + "'"
-                        + "'" + venda.getQuantidade() + "'"
+                        //+ "'" + itemVenda.getVenda() + "',"
+                        + "'" + itemVenda.getVenda().getCodVenda() + "',"
+                        //+ "'" + itemVenda.getListaItemVenda().get(i).getVenda().getCodVenda()      + "',"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getProduto().getCodProduto()    + "',"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getQuantidade() + "',"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getSubtotal()   + "'"
                         + ");"
                 );
             }
@@ -88,7 +88,7 @@ public class VendaDAO extends ConexaoBanco {
                     + "CODSTATUSVENDA"
                     + "CODTIPOPAGAMENTO"
                     + " FROM"
-                    + " TBL_VENDAS"
+                    + " TBL_VENDA"
                     + "WHERE"
                     + "CODVENDA = '" + codigo + "'"
                     + ";"
@@ -98,8 +98,8 @@ public class VendaDAO extends ConexaoBanco {
                 venda.setCodVenda(this.getResultSet().getInt(1));
                 venda.setValorTotal(this.getResultSet().getFloat(2));
                 venda.setCodCliente(this.getResultSet().getInt(3));
-                venda.setDataVenda(this.getResultSet().getDate(4));
-                venda.setValorDesconto(this.getResultSet().getFloat(5));
+                venda.setDataVenda(this.getResultSet().getString(4));
+                venda.setValorDesconto(this.getResultSet().getDouble(5));
                 venda.setCodStatusVenda(this.getResultSet().getInt(6));
                 venda.setTipoPagamento(this.getResultSet().getInt(7));
             }
@@ -134,7 +134,7 @@ public class VendaDAO extends ConexaoBanco {
                 venda.setCodVenda(this.getResultSet().getInt(1));
                 venda.setNomeRazaoSocial(this.getResultSet().getString(2));
                 venda.setValorTotal(this.getResultSet().getDouble(3));
-                venda.setDataVenda(this.getResultSet().getDate(4));
+                venda.setDataVenda(this.getResultSet().getString(4));
                 listaVenda.add(venda);
             }
         } catch (Exception e) {
@@ -164,7 +164,7 @@ public class VendaDAO extends ConexaoBanco {
                 venda = new Venda();
                 venda.setCodVenda(this.getResultSet().getInt(1));
                 venda.setCodCliente(this.getResultSet().getInt(2));
-                venda.setDataVenda(this.getResultSet().getDate(3));
+                venda.setDataVenda(this.getResultSet().getString(3));
                 listaVenda.add(venda);
             }
         } catch (Exception e) {
@@ -204,7 +204,7 @@ public class VendaDAO extends ConexaoBanco {
         try {
             this.conectar();
             this.executarSQL(
-                    "DELETE FROM TBL_VENDAS WHERE CODVENDA = '" + codigo + "';"
+                    "DELETE FROM TBL_VENDA WHERE CODVENDA = '" + codigo + "';"
             );
             return true;
         } catch (Exception e) {
@@ -213,6 +213,28 @@ public class VendaDAO extends ConexaoBanco {
         } finally{
             this.fecharConexao();
         }
+    }
+    
+public int getUltimaVendaDAO() {
+        //Venda venda = new Venda();
+        int codVenda = 0;
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT MAX(CODVENDA) CODVENDA FROM TBL_VENDA"
+            );
+
+            while (this.getResultSet().next()) {
+            Venda venda = new Venda();
+                venda.setCodVenda(this.getResultSet().getInt(1));
+                codVenda = venda.getCodVenda();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return codVenda;
     }
 
 }

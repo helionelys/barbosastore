@@ -18,14 +18,15 @@ public class Venda {
     private int codProduto;
     private int codCliente;
     private String nomeRazaoSocial;
-    private Date dataVenda;
+    private String dataVenda;
     private int quantidade;
-    private Double valor;
+    private Double subTotal;
     private Double valorTotal;
-    private float valorDesconto;
+    private Double valorDesconto;
     private int tipoPagamento;
     private ArrayList<Venda> listaVenda;
     private int codStatusVenda;
+    private String observacao;
 
     public Venda() {
     }
@@ -54,11 +55,11 @@ public class Venda {
         this.codCliente = codCliente;
     }
 
-    public Date getDataVenda() {
+    public String getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(Date dataVenda) {
+    public void setDataVenda(String dataVenda) {
         this.dataVenda = dataVenda;
     }
 
@@ -70,12 +71,12 @@ public class Venda {
         this.quantidade = quantidade;
     }
 
-    public Double getValor() {
-        return valor;
+    public Double getSubTotal() {
+        return subTotal;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setSubTotal(Double subTotal) {
+        this.subTotal = subTotal;
     }
 
     public double getValorTotal() {
@@ -86,11 +87,11 @@ public class Venda {
         this.valorTotal = valorTotal;
     }
 
-    public float getValorDesconto() {
+    public double getValorDesconto() {
         return valorDesconto;
     }
 
-    public void setValorDesconto(float valorDesconto) {
+    public void setValorDesconto(Double valorDesconto) {
         this.valorDesconto = valorDesconto;
     }
 
@@ -110,10 +111,10 @@ public class Venda {
         this.listaVenda = listaVenda;
     }
     
-    @Override
-    public String toString(){
-        return "Vendas {" + "::codigoVenda = " + this.codVenda + "::codigoProduto = " + this.codProduto + "::codigoCliente = " + this.codCliente + "::dataVenda = " + this.dataVenda + "::quantidade = " + this.quantidade +  "}";
-    }
+//    @Override
+//    public String toString(){
+//        return "Vendas {" + "::codigoVenda = " + this.codVenda + "::codigoProduto = " + this.codProduto + "::codigoCliente = " + this.codCliente + "::dataVenda = " + this.dataVenda + "::quantidade = " + this.quantidade +  "}";
+//    }
 
     public int getCodStatusVenda() {
         return codStatusVenda;
@@ -131,5 +132,11 @@ public class Venda {
         this.nomeRazaoSocial = nomeRazaoSocial;
     }
     
-    
+     public String getObservavao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
 }

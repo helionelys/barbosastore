@@ -1,5 +1,7 @@
 package br.com.barbosasys.model;
 
+import java.util.ArrayList;
+
 public class Produto {
 
     private int codProduto;
@@ -8,11 +10,13 @@ public class Produto {
     private String descricao;
     private int codCategoriaProduto;
     private Double valor;
+    private int estoque;
     private int codFornecedor;
     private String fabricante;
     private int codUnidadeMedida;
     private String descricaoUnidadeMedida;
     private String observacao;
+    private ArrayList<Produto> listaItensVendas;
     
     public Produto() {
     }
@@ -64,6 +68,14 @@ public class Produto {
     public void setValor(Double valor) {
         this.valor = valor;
     }
+    
+    public int getEstoque(){
+        return estoque;
+    }
+    
+    public void setEstoque(int estoque){
+        this.estoque = estoque;
+    }
 
     public int getCodFornecedor() {
         return codFornecedor;
@@ -107,7 +119,11 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto{" + "codProduto=" + codProduto + ", statusProduto=" + statusProduto + ", dataCadastramento=" + dataCadastramento + ", descricao=" + descricao + ", codCategoriaProduto=" + codCategoriaProduto + ", valor=" + valor + ", fabricante=" + fabricante + ", codUnidadeMedida=" + codUnidadeMedida + ", descricaoUnidadeMedida=" + descricaoUnidadeMedida + ", observacao=" + observacao + '}';
+        return "Produto{" + "codProduto=" + codProduto + ", statusProduto=" + statusProduto + ", dataCadastramento=" + dataCadastramento + ", descricao=" + descricao + ", codCategoriaProduto=" + codCategoriaProduto + ", valor=" + valor + ", fabricante=" + fabricante + ", codUnidadeMedida=" + codUnidadeMedida + ", descricaoUnidadeMedida=" + descricaoUnidadeMedida + ", observacao=" + observacao + ", estoque= "+ estoque +'}';
+    }
+    
+    public void setListaItensVendas(ArrayList<Produto> listaItensVendas){
+        this.listaItensVendas = listaItensVendas;
     }
     
     

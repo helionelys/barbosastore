@@ -1,13 +1,16 @@
 package br.com.barbosasys.model;
 
+import java.util.ArrayList;
+
 public class ItemVenda {
     private int codItemVenda;
     private Venda venda;
     private Produto produto;
     private int quantidade;
     private Double subtotal;
+    private ArrayList<ItemVenda> listaItemVenda;
     
-    private ItemVenda(){
+    public ItemVenda(){
         
     }
 
@@ -50,6 +53,15 @@ public class ItemVenda {
     public void setSubtotal(Double subtotal) {
         this.subtotal = subtotal;
     }
+
+    public ArrayList<ItemVenda> getListaItemVenda() {
+        return listaItemVenda;
+    }
+
+    public void setListaItemVenda(ArrayList<ItemVenda> listaItemVenda) {
+        this.listaItemVenda = listaItemVenda;
+    }
     
+
     
 }

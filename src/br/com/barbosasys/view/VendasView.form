@@ -107,11 +107,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextField1" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton4" linkSize="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnVendaIncluir" linkSize="2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnVendaNova" linkSize="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnVendaSalvar" linkSize="2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnVendaSalvar" linkSize="2" max="32767" attributes="0"/>
+                      <Component id="btnVendaCancelar" linkSize="2" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -126,9 +126,9 @@
                           <Component id="btnComprasAprovar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnCompraReprovar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextField1" alignment="3" max="32767" attributes="0"/>
-                          <Component id="jButton4" linkSize="3" alignment="3" pref="35" max="32767" attributes="0"/>
-                          <Component id="btnVendaNova" linkSize="3" alignment="3" max="32767" attributes="0"/>
+                          <Component id="btnVendaIncluir" linkSize="3" alignment="3" pref="35" max="32767" attributes="0"/>
                           <Component id="btnVendaSalvar" linkSize="3" alignment="3" max="32767" attributes="0"/>
+                          <Component id="btnVendaCancelar" linkSize="3" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -152,7 +152,7 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtVendaCodCliente" max="32767" attributes="0"/>
+                                      <Component id="txtVendaCodCliente" pref="47" max="32767" attributes="0"/>
                                       <Component id="txtVendaCodProduto" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -186,10 +186,11 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                  <Component id="txtVendaDataVencimento" min="-2" pref="79" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtVendaData" min="-2" pref="79" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="cbVendaTipoPagamento" min="-2" pref="96" max="-2" attributes="0"/>
@@ -207,7 +208,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField2" max="32767" attributes="0"/>
+                                  <Component id="txtVendaObservacao" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -249,14 +250,14 @@
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtVendaTotal" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaDataVencimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtVendaData" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnVendaCalculaDesconto" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtVendaDesconto" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtVendaObservacao" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -335,15 +336,21 @@
                     <Component class="javax.swing.JTable" name="tblListaItensVendas">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="0">
+                          <Table columnCount="5" rowCount="0">
+                            <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
                             <Column editable="false" title="Produto" type="java.lang.Object"/>
                             <Column editable="false" title="Valor" type="java.lang.Object"/>
-                            <Column editable="true" title="Quantidade" type="java.lang.Object"/>
-                            <Column editable="true" title="SubTotal" type="java.lang.Object"/>
+                            <Column editable="false" title="Quantidade" type="java.lang.Object"/>
+                            <Column editable="false" title="SubTotal" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -447,10 +454,10 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Vencimento:"/>
+                    <Property name="text" type="java.lang.String" value="Data:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="txtVendaDataVencimento">
+                <Component class="javax.swing.JFormattedTextField" name="txtVendaData">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                       <Format format="##/##/####" subtype="-1" type="5"/>
@@ -509,7 +516,7 @@
                     <Property name="text" type="java.lang.String" value="Observa&#xe7;&#xe3;o:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField2">
+                <Component class="javax.swing.JTextField" name="txtVendaObservacao">
                 </Component>
               </SubComponents>
             </Container>
@@ -539,23 +546,29 @@
                 <Property name="text" type="java.lang.String" value="STATUS"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton4">
+            <Component class="javax.swing.JButton" name="btnVendaIncluir">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/produto_incluir.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Incluir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendaIncluirActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnVendaNova">
+            <Component class="javax.swing.JButton" name="btnVendaSalvar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/salvar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendaSalvarActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnVendaSalvar">
+            <Component class="javax.swing.JButton" name="btnVendaCancelar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/inativar.png"/>
@@ -614,14 +627,14 @@
                           <Component id="btnConsultaVendaPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="325" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" pref="415" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnConsultaVendaCancelar" linkSize="4" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="btnConsultaVendaExcluir" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnConsultaVendaAlterar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
