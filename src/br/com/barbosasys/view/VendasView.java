@@ -36,20 +36,20 @@ public class VendasView extends javax.swing.JDialog {
     ArrayList<Venda> listaVendas = new ArrayList<>();
     ArrayList<ItemVenda> listaItensVendas = new ArrayList<>();
     ArrayList<Cliente> listaCliente = new ArrayList<>();
+    ArrayList<Produto> listaProduto = new ArrayList<>();
     ProdutoController produtoController = new ProdutoController();
+    ClienteController clienteController = new ClienteController();
     Caixa caixa = new Caixa();
     CaixaController caixaController = new CaixaController();
     TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
     ArrayList<TipoPagamento> listaTipoPagamento = new ArrayList<>();
     float valorCartao, valorCheque, valorDinheiro, valorVale;
     boolean alteracao = false;
-    
 
     String precoFormatado, subTotalValorFormatado, totalValorFormatado;
     double preco, subtotal, total;
     int quantidade;
-
-    DefaultTableModel carrinho, itensDaVenda;
+    DefaultTableModel carrinhos, itensDaVenda;
 
     /**
      * Creates new form VendasView
@@ -60,7 +60,8 @@ public class VendasView extends javax.swing.JDialog {
         carregarTipoPagamento();
         this.txtVendaPrecoOculto.setVisible(false);
         this.carregarVendas();
-        this.txtVendaDesconto.setText("0,00");
+        this.carregamentoInicial();
+
     }
 
     private void carregarClientes() {
@@ -113,7 +114,7 @@ public class VendasView extends javax.swing.JDialog {
         txtVendaDesconto = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
         txtVendaObservacao = new javax.swing.JTextField();
-        btnComprasAprovar = new javax.swing.JButton();
+        btnCompraAprovar = new javax.swing.JButton();
         btnCompraReprovar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         btnVendaIncluir = new javax.swing.JButton();
@@ -170,6 +171,9 @@ public class VendasView extends javax.swing.JDialog {
         });
 
         jLabel3.setText("Nº da Venda");
+
+        txtVendaNumero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        txtVendaNumero.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel4.setText("Produto:");
 
@@ -400,8 +404,8 @@ public class VendasView extends javax.swing.JDialog {
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtVendaDesconto, txtVendaTotal});
 
-        btnComprasAprovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/aceitar.png"))); // NOI18N
-        btnComprasAprovar.setText("Aprovar");
+        btnCompraAprovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/aceitar.png"))); // NOI18N
+        btnCompraAprovar.setText("Aprovar");
 
         btnCompraReprovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
         btnCompraReprovar.setText("Reprovar");
@@ -429,6 +433,11 @@ public class VendasView extends javax.swing.JDialog {
 
         btnVendaCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/inativar.png"))); // NOI18N
         btnVendaCancelar.setText("Cancelar");
+        btnVendaCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendaCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelVendasLayout = new javax.swing.GroupLayout(jPanelVendas);
         jPanelVendas.setLayout(jPanelVendasLayout);
@@ -437,7 +446,7 @@ public class VendasView extends javax.swing.JDialog {
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelVendasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnComprasAprovar)
+                .addComponent(btnCompraAprovar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCompraReprovar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -460,7 +469,7 @@ public class VendasView extends javax.swing.JDialog {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnComprasAprovar)
+                    .addComponent(btnCompraAprovar)
                     .addComponent(btnCompraReprovar)
                     .addComponent(jTextField1)
                     .addComponent(btnVendaIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, Short.MAX_VALUE)
@@ -629,6 +638,55 @@ public class VendasView extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnIncluirProdutoActionPerformed
 
+    private void carregamentoInicial() {
+        this.txtVendaCodCliente.setEnabled(false);
+        this.txtVendaNomeCliente.setEnabled(false);
+        this.btnBuscarCliente.setEnabled(false);
+        this.txtVendaNumero.setEnabled(false);
+        this.txtVendaCodProduto.setEnabled(false);
+        this.txtVendaDescricaoProduto.setEnabled(false);
+        this.btnBuscarProduto.setEnabled(false);
+        this.txtVendaProdutoValorUnitario.setEnabled(false);
+        this.txtVendaQuantidade.setEnabled(false);
+        this.btnIncluirProduto.setEnabled(false);
+        this.btnRemoverProduto.setEnabled(false);
+        this.txtVendaData.setEnabled(false);
+        this.cbVendaTipoPagamento.setEnabled(false);
+        this.txtVendaDesconto.setEnabled(false);
+        this.btnVendaCalculaDesconto.setEnabled(false);
+        this.txtVendaObservacao.setEnabled(false);
+        this.btnCompraAprovar.setEnabled(false);
+        this.btnCompraReprovar.setEnabled(false);
+        this.btnVendaIncluir.setEnabled(true);
+        this.btnVendaSalvar.setEnabled(false);
+        this.btnVendaCancelar.setEnabled(true);
+    }
+
+    private void IncluirVenda() {
+        this.txtVendaCodCliente.setEnabled(true);
+        this.txtVendaNomeCliente.setEnabled(true);
+        this.btnBuscarCliente.setEnabled(true);
+        this.txtVendaNumero.setEnabled(true);
+        this.txtVendaCodProduto.setEnabled(true);
+        this.txtVendaDescricaoProduto.setEnabled(true);
+        this.btnBuscarProduto.setEnabled(true);
+        this.txtVendaProdutoValorUnitario.setEnabled(true);
+        this.txtVendaQuantidade.setEnabled(true);
+        this.btnIncluirProduto.setEnabled(true);
+        this.btnRemoverProduto.setEnabled(true);
+        this.txtVendaData.setEnabled(true);
+        this.txtVendaData.setEditable(false);
+        this.cbVendaTipoPagamento.setEnabled(true);
+        this.txtVendaDesconto.setEnabled(true);
+        this.btnVendaCalculaDesconto.setEnabled(true);
+        this.txtVendaObservacao.setEnabled(true);
+        this.btnCompraAprovar.setEnabled(true);
+        this.btnCompraReprovar.setEnabled(true);
+        this.btnVendaIncluir.setEnabled(false);
+        this.btnVendaSalvar.setEnabled(true);
+        this.btnVendaCancelar.setEnabled(true);
+    }
+
     private void InclurProduto() {
         quantidade = Integer.parseInt(this.txtVendaQuantidade.getText());
         preco = Double.parseDouble(this.txtVendaPrecoOculto.getText());
@@ -649,20 +707,27 @@ public class VendasView extends javax.swing.JDialog {
 
         this.txtVendaTotal.setText(String.valueOf(totalValorFormatado));
 
-        carrinho = (DefaultTableModel) tblListaItensVendas.getModel();
-        carrinho.addRow(new Object[]{
-            this.txtVendaCodProduto.getText(),
-            this.txtVendaDescricaoProduto.getText(),
-            this.txtVendaProdutoValorUnitario.getText(),
-            this.txtVendaQuantidade.getText(),
-            this.subTotalValorFormatado
-        //this.subtotal
+        carrinhos = (DefaultTableModel) tblListaItensVendas.getModel();
+        int cont = 0;
+        for (int i = 0; i < cont; i++) {
+            carrinhos.setNumRows(0);
+        }
+        carrinhos.addRow(new Object[]{
+            this.txtVendaCodProduto.getText(),//0
+            this.txtVendaDescricaoProduto.getText(),//1
+            this.txtVendaProdutoValorUnitario.getText(),//2
+            this.txtVendaQuantidade.getText(),//3
+            this.subTotalValorFormatado,//4
+            this.subtotal//5
+
         });
+
+        this.itensDaVenda = carrinhos;
+
         this.txtVendaCodProduto.setText(null);
         this.txtVendaDescricaoProduto.setText(null);
         this.txtVendaProdutoValorUnitario.setText(null);
         this.txtVendaQuantidade.setText(null);
-        
     }
 
     private void btnRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverProdutoActionPerformed
@@ -713,14 +778,22 @@ public class VendasView extends javax.swing.JDialog {
 
     private void btnVendaIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaIncluirActionPerformed
         // TODO add your handling code here:
+        this.IncluirVenda();
+        this.novoVenda();
     }//GEN-LAST:event_btnVendaIncluirActionPerformed
 
     private void btnVendaSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaSalvarActionPerformed
         // TODO add your handling code here:
         if (alteracao == false) {
             salvarVenda();
+            this.novoVenda();
         }
     }//GEN-LAST:event_btnVendaSalvarActionPerformed
+
+    private void btnVendaCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnVendaCancelarActionPerformed
 
     private void carregarVendas() {
         listaVendas = vendasController.getListaVendaController();
@@ -740,83 +813,70 @@ public class VendasView extends javax.swing.JDialog {
     }
 
     private void salvarVenda() {
-        
-        this.itensDaVenda = carrinho;
-        
-        if (tblListaItensVendas.getRowCount() < 1) {
-            JOptionPane.showMessageDialog(this, "É necessário selecionar os produtos", "Atenção", JOptionPane.WARNING_MESSAGE);
+        if (txtVendaCodCliente.getText().equals("") || tblListaItensVendas.getRowCount() < 1) {
+            JOptionPane.showMessageDialog(this, "É necessário informar um cliente e selecionar um produto!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
         } else {
-            int codProduto, quantidade;
+            Venda objVenda = new Venda();
 
-            if (this.txtVendaDesconto.getText().equals("")) {
-                txtVendaDesconto.setText("0,00");
-            }
-
-            Venda venda = new Venda();
             //Dados do cliente
-            venda.setCodCliente(Integer.parseInt(this.txtVendaCodCliente.getText()));
-            
-            //Dados da venda
-            // 1. Formatação do valor do desconto para armazenar no banco
-            String desconto = this.txtVendaDesconto.getText();
-            String resultadoFormatado = desconto.replace(".", "");
-            String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
-            Double descontoBanco = Double.parseDouble(resultadoFormatado2);
-            venda.setValorDesconto(descontoBanco);
+            objVenda.setCodCliente(Integer.parseInt(this.txtVendaCodCliente.getText()));
 
-            
-            // 2. Formatação do valor total da venda para armazenar no banco
-            String valorTotal = this.txtVendaTotal.getText();
-            String totalFormatado = valorTotal.replace(".", "");
-            String totalFormatado2 = totalFormatado.replace(",", ".");
-            Double totalBanco = Double.parseDouble(totalFormatado2);
-            venda.setValorTotal(totalBanco);
-            
-            // 3. Captura a data atual do sistema para gravar como datavenda no banco
+            // Data da venda
             Date dataCadastramentoCliente = new Date();
             String formatoDataMysql = ("yyyy-MM-dd");
             SimpleDateFormat formatarData = new SimpleDateFormat(formatoDataMysql);
             String dataMysql = formatarData.format(dataCadastramentoCliente);
-            venda.setDataVenda(dataMysql);
-            
-            // 4. Gravar o texto da observaçao da venda no banco de dados
-            venda.setObservacao(this.txtVendaObservacao.getText());
-            
-            // Finalizar a capturar dos dados e armaneza no objeto venda, para passar no método controller para gravar no banco.
-            vendasController.SalvarVendaController(venda);
-            
-            //int ultimoCodigo = 0;
+            objVenda.setDataVenda(dataMysql);
+
+            // valor do Desconto da venda
+            String desconto = this.txtVendaDesconto.getText();
+            String descontoFormatado = desconto.replace(".", "");
+            String descontoFormatado2 = descontoFormatado.replace(",", ".");
+            Double descontoBanco = Double.parseDouble(descontoFormatado2);
+            objVenda.setValorDesconto(descontoBanco);
+
+            // valor Total da Venda
+            String valorTotal = this.txtVendaTotal.getText();
+            String totalFormatado = valorTotal.replace(".", "");
+            String totalFormatado2 = totalFormatado.replace(",", ".");
+            Double totalBanco = Double.parseDouble(totalFormatado2);
+            objVenda.setValorTotal(totalBanco);
+
+            objVenda.setObservacao(this.txtVendaObservacao.getText());
+
+            int codigoVenda = vendasController.SalvarVendaController(objVenda);
+
+            // Captura o código da ultima venda salva no Banco
             venda.setCodVenda(vendasController.getUltimaVendaDAO());
-            
-            // Gravar os itens da venda
-            for(int i=0; i < itensDaVenda.getRowCount(); i++ ){
-               //int quantidadeEstoque, quantidadeComprada, quantidadeAtualizada;
-                Produto produtos = new Produto();
-                
-                itemVenda.setVenda(venda);
-                produtos.setCodProduto(Integer.parseInt(itensDaVenda.getValueAt(i, 0).toString()));
-                itemVenda.setProduto(produtos);
-                itemVenda.setQuantidade(Integer.parseInt(itensDaVenda.getValueAt(i, 3).toString()));
-                
-                String valorItemProduto = String.valueOf(itensDaVenda.getValueAt(i, 4).toString());
-                String vlItemFormatado = valorItemProduto.replace(".","");
+
+            // Cadastrando os produtos na tabela ItemVendas
+            for (int i = 0; i < tblListaItensVendas.getRowCount(); i++) {
+                ItemVenda objItemVenda = new ItemVenda();
+                Produto objProdutoVenda = new Produto();
+                objItemVenda.setVenda(venda);
+                objProdutoVenda.setCodProduto(Integer.parseInt(tblListaItensVendas.getValueAt(i, 0).toString()));
+                objItemVenda.setProduto(objProdutoVenda);
+                objItemVenda.setQuantidade(Integer.parseInt(tblListaItensVendas.getValueAt(i, 3).toString()));
+                //objItemVenda.setSubtotal(Double.parseDouble(tblListaItensVendas.getValueAt(i, 5).toString()));
+                String valorItemProduto = String.valueOf(tblListaItensVendas.getValueAt(i, 4).toString());
+                String vlItemFormatado = valorItemProduto.replace(".", "");
                 String vlItemFormatado2 = vlItemFormatado.replace(",", ".");
                 Double subTotalBanco = Double.parseDouble(vlItemFormatado2);
-                itemVenda.setSubtotal(subTotalBanco);
-                listaItensVendas.add(itemVenda);
-                             
+                objItemVenda.setSubtotal(subTotalBanco);
+                listaItensVendas.add(objItemVenda);
             }
+
             itemVenda.setListaItemVenda(listaItensVendas);
-            
-            boolean retorno = (vendasController.salvarItensVendaController(itemVenda));
-            if (retorno == true){
+            if (codigoVenda > 0) {
+                vendasController.salvarItensVendaController(itemVenda);
                 JOptionPane.showMessageDialog(this, "Registro gravado com sucesso!");
-                this.limparCampos();
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
-            
-       }
+
+            this.limparCampos();
+            this.carregamentoInicial();
+        }
     }
 
     private boolean testarSelecao() {
@@ -845,8 +905,8 @@ public class VendasView extends javax.swing.JDialog {
         }
         return true;
     }
-    
-    private void limparCampos(){
+
+    private void limparCampos() {
         this.txtVendaCodCliente.setText(null);
         this.txtVendaNomeCliente.setText(null);
         this.txtVendaCodProduto.setText(null);
@@ -856,13 +916,22 @@ public class VendasView extends javax.swing.JDialog {
         this.txtVendaObservacao.setText(null);
     }
 
+    private void novoVenda() {
+        txtVendaNumero.setText("Novo");
+        txtVendaQuantidade.setText("");
+        DefaultTableModel modelo = (DefaultTableModel) tblListaItensVendas.getModel();
+        modelo.setNumRows(0);
+        txtVendaDesconto.setText("0,00");
+        txtVendaTotal.setText("0,00");
+    }
+
     private Double atualizarValorTotal() {
         Double operacaoSoma = 0.00;
         Double valor;
         int contador = tblListaItensVendas.getRowCount();
         for (int i = 0; i < contador; i++) {
             //valor = Double.parseDouble(String.valueOf(tblListaItensVendas.getValueAt(i, 3)));
-            String valorOriginal = String.valueOf(tblListaItensVendas.getValueAt(i, 3));
+            String valorOriginal = String.valueOf(tblListaItensVendas.getValueAt(i, 4));
             String valorOriginalFormatado = valorOriginal.replace(".", "");
             String valorOriginalFormatado2 = valorOriginalFormatado.replace(",", ".");
             valor = Double.parseDouble(valorOriginalFormatado2);
@@ -885,8 +954,8 @@ public class VendasView extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProduto;
+    private javax.swing.JButton btnCompraAprovar;
     private javax.swing.JButton btnCompraReprovar;
-    private javax.swing.JButton btnComprasAprovar;
     private javax.swing.JButton btnConsultaVendaAlterar;
     private javax.swing.JButton btnConsultaVendaCancelar;
     private javax.swing.JButton btnConsultaVendaExcluir;

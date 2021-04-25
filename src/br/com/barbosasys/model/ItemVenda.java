@@ -62,6 +62,9 @@ public class ItemVenda {
         this.listaItemVenda = listaItemVenda;
     }
     
-
+    @Override
+    public String toString(){
+    return "ItemVenda {" + "::codItemVenda = " + this.codItemVenda + " ::quantidade = " + this.quantidade +"::subTotal = " + this.subtotal +"}";
+    }
     
 }

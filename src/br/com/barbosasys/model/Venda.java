@@ -111,10 +111,10 @@ public class Venda {
         this.listaVenda = listaVenda;
     }
     
-//    @Override
-//    public String toString(){
-//        return "Vendas {" + "::codigoVenda = " + this.codVenda + "::codigoProduto = " + this.codProduto + "::codigoCliente = " + this.codCliente + "::dataVenda = " + this.dataVenda + "::quantidade = " + this.quantidade +  "}";
-//    }
+    @Override
+    public String toString(){
+        return "Vendas {" + "::codigoVenda = " + this.codVenda + "::codigoProduto = " + this.codProduto + "::codigoCliente = " + this.codCliente + "::dataVenda = " + this.dataVenda + "::quantidade = " + this.quantidade +  "}";
+    }
 
     public int getCodStatusVenda() {
         return codStatusVenda;

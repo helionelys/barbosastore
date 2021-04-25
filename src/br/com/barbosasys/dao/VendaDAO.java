@@ -56,12 +56,12 @@ public class VendaDAO extends ConexaoBanco {
                         "INSERT INTO TBL_ITENSVENDA "
                         + "(CODVENDA,CODPRODUTO,QUANTIDADE,SUBTOTAL)"
                         + "VALUES ("
-                        //+ "'" + itemVenda.getVenda() + "',"
-                        + "'" + itemVenda.getVenda().getCodVenda() + "',"
-                        //+ "'" + itemVenda.getListaItemVenda().get(i).getVenda().getCodVenda()      + "',"
-                        + "'" + itemVenda.getListaItemVenda().get(i).getProduto().getCodProduto()    + "',"
+                        //+ "'" + venda.getListaVenda().get(i).getProduto().getCodProduto() + "',"
+                        //+ "'" + itemVenda.getVenda().getCodVenda()+ "',"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getVenda().getCodVenda()+ "',"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getProduto().getCodProduto()+ "',"
                         + "'" + itemVenda.getListaItemVenda().get(i).getQuantidade() + "',"
-                        + "'" + itemVenda.getListaItemVenda().get(i).getSubtotal()   + "'"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getSubtotal()+ "'"
                         + ");"
                 );
             }

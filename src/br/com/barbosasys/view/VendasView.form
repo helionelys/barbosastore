@@ -101,7 +101,7 @@
                   <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnComprasAprovar" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCompraAprovar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnCompraReprovar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -123,7 +123,7 @@
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnComprasAprovar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCompraAprovar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnCompraReprovar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextField1" alignment="3" max="32767" attributes="0"/>
                           <Component id="btnVendaIncluir" linkSize="3" alignment="3" pref="35" max="32767" attributes="0"/>
@@ -286,6 +286,12 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtVendaNumero">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Dialog" size="14" style="1"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
@@ -520,7 +526,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnComprasAprovar">
+            <Component class="javax.swing.JButton" name="btnCompraAprovar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/aceitar.png"/>
@@ -575,6 +581,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendaCancelarActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

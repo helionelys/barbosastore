@@ -36,6 +36,7 @@ public class ConexaoBanco {
         try {
             // Driver JDBC Mysql
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            
 
             // Local do banco, nome do banco, usuário e senha
             String url = "jdbc:mysql://" + server + "/" + baseName +"?useTimezone=true&serverTimezone=UTC" ;
