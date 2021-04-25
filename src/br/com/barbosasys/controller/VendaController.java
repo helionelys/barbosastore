@@ -30,8 +30,8 @@ public class VendaController {
         return this.vendaDAO.getListaVendaDAO();
     }
     
-    public ArrayList<Venda> getListaVendaController(int codigo){
-        return this.vendaDAO.getListaVendaDAO(codigo);
+    public ArrayList<ItemVenda> getListaItensVendaController(int codigo){
+        return this.vendaDAO.getListaItensVendaDAO(codigo);
     }
     
     public boolean atualizarVendasController(Venda venda){

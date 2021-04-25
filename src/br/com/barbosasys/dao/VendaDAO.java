@@ -7,6 +7,7 @@ package br.com.barbosasys.dao;
 
 import br.com.barbosasys.jdbc.ConexaoBanco;
 import br.com.barbosasys.model.ItemVenda;
+import br.com.barbosasys.model.Produto;
 import br.com.barbosasys.model.Venda;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -88,18 +89,18 @@ public class VendaDAO extends ConexaoBanco {
                     + "CODCLIENTE,"
                     + "DATAVENDA,"
                     + "DESCONTO,"
-                    + "CODSTATUSVENDA"
+                    + "CODSTATUSVENDA,"
                     + "CODTIPOPAGAMENTO"
                     + " FROM"
                     + " TBL_VENDA"
-                    + "WHERE"
-                    + "CODVENDA = '" + codigo + "'"
+                    + " WHERE"
+                    + " CODVENDA = '" + codigo + "'"
                     + ";"
             );
 
             while (this.getResultSet().next()) {
                 venda.setCodVenda(this.getResultSet().getInt(1));
-                venda.setValorTotal(this.getResultSet().getFloat(2));
+                venda.setValorTotal(this.getResultSet().getDouble(2));
                 venda.setCodCliente(this.getResultSet().getInt(3));
                 venda.setDataVenda(this.getResultSet().getString(4));
                 venda.setValorDesconto(this.getResultSet().getDouble(5));
@@ -148,7 +149,7 @@ public class VendaDAO extends ConexaoBanco {
                 LocalDate localDate = LocalDate.parse(dataRetorno, formatter);
                 String dataVendaFormatada = localDate.format(formatter2);
                 venda.setDataVenda(dataVendaFormatada);
-                venda.setDescricaStatus(this.getResultSet().getString(5));
+                venda.setDescricaoStatus(this.getResultSet().getString(5));
                 listaVenda.add(venda);
             }
         } catch (Exception e) {
@@ -159,34 +160,43 @@ public class VendaDAO extends ConexaoBanco {
         return listaVenda;
     }
 
-    public ArrayList<Venda> getListaVendaDAO(int codigo) {
-        ArrayList<Venda> listaVenda = new ArrayList();
+    public ArrayList<ItemVenda> getListaItensVendaDAO(int codigo) {
+        ArrayList<ItemVenda> listaItensVenda = new ArrayList();
+        ItemVenda itemVenda = new ItemVenda();
         Venda venda = new Venda();
+        Produto produto = new Produto();
         try {
             this.conectar();
             this.executarSQL(
                     "SELECT "
                     + "CODVENDA,"
-                    + "CODCLIENTE,"
-                    + "DATAVENDA,"
+                    + "CODPRODUTO,"
+                    + "QUANTIDADE,"
+                    + "SUBTOTAL "
                     + "FROM"
-                    + "TBL_VENDA WHERE CODVENDA = '" + codigo + "'"
+                    + " TBL_ITENSVENDA WHERE CODVENDA = '" + codigo + "'"
                     + ";"
             );
 
             while (this.getResultSet().next()) {
-                venda = new Venda();
+
                 venda.setCodVenda(this.getResultSet().getInt(1));
-                venda.setCodCliente(this.getResultSet().getInt(2));
-                venda.setDataVenda(this.getResultSet().getString(3));
-                listaVenda.add(venda);
+                produto.setCodProduto(this.getResultSet().getInt(2));
+                itemVenda.setQuantidade(this.getResultSet().getInt(3));
+                itemVenda.setQuantidade(this.getResultSet().getInt(4));
+                itemVenda.setVenda(venda);
+                itemVenda.setProduto(produto);
+                
+                listaItensVenda.add(itemVenda);
+//                itemVenda.setSubtotal(Double.parseDouble(this.getResultSet().getString(4)));
+//                listaItensVenda.add(itemVenda);
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             this.fecharConexao();
         }
-        return listaVenda;
+        return listaItensVenda;
     }
 
     public boolean atualizarVendaDAO(Venda venda) {

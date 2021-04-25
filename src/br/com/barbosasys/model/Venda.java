@@ -145,7 +145,7 @@ public class Venda {
         return descricaoStatus;
     }
 
-    public void setDescricaStatus(String descricaoStatus) {
+    public void setDescricaoStatus(String descricaoStatus) {
         this.descricaoStatus = descricaoStatus;
     }
 }

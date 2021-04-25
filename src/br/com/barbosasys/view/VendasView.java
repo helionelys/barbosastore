@@ -125,9 +125,9 @@ public class VendasView extends javax.swing.JDialog {
         tblVendasRealizadas = new javax.swing.JTable();
         btnConsultaVendaImprimir = new javax.swing.JButton();
         btnConsultaVendaPesquisar = new javax.swing.JButton();
-        btnConsultaVendaCancelar = new javax.swing.JButton();
         btnConsultaVendaExcluir = new javax.swing.JButton();
         btnConsultaVendaAlterar = new javax.swing.JButton();
+        btnConsultaVendaCancelar = new javax.swing.JButton();
         btnCompraReprovar1 = new javax.swing.JButton();
         btnCompraAprovar1 = new javax.swing.JButton();
 
@@ -494,22 +494,27 @@ public class VendasView extends javax.swing.JDialog {
 
         btnConsultaVendaPesquisar.setText("Pesquisar");
 
-        btnConsultaVendaCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_excluir.png"))); // NOI18N
-        btnConsultaVendaCancelar.setText("Excluir");
-        btnConsultaVendaCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultaVendaExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_excluir.png"))); // NOI18N
+        btnConsultaVendaExcluir.setText("Excluir");
+        btnConsultaVendaExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaVendaCancelarActionPerformed(evt);
+                btnConsultaVendaExcluirActionPerformed(evt);
             }
         });
 
-        btnConsultaVendaExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_editar.png"))); // NOI18N
-        btnConsultaVendaExcluir.setText("Alterar");
-
-        btnConsultaVendaAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
-        btnConsultaVendaAlterar.setText("Cancelar");
+        btnConsultaVendaAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_editar.png"))); // NOI18N
+        btnConsultaVendaAlterar.setText("Alterar");
         btnConsultaVendaAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultaVendaAlterarActionPerformed(evt);
+            }
+        });
+
+        btnConsultaVendaCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
+        btnConsultaVendaCancelar.setText("Cancelar");
+        btnConsultaVendaCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaVendaCancelarActionPerformed(evt);
             }
         });
 
@@ -540,11 +545,11 @@ public class VendasView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCompraReprovar1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConsultaVendaCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConsultaVendaExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConsultaVendaAlterar)))
+                        .addComponent(btnConsultaVendaAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnConsultaVendaCancelar)))
                 .addContainerGap())
         );
 
@@ -563,9 +568,9 @@ public class VendasView extends javax.swing.JDialog {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelConsultarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnConsultaVendaCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultaVendaExcluir)
+                    .addComponent(btnConsultaVendaExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultaVendaAlterar)
+                    .addComponent(btnConsultaVendaCancelar)
                     .addComponent(btnCompraAprovar1)
                     .addComponent(btnCompraReprovar1))
                 .addContainerGap())
@@ -600,9 +605,9 @@ public class VendasView extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtVendaNomeClienteActionPerformed
 
-    private void btnConsultaVendaCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaVendaCancelarActionPerformed
+    private void btnConsultaVendaExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaVendaExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultaVendaCancelarActionPerformed
+    }//GEN-LAST:event_btnConsultaVendaExcluirActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
         // TODO add your handling code here:
@@ -795,9 +800,18 @@ public class VendasView extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnVendaCancelarActionPerformed
 
-    private void btnConsultaVendaAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaVendaAlterarActionPerformed
+    private void btnConsultaVendaCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaVendaCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
+    }//GEN-LAST:event_btnConsultaVendaCancelarActionPerformed
+
+    private void btnConsultaVendaAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaVendaAlterarActionPerformed
+        // TODO add your handling code here:
+        if (testarSelecaoVendas()== true){
+            recuperarVenda();
+            alteracao = true;
+            jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() - 1);
+        }
     }//GEN-LAST:event_btnConsultaVendaAlterarActionPerformed
 
     private void carregarVendas() {
@@ -885,9 +899,57 @@ public class VendasView extends javax.swing.JDialog {
             this.carregamentoInicial();
         }
     }
+    
+    private boolean recuperarVenda(){
+        try {
+            int linha = this.tblVendasRealizadas.getSelectedRow();
+            int codigoVenda = (Integer) tblVendasRealizadas.getValueAt(linha,0);
+            int codigoProduto;
+            venda.setCodVenda(codigoVenda);
+            //Recupera os dados no banco de dados
+            venda = vendasController.getVendaController(codigoVenda);
+            this.txtVendaCodCliente.setText(String.valueOf(venda.getCodCliente()));
+            this.txtVendaNomeCliente.setText(String.valueOf(venda.getNomeRazaoSocial()));
+            this.txtVendaNumero.setText(String.valueOf(venda.getCodVenda()));
+            this.txtVendaData.setText(String.valueOf(venda.getDataVenda()));
+            this.txtVendaTotal.setText(String.valueOf(venda.getValorTotal()));
+            
+            listaItensVendas = vendasController.getListaItensVendaController(codigoVenda);
+            
+            DefaultTableModel modelo = (DefaultTableModel) tblListaItensVendas.getModel();
+            modelo.setNumRows(0);
+            
+            int cont = listaItensVendas.size();
+            for (int i=0; i < cont; i++){
+                codigoProduto = listaItensVendas.get(i).getProduto().getCodProduto();
+                produto = produtoController.getProdutoController(codigoProduto);
+                modelo.addRow(new Object[]{
+                    produto.getCodProduto(),
+                    produto.getDescricao(),
+                    produto.getValor(),
+                    listaItensVendas.get(i).getQuantidade(),
+                    listaItensVendas.get(i).getSubtotal()
+                });
+            }
+            return true;        
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Código inválido ou nenhum registro selecionado", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+    }
 
     private boolean testarSelecao() {
         int selecao = tblListaItensVendas.getSelectedRow();
+        if (selecao == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha para realizar essa operação.");
+            return false;
+        }
+        return true;
+
+    }
+    
+    private boolean testarSelecaoVendas() {
+        int selecao = tblVendasRealizadas.getSelectedRow();
         if (selecao == -1) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha para realizar essa operação.");
             return false;
