@@ -101,12 +101,8 @@
                   <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnCompraAprovar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnCompraReprovar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextField1" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="253" max="-2" attributes="0"/>
                       <Component id="btnVendaIncluir" linkSize="2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnVendaSalvar" linkSize="2" min="-2" max="-2" attributes="0"/>
@@ -123,8 +119,6 @@
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnCompraAprovar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCompraReprovar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextField1" alignment="3" max="32767" attributes="0"/>
                           <Component id="btnVendaIncluir" linkSize="3" alignment="3" pref="35" max="32767" attributes="0"/>
                           <Component id="btnVendaSalvar" linkSize="3" alignment="3" max="32767" attributes="0"/>
@@ -526,22 +520,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnCompraAprovar">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/barbosasys/images/aceitar.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Aprovar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnCompraReprovar">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/barbosasys/images/cancelar.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Reprovar"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="jTextField1">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
@@ -605,7 +583,7 @@
                           <Component id="jScrollPane2" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="7" max="32767" attributes="0"/>
                               <Component id="txtConsultaVenda" min="-2" pref="436" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnConsultaVendaPesquisar" min="-2" pref="113" max="-2" attributes="0"/>
@@ -613,7 +591,10 @@
                               <Component id="btnConsultaVendaImprimir" pref="160" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="btnCompraAprovar1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnCompraReprovar1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnConsultaVendaCancelar" linkSize="5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnConsultaVendaExcluir" linkSize="5" min="-2" max="-2" attributes="0"/>
@@ -642,6 +623,8 @@
                           <Component id="btnConsultaVendaCancelar" linkSize="4" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="btnConsultaVendaExcluir" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnConsultaVendaAlterar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCompraAprovar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCompraReprovar1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -666,15 +649,21 @@
                 <Component class="javax.swing.JTable" name="tblVendasRealizadas">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="0">
+                      <Table columnCount="5" rowCount="0">
                         <Column editable="false" title="N&#xba; da Venda" type="java.lang.Object"/>
                         <Column editable="false" title="Cliente" type="java.lang.Object"/>
                         <Column editable="false" title="Valor" type="java.lang.Object"/>
                         <Column editable="false" title="Data" type="java.lang.Object"/>
+                        <Column editable="false" title="Status" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -739,6 +728,25 @@
                   <Image iconType="3" name="/br/com/barbosasys/images/cancelar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaVendaAlterarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCompraReprovar1">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/barbosasys/images/cancelar.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Reprovar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCompraAprovar1">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/barbosasys/images/aceitar.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Aprovar"/>
               </Properties>
             </Component>
           </SubComponents>

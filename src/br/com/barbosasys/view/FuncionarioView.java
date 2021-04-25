@@ -893,7 +893,7 @@ public class FuncionarioView extends javax.swing.JDialog {
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String salarioTela = df.format(salarioRetorno);
             this.txtSalarioFuncionario.setText(salarioTela);
-            System.out.println(salarioTela);
+            //System.out.println(salarioTela);
             
            // this.txtSalarioFuncionario.setText(String.valueOf(funcionario.getSalario()));
             this.txtFuncaoFuncionario.setText(funcionario.getFuncao());

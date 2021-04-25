@@ -8,6 +8,9 @@ package br.com.barbosasys.dao;
 import br.com.barbosasys.jdbc.ConexaoBanco;
 import br.com.barbosasys.model.ItemVenda;
 import br.com.barbosasys.model.Venda;
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +30,7 @@ public class VendaDAO extends ConexaoBanco {
                     + "TOTALVENDA,"
                     + "DESCONTO,"
                     + "CODTIPOPAGAMENTO,"
-                    //+ "CODSTATUSVENDA,"
+                    + "CODSTATUSVENDA,"
                     + "OBSERVACAO) "
                     + "VALUES ("
                     + "'" + venda.getCodCliente() + "',"
@@ -35,7 +38,7 @@ public class VendaDAO extends ConexaoBanco {
                     + "'" + venda.getValorTotal() + "',"
                     + "'" + venda.getValorDesconto() + "',"
                     + "'" + venda.getTipoPagamento() + "',"
-                    //+ "'" + venda.getCodStatusVenda() + "',"
+                    + "'" + venda.getCodStatusVenda() + "',"
                     + "'" + venda.getObservavao() + "'"
                     + ");"
             );
@@ -58,10 +61,10 @@ public class VendaDAO extends ConexaoBanco {
                         + "VALUES ("
                         //+ "'" + venda.getListaVenda().get(i).getProduto().getCodProduto() + "',"
                         //+ "'" + itemVenda.getVenda().getCodVenda()+ "',"
-                        + "'" + itemVenda.getListaItemVenda().get(i).getVenda().getCodVenda()+ "',"
-                        + "'" + itemVenda.getListaItemVenda().get(i).getProduto().getCodProduto()+ "',"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getVenda().getCodVenda() + "',"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getProduto().getCodProduto() + "',"
                         + "'" + itemVenda.getListaItemVenda().get(i).getQuantidade() + "',"
-                        + "'" + itemVenda.getListaItemVenda().get(i).getSubtotal()+ "'"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getSubtotal() + "'"
                         + ");"
                 );
             }
@@ -121,11 +124,14 @@ public class VendaDAO extends ConexaoBanco {
                     + "TBL_VENDA.CODVENDA,"
                     + "TBL_CLIENTE.NOME_RAZAOSOCIAL,"
                     + "TBL_VENDA.TOTALVENDA,"
-                    + "TBL_VENDA.DATAVENDA"
+                    + "TBL_VENDA.DATAVENDA,"
+                    + "TBL_STATUSVENDA.DESCRICAO"
                     + " FROM"
                     + " TBL_VENDA"
                     + " INNER JOIN TBL_CLIENTE"
                     + " ON TBL_VENDA.CODCLIENTE = TBL_CLIENTE.CODCLIENTE"
+                    + " INNER JOIN TBL_STATUSVENDA"
+                    + " ON TBL_VENDA.CODSTATUSVENDA = TBL_STATUSVENDA.CODSTATUSVENDA"
                     + ";"
             );
 
@@ -133,8 +139,16 @@ public class VendaDAO extends ConexaoBanco {
                 venda = new Venda();
                 venda.setCodVenda(this.getResultSet().getInt(1));
                 venda.setNomeRazaoSocial(this.getResultSet().getString(2));
+
                 venda.setValorTotal(this.getResultSet().getDouble(3));
-                venda.setDataVenda(this.getResultSet().getString(4));
+
+                String dataRetorno = (this.getResultSet().getString(4));
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate localDate = LocalDate.parse(dataRetorno, formatter);
+                String dataVendaFormatada = localDate.format(formatter2);
+                venda.setDataVenda(dataVendaFormatada);
+                venda.setDescricaStatus(this.getResultSet().getString(5));
                 listaVenda.add(venda);
             }
         } catch (Exception e) {
@@ -175,7 +189,6 @@ public class VendaDAO extends ConexaoBanco {
         return listaVenda;
     }
 
-    
     public boolean atualizarVendaDAO(Venda venda) {
         try {
             this.conectar();
@@ -199,8 +212,8 @@ public class VendaDAO extends ConexaoBanco {
             this.fecharConexao();
         }
     }
-    
-    public boolean excluirVendaDAO(int codigo){
+
+    public boolean excluirVendaDAO(int codigo) {
         try {
             this.conectar();
             this.executarSQL(
@@ -210,12 +223,12 @@ public class VendaDAO extends ConexaoBanco {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        } finally{
+        } finally {
             this.fecharConexao();
         }
     }
-    
-public int getUltimaVendaDAO() {
+
+    public int getUltimaVendaDAO() {
         //Venda venda = new Venda();
         int codVenda = 0;
         try {
@@ -225,7 +238,7 @@ public int getUltimaVendaDAO() {
             );
 
             while (this.getResultSet().next()) {
-            Venda venda = new Venda();
+                Venda venda = new Venda();
                 venda.setCodVenda(this.getResultSet().getInt(1));
                 codVenda = venda.getCodVenda();
             }

@@ -26,6 +26,7 @@ public class Venda {
     private int tipoPagamento;
     private ArrayList<Venda> listaVenda;
     private int codStatusVenda;
+    private String descricaoStatus;
     private String observacao;
 
     public Venda() {
@@ -132,11 +133,19 @@ public class Venda {
         this.nomeRazaoSocial = nomeRazaoSocial;
     }
     
-     public String getObservavao() {
+    public String getObservavao() {
         return observacao;
     }
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+    
+    public String getDescricaStatus() {
+        return descricaoStatus;
+    }
+
+    public void setDescricaStatus(String descricaoStatus) {
+        this.descricaoStatus = descricaoStatus;
     }
 }
