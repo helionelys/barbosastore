@@ -162,34 +162,42 @@ public class VendaDAO extends ConexaoBanco {
 
     public ArrayList<ItemVenda> getListaItensVendaDAO(int codigo) {
         ArrayList<ItemVenda> listaItensVenda = new ArrayList();
-        ItemVenda itemVenda = new ItemVenda();
-        Venda venda = new Venda();
-        Produto produto = new Produto();
+        
+        
         try {
             this.conectar();
             this.executarSQL(
                     "SELECT "
-                    + "CODVENDA,"
-                    + "CODPRODUTO,"
-                    + "QUANTIDADE,"
-                    + "SUBTOTAL "
+                    //+ "CODVENDA,"
+                    + "TBL_ITENSVENDA.CODPRODUTO,"
+                    + "TBL_PRODUTO.DESCRICAO,"
+                    + "TBL_PRODUTO.VALOR,"
+                    + "TBL_ITENSVENDA.QUANTIDADE,"
+                    + "TBL_ITENSVENDA.SUBTOTAL "
                     + "FROM"
-                    + " TBL_ITENSVENDA WHERE CODVENDA = '" + codigo + "'"
+                    + " TBL_ITENSVENDA"
+                    + " INNER JOIN TBL_VENDA"
+                    + " ON TBL_ITENSVENDA.CODVENDA = TBL_VENDA.CODVENDA"
+                    + " INNER JOIN TBL_PRODUTO"
+                    + " ON TBL_ITENSVENDA.CODPRODUTO = TBL_PRODUTO.CODPRODUTO"
+                    + "  WHERE TBL_ITENSVENDA.CODVENDA = '" + codigo + "'"
                     + ";"
             );
 
             while (this.getResultSet().next()) {
-
-                venda.setCodVenda(this.getResultSet().getInt(1));
-                produto.setCodProduto(this.getResultSet().getInt(2));
-                itemVenda.setQuantidade(this.getResultSet().getInt(3));
+                //Venda venda = new Venda();
+                Produto produto = new Produto();
+                ItemVenda itemVenda = new ItemVenda();
+                //venda.setCodVenda(this.getResultSet().getInt(1));
+                //itemVenda.setVenda(venda);
+                produto.setCodProduto(this.getResultSet().getInt(1));
+                produto.setDescricao(this.getResultSet().getString(2));
+                produto.setValor(this.getResultSet().getDouble(3));
                 itemVenda.setQuantidade(this.getResultSet().getInt(4));
-                itemVenda.setVenda(venda);
+                itemVenda.setSubtotal(this.getResultSet().getDouble(5));
                 itemVenda.setProduto(produto);
                 
                 listaItensVenda.add(itemVenda);
-//                itemVenda.setSubtotal(Double.parseDouble(this.getResultSet().getString(4)));
-//                listaItensVenda.add(itemVenda);
             }
         } catch (Exception e) {
             e.printStackTrace();

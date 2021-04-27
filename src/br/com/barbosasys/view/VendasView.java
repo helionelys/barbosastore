@@ -172,6 +172,7 @@ public class VendasView extends javax.swing.JDialog {
 
         jLabel3.setText("Nº da Venda");
 
+        txtVendaNumero.setEditable(false);
         txtVendaNumero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         txtVendaNumero.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -669,7 +670,7 @@ public class VendasView extends javax.swing.JDialog {
         this.btnVendaCancelar.setEnabled(true);
     }
 
-    private void IncluirVenda() {
+    private void liberaCampos() {
         this.txtVendaCodCliente.setEnabled(true);
         this.txtVendaNomeCliente.setEnabled(true);
         this.btnBuscarCliente.setEnabled(true);
@@ -747,7 +748,8 @@ public class VendasView extends javax.swing.JDialog {
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String valorTotalTela = df.format(valorTotalRetorno);
 
-            this.txtVendaTotal.setText(valorTotalTela);
+            //this.txtVendaTotal.setText(valorTotalTela);
+            this.txtVendaTotal.setText(String.valueOf(this.atualizarValorTotal()));
         }
     }//GEN-LAST:event_btnRemoverProdutoActionPerformed
 
@@ -770,20 +772,22 @@ public class VendasView extends javax.swing.JDialog {
 
     private void btnVendaCalculaDescontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaCalculaDescontoActionPerformed
         // TODO add your handling code here:
-        String valorDesconto = this.txtVendaDesconto.getText();
-        String resultadoFormatado = valorDesconto.replace(".", "");
-        String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
-        Double valorDescontoFormatado = Double.parseDouble(resultadoFormatado2);
-
-        Double valorTotalRetorno = (this.atualizarValorTotal());
-        DecimalFormat df = new DecimalFormat("#,##0.00");
-        String valorTotalTela = df.format(valorTotalRetorno);
-        this.txtVendaTotal.setText(valorTotalTela);
+        this.calcularDesconto();
+        
+//        String valorDesconto = this.txtVendaDesconto.getText();
+//        String resultadoFormatado = valorDesconto.replace(".", "");
+//        String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
+//        Double valorDescontoFormatado = Double.parseDouble(resultadoFormatado2);
+//
+//        Double valorTotalRetorno = (this.atualizarValorTotal());
+//        DecimalFormat df = new DecimalFormat("#,##0.00");
+//        String valorTotalTela = df.format(valorTotalRetorno);
+//        this.txtVendaTotal.setText(valorTotalTela);
     }//GEN-LAST:event_btnVendaCalculaDescontoActionPerformed
 
     private void btnVendaIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaIncluirActionPerformed
         // TODO add your handling code here:
-        this.IncluirVenda();
+        this.liberaCampos();
         this.novoVenda();
     }//GEN-LAST:event_btnVendaIncluirActionPerformed
 
@@ -807,8 +811,9 @@ public class VendasView extends javax.swing.JDialog {
 
     private void btnConsultaVendaAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaVendaAlterarActionPerformed
         // TODO add your handling code here:
-        if (testarSelecaoVendas()== true){
+        if (testarSelecaoVendas() == true) {
             recuperarVenda();
+            this.liberaCampos();
             alteracao = true;
             jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() - 1);
         }
@@ -830,6 +835,21 @@ public class VendasView extends javax.swing.JDialog {
 
             });
         }
+    }
+    
+    private void calcularDesconto(){
+        if(alteracao=true){
+            
+        }
+        String valorDesconto = this.txtVendaDesconto.getText();
+        String resultadoFormatado = valorDesconto.replace(".", "");
+        String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
+        Double valorDescontoFormatado = Double.parseDouble(resultadoFormatado2);
+
+        Double valorTotalRetorno = (this.atualizarValorTotal());
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        String valorTotalTela = df.format(valorTotalRetorno);
+        this.txtVendaTotal.setText(valorTotalTela);
     }
 
     private void salvarVenda() {
@@ -861,7 +881,7 @@ public class VendasView extends javax.swing.JDialog {
             String totalFormatado2 = totalFormatado.replace(",", ".");
             Double totalBanco = Double.parseDouble(totalFormatado2);
             objVenda.setValorTotal(totalBanco);
-            
+
             objVenda.setCodStatusVenda(2);
             objVenda.setObservacao(this.txtVendaObservacao.getText());
 
@@ -899,39 +919,44 @@ public class VendasView extends javax.swing.JDialog {
             this.carregamentoInicial();
         }
     }
-    
-    private boolean recuperarVenda(){
+
+    private boolean recuperarVenda() {
+
         try {
             int linha = this.tblVendasRealizadas.getSelectedRow();
-            int codigoVenda = (Integer) tblVendasRealizadas.getValueAt(linha,0);
+            String nomeCliente = (String) tblVendasRealizadas.getValueAt(linha, 1);
+
+            int codigoVenda = (Integer) tblVendasRealizadas.getValueAt(linha, 0);
             int codigoProduto;
             venda.setCodVenda(codigoVenda);
             //Recupera os dados no banco de dados
             venda = vendasController.getVendaController(codigoVenda);
             this.txtVendaCodCliente.setText(String.valueOf(venda.getCodCliente()));
-            this.txtVendaNomeCliente.setText(String.valueOf(venda.getNomeRazaoSocial()));
+            this.txtVendaNomeCliente.setText(nomeCliente);
             this.txtVendaNumero.setText(String.valueOf(venda.getCodVenda()));
             this.txtVendaData.setText(String.valueOf(venda.getDataVenda()));
+            this.txtVendaDesconto.setText(String.valueOf(venda.getValorDesconto()));
             this.txtVendaTotal.setText(String.valueOf(venda.getValorTotal()));
-            
+
             listaItensVendas = vendasController.getListaItensVendaController(codigoVenda);
-            
-            DefaultTableModel modelo = (DefaultTableModel) tblListaItensVendas.getModel();
-            modelo.setNumRows(0);
-            
+
+            DefaultTableModel dados = (DefaultTableModel) tblListaItensVendas.getModel();
+            dados.setNumRows(0);
+
             int cont = listaItensVendas.size();
-            for (int i=0; i < cont; i++){
-                codigoProduto = listaItensVendas.get(i).getProduto().getCodProduto();
-                produto = produtoController.getProdutoController(codigoProduto);
-                modelo.addRow(new Object[]{
-                    produto.getCodProduto(),
-                    produto.getDescricao(),
-                    produto.getValor(),
+            for (int i = 0; i < cont; i++) {
+                //codigoProduto = listaItensVendas.get(i).getProduto().getCodProduto();
+                //produto = produtoController.getProdutoController(codigoProduto);
+                dados.addRow(new Object[]{
+                    listaItensVendas.get(i).getProduto().getCodProduto(),
+                    listaItensVendas.get(i).getProduto().getDescricao(),
+                    listaItensVendas.get(i).getProduto().getValor(),
                     listaItensVendas.get(i).getQuantidade(),
-                    listaItensVendas.get(i).getSubtotal()
+                    listaItensVendas.get(i).getSubtotal() //* produto.getValor()
                 });
+                System.out.println(i);
             }
-            return true;        
+            return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Código inválido ou nenhum registro selecionado", "Aviso", JOptionPane.WARNING_MESSAGE);
             return false;
@@ -947,7 +972,7 @@ public class VendasView extends javax.swing.JDialog {
         return true;
 
     }
-    
+
     private boolean testarSelecaoVendas() {
         int selecao = tblVendasRealizadas.getSelectedRow();
         if (selecao == -1) {
