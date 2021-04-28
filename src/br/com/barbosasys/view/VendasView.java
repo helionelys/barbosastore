@@ -43,6 +43,9 @@ public class VendasView extends javax.swing.JDialog {
     CaixaController caixaController = new CaixaController();
     TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
     ArrayList<TipoPagamento> listaTipoPagamento = new ArrayList<>();
+    
+    DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
+    
     float valorCartao, valorCheque, valorDinheiro, valorVale;
     boolean alteracao = false;
 
@@ -748,8 +751,8 @@ public class VendasView extends javax.swing.JDialog {
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String valorTotalTela = df.format(valorTotalRetorno);
 
-            //this.txtVendaTotal.setText(valorTotalTela);
-            this.txtVendaTotal.setText(String.valueOf(this.atualizarValorTotal()));
+            this.txtVendaTotal.setText(valorTotalTela);
+            //this.txtVendaTotal.setText(String.valueOf(this.atualizarValorTotal()));
         }
     }//GEN-LAST:event_btnRemoverProdutoActionPerformed
 
@@ -773,7 +776,7 @@ public class VendasView extends javax.swing.JDialog {
     private void btnVendaCalculaDescontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaCalculaDescontoActionPerformed
         // TODO add your handling code here:
         this.calcularDesconto();
-        
+
 //        String valorDesconto = this.txtVendaDesconto.getText();
 //        String resultadoFormatado = valorDesconto.replace(".", "");
 //        String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
@@ -815,7 +818,7 @@ public class VendasView extends javax.swing.JDialog {
             recuperarVenda();
             this.liberaCampos();
             alteracao = true;
-            jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() - 1);
+            jTabbedPane1.setSelectedIndex(0);
         }
     }//GEN-LAST:event_btnConsultaVendaAlterarActionPerformed
 
@@ -829,27 +832,28 @@ public class VendasView extends javax.swing.JDialog {
             modelo.addRow(new Object[]{
                 listaVendas.get(i).getCodVenda(),
                 listaVendas.get(i).getNomeRazaoSocial(),
-                listaVendas.get(i).getValorTotal(),
+                valoresMonentarios.format(listaVendas.get(i).getValorTotal()),
                 listaVendas.get(i).getDataVenda(),
                 listaVendas.get(i).getDescricaStatus()
 
             });
         }
     }
-    
-    private void calcularDesconto(){
-        if(alteracao=true){
-            
-        }
-        String valorDesconto = this.txtVendaDesconto.getText();
-        String resultadoFormatado = valorDesconto.replace(".", "");
-        String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
-        Double valorDescontoFormatado = Double.parseDouble(resultadoFormatado2);
 
-        Double valorTotalRetorno = (this.atualizarValorTotal());
-        DecimalFormat df = new DecimalFormat("#,##0.00");
-        String valorTotalTela = df.format(valorTotalRetorno);
-        this.txtVendaTotal.setText(valorTotalTela);
+    private void calcularDesconto() {
+//        if (alteracao = true) {
+//            this.btnVendaCalculaDesconto.setEnabled(false);
+//        } else {
+            String valorDesconto = this.txtVendaDesconto.getText();
+            String resultadoFormatado = valorDesconto.replace(".", "");
+            String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
+            Double valorDescontoFormatado = Double.parseDouble(resultadoFormatado2);
+
+            Double valorTotalRetorno = (this.atualizarValorTotal());
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            String valorTotalTela = df.format(valorTotalRetorno);
+            this.txtVendaTotal.setText(valorTotalTela);
+//        }
     }
 
     private void salvarVenda() {
@@ -935,8 +939,18 @@ public class VendasView extends javax.swing.JDialog {
             this.txtVendaNomeCliente.setText(nomeCliente);
             this.txtVendaNumero.setText(String.valueOf(venda.getCodVenda()));
             this.txtVendaData.setText(String.valueOf(venda.getDataVenda()));
-            this.txtVendaDesconto.setText(String.valueOf(venda.getValorDesconto()));
-            this.txtVendaTotal.setText(String.valueOf(venda.getValorTotal()));
+
+            Double valorDesconto = venda.getValorDesconto();
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            String DescontoTela = df.format(valorDesconto);
+            this.txtVendaDesconto.setText(DescontoTela);
+
+            //(String.valueOf(venda.getValorDesconto()));
+            Double valorRetornoTotal = venda.getValorTotal();
+            DecimalFormat dfs = new DecimalFormat("#,##0.00");
+            String ValorTotalTela = df.format(valorRetornoTotal);
+            this.txtVendaTotal.setText(ValorTotalTela);
+            //this.txtVendaTotal.setText(String.valueOf(venda.getValorTotal()));
 
             listaItensVendas = vendasController.getListaItensVendaController(codigoVenda);
 
@@ -950,11 +964,11 @@ public class VendasView extends javax.swing.JDialog {
                 dados.addRow(new Object[]{
                     listaItensVendas.get(i).getProduto().getCodProduto(),
                     listaItensVendas.get(i).getProduto().getDescricao(),
-                    listaItensVendas.get(i).getProduto().getValor(),
+                    valoresMonentarios.format(listaItensVendas.get(i).getProduto().getValor()),
                     listaItensVendas.get(i).getQuantidade(),
-                    listaItensVendas.get(i).getSubtotal() //* produto.getValor()
+                    valoresMonentarios.format(listaItensVendas.get(i).getSubtotal()) //* produto.getValor()
                 });
-                System.out.println(i);
+                //System.out.println(i);
             }
             return true;
         } catch (Exception e) {
