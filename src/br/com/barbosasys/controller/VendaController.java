@@ -38,8 +38,16 @@ public class VendaController {
         return this.vendaDAO.atualizarVendaDAO(venda);
     }
     
+    public boolean atualizarItensVendasController(ItemVenda itemVenda){
+        return this.vendaDAO.salvarItensVendasUpdateDAO(itemVenda);
+    }
+    
     public boolean excluirVendaController(int codigo){
         return this.vendaDAO.excluirVendaDAO(codigo);
+    }
+    
+    public boolean excluirItensVendaController(int codigo){
+        return this.vendaDAO.excluirItensVendasDAO(codigo);
     }
     
     public boolean salvarItensVendaController(ItemVenda itemVenda){

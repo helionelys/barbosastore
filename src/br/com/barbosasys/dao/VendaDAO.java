@@ -77,7 +77,50 @@ public class VendaDAO extends ConexaoBanco {
             this.fecharConexao();
         }
     }
-
+        
+        public boolean excluirItensVendasDAO(int codigo){
+            try {
+                this.conectar();
+                this.executarUpdateDeleteSQL(
+                        "DELETE FROM TBL_ITENSVENDA WHERE CODVENDA = '" + codigo +"';"
+                );
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            } finally{
+                this.fecharConexao();
+            }
+        }
+        
+        public boolean salvarItensVendasUpdateDAO(ItemVenda itemVenda) {
+        try {
+            this.conectar();
+            int tamanhoLista = itemVenda.getListaItemVenda().size();
+            for (int i = 0; i < tamanhoLista; i++) {    
+                this.insertSQL(
+                        "INSERT INTO TBL_ITENSVENDA "
+                        + "(CODVENDA,CODPRODUTO,QUANTIDADE,SUBTOTAL)"
+                        + "VALUES ("
+                        //+ "'" + venda.getListaVenda().get(i).getProduto().getCodProduto() + "',"
+                        //+ "'" + itemVenda.getVenda().getCodVenda()+ "',"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getVenda().getCodVenda() + "',"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getProduto().getCodProduto() + "',"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getQuantidade() + "',"
+                        + "'" + itemVenda.getListaItemVenda().get(i).getSubtotal() + "'"
+                        + ");"
+                );
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            this.fecharConexao();
+        }
+    }
+    
+    
     public Venda getVendaDAO(int codigo) {
         Venda venda = new Venda();
         try {
@@ -211,13 +254,14 @@ public class VendaDAO extends ConexaoBanco {
         try {
             this.conectar();
             this.executarUpdateDeleteSQL(
-                    "UPDATE TBL_VENDA SET"
-                    + "CODVENDA = '" + venda.getCodVenda() + "',"
+                    "UPDATE TBL_VENDA SET "
                     + "TOTALVENDA = '" + venda.getValorTotal() + "',"
                     + "CODCLIENTE = '" + venda.getCodCliente() + "',"
-                    + "DATAVENDA =  '" + venda.getDataVenda() + "',"
-                    + "DESCONTO = '" + venda.getValorDesconto() + "',"
-                    + "CODTIPOPAGAMENTO = '" + venda.getValorDesconto() + "'"
+                    + "DATAVENDA =  '" + venda.getDataVenda()  + "',"
+                    + "DESCONTO = '" + venda.getValorDesconto()+ "',"
+                    + "CODSTATUSVENDA = '" + venda.getCodStatusVenda()+ "',"
+                    + "OBSERVACAO = '" + venda.getObservavao()+ "'"
+                   // + "CODTIPOPAGAMENTO = '" + venda.getTipoPagamento()+ "'"
                     + "WHERE "
                     + "CODVENDA = '" + venda.getCodVenda() + "'"
                     + ";"
@@ -230,6 +274,7 @@ public class VendaDAO extends ConexaoBanco {
             this.fecharConexao();
         }
     }
+    
 
     public boolean excluirVendaDAO(int codigo) {
         try {

@@ -43,9 +43,9 @@ public class VendasView extends javax.swing.JDialog {
     CaixaController caixaController = new CaixaController();
     TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
     ArrayList<TipoPagamento> listaTipoPagamento = new ArrayList<>();
-    
+
     DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
-    
+
     float valorCartao, valorCheque, valorDinheiro, valorVale;
     boolean alteracao = false;
 
@@ -799,6 +799,10 @@ public class VendasView extends javax.swing.JDialog {
         if (alteracao == false) {
             salvarVenda();
             this.novoVenda();
+        } else {
+            atualizarVenda();
+            //this.novoVenda();
+            //this.carregamentoInicial();
         }
     }//GEN-LAST:event_btnVendaSalvarActionPerformed
 
@@ -844,15 +848,15 @@ public class VendasView extends javax.swing.JDialog {
 //        if (alteracao = true) {
 //            this.btnVendaCalculaDesconto.setEnabled(false);
 //        } else {
-            String valorDesconto = this.txtVendaDesconto.getText();
-            String resultadoFormatado = valorDesconto.replace(".", "");
-            String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
-            Double valorDescontoFormatado = Double.parseDouble(resultadoFormatado2);
+        String valorDesconto = this.txtVendaDesconto.getText();
+        String resultadoFormatado = valorDesconto.replace(".", "");
+        String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
+        Double valorDescontoFormatado = Double.parseDouble(resultadoFormatado2);
 
-            Double valorTotalRetorno = (this.atualizarValorTotal());
-            DecimalFormat df = new DecimalFormat("#,##0.00");
-            String valorTotalTela = df.format(valorTotalRetorno);
-            this.txtVendaTotal.setText(valorTotalTela);
+        Double valorTotalRetorno = (this.atualizarValorTotal());
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        String valorTotalTela = df.format(valorTotalRetorno);
+        this.txtVendaTotal.setText(valorTotalTela);
 //        }
     }
 
@@ -977,6 +981,86 @@ public class VendasView extends javax.swing.JDialog {
         }
     }
 
+    private void atualizarVenda() {
+        listaItensVendas = new ArrayList<>();
+
+        if (tblListaItensVendas.getRowCount() < 1) {
+            JOptionPane.showMessageDialog(this, "Você deve selecionar os produtos!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+//        if (this.txtVendaDesconto.getText().equals("")) {
+//            txtVendaDesconto.setText("0,00");
+//        }
+            Venda objVenda = new Venda();
+
+            //Dados da Venda
+            objVenda.setCodVenda(Integer.parseInt(this.txtVendaNumero.getText()));
+
+            //Dados do cliente
+            objVenda.setCodCliente(Integer.parseInt(this.txtVendaCodCliente.getText()));
+
+            // Data da venda
+            Date dataCadastramentoCliente = new Date();
+            String formatoDataMysql = ("yyyy-MM-dd");
+            SimpleDateFormat formatarData = new SimpleDateFormat(formatoDataMysql);
+            String dataMysql = formatarData.format(dataCadastramentoCliente);
+            objVenda.setDataVenda(dataMysql);
+
+            // valor do Desconto da venda
+            String desconto = this.txtVendaDesconto.getText();
+            String descontoFormatado = desconto.replace(".", "");
+            String descontoFormatado2 = descontoFormatado.replace(",", ".");
+            Double descontoBanco = Double.parseDouble(descontoFormatado2);
+            objVenda.setValorDesconto(descontoBanco);
+
+            // valor Total da Venda
+            String valorTotal = this.txtVendaTotal.getText();
+            String totalFormatado = valorTotal.replace(".", "");
+            String totalFormatado2 = totalFormatado.replace(",", ".");
+            Double totalBanco = Double.parseDouble(totalFormatado2);
+            objVenda.setValorTotal(totalBanco);
+
+            objVenda.setCodStatusVenda(2);
+            objVenda.setObservacao(this.txtVendaObservacao.getText());
+
+            boolean statusRetornoVenda = vendasController.atualizarVendasController(objVenda);
+
+            for (int i = 0; i < tblListaItensVendas.getRowCount(); i++) {
+                ItemVenda objItemVenda = new ItemVenda();
+                Produto objProdutoVenda = new Produto();
+                objVenda.setCodVenda(Integer.parseInt(this.txtVendaNumero.getText()));
+                objItemVenda.setVenda(objVenda);
+                objProdutoVenda.setCodProduto(Integer.parseInt(tblListaItensVendas.getValueAt(i, 0).toString()));
+                objItemVenda.setProduto(objProdutoVenda);
+                objItemVenda.setQuantidade(Integer.parseInt(tblListaItensVendas.getValueAt(i, 3).toString()));
+                //objItemVenda.setSubtotal(Double.parseDouble(tblListaItensVendas.getValueAt(i, 5).toString()));
+                String valorItemProduto = String.valueOf(tblListaItensVendas.getValueAt(i, 4).toString());
+                String vlItemFormatado = valorItemProduto.replace(".", "");
+                String vlItemFormatado2 = vlItemFormatado.replace(",", ".");
+                Double subTotalBanco = Double.parseDouble(vlItemFormatado2);
+                objItemVenda.setSubtotal(subTotalBanco);
+                listaItensVendas.add(objItemVenda);
+            }
+
+            itemVenda.setListaItemVenda(listaItensVendas);
+
+            if (statusRetornoVenda == true) {
+                vendasController.excluirItensVendaController(Integer.parseInt(this.txtVendaNumero.getText()));
+                vendasController.atualizarItensVendasController(itemVenda);
+                this.carregarVendas();
+                JOptionPane.showMessageDialog(this, "Registro atualizado com sucesso!");
+                jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() + 1);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+
+            this.limparCampos();
+            this.carregamentoInicial();
+            
+        }
+    }
+
     private boolean testarSelecao() {
         int selecao = tblListaItensVendas.getSelectedRow();
         if (selecao == -1) {
@@ -1017,11 +1101,14 @@ public class VendasView extends javax.swing.JDialog {
     private void limparCampos() {
         this.txtVendaCodCliente.setText(null);
         this.txtVendaNomeCliente.setText(null);
+        this.txtVendaNumero.setText(null);
         this.txtVendaCodProduto.setText(null);
         this.txtVendaDescricaoProduto.setText(null);
         this.txtVendaDesconto.setText(null);
         this.txtVendaTotal.setText(null);
         this.txtVendaObservacao.setText(null);
+        DefaultTableModel modelo = (DefaultTableModel) tblListaItensVendas.getModel();
+        modelo.setNumRows(0);
     }
 
     private void novoVenda() {
