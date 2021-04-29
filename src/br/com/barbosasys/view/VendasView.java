@@ -83,6 +83,7 @@ public class VendasView extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        rbGroupStatusVenda = new javax.swing.ButtonGroup();
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -133,6 +134,9 @@ public class VendasView extends javax.swing.JDialog {
         btnConsultaVendaCancelar = new javax.swing.JButton();
         btnCompraReprovar1 = new javax.swing.JButton();
         btnCompraAprovar1 = new javax.swing.JButton();
+        rbVendaStatusAprovacaoTodos = new javax.swing.JRadioButton();
+        rbVendaStatusAprovacaoAguardando = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Barbosa Store - Vendas");
@@ -339,6 +343,10 @@ public class VendasView extends javax.swing.JDialog {
                                 .addGap(5, 5, 5)
                                 .addComponent(btnRemoverProduto))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtVendaObservacao))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -356,11 +364,7 @@ public class VendasView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtVendaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtVendaObservacao)))
+                        .addComponent(txtVendaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -527,6 +531,29 @@ public class VendasView extends javax.swing.JDialog {
 
         btnCompraAprovar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/aceitar.png"))); // NOI18N
         btnCompraAprovar1.setText("Aprovar");
+        btnCompraAprovar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompraAprovar1ActionPerformed(evt);
+            }
+        });
+
+        rbGroupStatusVenda.add(rbVendaStatusAprovacaoTodos);
+        rbVendaStatusAprovacaoTodos.setText("Todos");
+        rbVendaStatusAprovacaoTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbVendaStatusAprovacaoTodosActionPerformed(evt);
+            }
+        });
+
+        rbGroupStatusVenda.add(rbVendaStatusAprovacaoAguardando);
+        rbVendaStatusAprovacaoAguardando.setText("Aguardando");
+        rbVendaStatusAprovacaoAguardando.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbVendaStatusAprovacaoAguardandoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Status:");
 
         javax.swing.GroupLayout jPanelConsultarVendasLayout = new javax.swing.GroupLayout(jPanelConsultarVendas);
         jPanelConsultarVendas.setLayout(jPanelConsultarVendasLayout);
@@ -553,7 +580,14 @@ public class VendasView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConsultaVendaAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConsultaVendaCancelar)))
+                        .addComponent(btnConsultaVendaCancelar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelConsultarVendasLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbVendaStatusAprovacaoTodos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbVendaStatusAprovacaoAguardando)))
                 .addContainerGap())
         );
 
@@ -569,8 +603,13 @@ public class VendasView extends javax.swing.JDialog {
                     .addComponent(btnConsultaVendaImprimir)
                     .addComponent(btnConsultaVendaPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(jPanelConsultarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbVendaStatusAprovacaoAguardando)
+                    .addComponent(rbVendaStatusAprovacaoTodos)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelConsultarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConsultaVendaExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultaVendaAlterar)
@@ -826,6 +865,63 @@ public class VendasView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnConsultaVendaAlterarActionPerformed
 
+    private void rbVendaStatusAprovacaoAguardandoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbVendaStatusAprovacaoAguardandoActionPerformed
+        // TODO add your handling code here:
+        this.carregarVendasAguardando();
+    }//GEN-LAST:event_rbVendaStatusAprovacaoAguardandoActionPerformed
+
+    private void rbVendaStatusAprovacaoTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbVendaStatusAprovacaoTodosActionPerformed
+        // TODO add your handling code here:
+        this.carregarVendas();
+    }//GEN-LAST:event_rbVendaStatusAprovacaoTodosActionPerformed
+
+    private void btnCompraAprovar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraAprovar1ActionPerformed
+        // TODO add your handling code here:
+        if (testarSelecaoVendas() == true) {
+            try {
+                int linha = this.tblVendasRealizadas.getSelectedRow();
+                int codigoVendaAutorizacao = (Integer) tblVendasRealizadas.getValueAt(linha, 0);
+                String nomeClienteVenda = (String) tblVendasRealizadas.getValueAt(linha, 1);
+                String valorVenda = (String) tblVendasRealizadas.getValueAt(linha, 2);
+                String statusVendaAutorizacao = (String) tblVendasRealizadas.getValueAt(linha, 4);
+                if (statusVendaAutorizacao.equals("AGUARDANDO")) {
+                    int confirma = JOptionPane.showConfirmDialog(null, "Aprovar venda "
+                            + codigoVendaAutorizacao+" - Cliente: "+nomeClienteVenda+" valor: R$ "+valorVenda+"", "Atenção",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if (confirma == 0) {
+                        venda.setCodVenda(codigoVendaAutorizacao);
+                        vendasController.atualizarVendasAutorizacaoController(venda);
+                        JOptionPane.showMessageDialog(this, "Venda Aprovada com sucesso!");
+                        carregarVendas();
+                    }else if (statusVendaAutorizacao.equals("APROVADA")) {
+                        JOptionPane.showMessageDialog(this, " VENDA JÁ APROVADA !");
+                        carregarVendasAguardando();
+                    } 
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, " VENDA REPROVADA !");
+            }
+        }
+    }//GEN-LAST:event_btnCompraAprovar1ActionPerformed
+
+    private void carregarVendasAguardando() {
+        listaVendas = vendasController.getListaVendaStatusAguardandoController();
+        DefaultTableModel modelo = (DefaultTableModel) tblVendasRealizadas.getModel();
+        modelo.setNumRows(0);
+        // Carrega dados da lista na tabela
+        int cont = listaVendas.size();
+        for (int i = 0; i < cont; i++) {
+            modelo.addRow(new Object[]{
+                listaVendas.get(i).getCodVenda(),
+                listaVendas.get(i).getNomeRazaoSocial(),
+                valoresMonentarios.format(listaVendas.get(i).getValorTotal()),
+                listaVendas.get(i).getDataVenda(),
+                listaVendas.get(i).getDescricaStatus()
+
+            });
+        }
+    }
+
     private void carregarVendas() {
         listaVendas = vendasController.getListaVendaController();
         DefaultTableModel modelo = (DefaultTableModel) tblVendasRealizadas.getModel();
@@ -1057,7 +1153,7 @@ public class VendasView extends javax.swing.JDialog {
 
             this.limparCampos();
             this.carregamentoInicial();
-            
+
         }
     }
 
@@ -1163,6 +1259,7 @@ public class VendasView extends javax.swing.JDialog {
     private javax.swing.JButton btnVendaIncluir;
     private javax.swing.JButton btnVendaSalvar;
     private javax.swing.JComboBox<String> cbVendaTipoPagamento;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -1182,6 +1279,9 @@ public class VendasView extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.ButtonGroup rbGroupStatusVenda;
+    protected javax.swing.JRadioButton rbVendaStatusAprovacaoAguardando;
+    protected javax.swing.JRadioButton rbVendaStatusAprovacaoTodos;
     private javax.swing.JTable tblListaItensVendas;
     private javax.swing.JTable tblVendasRealizadas;
     private javax.swing.JTextField txtConsultaVenda;

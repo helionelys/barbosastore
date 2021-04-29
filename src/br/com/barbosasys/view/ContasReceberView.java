@@ -102,8 +102,6 @@ public class ContasReceberView extends javax.swing.JDialog {
 
         jLabel1.setText("Descrição:");
 
-        jTextField1.setText("jTextField1");
-
         jButton1.setText("Buscar");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -111,7 +109,7 @@ public class ContasReceberView extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Descrição", "Fornecedor", "Data", "Vencimento", "Valor"
+                "Código", "Descrição", "Cliente", "Data", "Vencimento", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -261,8 +259,6 @@ public class ContasReceberView extends javax.swing.JDialog {
 
         jLabel3.setText("Clientes:");
 
-        jTextField3.setText("jTextField3");
-
         jLabel4.setText("Laçamento:");
 
         jLabel5.setText("Descrição da Conta:");
@@ -280,10 +276,6 @@ public class ContasReceberView extends javax.swing.JDialog {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane3.setViewportView(jTextArea1);
-
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
 
         jLabel9.setText("Data Pagamento");
 

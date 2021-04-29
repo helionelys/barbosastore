@@ -30,6 +30,10 @@ public class VendaController {
         return this.vendaDAO.getListaVendaDAO();
     }
     
+    public ArrayList<Venda> getListaVendaStatusAguardandoController(){
+        return this.vendaDAO.getListaVendaStatusAguardandoDAO();
+    }
+    
     public ArrayList<ItemVenda> getListaItensVendaController(int codigo){
         return this.vendaDAO.getListaItensVendaDAO(codigo);
     }
@@ -40,6 +44,10 @@ public class VendaController {
     
     public boolean atualizarItensVendasController(ItemVenda itemVenda){
         return this.vendaDAO.salvarItensVendasUpdateDAO(itemVenda);
+    }
+    
+    public boolean atualizarVendasAutorizacaoController(Venda venda){
+        return this.vendaDAO.atualizarVendaAprovacaoDAO(venda);
     }
     
     public boolean excluirVendaController(int codigo){

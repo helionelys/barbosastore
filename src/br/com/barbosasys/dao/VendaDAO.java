@@ -176,7 +176,7 @@ public class VendaDAO extends ConexaoBanco {
                     + " ON TBL_VENDA.CODCLIENTE = TBL_CLIENTE.CODCLIENTE"
                     + " INNER JOIN TBL_STATUSVENDA"
                     + " ON TBL_VENDA.CODSTATUSVENDA = TBL_STATUSVENDA.CODSTATUSVENDA"
-                    + ";"
+                    + " ORDER BY TBL_VENDA.CODVENDA DESC;"
             );
 
             while (this.getResultSet().next()) {
@@ -202,6 +202,52 @@ public class VendaDAO extends ConexaoBanco {
         }
         return listaVenda;
     }
+    
+        public ArrayList<Venda> getListaVendaStatusAguardandoDAO() {
+        ArrayList<Venda> listaVenda = new ArrayList();
+        Venda venda = new Venda();
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "TBL_VENDA.CODVENDA,"
+                    + "TBL_CLIENTE.NOME_RAZAOSOCIAL,"
+                    + "TBL_VENDA.TOTALVENDA,"
+                    + "TBL_VENDA.DATAVENDA,"
+                    + "TBL_STATUSVENDA.DESCRICAO"
+                    + " FROM"
+                    + " TBL_VENDA"
+                    + " INNER JOIN TBL_CLIENTE"
+                    + " ON TBL_VENDA.CODCLIENTE = TBL_CLIENTE.CODCLIENTE"
+                    + " INNER JOIN TBL_STATUSVENDA"
+                    + " ON TBL_VENDA.CODSTATUSVENDA = TBL_STATUSVENDA.CODSTATUSVENDA"
+                    + " WHERE TBL_VENDA.CODSTATUSVENDA = 2 ORDER BY TBL_VENDA.CODVENDA DESC;"
+            );
+
+            while (this.getResultSet().next()) {
+                venda = new Venda();
+                venda.setCodVenda(this.getResultSet().getInt(1));
+                venda.setNomeRazaoSocial(this.getResultSet().getString(2));
+
+                venda.setValorTotal(this.getResultSet().getDouble(3));
+
+                String dataRetorno = (this.getResultSet().getString(4));
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate localDate = LocalDate.parse(dataRetorno, formatter);
+                String dataVendaFormatada = localDate.format(formatter2);
+                venda.setDataVenda(dataVendaFormatada);
+                venda.setDescricaoStatus(this.getResultSet().getString(5));
+                listaVenda.add(venda);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return listaVenda;
+    }
+    
 
     public ArrayList<ItemVenda> getListaItensVendaDAO(int codigo) {
         ArrayList<ItemVenda> listaItensVenda = new ArrayList();
@@ -275,7 +321,25 @@ public class VendaDAO extends ConexaoBanco {
         }
     }
     
-
+    public boolean atualizarVendaAprovacaoDAO(Venda venda) {
+        try {
+            this.conectar();
+            this.executarUpdateDeleteSQL(
+                    "UPDATE TBL_VENDA SET "
+                    + "CODSTATUSVENDA = '1'"
+                    + "WHERE "
+                    + "CODVENDA = '" + venda.getCodVenda() + "'"
+                    + ";"
+            );
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            this.fecharConexao();
+        }
+    }
+    
     public boolean excluirVendaDAO(int codigo) {
         try {
             this.conectar();
