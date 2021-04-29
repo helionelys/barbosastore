@@ -1,12 +1,12 @@
 package br.com.barbosasys.controller;
 
-import br.com.barbosasys.dao.LancamentoDAO;
+import br.com.barbosasys.dao.CategoriaServicoDAO;
 import br.com.barbosasys.model.CategoriaServico;
 import java.util.ArrayList;
 
 public class CategoriaServicoController {
 
-    private LancamentoDAO categoriaServicoDAO = new LancamentoDAO();
+    private CategoriaServicoDAO categoriaServicoDAO = new CategoriaServicoDAO();
 
     public int salvarCategoriaServicoController(CategoriaServico categoriaServico) {
         return this.categoriaServicoDAO.salvarCategoriaServicoDAO(categoriaServico);

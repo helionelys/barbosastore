@@ -77,7 +77,7 @@ public class Lancamento {
         return tipoPagamento;
     }
 
-    public void setCodTipoPagamento(TipoPagamento tipoPagamento) {
+    public void setTipoPagamento(TipoPagamento tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
     }
 

@@ -92,7 +92,7 @@ public class LancamentoDAO extends ConexaoBanco {
                 lancamento.setDataPagamento(this.getResultSet().getString(6));
                 lancamento.setValorLancamento(Double.parseDouble(this.getResultSet().getString(7)));
                 tipoPagamento.setCodTipoPagamento((this.getResultSet().getInt(8)));
-                lancamento.setCodTipoPagamento(tipoPagamento);
+                lancamento.setTipoPagamento(tipoPagamento);
                 lancamento.setObservacao(this.getResultSet().getString(9));
                 lancamento.setCodTipoLancamento(this.getResultSet().getInt(10));
                 lancamento.setCodStatusLancamento(this.getResultSet().getInt(11));
@@ -142,7 +142,7 @@ public class LancamentoDAO extends ConexaoBanco {
                 lancamento.setDataPagamento(this.getResultSet().getString(6));
                 lancamento.setValorLancamento(Double.parseDouble(this.getResultSet().getString(7)));
                 tipoPagamento.setCodTipoPagamento((this.getResultSet().getInt(8)));
-                lancamento.setCodTipoPagamento(tipoPagamento);
+                lancamento.setTipoPagamento(tipoPagamento);
                 lancamento.setObservacao(this.getResultSet().getString(9));
                 lancamento.setCodTipoLancamento(this.getResultSet().getInt(10));
                 lancamento.setCodStatusLancamento(this.getResultSet().getInt(11));
@@ -257,9 +257,16 @@ public class LancamentoDAO extends ConexaoBanco {
             this.conectar();
             this.executarUpdateDeleteSQL(
                     "UPDATE TBL_LANCAMENTO SET "
-                    + "DESCRICAO = '" + lancamento.getDescricao() + "'"
+                    + "CODCLIENTE = '" + lancamento.getCliente().getCodigo()+ "',"
+                    + "DESCRICAO = '" + lancamento.getDescricaoLancamento()+ "',"
+                    + "DATALANCAMENTO = '" + lancamento.getDataLancamento()+ "',"
+                    + "DATAVENCIMENTO = '" + lancamento.getDataVencimento()+ "',"
+                    + "DATAPAGAMENTO = '" + lancamento.getDataPagamento()+ "',"
+                    + "VALOR = '" + lancamento.getDataPagamento()+ "',"
+                    + "CODTIPOPAGAMENTO = '" + lancamento.getTipoPagamento().getCodTipoPagamento()+ "',"
+                    + "OBSERVACAO = '"+ lancamento.getObservacao()+ "'"
                     + "WHERE "
-                    + "CODCATEGORIA = '" + lancamento.getCodigo() + "'"
+                    + "CODLANCAMENTO = '" + lancamento.getCodLancamento()+ "'"
                     + ";"
             );
             return true;
@@ -276,7 +283,7 @@ public class LancamentoDAO extends ConexaoBanco {
             this.conectar();
             this.executarUpdateDeleteSQL(
                     "DELETE FROM TBL_LANCAMENTO "
-                    + "WHERE CODCATEGORIA = '" + codigo + "'"
+                    + "WHERE CODLANCAMENTO = '" + codigo + "'"
                     + ";"
             );
             return true;
