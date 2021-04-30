@@ -1,16 +1,41 @@
 package br.com.barbosasys.view;
 
+import br.com.barbosasys.model.Fornecedor;
+import br.com.barbosasys.model.Lancamento;
+import br.com.barbosasys.controller.LancamentoController;
+import br.com.barbosasys.controller.TipoPagamentoController;
+import br.com.barbosasys.model.Cliente;
+import br.com.barbosasys.model.Pessoa;
+import br.com.barbosasys.model.TipoPagamento;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author helionelys
  */
 public class ContasPagarView extends javax.swing.JDialog {
+
+    Lancamento lancamento = new Lancamento();
+    Fornecedor fornecedor = new Fornecedor();
+    Pessoa pessoa = new Pessoa();
+    ArrayList<Lancamento> listaLancamentoContaAPagar = new ArrayList<>();
+    LancamentoController lancamentoController = new LancamentoController();
+    TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
+    ArrayList<TipoPagamento> listaTipoPagamentos = new ArrayList<>();
+    String tipoCadastro = "cadastro";
+    DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
 
     /**
      * Creates new form ContasPagarView
@@ -18,6 +43,7 @@ public class ContasPagarView extends javax.swing.JDialog {
     public ContasPagarView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        DadosLimpeza();
     }
 
     @SuppressWarnings("unchecked")
@@ -38,6 +64,7 @@ public class ContasPagarView extends javax.swing.JDialog {
         btnContasAPagarIncluir = new javax.swing.JButton();
         btnContasAPagarEditar = new javax.swing.JButton();
         btnLancamentosAPagarImprimir = new javax.swing.JButton();
+        btnLancamentosAPagarImprimir1 = new javax.swing.JButton();
         jpContasPagas = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
@@ -60,8 +87,7 @@ public class ContasPagarView extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtLancamentoObservacao = new javax.swing.JTextArea();
-        txtLancamentoValorTotal = new javax.swing.JTextField();
-        txtLancamentosDescricao = new javax.swing.JTextField();
+        txtLancamentoDescricao = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtLancamentoDataPagamento = new javax.swing.JFormattedTextField();
         txtLancamentoDataVencimento = new javax.swing.JFormattedTextField();
@@ -70,7 +96,8 @@ public class ContasPagarView extends javax.swing.JDialog {
         btnLancamentoCancelar = new javax.swing.JButton();
         btnLancamentoSalvar = new javax.swing.JButton();
         btnLancamentoBuscaFornecedor = new javax.swing.JButton();
-        txtLancamentoNomeFornecedor1 = new javax.swing.JTextField();
+        txtLancamentoNomeFornecedor = new javax.swing.JTextField();
+        txtLancamentoValor = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Barbosa Store - Contas a pagar");
@@ -128,10 +155,17 @@ public class ContasPagarView extends javax.swing.JDialog {
         btnContasAPagarCancelar.setText("Cancelar");
 
         btnContasAPagarIncluir.setText("Incluir");
+        btnContasAPagarIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContasAPagarIncluirActionPerformed(evt);
+            }
+        });
 
         btnContasAPagarEditar.setText("Editar");
 
         btnLancamentosAPagarImprimir.setText("Imprimir");
+
+        btnLancamentosAPagarImprimir1.setText("Pagar");
 
         javax.swing.GroupLayout jpContasAPagarLayout = new javax.swing.GroupLayout(jpContasAPagar);
         jpContasAPagar.setLayout(jpContasAPagarLayout);
@@ -140,7 +174,7 @@ public class ContasPagarView extends javax.swing.JDialog {
             .addGroup(jpContasAPagarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
                     .addGroup(jpContasAPagarLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -148,8 +182,10 @@ public class ContasPagarView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLancamentoPagoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpContasAPagarLayout.createSequentialGroup()
+                        .addComponent(btnLancamentosAPagarImprimir1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLancamentosAPagarImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnContasAPagarIncluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnContasAPagarEditar)
@@ -171,15 +207,15 @@ public class ContasPagarView extends javax.swing.JDialog {
                     .addComponent(txtLancamentoPagoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLancamentoPagoPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnContasAPagarExcluir)
-                        .addComponent(btnContasAPagarCancelar)
-                        .addComponent(btnContasAPagarIncluir)
-                        .addComponent(btnContasAPagarEditar))
-                    .addComponent(btnLancamentosAPagarImprimir))
+                .addGroup(jpContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnContasAPagarExcluir)
+                    .addComponent(btnContasAPagarCancelar)
+                    .addComponent(btnContasAPagarIncluir)
+                    .addComponent(btnContasAPagarEditar)
+                    .addComponent(btnLancamentosAPagarImprimir)
+                    .addComponent(btnLancamentosAPagarImprimir1))
                 .addContainerGap())
         );
 
@@ -258,9 +294,15 @@ public class ContasPagarView extends javax.swing.JDialog {
 
         jTabbedPaneContaAPagar.addTab("Contas Pagas", jpContasPagas);
 
-        jLabel3.setText("Cliente/Fornecedor:");
+        jLabel3.setText("Fornecedor:");
+
+        txtLancamentoCodFornecedor.setEditable(false);
+        txtLancamentoCodFornecedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel4.setText("Laçamento:");
+
+        txtLancamentoNumero.setEditable(false);
+        txtLancamentoNumero.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel5.setText("Descrição da Conta:");
 
@@ -304,9 +346,23 @@ public class ContasPagarView extends javax.swing.JDialog {
         btnLancamentoCancelar.setText("Cancelar");
 
         btnLancamentoSalvar.setText("Salvar");
+        btnLancamentoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLancamentoSalvarActionPerformed(evt);
+            }
+        });
 
         btnLancamentoBuscaFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
         btnLancamentoBuscaFornecedor.setText("Buscar");
+        btnLancamentoBuscaFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLancamentoBuscaFornecedorActionPerformed(evt);
+            }
+        });
+
+        txtLancamentoNomeFornecedor.setEditable(false);
+
+        txtLancamentoValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
 
         javax.swing.GroupLayout jpLancamentosContasAPagarLayout = new javax.swing.GroupLayout(jpLancamentosContasAPagar);
         jpLancamentosContasAPagar.setLayout(jpLancamentosContasAPagarLayout);
@@ -329,14 +385,14 @@ public class ContasPagarView extends javax.swing.JDialog {
                     .addComponent(jLabel4))
                 .addGap(15, 18, Short.MAX_VALUE)
                 .addGroup(jpLancamentosContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLancamentosDescricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLancamentoDescricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpLancamentosContasAPagarLayout.createSequentialGroup()
-                        .addGroup(jpLancamentosContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jpLancamentosContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jpLancamentosContasAPagarLayout.createSequentialGroup()
-                                .addComponent(txtLancamentoValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(txtLancamentoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbLancamentoTipoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpLancamentosContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,7 +412,7 @@ public class ContasPagarView extends javax.swing.JDialog {
                             .addGroup(jpLancamentosContasAPagarLayout.createSequentialGroup()
                                 .addComponent(txtLancamentoCodFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtLancamentoNomeFornecedor1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtLancamentoNomeFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLancamentoBuscaFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -377,10 +433,10 @@ public class ContasPagarView extends javax.swing.JDialog {
                     .addComponent(jLabel3)
                     .addComponent(txtLancamentoCodFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLancamentoBuscaFornecedor)
-                    .addComponent(txtLancamentoNomeFornecedor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLancamentoNomeFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jpLancamentosContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLancamentosDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLancamentoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpLancamentosContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -394,8 +450,8 @@ public class ContasPagarView extends javax.swing.JDialog {
                 .addGroup(jpLancamentosContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(cbLancamentoTipoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtLancamentoValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(txtLancamentoValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpLancamentosContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
@@ -430,10 +486,156 @@ public class ContasPagarView extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLancamentoBuscaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentoBuscaFornecedorActionPerformed
+        // TODO add your handling code here:
+        BuscarFornecedorView telaBuscaFornecedor = new BuscarFornecedorView(this, rootPaneCheckingEnabled);
+        telaBuscaFornecedor.setVisible(true);
+
+        txtLancamentoCodFornecedor.setText(String.valueOf(telaBuscaFornecedor.getCodigoFornecedor()));
+        txtLancamentoNomeFornecedor.setText(String.valueOf(telaBuscaFornecedor.getNomeFornecedor()));
+    }//GEN-LAST:event_btnLancamentoBuscaFornecedorActionPerformed
+
+    private void btnContasAPagarIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContasAPagarIncluirActionPerformed
+        // TODO add your handling code here:
+        this.DadosLimpeza();
+        jTabbedPaneContaAPagar.setSelectedIndex(2);
+    }//GEN-LAST:event_btnContasAPagarIncluirActionPerformed
+
+    private void btnLancamentoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentoSalvarActionPerformed
+        // TODO add your handling code here:
+        if (txtLancamentoDescricao.getText().equals("") || txtLancamentoDataVencimento.getText().equals("")
+                || txtLancamentoDataVencimento.getText().equals("") || txtLancamentoDataPagamento.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Você deve preencher todos os campos corretamente", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+        }else if(tipoCadastro.equals("cadastro")){
+            this.salvarLancamento();
+            jTabbedPaneContaAPagar.setSelectedIndex(0);
+        }else {
+            jTabbedPaneContaAPagar.setSelectedIndex(2);
+        }
+    }//GEN-LAST:event_btnLancamentoSalvarActionPerformed
+
+    private void DadosLimpeza() {
+        listaTiposPagamento();
+        carregarLancamentosAPagarAberto();
+        carregarLancamentosAPagarBaixados();
+        this.txtLancamentoNumero.setText("Novo Lancamento");
+        this.txtLancamentoCodFornecedor.setText(null);
+        this.txtLancamentoNomeFornecedor.setText(null);
+        this.txtLancamentoDescricao.setText(null);
+        this.txtLancamentoDataInclusao.setText(null);
+        this.txtLancamentoDataVencimento.setText(null);
+        this.txtLancamentoDataPagamento.setText(null);
+        this.txtLancamentoValor.setText(null);
+        this.txtLancamentoObservacao.setText(null);
+    }
+
+    private void listaTiposPagamento() {
+        listaTipoPagamentos = tipoPagamentoController.getListaTipoPagamentoController();
+        cbLancamentoTipoPagamento.removeAllItems();
+        for (int i = 0; i < listaTipoPagamentos.size(); i++) {
+            cbLancamentoTipoPagamento.addItem(listaTipoPagamentos.get(i).getDescricao());
+        }
+    }
+
+    private boolean testarSelecao() {
+        int linhaSelecionada = tblLancamentosAPagar.getSelectedRow();
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha para operação");
+            return false;
+        }
+        return true;
+    }
+
+    private void carregarLancamentosAPagarAberto() {
+        listaLancamentoContaAPagar = lancamentoController.getListaLancamentoAPagarAbertoController();
+        DefaultTableModel modelo = (DefaultTableModel) tblLancamentosAPagar.getModel();
+        modelo.setNumRows(0);
+        int cont = listaLancamentoContaAPagar.size();
+        for (int i = 0; i < cont; i++) {
+            modelo.addRow(new Object[]{
+                listaLancamentoContaAPagar.get(i).getCodLancamento(),
+                listaLancamentoContaAPagar.get(i).getDescricaoLancamento(),
+                //listaLancamentoContaAPagar.get(i).getCliente().getCodigo(),
+                listaLancamentoContaAPagar.get(i).getPessoa().getNomeRazaoSocial(),
+                listaLancamentoContaAPagar.get(i).getDataLancamento(),
+                listaLancamentoContaAPagar.get(i).getDataVencimento(),
+                valoresMonentarios.format(listaLancamentoContaAPagar.get(i).getValorLancamento())
+
+            });
+        }
+    }
+
+    private void carregarLancamentosAPagarBaixados() {
+        listaLancamentoContaAPagar = lancamentoController.getListaLancamentoAPagarBaixadoController();
+        DefaultTableModel modelo = (DefaultTableModel) tblLancamentosPagos.getModel();
+        modelo.setNumRows(0);
+        int cont = listaLancamentoContaAPagar.size();
+        for (int i = 0; i < cont; i++) {
+            modelo.addRow(new Object[]{
+                listaLancamentoContaAPagar.get(i).getCodLancamento(),
+                listaLancamentoContaAPagar.get(i).getDescricaoLancamento(),
+                //listaLancamentoContaAPagar.get(i).getCliente().getCodigo(),
+                listaLancamentoContaAPagar.get(i).getPessoa().getNomeRazaoSocial(),
+                listaLancamentoContaAPagar.get(i).getDataLancamento(),
+                listaLancamentoContaAPagar.get(i).getDataVencimento(),
+                valoresMonentarios.format(listaLancamentoContaAPagar.get(i).getValorLancamento())
+
+            });
+        }
+    }
+
+    private boolean salvarLancamento() {
+        
+        pessoa.setCodigo(Integer.parseInt(this.txtLancamentoCodFornecedor.getText()));
+        lancamento.setPessoa(pessoa);
+        lancamento.setDescricaoLancamento(this.txtLancamentoDescricao.getText());
+
+        Date dataCadastramentoLancamento = new Date();
+        String formatoDataMysql = ("yyyy-MM-dd");
+        SimpleDateFormat formatarData = new SimpleDateFormat(formatoDataMysql);
+        String dataLancamentoBanco = formatarData.format(dataCadastramentoLancamento);
+        lancamento.setDataLancamento(dataLancamentoBanco);
+
+        String dataLancamentoVencimento = this.txtLancamentoDataVencimento.getText();
+        DateTimeFormatter dataRecebida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dataFormatada = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(dataLancamentoVencimento, dataRecebida);
+        String dataLacamentoVencimentoBanco = localDate.format(dataFormatada);
+        lancamento.setDataVencimento(dataLacamentoVencimentoBanco);
+
+        String dataLancamentoPagamento = this.txtLancamentoDataVencimento.getText();
+        DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate2 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
+        String dataLacamentoPagamentoBanco = localDate.format(dataFormatada2);
+        lancamento.setDataPagamento(dataLacamentoPagamentoBanco);
+
+        String valorLancamentoOriginal = txtLancamentoValor.getText();
+        String valorLancamentoFormatado = valorLancamentoOriginal.replace(".", "");
+        String valorLancamentoFormatado2 = valorLancamentoFormatado.replace(",", ".");
+        Double valorBanco = Double.parseDouble(valorLancamentoFormatado2);
+        lancamento.setValorLancamento(valorBanco);
+        
+        lancamento.setCodTipoPagamento(tipoPagamentoController.getTipoPagamentoController(this.cbLancamentoTipoPagamento.getSelectedItem().toString()).getCodTipoPagamento());
+        lancamento.setObservacao(this.txtLancamentoObservacao.getText());
+        lancamento.setCodTipoLancamento(2);
+        lancamento.setCodStatusLancamento(2);
+        
+        //Salvar
+        if (lancamentoController.salvarLancamentoControllerAPagar(lancamento) > 0) {
+            JOptionPane.showMessageDialog(this, "Lancamento incluído com sucesso!");
+            this.DadosLimpeza();
+            this.carregarLancamentosAPagarAberto();
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContasAPagarCancelar;
@@ -445,6 +647,7 @@ public class ContasPagarView extends javax.swing.JDialog {
     private javax.swing.JButton btnLancamentoPagoPesquisar;
     private javax.swing.JButton btnLancamentoSalvar;
     private javax.swing.JButton btnLancamentosAPagarImprimir;
+    private javax.swing.JButton btnLancamentosAPagarImprimir1;
     private javax.swing.JButton btnLancamentosPagosCancelar;
     private javax.swing.JButton btnLancamentosPagosImprimir;
     private javax.swing.JButton btnLancamentosPagosRevogar;
@@ -477,11 +680,11 @@ public class ContasPagarView extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField txtLancamentoDataInclusao;
     private javax.swing.JFormattedTextField txtLancamentoDataPagamento;
     private javax.swing.JFormattedTextField txtLancamentoDataVencimento;
-    private javax.swing.JTextField txtLancamentoNomeFornecedor1;
+    private javax.swing.JTextField txtLancamentoDescricao;
+    private javax.swing.JTextField txtLancamentoNomeFornecedor;
     private javax.swing.JTextField txtLancamentoNumero;
     private javax.swing.JTextArea txtLancamentoObservacao;
     private javax.swing.JTextField txtLancamentoPagoPesquisar;
-    private javax.swing.JTextField txtLancamentoValorTotal;
-    private javax.swing.JTextField txtLancamentosDescricao;
+    private javax.swing.JFormattedTextField txtLancamentoValor;
     // End of variables declaration//GEN-END:variables
 }

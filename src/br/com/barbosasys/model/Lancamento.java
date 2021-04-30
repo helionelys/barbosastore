@@ -3,13 +3,13 @@ package br.com.barbosasys.model;
 public class Lancamento {
 
     private int codLancamento;
-    private Cliente cliente;
+    private Pessoa pessoa;
     private String descricaoLancamento;
     private String dataLancamento;
     private String dataVencimento;
     private String dataPagamento;
     private Double valorLancamento;
-    private TipoPagamento tipoPagamento;
+    private int codTipoPagamento;
     private String observacao;
     private int codTipoLancamento;
     private int codStatusLancamento;
@@ -25,12 +25,12 @@ public class Lancamento {
         this.codLancamento = codLancamento;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     public String getDescricaoLancamento() {
@@ -73,12 +73,12 @@ public class Lancamento {
         this.valorLancamento = valorLancamento;
     }
 
-    public TipoPagamento getTipoPagamento() {
-        return tipoPagamento;
+    public int getCodTipoPagamento() {
+        return codTipoPagamento;
     }
 
-    public void setTipoPagamento(TipoPagamento tipoPagamento) {
-        this.tipoPagamento = tipoPagamento;
+    public void setCodTipoPagamento(int codTipoPagamento) {
+        this.codTipoPagamento = codTipoPagamento;
     }
 
     public String getObservacao() {

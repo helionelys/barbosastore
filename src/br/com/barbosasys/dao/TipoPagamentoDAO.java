@@ -34,7 +34,7 @@ public class TipoPagamentoDAO extends ConexaoBanco {
         try {
             this.conectar();
             this.executarSQL(
-                    "SELECT CODTIPOPAGAMENTO,DESCRICA FROM TBL_TIPOPAGAMENTO WHERE CODTIPOPAGAMENTO = '" + codigo + "';"
+                    "SELECT CODTIPOPAGAMENTO,DESCRICAO FROM TBL_TIPOPAGAMENTO WHERE CODTIPOPAGAMENTO = '" + codigo + "';"
             );
 
             while (this.getResultSet().next()) {

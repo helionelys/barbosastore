@@ -24,6 +24,10 @@ public class FornecedorController {
         return this.fornecedorDAO.getListaFornecedorDAO();
     }
     
+    public Fornecedor getFornecedorControllerSimples(int codigo){
+        return this.fornecedorDAO.getFornecedorSimplesDAO(codigo);
+    }
+    
     public boolean atualizarFornecedorController(Fornecedor fornecedor){
         return this.fornecedorDAO.atualizarFornecedorDAO(fornecedor);
     }

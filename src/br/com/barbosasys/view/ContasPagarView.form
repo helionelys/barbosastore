@@ -101,7 +101,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="729" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -110,8 +110,10 @@
                               <Component id="btnLancamentoPagoPesquisar" min="-2" pref="119" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnLancamentosAPagarImprimir1" min="-2" pref="108" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnLancamentosAPagarImprimir" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace pref="259" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnContasAPagarIncluir" linkSize="2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnContasAPagarEditar" linkSize="2" min="-2" max="-2" attributes="0"/>
@@ -135,16 +137,15 @@
                           <Component id="btnLancamentoPagoPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="286" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="291" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="btnContasAPagarExcluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnContasAPagarCancelar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnContasAPagarIncluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnContasAPagarEditar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="btnLancamentosAPagarImprimir" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnContasAPagarExcluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnContasAPagarCancelar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnContasAPagarIncluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnContasAPagarEditar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLancamentosAPagarImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLancamentosAPagarImprimir1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -235,6 +236,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Incluir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContasAPagarIncluirActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnContasAPagarEditar">
               <Properties>
@@ -244,6 +248,11 @@
             <Component class="javax.swing.JButton" name="btnLancamentosAPagarImprimir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Imprimir"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnLancamentosAPagarImprimir1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pagar"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -425,39 +434,37 @@
                       </Group>
                       <EmptySpace min="15" pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtLancamentosDescricao" alignment="1" min="-2" pref="596" max="-2" attributes="0"/>
+                          <Component id="txtLancamentoDescricao" alignment="1" min="-2" pref="596" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="txtLancamentoValorTotal" min="-2" pref="147" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txtLancamentoValor" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="cbLancamentoTipoPagamento" min="-2" pref="308" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jScrollPane3" min="-2" pref="596" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
-                                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="txtLancamentoDataVencimento" min="-2" pref="111" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="txtLancamentoDataInclusao" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane3" min="-2" pref="596" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+                                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtLancamentoDataVencimento" min="-2" pref="111" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtLancamentoDataPagamento" min="-2" pref="111" max="-2" attributes="0"/>
+                                          <Component id="txtLancamentoDataInclusao" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtLancamentoDataPagamento" min="-2" pref="111" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="txtLancamentoNumero" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="txtLancamentoCodFornecedor" min="-2" pref="54" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtLancamentoNomeFornecedor1" min="-2" pref="415" max="-2" attributes="0"/>
+                                      <Component id="txtLancamentoNomeFornecedor" min="-2" pref="415" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btnLancamentoBuscaFornecedor" min="-2" pref="110" max="-2" attributes="0"/>
                                   </Group>
@@ -482,11 +489,11 @@
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtLancamentoCodFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnLancamentoBuscaFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtLancamentoNomeFornecedor1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtLancamentoNomeFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="12" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtLancamentosDescricao" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtLancamentoDescricao" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -502,8 +509,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cbLancamentoTipoPagamento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtLancamentoValorTotal" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtLancamentoValor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -523,10 +530,14 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cliente/Fornecedor:"/>
+                <Property name="text" type="java.lang.String" value="Fornecedor:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtLancamentoCodFornecedor">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -534,6 +545,10 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtLancamentoNumero">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
@@ -580,9 +595,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JTextField" name="txtLancamentoValorTotal">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtLancamentosDescricao">
+            <Component class="javax.swing.JTextField" name="txtLancamentoDescricao">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
@@ -632,6 +645,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLancamentoSalvarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnLancamentoBuscaFornecedor">
               <Properties>
@@ -640,8 +656,21 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLancamentoBuscaFornecedorActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtLancamentoNomeFornecedor1">
+            <Component class="javax.swing.JTextField" name="txtLancamentoNomeFornecedor">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="txtLancamentoValor">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="#,##0.00" subtype="-1" type="4"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

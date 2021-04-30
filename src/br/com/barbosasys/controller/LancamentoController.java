@@ -8,16 +8,28 @@ public class LancamentoController {
 
     private LancamentoDAO lancamentoDAO = new LancamentoDAO();
 
-    public int salvarLancamentoController(Lancamento Lancamento) {
-        return this.lancamentoDAO.salvarLancamentoDAO(Lancamento);
+    public int salvarLancamentoControllerAPagar(Lancamento Lancamento) {
+        return this.lancamentoDAO.salvarLancamentoAPagarDAO(Lancamento);
+    }
+    
+    public int salvarLancamentoControllerAReceber(Lancamento Lancamento) {
+        return this.lancamentoDAO.salvarLancamentoAReceberDAO(Lancamento);
     }
 
-    public Lancamento getLancamentoController(int codigo) {
-        return this.lancamentoDAO.getLancamentoDAO(codigo);
+    public Lancamento getLancamentoControllerAPagar(int codigo) {
+        return this.lancamentoDAO.getLancamentoaAPagarDAO(codigo);
+    }
+    
+    public Lancamento getLancamentoControllerAReceber(int codigo) {
+        return this.lancamentoDAO.getLancamentoaAReceberDAO(codigo);
     }
 
-    public Lancamento getLancamentoController(String nome) {
-        return this.lancamentoDAO.getLancamentoDAO(nome);
+    public Lancamento getLancamentoControllerAPagar(String nome) {
+        return this.lancamentoDAO.getLancamentoAPagarDAO(nome);
+    }
+    
+    public Lancamento getLancamentoControllerAReceber(String nome) {
+        return this.lancamentoDAO.getLancamentoAReceberDAO(nome);
     }
 
     public ArrayList<Lancamento> getListaLancamentoAReceberAbertoController() {
@@ -27,9 +39,21 @@ public class LancamentoController {
     public ArrayList<Lancamento> getListaLancamentoAReceberBaixadoController() {
         return this.lancamentoDAO.getListaLancamentoAReceberBaixadosDAO();
     }
+    
+    public ArrayList<Lancamento> getListaLancamentoAPagarAbertoController() {
+        return this.lancamentoDAO.getListaLancamentoAPagarAbertoDAO();
+    }
 
-    public boolean atualizarLancamentoController(Lancamento Lancamento) {
-        return this.lancamentoDAO.atualizarLancamentoDAO(Lancamento);
+    public ArrayList<Lancamento> getListaLancamentoAPagarBaixadoController() {
+        return this.lancamentoDAO.getListaLancamentoAPagarBaixadosDAO();
+    }
+
+    public boolean atualizarLancamentoControllerAPagarr(Lancamento Lancamento) {
+        return this.lancamentoDAO.atualizarLancamentoAPagarDAO(Lancamento);
+    }
+    
+    public boolean atualizarLancamentoControllerAReceber(Lancamento Lancamento) {
+        return this.lancamentoDAO.atualizarLancamentoAReceberDAO(Lancamento);
     }
 
     public boolean excluirLancamentoController(int codigo) {

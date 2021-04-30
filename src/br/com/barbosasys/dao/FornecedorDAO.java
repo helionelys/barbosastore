@@ -21,7 +21,7 @@ public class FornecedorDAO extends ConexaoBanco {
     public int salvarFornecedorDAO(Fornecedor fornecedor) {
         try {
             this.conectar();
-                return this.insertSQL(
+            return this.insertSQL(
                     "INSERT INTO TBL_FORNECEDOR ("
                     + "TIPOFORNECEDOR,"
                     + "NOMEREPRESENTANTE,"
@@ -41,7 +41,7 @@ public class FornecedorDAO extends ConexaoBanco {
                     + "EMAIL"
                     + ") VALUES ("
                     + "'" + fornecedor.getPessoaTipo() + "',"
-                    + "'" + fornecedor.getNomeRepresentante()+ "',"
+                    + "'" + fornecedor.getNomeRepresentante() + "',"
                     + "'" + fornecedor.getNomeRazaoSocial() + "',"
                     + "'" + fornecedor.getApelidoNomeFantasia() + "',"
                     + "'" + fornecedor.getCpfCnpj() + "',"
@@ -76,7 +76,7 @@ public class FornecedorDAO extends ConexaoBanco {
                     "SELECT "
                     + "CODFORNECEDOR,"
                     + "TIPOFORNECEDOR,"
-                    + "NOMEREPRESENTANTE,"        
+                    + "NOMEREPRESENTANTE,"
                     + "NOME_RAZAOSOCIAL,"
                     + "APELIDO_NOMEFANTASIA,"
                     + "CPF_CNPJ,"
@@ -99,7 +99,7 @@ public class FornecedorDAO extends ConexaoBanco {
             );
 
             while (this.getResultSet().next()) {
-                                
+
                 fornecedor.setCodigo(this.getResultSet().getInt(1));
                 fornecedor.setPessoaTipo(this.getResultSet().getInt(2));
                 fornecedor.setNomeRepresentante(this.getResultSet().getString(3));
@@ -114,11 +114,10 @@ public class FornecedorDAO extends ConexaoBanco {
                 fornecedor.setNumero(this.getResultSet().getString(12));
                 fornecedor.setBairro(this.getResultSet().getString(13));
                 fornecedor.setComplemento(this.getResultSet().getString(14));
-                
+
                 fornecedor.setCelular(this.getResultSet().getString(15));
                 fornecedor.setTelefone(this.getResultSet().getString(16));
                 fornecedor.setEmail(this.getResultSet().getString(17));
-                
 
             }
         } catch (Exception e) {
@@ -162,14 +161,14 @@ public class FornecedorDAO extends ConexaoBanco {
             );
 
             while (this.getResultSet().next()) {
-                                
+
                 fornecedor.setCodigo(this.getResultSet().getInt(1));
                 fornecedor.setPessoaTipo(this.getResultSet().getInt(2));
                 fornecedor.setNomeRepresentante(this.getResultSet().getString(3));
                 fornecedor.setNomeRazaoSocial(this.getResultSet().getString(4));
                 fornecedor.setApelidoNomeFantasia(this.getResultSet().getString(5));
                 fornecedor.setCpfCnpj(this.getResultSet().getString(6));
-                
+
                 fornecedor.setCep(this.getResultSet().getString(7));
                 fornecedor.setCidade(this.getResultSet().getString(8));
                 fornecedor.setUf(this.getResultSet().getString(9));
@@ -177,11 +176,11 @@ public class FornecedorDAO extends ConexaoBanco {
                 fornecedor.setNumero(this.getResultSet().getString(11));
                 fornecedor.setBairro(this.getResultSet().getString(12));
                 fornecedor.setComplemento(this.getResultSet().getString(13));
-                
+
                 fornecedor.setCelular(this.getResultSet().getString(14));
                 fornecedor.setTelefone(this.getResultSet().getString(15));
                 fornecedor.setEmail(this.getResultSet().getString(16));
-                
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -259,7 +258,6 @@ public class FornecedorDAO extends ConexaoBanco {
 //        }
 //        return listaFornecedor;
 //    }
-    
     public ArrayList<Fornecedor> getListaFornecedorDAO() {
         ArrayList<Fornecedor> listaFornecedor = new ArrayList();
         Fornecedor fornecedor = new Fornecedor();
@@ -280,13 +278,13 @@ public class FornecedorDAO extends ConexaoBanco {
             );
 
             while (this.getResultSet().next()) {
-                fornecedor = new Fornecedor();                                
+                fornecedor = new Fornecedor();
                 fornecedor.setCodigo(this.getResultSet().getInt(1));
                 fornecedor.setNomeRazaoSocial(this.getResultSet().getString(2));
                 fornecedor.setPessoaTipo(this.getResultSet().getInt(3));
                 fornecedor.setCpfCnpj(this.getResultSet().getString(4));
                 fornecedor.setEmail(this.getResultSet().getString(5));
-  
+
                 listaFornecedor.add(fornecedor);
             }
 
@@ -298,18 +296,50 @@ public class FornecedorDAO extends ConexaoBanco {
         return listaFornecedor;
     }
 
+    public Fornecedor getFornecedorSimplesDAO(int codigo) {
+        Fornecedor fornecedor = new Fornecedor();
+
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "CODFORNECEDOR,"
+                    + "NOME_RAZAOSOCIAL,"
+                    + "CPF_CNPJ"
+                    + " FROM"
+                    + " TBL_FORNECEDOR"
+                    + " WHERE"
+                    + " CODFORNECEDOR = '" + codigo + "'"
+                    + ";"
+            );
+
+            while (this.getResultSet().next()) {
+
+                fornecedor.setCodigo(this.getResultSet().getInt(1));
+                fornecedor.setNomeRazaoSocial(this.getResultSet().getString(2));
+                fornecedor.setCpfCnpj(this.getResultSet().getString(3));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return fornecedor;
+    }
+
     public boolean atualizarFornecedorDAO(Fornecedor fornecedor) {
         try {
             this.conectar();
             this.executarUpdateDeleteSQL(
                     "UPDATE TBL_FORNECEDOR SET "
                     + "TIPOFORNECEDOR = '" + fornecedor.getPessoaTipo() + "',"
-                    + "NOMEREPRESENTANTE = '" + fornecedor.getNomeRepresentante()+ "',"
+                    + "NOMEREPRESENTANTE = '" + fornecedor.getNomeRepresentante() + "',"
                     + "NOME_RAZAOSOCIAL = '" + fornecedor.getNomeRazaoSocial() + "',"
                     + "APELIDO_NOMEFANTASIA = '" + fornecedor.getApelidoNomeFantasia() + "',"
                     + "CPF_CNPJ = '" + fornecedor.getCpfCnpj() + "',"
                     + "RG_INSCRICAOESTADUAL = '" + fornecedor.getRgInscricaoEstadual() + "',"
-                    + "CEP = '" + fornecedor.getCep()+ "',"
+                    + "CEP = '" + fornecedor.getCep() + "',"
                     + "CIDADE = '" + fornecedor.getCidade() + "',"
                     + "UF = '" + fornecedor.getUf() + "',"
                     + "LOGRADOURO = '" + fornecedor.getLogradouro() + "',"
@@ -320,7 +350,7 @@ public class FornecedorDAO extends ConexaoBanco {
                     + "TELEFONE = '" + fornecedor.getTelefone() + "',"
                     + "EMAIL = '" + fornecedor.getEmail() + "'"
                     + "WHERE "
-                        + "CODFORNECEDOR = '" + fornecedor.getCodigo() + "'"
+                    + "CODFORNECEDOR = '" + fornecedor.getCodigo() + "'"
                     + ";"
             );
             return true;
