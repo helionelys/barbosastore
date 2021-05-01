@@ -8,6 +8,7 @@ package br.com.barbosasys.dao;
 import br.com.barbosasys.jdbc.ConexaoBanco;
 import br.com.barbosasys.model.ItemVenda;
 import br.com.barbosasys.model.Produto;
+import br.com.barbosasys.model.TipoPagamento;
 import br.com.barbosasys.model.Venda;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -123,6 +124,7 @@ public class VendaDAO extends ConexaoBanco {
     
     public Venda getVendaDAO(int codigo) {
         Venda venda = new Venda();
+        TipoPagamento tipoPagamento = new TipoPagamento();
         try {
             this.conectar();
             this.executarSQL(

@@ -646,14 +646,14 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
     private void MenuFinanceiroContaPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFinanceiroContaPagarActionPerformed
         // TODO add your handling code here:
-        ContasPagarView telaContasPagar = new ContasPagarView(this, rootPaneCheckingEnabled);
+        ContasReceberView telaContasPagar = new ContasReceberView(this, rootPaneCheckingEnabled);
         telaContasPagar.setLocationRelativeTo(this);
         telaContasPagar.setVisible(true);
     }//GEN-LAST:event_MenuFinanceiroContaPagarActionPerformed
 
     private void MenuFinanceiroContaReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFinanceiroContaReceberActionPerformed
         // TODO add your handling code here:
-        ContasReceberView telaContasReceberView = new ContasReceberView(this, rootPaneCheckingEnabled);
+        ContasReceberViewOld telaContasReceberView = new ContasReceberViewOld(this, rootPaneCheckingEnabled);
         telaContasReceberView.setLocationRelativeTo(this);
         telaContasReceberView.setVisible(true);
     }//GEN-LAST:event_MenuFinanceiroContaReceberActionPerformed
@@ -712,7 +712,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
     private void MenuMovimentoRegistrarComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoRegistrarComprasActionPerformed
         // TODO add your handling code here:
-        ComprasView telaCompras = new ComprasView(this, rootPaneCheckingEnabled);
+        ComprasViewOld telaCompras = new ComprasViewOld(this, rootPaneCheckingEnabled);
         telaCompras.setLocationRelativeTo(this);
         telaCompras.setVisible(true);
     }//GEN-LAST:event_MenuMovimentoRegistrarComprasActionPerformed

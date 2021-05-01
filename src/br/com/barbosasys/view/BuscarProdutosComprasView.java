@@ -5,10 +5,9 @@
  */
 package br.com.barbosasys.view;
 
-import br.com.barbosasys.controller.FornecedorController;
-import br.com.barbosasys.controller.UsuarioController;
-import br.com.barbosasys.model.Fornecedor;
-import br.com.barbosasys.model.PerfilUsuario;
+import br.com.barbosasys.controller.ProdutoController;
+import br.com.barbosasys.model.Produto;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,27 +15,29 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Helionelys
  */
-public class BuscarFornecedorView extends javax.swing.JDialog {
+public class BuscarProdutosComprasView extends javax.swing.JDialog {
     
      //Variavel para armazemar Código e Nome do perfil do usuario
-    private int codigoFornecedor;
-    private String nomeRazaoSocialFornecedor;
+    private int codigoProduto;
+    private String descricaoProduto;
+    private String valorProdutoFormatado;
+    private Double valorProduto;
     
-    Fornecedor fornecedor = new Fornecedor();
-    FornecedorController fornecedorController = new FornecedorController();
-    ArrayList<Fornecedor> listaFornecedor = new ArrayList<>();
+    Produto produto = new Produto();
+    ProdutoController produtoController = new ProdutoController();
+    ArrayList<Produto> listProduto = new ArrayList<>();
     String tipoCadastro;
 
     /**
-     * Creates new form BuscaFornecedors
+     * Creates new form BuscaProdutos
      */
-    public BuscarFornecedorView(ComprasView owner, boolean modal) {
+    public BuscarProdutosComprasView(ComprasView owner, boolean modal) {
         super(owner, modal);
         initComponents();
-        this.carregarFornecedores();
+        this.carregarProdutos();
     }
 
-//    BuscaFornecedor() {
+//    BuscaProduto() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
     /**
@@ -51,10 +52,10 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblFornecedores = new javax.swing.JTable();
+        tblProdutos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        txtPesquisarFornecedor = new javax.swing.JTextField();
-        btnFornecedorSelecionar = new javax.swing.JButton();
+        txtPesquisarProdutos = new javax.swing.JTextField();
+        btnProdutoSelecionar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -73,12 +74,12 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
             .addGap(0, 21, Short.MAX_VALUE)
         );
 
-        tblFornecedores.setModel(new javax.swing.table.DefaultTableModel(
+        tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nome/Razão Social", "CPF/CNPJ"
+                "Código", "Descrição", "Valor Unitário"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -89,14 +90,14 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblFornecedores);
+        jScrollPane1.setViewportView(tblProdutos);
 
         jLabel1.setText("Perfil:");
 
-        btnFornecedorSelecionar.setText("Selecionar");
-        btnFornecedorSelecionar.addActionListener(new java.awt.event.ActionListener() {
+        btnProdutoSelecionar.setText("Selecionar");
+        btnProdutoSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFornecedorSelecionarActionPerformed(evt);
+                btnProdutoSelecionarActionPerformed(evt);
             }
         });
 
@@ -109,9 +110,9 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPesquisarProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnFornecedorSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnProdutoSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,8 +121,8 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFornecedorSelecionar))
+                    .addComponent(txtPesquisarProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProdutoSelecionar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -162,42 +163,48 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFornecedorSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedorSelecionarActionPerformed
+    private void btnProdutoSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoSelecionarActionPerformed
         // TODO add your handling code here:
-        recuperarFornecedor();
+        recuperarProduto();
         this.dispose();
-    }//GEN-LAST:event_btnFornecedorSelecionarActionPerformed
+    }//GEN-LAST:event_btnProdutoSelecionarActionPerformed
     
-    private boolean recuperarFornecedor(){
+    private boolean recuperarProduto(){
         
        //Armazena a linha selecionada
-       int linhaTabela = this.tblFornecedores.getSelectedRow();
+       int linhaTabela = this.tblProdutos.getSelectedRow();
        
        //Captura valor código do funcionário da linha selecionada
-       int codigo = (Integer) tblFornecedores.getValueAt(linhaTabela, 0);
+       int codigo = (Integer) tblProdutos.getValueAt(linhaTabela, 0);
        
         try {
         //retorna os dados do banco de dados
-        fornecedor = fornecedorController.getFornecedorControllerSimples(codigo);
-        this.codigoFornecedor = Integer.valueOf(fornecedor.getCodigo());
-        this.nomeRazaoSocialFornecedor = (fornecedor.getNomeRazaoSocial());
+        produto = produtoController.getProdutoControllerSimples(codigo);
+        this.codigoProduto = Integer.valueOf(produto.getCodProduto());
+        this.descricaoProduto = (produto.getDescricao());
+        this.valorProduto = Double.valueOf(produto.getValor());
+        Double valorRetorno = (produto.getValor());
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        String valorTela = df.format(valorRetorno);
+        this.valorProdutoFormatado = valorTela;
+        
         return true;
         } catch (Exception e) {
             return false;
         }
     }    
     
-    private void carregarFornecedores() {
-        listaFornecedor = fornecedorController.getListaFornecedorController();
-        DefaultTableModel modelo = (DefaultTableModel) tblFornecedores.getModel();
+    private void carregarProdutos() {
+        listProduto = produtoController.getListaProdutoControllerSimples();
+        DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
         modelo.setNumRows(0);
         //CARREGA OS DADOS DA LISTA NA TABELA
-        int cont = listaFornecedor.size();
+        int cont = listProduto.size();
         for (int i = 0; i < cont; i++) {
             modelo.addRow(new Object[]{
-                listaFornecedor.get(i).getCodigo(),
-                listaFornecedor.get(i).getNomeRazaoSocial(),
-                listaFornecedor.get(i).getCpfCnpj(),
+                listProduto.get(i).getCodProduto(),
+                listProduto.get(i).getDescricao(),
+                listProduto.get(i).getValor(),
             });
         }
     }
@@ -209,30 +216,48 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
      * @param args the command line arguments
      */
 
-    public int getCodigoFornecedor() {
-        return codigoFornecedor;
+    public int getCodigoProduto() {
+        return codigoProduto;
     }
 
-    public void setCodigoFornecedor(int codigoFornecedor) {
-        this.codigoFornecedor = codigoFornecedor;
+    public void setCodigoProduto(int codigoProduto) {
+        this.codigoProduto = codigoProduto;
     }
 
-    public String getnomeRazaoSocialFornecedor() {
-        return nomeRazaoSocialFornecedor;
+    public String getDescricaoProduto() {
+        return descricaoProduto;
     }
 
-    public void setNomeRazaoSociaFornecedor(String nomeRazaoSocialFornecedor) {
-        this.nomeRazaoSocialFornecedor = nomeRazaoSocialFornecedor;
+    public void setDescricaoProduto(String descricaoProduto) {
+        this.descricaoProduto = descricaoProduto;
     }
+    
+    public Double getValorProduto(){
+        return valorProduto;
+    }
+    
+    public void setValorProduto(Double valorProduto){
+        this.valorProduto = valorProduto;
+    }
+    
+    public String getValorProdutoFormatado(){
+        return valorProdutoFormatado;
+    }
+    
+    public void valorProdutoFormatado(String valorProduto){
+        this.valorProdutoFormatado = valorProdutoFormatado;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFornecedorSelecionar;
+    private javax.swing.JButton btnProdutoSelecionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblFornecedores;
-    private javax.swing.JTextField txtPesquisarFornecedor;
+    private javax.swing.JTable tblProdutos;
+    private javax.swing.JTextField txtPesquisarProdutos;
     // End of variables declaration//GEN-END:variables
 }

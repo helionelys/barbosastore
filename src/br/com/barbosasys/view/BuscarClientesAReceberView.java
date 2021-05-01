@@ -5,9 +5,9 @@
  */
 package br.com.barbosasys.view;
 
-import br.com.barbosasys.controller.FornecedorController;
+import br.com.barbosasys.controller.ClienteController;
 import br.com.barbosasys.controller.UsuarioController;
-import br.com.barbosasys.model.Fornecedor;
+import br.com.barbosasys.model.Cliente;
 import br.com.barbosasys.model.PerfilUsuario;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -16,27 +16,27 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Helionelys
  */
-public class BuscarFornecedorView extends javax.swing.JDialog {
+public class BuscarClientesAReceberView extends javax.swing.JDialog {
     
      //Variavel para armazemar Código e Nome do perfil do usuario
-    private int codigoFornecedor;
-    private String nomeRazaoSocialFornecedor;
+    private int codigoCliente;
+    private String nomeRazaoSocialCliente;
     
-    Fornecedor fornecedor = new Fornecedor();
-    FornecedorController fornecedorController = new FornecedorController();
-    ArrayList<Fornecedor> listaFornecedor = new ArrayList<>();
+    Cliente cliente = new Cliente();
+    ClienteController clienteController = new ClienteController();
+    ArrayList<Cliente> listCliente = new ArrayList<>();
     String tipoCadastro;
 
     /**
-     * Creates new form BuscaFornecedors
+     * Creates new form BuscaClientes
      */
-    public BuscarFornecedorView(ComprasView owner, boolean modal) {
+    public BuscarClientesAReceberView(ContasReceberView owner, boolean modal) {
         super(owner, modal);
         initComponents();
-        this.carregarFornecedores();
+        this.carregarClientes();
     }
 
-//    BuscaFornecedor() {
+//    BuscaCliente() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
     /**
@@ -51,10 +51,10 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblFornecedores = new javax.swing.JTable();
+        tblCliente = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        txtPesquisarFornecedor = new javax.swing.JTextField();
-        btnFornecedorSelecionar = new javax.swing.JButton();
+        txtPesquisarPerfil = new javax.swing.JTextField();
+        btnClienteSelecionar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -73,7 +73,7 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
             .addGap(0, 21, Short.MAX_VALUE)
         );
 
-        tblFornecedores.setModel(new javax.swing.table.DefaultTableModel(
+        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -89,14 +89,14 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblFornecedores);
+        jScrollPane1.setViewportView(tblCliente);
 
         jLabel1.setText("Perfil:");
 
-        btnFornecedorSelecionar.setText("Selecionar");
-        btnFornecedorSelecionar.addActionListener(new java.awt.event.ActionListener() {
+        btnClienteSelecionar.setText("Selecionar");
+        btnClienteSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFornecedorSelecionarActionPerformed(evt);
+                btnClienteSelecionarActionPerformed(evt);
             }
         });
 
@@ -109,9 +109,9 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPesquisarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnFornecedorSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClienteSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,8 +120,8 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFornecedorSelecionar))
+                    .addComponent(txtPesquisarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClienteSelecionar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -162,42 +162,42 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFornecedorSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedorSelecionarActionPerformed
+    private void btnClienteSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteSelecionarActionPerformed
         // TODO add your handling code here:
-        recuperarFornecedor();
+        recuperarCliente();
         this.dispose();
-    }//GEN-LAST:event_btnFornecedorSelecionarActionPerformed
+    }//GEN-LAST:event_btnClienteSelecionarActionPerformed
     
-    private boolean recuperarFornecedor(){
+    private boolean recuperarCliente(){
         
        //Armazena a linha selecionada
-       int linhaTabela = this.tblFornecedores.getSelectedRow();
+       int linhaTabela = this.tblCliente.getSelectedRow();
        
        //Captura valor código do funcionário da linha selecionada
-       int codigo = (Integer) tblFornecedores.getValueAt(linhaTabela, 0);
+       int codigo = (Integer) tblCliente.getValueAt(linhaTabela, 0);
        
         try {
         //retorna os dados do banco de dados
-        fornecedor = fornecedorController.getFornecedorControllerSimples(codigo);
-        this.codigoFornecedor = Integer.valueOf(fornecedor.getCodigo());
-        this.nomeRazaoSocialFornecedor = (fornecedor.getNomeRazaoSocial());
+        cliente = clienteController.getClienteControllerSimples(codigo);
+        this.codigoCliente = Integer.valueOf(cliente.getCodigo());
+        this.nomeRazaoSocialCliente = (cliente.getNomeRazaoSocial());
         return true;
         } catch (Exception e) {
             return false;
         }
     }    
     
-    private void carregarFornecedores() {
-        listaFornecedor = fornecedorController.getListaFornecedorController();
-        DefaultTableModel modelo = (DefaultTableModel) tblFornecedores.getModel();
+    private void carregarClientes() {
+        listCliente = clienteController.getListaClienteController();
+        DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
         modelo.setNumRows(0);
         //CARREGA OS DADOS DA LISTA NA TABELA
-        int cont = listaFornecedor.size();
+        int cont = listCliente.size();
         for (int i = 0; i < cont; i++) {
             modelo.addRow(new Object[]{
-                listaFornecedor.get(i).getCodigo(),
-                listaFornecedor.get(i).getNomeRazaoSocial(),
-                listaFornecedor.get(i).getCpfCnpj(),
+                listCliente.get(i).getCodigo(),
+                listCliente.get(i).getNomeRazaoSocial(),
+                listCliente.get(i).getCpfCnpj(),
             });
         }
     }
@@ -209,30 +209,30 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
      * @param args the command line arguments
      */
 
-    public int getCodigoFornecedor() {
-        return codigoFornecedor;
+    public int getCodigoCliente() {
+        return codigoCliente;
     }
 
-    public void setCodigoFornecedor(int codigoFornecedor) {
-        this.codigoFornecedor = codigoFornecedor;
+    public void setCodigoCliente(int codigoCliente) {
+        this.codigoCliente = codigoCliente;
     }
 
-    public String getnomeRazaoSocialFornecedor() {
-        return nomeRazaoSocialFornecedor;
+    public String getNomeCliente() {
+        return nomeRazaoSocialCliente;
     }
 
-    public void setNomeRazaoSociaFornecedor(String nomeRazaoSocialFornecedor) {
-        this.nomeRazaoSocialFornecedor = nomeRazaoSocialFornecedor;
+    public void setNomeCliente(String nomeRazaoSocialCliente) {
+        this.nomeRazaoSocialCliente = nomeRazaoSocialCliente;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFornecedorSelecionar;
+    private javax.swing.JButton btnClienteSelecionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblFornecedores;
-    private javax.swing.JTextField txtPesquisarFornecedor;
+    private javax.swing.JTable tblCliente;
+    private javax.swing.JTextField txtPesquisarPerfil;
     // End of variables declaration//GEN-END:variables
 }

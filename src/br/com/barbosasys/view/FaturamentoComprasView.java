@@ -11,7 +11,7 @@ import br.com.barbosasys.model.Lancamento;
  *
  * @author helionelys
  */
-public class FaturamentoView extends javax.swing.JDialog {
+public class FaturamentoComprasView extends javax.swing.JDialog {
     // Variaveis para armazenar dados da venda
     private int codigoVenda, codTipoPagamento;
     private String nomeCliente, dataLancamento,tipoPagamento, valorDesconto, 
@@ -21,7 +21,7 @@ public class FaturamentoView extends javax.swing.JDialog {
     /**
      * Creates new form FaturamentoView
      */
-    public FaturamentoView(VendasView owner, boolean modal) {
+    public FaturamentoComprasView(ComprasView owner, boolean modal) {
         super(owner, modal);
         initComponents();
         lblCodTipodePagamento.setVisible(false);

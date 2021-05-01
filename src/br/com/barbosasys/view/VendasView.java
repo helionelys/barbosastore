@@ -18,6 +18,8 @@ import br.com.barbosasys.model.TipoPagamento;
 import br.com.barbosasys.model.Venda;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -41,8 +43,10 @@ public class VendasView extends javax.swing.JDialog {
     ClienteController clienteController = new ClienteController();
     Caixa caixa = new Caixa();
     CaixaController caixaController = new CaixaController();
+    TipoPagamento tipoPagamento = new TipoPagamento();
     TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
     ArrayList<TipoPagamento> listaTipoPagamento = new ArrayList<>();
+    FaturamentoView telaFaturamento = new FaturamentoView(this, rootPaneCheckingEnabled);
 
     DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
 
@@ -882,31 +886,10 @@ public class VendasView extends javax.swing.JDialog {
     private void btnCompraAprovar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraAprovar1ActionPerformed
         // TODO add your handling code here:
         if (testarSelecaoVendas() == true) {
-            try {
-                int linha = this.tblVendasRealizadas.getSelectedRow();
-                int codigoVendaAutorizacao = (Integer) tblVendasRealizadas.getValueAt(linha, 0);
-                String nomeClienteVenda = (String) tblVendasRealizadas.getValueAt(linha, 1);
-                String valorVenda = (String) tblVendasRealizadas.getValueAt(linha, 2);
-                String statusVendaAutorizacao = (String) tblVendasRealizadas.getValueAt(linha, 4);
-                if (statusVendaAutorizacao.equals("AGUARDANDO")) {
-                    int confirma = JOptionPane.showConfirmDialog(null, "Aprovar venda "
-                            + codigoVendaAutorizacao+" - Cliente: "+nomeClienteVenda+" valor: R$ "+valorVenda+"", "Atenção",
-                            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                    if (confirma == 0) {
-                        venda.setCodVenda(codigoVendaAutorizacao);
-                        vendasController.atualizarVendasAutorizacaoController(venda);
-                        JOptionPane.showMessageDialog(this, "Venda Aprovada com sucesso!");
-                        carregarVendas();
-                    }else if (statusVendaAutorizacao.equals("APROVADA")) {
-                        JOptionPane.showMessageDialog(this, " VENDA JÁ APROVADA !");
-                        carregarVendasAguardando();
-                    } 
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, " VENDA REPROVADA !");
-            }
-        }
+            recuperarVendaFaturameto();
     }//GEN-LAST:event_btnCompraAprovar1ActionPerformed
+
+    }    
 
     private void carregarVendasAguardando() {
         listaVendas = vendasController.getListaVendaStatusAguardandoController();
@@ -975,6 +958,8 @@ public class VendasView extends javax.swing.JDialog {
             SimpleDateFormat formatarData = new SimpleDateFormat(formatoDataMysql);
             String dataMysql = formatarData.format(dataCadastramentoCliente);
             objVenda.setDataVenda(dataMysql);
+            
+            objVenda.setTipoPagamento((tipoPagamentoController.getTipoPagamentoController(this.cbVendaTipoPagamento.getSelectedItem().toString()).getCodTipoPagamento()));
 
             // valor do Desconto da venda
             String desconto = this.txtVendaDesconto.getText();
@@ -1042,9 +1027,17 @@ public class VendasView extends javax.swing.JDialog {
             this.txtVendaCodCliente.setText(String.valueOf(venda.getCodCliente()));
             this.txtVendaNomeCliente.setText(nomeCliente);
             this.txtVendaNumero.setText(String.valueOf(venda.getCodVenda()));
-            this.txtVendaData.setText(String.valueOf(venda.getDataVenda()));
+                        
+            String dataRetorno = venda.getDataVenda();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(dataRetorno, formatter);
+            String dataCadastramentoTela = localDate.format(formatter2);
+            this.txtVendaData.setText(dataCadastramentoTela);
+            
             this.txtVendaStatus.setText(String.valueOf(venda.getDescricaStatus()));
-
+            this.cbVendaTipoPagamento.setSelectedItem(tipoPagamentoController.getTipoPagamentController(venda.getTipoPagamento()).getDescricao());
+            
             Double valorDesconto = venda.getValorDesconto();
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String DescontoTela = df.format(valorDesconto);
@@ -1082,6 +1075,45 @@ public class VendasView extends javax.swing.JDialog {
         }
     }
 
+    private boolean recuperarVendaFaturameto() {
+        telaFaturamento = new FaturamentoView(this, rootPaneCheckingEnabled);
+        try {
+            int linha = this.tblVendasRealizadas.getSelectedRow();
+            String nomeCliente = (String) tblVendasRealizadas.getValueAt(linha, 1);
+            int codigoVenda = (Integer) tblVendasRealizadas.getValueAt(linha, 0);
+            System.out.println(codigoVenda);
+            venda.setCodVenda(codigoVenda);
+            //Recupera os dados no banco de dados
+            venda = (vendasController.getVendaController(codigoVenda));
+            telaFaturamento.setLblNumeroVenda(codigoVenda);
+            telaFaturamento.setLblNomeCliente(nomeCliente);
+            
+            String dataRetorno = venda.getDataVenda();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(dataRetorno, formatter);
+            String dataVendaInclusao = localDate.format(formatter2);
+            telaFaturamento.setLblDataVenda(dataVendaInclusao);
+
+            telaFaturamento.setLblCodTipoPagamento(tipoPagamentoController.getTipoPagamentController(venda.getTipoPagamento()).getCodTipoPagamento());
+            telaFaturamento.setLblTipoPagamentoDescricao(tipoPagamentoController.getTipoPagamentController(venda.getTipoPagamento()).getDescricao());
+            Double valorDesconto = venda.getValorDesconto();
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            String DescontoTela = df.format(valorDesconto);
+            telaFaturamento.setLblValorDesconto(DescontoTela);
+            
+            Double valorRetornoTotal = venda.getValorTotal();
+            DecimalFormat dfs = new DecimalFormat("#,##0.00");
+            String ValorTotalTela = df.format(valorRetornoTotal);
+            telaFaturamento.setLblValorTotal(ValorTotalTela);
+            telaFaturamento.setVisible(true);
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Código inválido ou nenhum registro selecionado", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+    }
+
     private void atualizarVenda() {
         listaItensVendas = new ArrayList<>();
 
@@ -1106,7 +1138,7 @@ public class VendasView extends javax.swing.JDialog {
             SimpleDateFormat formatarData = new SimpleDateFormat(formatoDataMysql);
             String dataMysql = formatarData.format(dataCadastramentoCliente);
             objVenda.setDataVenda(dataMysql);
-
+            objVenda.setTipoPagamento((tipoPagamentoController.getTipoPagamentoController(this.cbVendaTipoPagamento.getSelectedItem().toString()).getCodTipoPagamento()));
             // valor do Desconto da venda
             String desconto = this.txtVendaDesconto.getText();
             String descontoFormatado = desconto.replace(".", "");
@@ -1161,7 +1193,7 @@ public class VendasView extends javax.swing.JDialog {
 
         }
     }
-    
+
     private boolean testarSelecao() {
         int selecao = tblListaItensVendas.getSelectedRow();
         if (selecao == -1) {

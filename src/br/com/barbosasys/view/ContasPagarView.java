@@ -59,22 +59,22 @@ public class ContasPagarView extends javax.swing.JDialog {
         jpContasAPagar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtLancamentoPagoPesquisar = new javax.swing.JTextField();
-        btnLancamentoPagoPesquisar = new javax.swing.JButton();
+        btnLancamentoAPagarPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblLancamentosAPagar = new javax.swing.JTable();
+        tblLancamentosAReceber = new javax.swing.JTable();
         btnContasAPagarExcluir = new javax.swing.JButton();
         btnContasAPagarCancelar = new javax.swing.JButton();
         btnContasAPagarIncluir = new javax.swing.JButton();
         btnContasAPagarEditar = new javax.swing.JButton();
         btnLancamentosAPagarImprimir = new javax.swing.JButton();
-        btnLancamentosAPagarImprimir1 = new javax.swing.JButton();
+        btnLancamentosPagar = new javax.swing.JButton();
         jpContasPagas = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jButton14 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tblLancamentosPagos = new javax.swing.JTable();
-        btnLancamentosPagosRevogar = new javax.swing.JButton();
+        tblLancamentosRecebidos = new javax.swing.JTable();
+        btnLancamentosRecebidosRevogar = new javax.swing.JButton();
         btnLancamentosPagosCancelar = new javax.swing.JButton();
         btnLancamentosPagosImprimir = new javax.swing.JButton();
         jpLancamentosContasAPagar = new javax.swing.JPanel();
@@ -133,10 +133,10 @@ public class ContasPagarView extends javax.swing.JDialog {
 
         jLabel1.setText("Descrição:");
 
-        btnLancamentoPagoPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-        btnLancamentoPagoPesquisar.setText("Buscar");
+        btnLancamentoAPagarPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
+        btnLancamentoAPagarPesquisar.setText("Buscar");
 
-        tblLancamentosAPagar.setModel(new javax.swing.table.DefaultTableModel(
+        tblLancamentosAReceber.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -152,7 +152,7 @@ public class ContasPagarView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblLancamentosAPagar);
+        jScrollPane1.setViewportView(tblLancamentosAReceber);
 
         btnContasAPagarExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Delete.png"))); // NOI18N
         btnContasAPagarExcluir.setText("Excluir");
@@ -189,11 +189,11 @@ public class ContasPagarView extends javax.swing.JDialog {
         btnLancamentosAPagarImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/print22.png"))); // NOI18N
         btnLancamentosAPagarImprimir.setText("Imprimir");
 
-        btnLancamentosAPagarImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Dollar.png"))); // NOI18N
-        btnLancamentosAPagarImprimir1.setText("Pagar");
-        btnLancamentosAPagarImprimir1.addActionListener(new java.awt.event.ActionListener() {
+        btnLancamentosPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Dollar.png"))); // NOI18N
+        btnLancamentosPagar.setText("Pagar");
+        btnLancamentosPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLancamentosAPagarImprimir1ActionPerformed(evt);
+                btnLancamentosPagarActionPerformed(evt);
             }
         });
 
@@ -210,9 +210,9 @@ public class ContasPagarView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtLancamentoPagoPesquisar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLancamentoPagoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnLancamentoAPagarPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpContasAPagarLayout.createSequentialGroup()
-                        .addComponent(btnLancamentosAPagarImprimir1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLancamentosPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLancamentosAPagarImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -235,7 +235,7 @@ public class ContasPagarView extends javax.swing.JDialog {
                 .addGroup(jpContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtLancamentoPagoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLancamentoPagoPesquisar))
+                    .addComponent(btnLancamentoAPagarPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -245,13 +245,13 @@ public class ContasPagarView extends javax.swing.JDialog {
                     .addComponent(btnContasAPagarIncluir)
                     .addComponent(btnContasAPagarEditar)
                     .addComponent(btnLancamentosAPagarImprimir)
-                    .addComponent(btnLancamentosAPagarImprimir1))
+                    .addComponent(btnLancamentosPagar))
                 .addContainerGap())
         );
 
         jpContasAPagarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnContasAPagarCancelar, btnContasAPagarEditar, btnContasAPagarExcluir, btnContasAPagarIncluir});
 
-        jpContasAPagarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnLancamentosAPagarImprimir, btnLancamentosAPagarImprimir1});
+        jpContasAPagarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnLancamentosAPagarImprimir, btnLancamentosPagar});
 
         jTabbedPaneContaAPagar.addTab("Contas a Pagar", jpContasAPagar);
 
@@ -260,7 +260,7 @@ public class ContasPagarView extends javax.swing.JDialog {
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
         jButton14.setText("Buscar");
 
-        tblLancamentosPagos.setModel(new javax.swing.table.DefaultTableModel(
+        tblLancamentosRecebidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -276,13 +276,13 @@ public class ContasPagarView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(tblLancamentosPagos);
+        jScrollPane4.setViewportView(tblLancamentosRecebidos);
 
-        btnLancamentosPagosRevogar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Back.png"))); // NOI18N
-        btnLancamentosPagosRevogar.setText("Revogar Pagamento");
-        btnLancamentosPagosRevogar.addActionListener(new java.awt.event.ActionListener() {
+        btnLancamentosRecebidosRevogar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Back.png"))); // NOI18N
+        btnLancamentosRecebidosRevogar.setText("Revogar Pagamento");
+        btnLancamentosRecebidosRevogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLancamentosPagosRevogarActionPerformed(evt);
+                btnLancamentosRecebidosRevogarActionPerformed(evt);
             }
         });
 
@@ -314,7 +314,7 @@ public class ContasPagarView extends javax.swing.JDialog {
                     .addGroup(jpContasPagasLayout.createSequentialGroup()
                         .addComponent(btnLancamentosPagosImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLancamentosPagosRevogar)
+                        .addComponent(btnLancamentosRecebidosRevogar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLancamentosPagosCancelar)))
                 .addContainerGap())
@@ -332,7 +332,7 @@ public class ContasPagarView extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnLancamentosPagosRevogar)
+                        .addComponent(btnLancamentosRecebidosRevogar)
                         .addComponent(btnLancamentosPagosCancelar))
                     .addComponent(btnLancamentosPagosImprimir))
                 .addContainerGap())
@@ -541,11 +541,11 @@ public class ContasPagarView extends javax.swing.JDialog {
 
     private void btnLancamentoBuscaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentoBuscaFornecedorActionPerformed
         // TODO add your handling code here:
-        BuscarFornecedorView telaBuscaFornecedor = new BuscarFornecedorView(this, rootPaneCheckingEnabled);
+        BuscarFornecedorAPagarView telaBuscaFornecedor = new BuscarFornecedorAPagarView(this, rootPaneCheckingEnabled);
         telaBuscaFornecedor.setVisible(true);
 
         txtLancamentoCodFornecedor.setText(String.valueOf(telaBuscaFornecedor.getCodigoFornecedor()));
-        txtLancamentoNomeFornecedor.setText(String.valueOf(telaBuscaFornecedor.getNomeFornecedor()));
+        txtLancamentoNomeFornecedor.setText(String.valueOf(telaBuscaFornecedor.getnomeRazaoSocialFornecedor()));
     }//GEN-LAST:event_btnLancamentoBuscaFornecedorActionPerformed
 
     private void btnContasAPagarIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContasAPagarIncluirActionPerformed
@@ -602,10 +602,10 @@ public class ContasPagarView extends javax.swing.JDialog {
     private void btnContasAPagarExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContasAPagarExcluirActionPerformed
         // TODO add your handling code here:
         if (testarSelecao() == true) {
-            int linha = tblLancamentosAPagar.getSelectedRow();
-            int codLancamento = (int) tblLancamentosAPagar.getValueAt(linha, 0);
-            String nomeFornecedor = (String) tblLancamentosAPagar.getValueAt(linha, 2);
-            String valor = (String) tblLancamentosAPagar.getValueAt(linha, 5);
+            int linha = tblLancamentosAReceber.getSelectedRow();
+            int codLancamento = (int) tblLancamentosAReceber.getValueAt(linha, 0);
+            String nomeFornecedor = (String) tblLancamentosAReceber.getValueAt(linha, 2);
+            String valor = (String) tblLancamentosAReceber.getValueAt(linha, 5);
 
             // Questiona se realmente deseja excluir
             int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir o lancamento"
@@ -627,13 +627,13 @@ public class ContasPagarView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnContasAPagarExcluirActionPerformed
 
-    private void btnLancamentosAPagarImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentosAPagarImprimir1ActionPerformed
+    private void btnLancamentosPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentosPagarActionPerformed
         // TODO add your handling code here: if (testarSelecao() == true) {
         if (testarSelecao() == true) {
-            int linha = tblLancamentosAPagar.getSelectedRow();
-            int codLancamento = (int) tblLancamentosAPagar.getValueAt(linha, 0);
-            String nomeFornecedor = (String) tblLancamentosAPagar.getValueAt(linha, 2);
-            String valor = (String) tblLancamentosAPagar.getValueAt(linha, 5);
+            int linha = tblLancamentosAReceber.getSelectedRow();
+            int codLancamento = (int) tblLancamentosAReceber.getValueAt(linha, 0);
+            String nomeFornecedor = (String) tblLancamentosAReceber.getValueAt(linha, 2);
+            String valor = (String) tblLancamentosAReceber.getValueAt(linha, 5);
 
             // Questiona se realmente deseja excluir
             int opcao = JOptionPane.showConfirmDialog(this, "Efetuar pagamento do lancamento"
@@ -652,15 +652,15 @@ public class ContasPagarView extends javax.swing.JDialog {
                 }
             }
         }
-    }//GEN-LAST:event_btnLancamentosAPagarImprimir1ActionPerformed
+    }//GEN-LAST:event_btnLancamentosPagarActionPerformed
 
-    private void btnLancamentosPagosRevogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentosPagosRevogarActionPerformed
+    private void btnLancamentosRecebidosRevogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentosRecebidosRevogarActionPerformed
         // TODO add your handling code here:
         if (testarSelecaoLancamentosBaixados()== true) {
-            int linha = tblLancamentosPagos.getSelectedRow();
-            int codLancamento = (int) tblLancamentosPagos.getValueAt(linha, 0);
-            String nomeFornecedor = (String) tblLancamentosPagos.getValueAt(linha, 2);
-            String valor = (String) tblLancamentosPagos.getValueAt(linha, 5);
+            int linha = tblLancamentosRecebidos.getSelectedRow();
+            int codLancamento = (int) tblLancamentosRecebidos.getValueAt(linha, 0);
+            String nomeFornecedor = (String) tblLancamentosRecebidos.getValueAt(linha, 2);
+            String valor = (String) tblLancamentosRecebidos.getValueAt(linha, 5);
 
             // Questiona se realmente deseja excluir
             int opcao = JOptionPane.showConfirmDialog(this, "Efetuar revogação de pagamento"
@@ -679,7 +679,7 @@ public class ContasPagarView extends javax.swing.JDialog {
                 }
             }
         }
-    }//GEN-LAST:event_btnLancamentosPagosRevogarActionPerformed
+    }//GEN-LAST:event_btnLancamentosRecebidosRevogarActionPerformed
 
     private void DadosLimpeza() {
         listaTiposPagamento();
@@ -705,7 +705,7 @@ public class ContasPagarView extends javax.swing.JDialog {
     }
 
     private boolean testarSelecao() {
-        int linhaSelecionada = tblLancamentosAPagar.getSelectedRow();
+        int linhaSelecionada = tblLancamentosAReceber.getSelectedRow();
         if (linhaSelecionada == -1) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha para operação");
             return false;
@@ -714,7 +714,7 @@ public class ContasPagarView extends javax.swing.JDialog {
     }
     
     private boolean testarSelecaoLancamentosBaixados() {
-        int linhaSelecionada = tblLancamentosPagos.getSelectedRow();
+        int linhaSelecionada = tblLancamentosRecebidos.getSelectedRow();
         if (linhaSelecionada == -1) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha para operação");
             return false;
@@ -754,7 +754,7 @@ public class ContasPagarView extends javax.swing.JDialog {
 
     private void carregarLancamentosAPagarAberto() {
         listaLancamentoContaAPagar = lancamentoController.getListaLancamentoAPagarAbertoController();
-        DefaultTableModel modelo = (DefaultTableModel) tblLancamentosAPagar.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tblLancamentosAReceber.getModel();
         modelo.setNumRows(0);
         int cont = listaLancamentoContaAPagar.size();
         for (int i = 0; i < cont; i++) {
@@ -773,7 +773,7 @@ public class ContasPagarView extends javax.swing.JDialog {
 
     private void carregarLancamentosAPagarBaixados() {
         listaLancamentoContaAPagar = lancamentoController.getListaLancamentoAPagarBaixadoController();
-        DefaultTableModel modelo = (DefaultTableModel) tblLancamentosPagos.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tblLancamentosRecebidos.getModel();
         modelo.setNumRows(0);
         int cont = listaLancamentoContaAPagar.size();
         for (int i = 0; i < cont; i++) {
@@ -792,8 +792,8 @@ public class ContasPagarView extends javax.swing.JDialog {
 
     private boolean recuperarLancamento() {
 
-        int linha = this.tblLancamentosAPagar.getSelectedRow();
-        int codLancamento = (Integer) tblLancamentosAPagar.getValueAt(linha, 0);
+        int linha = this.tblLancamentosAReceber.getSelectedRow();
+        int codLancamento = (Integer) tblLancamentosAReceber.getValueAt(linha, 0);
 
         try {
             lancamento = lancamentoController.getLancamentoControllerAPagar(codLancamento);
@@ -945,15 +945,15 @@ public class ContasPagarView extends javax.swing.JDialog {
     private javax.swing.JButton btnContasAPagarEditar;
     private javax.swing.JButton btnContasAPagarExcluir;
     private javax.swing.JButton btnContasAPagarIncluir;
+    private javax.swing.JButton btnLancamentoAPagarPesquisar;
     private javax.swing.JButton btnLancamentoBuscaFornecedor;
     private javax.swing.JButton btnLancamentoCancelar;
-    private javax.swing.JButton btnLancamentoPagoPesquisar;
     private javax.swing.JButton btnLancamentoSalvar;
     private javax.swing.JButton btnLancamentosAPagarImprimir;
-    private javax.swing.JButton btnLancamentosAPagarImprimir1;
+    private javax.swing.JButton btnLancamentosPagar;
     private javax.swing.JButton btnLancamentosPagosCancelar;
     private javax.swing.JButton btnLancamentosPagosImprimir;
-    private javax.swing.JButton btnLancamentosPagosRevogar;
+    private javax.swing.JButton btnLancamentosRecebidosRevogar;
     private javax.swing.JComboBox<String> cbLancamentoTipoPagamento;
     private javax.swing.JButton jButton14;
     private javax.swing.JLabel jLabel1;
@@ -977,8 +977,8 @@ public class ContasPagarView extends javax.swing.JDialog {
     private javax.swing.JPanel jpContasPagas;
     private javax.swing.JPanel jpLancamentosContasAPagar;
     private javax.swing.JLabel labelPagamento;
-    private javax.swing.JTable tblLancamentosAPagar;
-    private javax.swing.JTable tblLancamentosPagos;
+    private javax.swing.JTable tblLancamentosAReceber;
+    private javax.swing.JTable tblLancamentosRecebidos;
     private javax.swing.JTextField txtLancamentoCodFornecedor;
     private javax.swing.JFormattedTextField txtLancamentoDataInclusao;
     private javax.swing.JFormattedTextField txtLancamentoDataPagamento;

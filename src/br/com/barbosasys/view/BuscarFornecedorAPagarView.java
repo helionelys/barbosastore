@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Helionelys
  */
-public class BuscarFornecedorView extends javax.swing.JDialog {
+public class BuscarFornecedorAPagarView extends javax.swing.JDialog {
     
      //Variavel para armazemar Código e Nome do perfil do usuario
     private int codigoFornecedor;
@@ -30,7 +30,7 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
     /**
      * Creates new form BuscaFornecedors
      */
-    public BuscarFornecedorView(ComprasView owner, boolean modal) {
+    public BuscarFornecedorAPagarView(ContasPagarView owner, boolean modal) {
         super(owner, modal);
         initComponents();
         this.carregarFornecedores();
