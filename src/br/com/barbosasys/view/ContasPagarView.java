@@ -154,6 +154,11 @@ public class ContasPagarView extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tblLancamentosAPagar);
 
         btnContasAPagarExcluir.setText("Excluir");
+        btnContasAPagarExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContasAPagarExcluirActionPerformed(evt);
+            }
+        });
 
         btnContasAPagarCancelar.setText("Cancelar");
         btnContasAPagarCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +184,11 @@ public class ContasPagarView extends javax.swing.JDialog {
         btnLancamentosAPagarImprimir.setText("Imprimir");
 
         btnLancamentosAPagarImprimir1.setText("Pagar");
+        btnLancamentosAPagarImprimir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLancamentosAPagarImprimir1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpContasAPagarLayout = new javax.swing.GroupLayout(jpContasAPagar);
         jpContasAPagar.setLayout(jpContasAPagarLayout);
@@ -363,6 +373,11 @@ public class ContasPagarView extends javax.swing.JDialog {
         txtLancamentoDataInclusao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnLancamentoCancelar.setText("Cancelar");
+        btnLancamentoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLancamentoCancelarActionPerformed(evt);
+            }
+        });
 
         btnLancamentoSalvar.setText("Salvar");
         btnLancamentoSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -559,6 +574,66 @@ public class ContasPagarView extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnLancamentosPagosCancelarActionPerformed
 
+    private void btnLancamentoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentoCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnLancamentoCancelarActionPerformed
+
+    private void btnContasAPagarExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContasAPagarExcluirActionPerformed
+        // TODO add your handling code here:
+        if (testarSelecao() == true) {
+            int linha = tblLancamentosAPagar.getSelectedRow();
+            int codLancamento = (int) tblLancamentosAPagar.getValueAt(linha, 0);
+            String nomeFornecedor = (String) tblLancamentosAPagar.getValueAt(linha, 2);
+            String valor = (String) tblLancamentosAPagar.getValueAt(linha, 5);
+
+            // Questiona se realmente deseja excluir
+            int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir o lancamento"
+                    + "?\n" +"Codigo: "+ codLancamento + "\n"+"Fornecedor: " + nomeFornecedor + "\n"+"Valor: R$ " + valor, "Atenção", JOptionPane.YES_NO_OPTION);
+            
+            ////se sim exclui, se não, faz nada3
+            if (opcao == JOptionPane.OK_OPTION) {
+                if (lancamentoController.excluirLancamentoController(codLancamento)) {
+                    JOptionPane.showMessageDialog(this, "Registro excluído com sucesso!");
+                    carregarLancamentosAPagarAberto();
+                    carregarLancamentosAPagarBaixados();
+                    jTabbedPaneContaAPagar.setSelectedIndex(0);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro!", "ERRO", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+        }
+    }//GEN-LAST:event_btnContasAPagarExcluirActionPerformed
+
+    private void btnLancamentosAPagarImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentosAPagarImprimir1ActionPerformed
+        // TODO add your handling code here: if (testarSelecao() == true) {
+            int linha = tblLancamentosAPagar.getSelectedRow();
+            int codLancamento = (int) tblLancamentosAPagar.getValueAt(linha, 0);
+            String nomeFornecedor = (String) tblLancamentosAPagar.getValueAt(linha, 2);
+            String valor = (String) tblLancamentosAPagar.getValueAt(linha, 5);
+
+            // Questiona se realmente deseja excluir
+            int opcao = JOptionPane.showConfirmDialog(this, "Efetuar pagamento do lancamento"
+                    + "?\n" +"Codigo: "+ codLancamento + "\n"+"Fornecedor: " + nomeFornecedor + "\n"+"Valor: R$ " + valor, "Atenção", JOptionPane.YES_NO_OPTION);
+            
+            ////se sim exclui, se não, faz nada3
+            if (opcao == JOptionPane.OK_OPTION) {
+                if (lancamentoController.baixarLancamentoControllerAPagar(codLancamento)) {
+                    JOptionPane.showMessageDialog(this, "Pagamento efetuado com sucesso!");
+                    carregarLancamentosAPagarAberto();
+                    carregarLancamentosAPagarBaixados();
+                    jTabbedPaneContaAPagar.setSelectedIndex(1);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro!", "ERRO", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+        
+    }//GEN-LAST:event_btnLancamentosAPagarImprimir1ActionPerformed
+
     private void DadosLimpeza() {
         listaTiposPagamento();
         carregarLancamentosAPagarAberto();
@@ -590,8 +665,8 @@ public class ContasPagarView extends javax.swing.JDialog {
         }
         return true;
     }
-    
-    private void camposDesativados(){
+
+    private void camposDesativados() {
         this.txtLancamentoNumero.setEnabled(false);
         this.txtLancamentoCodFornecedor.setEnabled(false);
         this.txtLancamentoNomeFornecedor.setEnabled(false);
@@ -605,8 +680,8 @@ public class ContasPagarView extends javax.swing.JDialog {
         this.txtLancamentoObservacao.setEnabled(false);
         this.btnLancamentoSalvar.setEnabled(false);
     }
-    
-        private void camposAtivados(){
+
+    private void camposAtivados() {
         this.txtLancamentoNumero.setEnabled(true);
         this.txtLancamentoCodFornecedor.setEnabled(true);
         this.txtLancamentoNomeFornecedor.setEnabled(true);
@@ -620,7 +695,6 @@ public class ContasPagarView extends javax.swing.JDialog {
         this.txtLancamentoObservacao.setEnabled(true);
         this.btnLancamentoSalvar.setEnabled(true);
     }
-
 
     private void carregarLancamentosAPagarAberto() {
         listaLancamentoContaAPagar = lancamentoController.getListaLancamentoAPagarAbertoController();
@@ -672,34 +746,33 @@ public class ContasPagarView extends javax.swing.JDialog {
             this.txtLancamentoCodFornecedor.setText(String.valueOf(lancamento.getPessoa().getCodigo()));
             this.txtLancamentoNomeFornecedor.setText(String.valueOf(lancamento.getPessoa().getNomeRazaoSocial()));
             this.txtLancamentoDescricao.setText(lancamento.getDescricaoLancamento());
-            
+
             String dataRetorno = lancamento.getDataLancamento();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate = LocalDate.parse(dataRetorno, formatter);
             String dataLancamentoInclusao = localDate.format(formatter2);
             this.txtLancamentoDataInclusao.setText(dataLancamentoInclusao);
-            
+
             String dataRetorno2 = lancamento.getDataLancamento();
             DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate2 = LocalDate.parse(dataRetorno2, formatter3);
             String dataLancamentoVencimento = localDate2.format(formatter4);
             this.txtLancamentoDataVencimento.setText(dataLancamentoVencimento);
-            
+
             String dataRetorno3 = lancamento.getDataLancamento();
             DateTimeFormatter formatter5 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter formatter6 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate3 = LocalDate.parse(dataRetorno3, formatter5);
             String dataLancamentoPagamento = localDate3.format(formatter6);
             this.txtLancamentoDataPagamento.setText(dataLancamentoPagamento);
-            
-            
+
             Double valorLancamentoRetorno = lancamento.getValorLancamento();
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String valorLancamentoTela = df.format(valorLancamentoRetorno);
             this.txtLancamentoValor.setText(valorLancamentoTela);
-            
+
             this.cbLancamentoTipoPagamento.setSelectedItem(tipoPagamentoController.getTipoPagamentController(lancamento.getCodTipoPagamento()).getDescricao());
             this.txtLancamentoObservacao.setText(lancamento.getObservacao());
             return true;
@@ -770,7 +843,6 @@ public class ContasPagarView extends javax.swing.JDialog {
 //        LocalDate localDateIn = LocalDate.parse(dataLancamentoInclusao, dataInRecebida);
 //        String dataLacamentoInclusaoBanco = localDateIn.format(dataInFormatada);
 //        lancamento.setDataVencimento(dataLacamentoInclusaoBanco);
-
         String dataLancamentoVencimento = this.txtLancamentoDataVencimento.getText();
         DateTimeFormatter dataRecebida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter dataFormatada = DateTimeFormatter.ofPattern("yyyy-MM-dd");

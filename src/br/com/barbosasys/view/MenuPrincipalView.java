@@ -381,6 +381,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenu8.setText("Vendas");
 
         MenuMovimentoVendaConsulta.setText("Consultar Vendas");
+        MenuMovimentoVendaConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuMovimentoVendaConsultaActionPerformed(evt);
+            }
+        });
         jMenu8.add(MenuMovimentoVendaConsulta);
 
         MenuMovimentoVendaRegistrar.setText("Registrar Venda");
@@ -711,6 +716,14 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         telaCompras.setLocationRelativeTo(this);
         telaCompras.setVisible(true);
     }//GEN-LAST:event_MenuMovimentoRegistrarComprasActionPerformed
+
+    private void MenuMovimentoVendaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoVendaConsultaActionPerformed
+        // TODO add your handling code here:
+        VendasView telaVendas = new VendasView(this, rootPaneCheckingEnabled);
+        telaVendas.setLocationRelativeTo(this);
+        telaVendas.setVisible(true);
+        
+    }//GEN-LAST:event_MenuMovimentoVendaConsultaActionPerformed
     
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;

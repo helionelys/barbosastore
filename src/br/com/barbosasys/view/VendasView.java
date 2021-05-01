@@ -1156,7 +1156,7 @@ public class VendasView extends javax.swing.JDialog {
 
         }
     }
-
+    
     private boolean testarSelecao() {
         int selecao = tblListaItensVendas.getSelectedRow();
         if (selecao == -1) {
