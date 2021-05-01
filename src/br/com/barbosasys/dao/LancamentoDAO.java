@@ -102,22 +102,25 @@ public class LancamentoDAO extends ConexaoBanco {
             this.conectar();
             this.executarSQL(
                     "SELECT "
-                    + "CODLANCAMENTO,"
+                    + "TBL_LANCAMENTO.CODLANCAMENTO,"
                     //+ "CODCLIENTE,"
-                    + "CODFORNECEDOR,"
-                    + "DESCRICAO,"
-                    + "DATALANCAMENTO,"
-                    + "DATAVENCIMENTO,"
-                    + "DATAPAGAMENTO,"
-                    + "VALOR,"
-                    + "CODTIPOPAGAMENTO,"
-                    + "OBSERVACAO,"
-                    + "CODTIPOLANCAMENTO,"
-                    + "CODSTATUSLANCAMENTO"
-                    + "FROM"
+                    + "TBL_LANCAMENTO.CODFORNECEDOR,"
+                    + "TBL_FORNECEDOR.NOME_RAZAOSOCIAL,"        
+                    + "TBL_LANCAMENTO.DESCRICAO,"
+                    + "TBL_LANCAMENTO.DATALANCAMENTO,"
+                    + "TBL_LANCAMENTO.DATAVENCIMENTO,"
+                    + "TBL_LANCAMENTO.DATAPAGAMENTO,"
+                    + "TBL_LANCAMENTO.VALOR,"
+                    + "TBL_LANCAMENTO.CODTIPOPAGAMENTO,"
+                    + "TBL_LANCAMENTO.OBSERVACAO,"
+                    + "TBL_LANCAMENTO.CODTIPOLANCAMENTO,"
+                    + "TBL_LANCAMENTO.CODSTATUSLANCAMENTO"
+                    + " FROM"
                     + " TBL_LANCAMENTO"
+                    + " INNER JOIN TBL_FORNECEDOR"
+                    + " ON TBL_LANCAMENTO.CODFORNECEDOR = TBL_FORNECEDOR.CODFORNECEDOR"        
                     + " WHERE"
-                    + " CODLANCAMENTO = '" + codigo + "'"
+                    + " TBL_LANCAMENTO.CODLANCAMENTO = '" + codigo + "'"
                     + ";"
             );
 
@@ -125,16 +128,17 @@ public class LancamentoDAO extends ConexaoBanco {
 
                 lancamento.setCodLancamento(this.getResultSet().getInt(1));
                 pessoa.setCodigo(Integer.parseInt(this.getResultSet().getString(2)));
+                pessoa.setNomeRazaoSocial(this.getResultSet().getString(3));
                 lancamento.setPessoa(pessoa);
-                lancamento.setDescricaoLancamento(this.getResultSet().getString(3));
-                lancamento.setDataLancamento(this.getResultSet().getString(4));
-                lancamento.setDataVencimento(this.getResultSet().getString(5));
-                lancamento.setDataPagamento(this.getResultSet().getString(6));
-                lancamento.setValorLancamento(Double.parseDouble(this.getResultSet().getString(7)));
-                lancamento.setCodTipoPagamento((this.getResultSet().getInt(8)));
-                lancamento.setObservacao(this.getResultSet().getString(9));
-                lancamento.setCodTipoLancamento(this.getResultSet().getInt(10));
-                lancamento.setCodStatusLancamento(this.getResultSet().getInt(11));
+                lancamento.setDescricaoLancamento(this.getResultSet().getString(4));
+                lancamento.setDataLancamento(this.getResultSet().getString(5));
+                lancamento.setDataVencimento(this.getResultSet().getString(6));
+                lancamento.setDataPagamento(this.getResultSet().getString(7));
+                lancamento.setValorLancamento(Double.parseDouble(this.getResultSet().getString(8)));
+                lancamento.setCodTipoPagamento((this.getResultSet().getInt(9)));
+                lancamento.setObservacao(this.getResultSet().getString(10));
+                lancamento.setCodTipoLancamento(this.getResultSet().getInt(11));
+                lancamento.setCodStatusLancamento(this.getResultSet().getInt(12));
 
             }
         } catch (Exception e) {
@@ -396,10 +400,10 @@ public class LancamentoDAO extends ConexaoBanco {
                     "UPDATE TBL_LANCAMENTO SET "
                     + "CODFORNECEDOR = '" + lancamento.getPessoa().getCodigo()+ "',"
                     + "DESCRICAO = '" + lancamento.getDescricaoLancamento()+ "',"
-                    + "DATALANCAMENTO = '" + lancamento.getDataLancamento()+ "',"
+                    //+ "DATALANCAMENTO = '" + lancamento.getDataLancamento()+ "',"
                     + "DATAVENCIMENTO = '" + lancamento.getDataVencimento()+ "',"
                     + "DATAPAGAMENTO = '" + lancamento.getDataPagamento()+ "',"
-                    + "VALOR = '" + lancamento.getDataPagamento()+ "',"
+                    + "VALOR = '" + lancamento.getValorLancamento()+ "',"
                     + "CODTIPOPAGAMENTO = '" + lancamento.getCodTipoPagamento()+ "',"
                     + "OBSERVACAO = '"+ lancamento.getObservacao()+ "'"
                     + "WHERE "
@@ -422,10 +426,10 @@ public class LancamentoDAO extends ConexaoBanco {
                     "UPDATE TBL_LANCAMENTO SET "
                     + "CODCLIENTE = '" + lancamento.getPessoa().getCodigo()+ "',"
                     + "DESCRICAO = '" + lancamento.getDescricaoLancamento()+ "',"
-                    + "DATALANCAMENTO = '" + lancamento.getDataLancamento()+ "',"
+                   // + "DATALANCAMENTO = '" + lancamento.getDataLancamento()+ "',"
                     + "DATAVENCIMENTO = '" + lancamento.getDataVencimento()+ "',"
                     + "DATAPAGAMENTO = '" + lancamento.getDataPagamento()+ "',"
-                    + "VALOR = '" + lancamento.getDataPagamento()+ "',"
+                    + "VALOR = '" + lancamento.getValorLancamento()+ "',"
                     + "CODTIPOPAGAMENTO = '" + lancamento.getCodTipoPagamento()+ "',"
                     + "OBSERVACAO = '"+ lancamento.getObservacao()+ "'"
                     + "WHERE "
@@ -475,8 +479,20 @@ public class LancamentoDAO extends ConexaoBanco {
                 pessoa.setCodigo(this.getResultSet().getInt(3));
                 pessoa.setNomeRazaoSocial(this.getResultSet().getString(4));
                 lancamento.setPessoa(pessoa);
-                lancamento.setDataLancamento(this.getResultSet().getString(5));
-                lancamento.setDataVencimento(this.getResultSet().getString(6));
+                
+                String dataRetorno = (this.getResultSet().getString(5));
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate localDate = LocalDate.parse(dataRetorno, formatter);
+                String dataLancamentoFormatada = localDate.format(formatter2);
+                lancamento.setDataLancamento(dataLancamentoFormatada);
+                
+                String dataRetorno2 = (this.getResultSet().getString(6));
+                DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate localDate2 = LocalDate.parse(dataRetorno2, formatter3);
+                String dataLancamentoFormatada2 = localDate2.format(formatter4);
+                lancamento.setDataVencimento(dataLancamentoFormatada2);
                 lancamento.setValorLancamento(Double.parseDouble(this.getResultSet().getString(7)));
                 listaLancamentoAPagarBaixado.add(lancamento);
             }
