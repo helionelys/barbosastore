@@ -133,6 +133,7 @@ public class ContasPagarView extends javax.swing.JDialog {
 
         jLabel1.setText("Descrição:");
 
+        btnLancamentoPagoPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
         btnLancamentoPagoPesquisar.setText("Buscar");
 
         tblLancamentosAPagar.setModel(new javax.swing.table.DefaultTableModel(
@@ -167,6 +168,7 @@ public class ContasPagarView extends javax.swing.JDialog {
             }
         });
 
+        btnContasAPagarIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Create.png"))); // NOI18N
         btnContasAPagarIncluir.setText("Incluir");
         btnContasAPagarIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +183,7 @@ public class ContasPagarView extends javax.swing.JDialog {
             }
         });
 
+        btnLancamentosAPagarImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/print22.png"))); // NOI18N
         btnLancamentosAPagarImprimir.setText("Imprimir");
 
         btnLancamentosAPagarImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Dollar.png"))); // NOI18N
@@ -231,7 +234,7 @@ public class ContasPagarView extends javax.swing.JDialog {
                     .addComponent(txtLancamentoPagoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLancamentoPagoPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnContasAPagarExcluir)
@@ -244,6 +247,8 @@ public class ContasPagarView extends javax.swing.JDialog {
         );
 
         jpContasAPagarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnContasAPagarCancelar, btnContasAPagarEditar, btnContasAPagarExcluir, btnContasAPagarIncluir});
+
+        jpContasAPagarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnLancamentosAPagarImprimir, btnLancamentosAPagarImprimir1});
 
         jTabbedPaneContaAPagar.addTab("Contas a Pagar", jpContasAPagar);
 

@@ -137,15 +137,15 @@
                           <Component id="btnLancamentoPagoPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="289" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="283" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnContasAPagarExcluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnContasAPagarCancelar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnContasAPagarIncluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnContasAPagarEditar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnLancamentosAPagarImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnLancamentosAPagarImprimir1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLancamentosAPagarImprimir" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLancamentosAPagarImprimir1" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -162,6 +162,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnLancamentoPagoPesquisar">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/barbosasys/images/pesquisar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
             </Component>
@@ -240,6 +243,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnContasAPagarIncluir">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/barbosasys/images/Create.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Incluir"/>
               </Properties>
               <Events>
@@ -256,6 +262,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnLancamentosAPagarImprimir">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/barbosasys/images/print22.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Imprimir"/>
               </Properties>
             </Component>
