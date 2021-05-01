@@ -27,6 +27,7 @@ public class ProdutoDAO extends ConexaoBanco {
                     + "DESCRICAO,"
                     + "CODCATEGORIA,"
                     + "VALOR,"
+                    + "VALORCOMPRA,"
                     + "CODFORNECEDOR,"
                     + "FABRICANTE,"
                     + "CODUNIDADEMEDIDA,"
@@ -38,6 +39,7 @@ public class ProdutoDAO extends ConexaoBanco {
                     + "'" + produto.getDescricao() + "',"
                     + "'" + produto.getCodCategoriaProduto() + "',"
                     + "'" + produto.getValor() + "',"
+                    + "'" + produto.getValorCompra()+ "',"
                     + "'" + produto.getCodFornecedor() + "',"
                     + "'" + produto.getFabricante() + "',"
                     + "'" + produto.getCodUnidadeMedida() + "',"
@@ -99,9 +101,10 @@ public class ProdutoDAO extends ConexaoBanco {
                     + "CODUNIDADEMEDIDA," //4
                     + "CODCATEGORIA," //5
                     + "VALOR," //6
-                    + "CODFORNECEDOR," //7
-                    + "FABRICANTE," //8
-                    + "OBSERVACAO" //9
+                    + "VALORCOMPRA," //7
+                    + "CODFORNECEDOR," //8
+                    + "FABRICANTE," //9
+                    + "OBSERVACAO" //10
                     + " FROM"
                     + " TBL_PRODUTO"
                     + " WHERE"
@@ -117,6 +120,7 @@ public class ProdutoDAO extends ConexaoBanco {
                 produto.setCodUnidadeMedida(this.getResultSet().getInt(4));
                 produto.setCodCategoriaProduto(this.getResultSet().getInt(5));
                 produto.setValor(Double.parseDouble(this.getResultSet().getString(6)));
+                produto.setValorCompra(Double.parseDouble(this.getResultSet().getString(6)));
                 produto.setCodFornecedor(this.getResultSet().getInt(7));
                 produto.setFabricante(this.getResultSet().getString(8));
                 produto.setObservacao(this.getResultSet().getString(9));
@@ -174,6 +178,7 @@ public class ProdutoDAO extends ConexaoBanco {
                     + "CODUNIDADEMEDIDA,"
                     + "CODCATEGORIA,"
                     + "VALOR,"
+                    + "VALORCOMPRA,"
                     + "CODFORNECEDOR,"
                     + "FABRICANTE,"
                     + "OBSERVACAO"
@@ -191,9 +196,10 @@ public class ProdutoDAO extends ConexaoBanco {
                 produto.setCodUnidadeMedida(this.getResultSet().getInt(4));
                 produto.setCodCategoriaProduto(this.getResultSet().getInt(5));
                 produto.setValor(Double.parseDouble(this.getResultSet().getString(6)));
-                produto.setCodFornecedor(this.getResultSet().getInt(7));
-                produto.setFabricante(this.getResultSet().getString(8));
-                produto.setObservacao(this.getResultSet().getString(9));
+                produto.setValorCompra(Double.parseDouble(this.getResultSet().getString(7)));
+                produto.setCodFornecedor(this.getResultSet().getInt(8));
+                produto.setFabricante(this.getResultSet().getString(9));
+                produto.setObservacao(this.getResultSet().getString(10));
 
             }
         } catch (Exception e) {
@@ -352,6 +358,7 @@ public class ProdutoDAO extends ConexaoBanco {
                     + "CODUNIDADEMEDIDA = '" + produto.getCodUnidadeMedida()+ "',"
                     + "CODCATEGORIA = '" + produto.getCodCategoriaProduto() + "',"
                     + "VALOR = '" + produto.getValor()+ "',"
+                    + "VALORCOMPRA = '" + produto.getValorCompra()+ "',"
                     + "CODFORNECEDOR = '" + produto.getCodFornecedor()+ "',"
                     + "FABRICANTE = '" + produto.getFabricante() + "',"
                     + "OBSERVACAO = '" + produto.getObservacao() + "'"

@@ -712,7 +712,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
     private void MenuMovimentoRegistrarComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoRegistrarComprasActionPerformed
         // TODO add your handling code here:
-        ComprasViewOld telaCompras = new ComprasViewOld(this, rootPaneCheckingEnabled);
+        ComprasView telaCompras = new ComprasView(this, rootPaneCheckingEnabled);
         telaCompras.setLocationRelativeTo(this);
         telaCompras.setVisible(true);
     }//GEN-LAST:event_MenuMovimentoRegistrarComprasActionPerformed

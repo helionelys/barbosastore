@@ -30,7 +30,7 @@ public class BuscarFornecedorAPagarView extends javax.swing.JDialog {
     /**
      * Creates new form BuscaFornecedors
      */
-    public BuscarFornecedorAPagarView(ContasPagarView owner, boolean modal) {
+    public BuscarFornecedorAPagarView(ContasAPagarView owner, boolean modal) {
         super(owner, modal);
         initComponents();
         this.carregarFornecedores();
@@ -58,7 +58,7 @@ public class BuscarFornecedorAPagarView extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Barbosa Store - Usuários");
+        setTitle("Barbosa Store - Fornecedores");
 
         jPanel4.setBackground(new java.awt.Color(51, 153, 255));
 

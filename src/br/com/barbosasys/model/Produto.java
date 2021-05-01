@@ -10,6 +10,7 @@ public class Produto {
     private String descricao;
     private int codCategoriaProduto;
     private Double valor;
+    private Double valorCompra;
     private int estoque;
     private int codFornecedor;
     private String fabricante;
@@ -68,6 +69,14 @@ public class Produto {
     public void setValor(Double valor) {
         this.valor = valor;
     }
+
+    public Double getValorCompra() {
+        return valorCompra;
+    }
+
+    public void setValorCompra(Double valorCompra) {
+        this.valorCompra = valorCompra;
+    }
     
     public int getEstoque(){
         return estoque;
@@ -119,7 +128,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto{" + "codProduto=" + codProduto + ", statusProduto=" + statusProduto + ", dataCadastramento=" + dataCadastramento + ", descricao=" + descricao + ", codCategoriaProduto=" + codCategoriaProduto + ", valor=" + valor + ", fabricante=" + fabricante + ", codUnidadeMedida=" + codUnidadeMedida + ", descricaoUnidadeMedida=" + descricaoUnidadeMedida + ", observacao=" + observacao + ", estoque= "+ estoque +'}';
+        return "Produto{" + "codProduto=" + codProduto + ", statusProduto=" + statusProduto + ", dataCadastramento=" + dataCadastramento + ", descricao=" + descricao + ", codCategoriaProduto=" + codCategoriaProduto + ", valor=" + valor +", valorCompra=" + valorCompra + ", fabricante=" + fabricante + ", codUnidadeMedida=" + codUnidadeMedida + ", descricaoUnidadeMedida=" + descricaoUnidadeMedida + ", observacao=" + observacao + ", estoque= "+ estoque +'}';
     }
     
     public void setListaItensVendas(ArrayList<Produto> listaItensVendas){

@@ -7,7 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Barbosa Store - Vendas"/>
+    <Property name="title" type="java.lang.String" value="Barbosa Store - Compras"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -93,8 +93,8 @@
         <Container class="javax.swing.JPanel" name="jPanelVendas">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Operac&#xe3;o Vendas">
-                <Property name="tabTitle" type="java.lang.String" value="Operac&#xe3;o Vendas"/>
+              <JTabbedPaneConstraints tabName="Operac&#xe3;o Compras">
+                <Property name="tabTitle" type="java.lang.String" value="Operac&#xe3;o Compras"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -105,13 +105,13 @@
                   <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtVendaStatus" max="32767" attributes="0"/>
+                      <Component id="txtCompraStatus" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="253" max="-2" attributes="0"/>
-                      <Component id="btnVendaIncluir" linkSize="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCompraIncluir" linkSize="2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnVendaSalvar" linkSize="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCompraSalvar" linkSize="2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnVendaCancelar" linkSize="2" max="32767" attributes="0"/>
+                      <Component id="btnCompraCancelar" linkSize="2" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -123,10 +123,10 @@
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtVendaStatus" alignment="3" max="32767" attributes="0"/>
-                          <Component id="btnVendaIncluir" linkSize="3" alignment="3" pref="35" max="32767" attributes="0"/>
-                          <Component id="btnVendaSalvar" linkSize="3" alignment="3" max="32767" attributes="0"/>
-                          <Component id="btnVendaCancelar" linkSize="3" alignment="3" max="32767" attributes="0"/>
+                          <Component id="txtCompraStatus" alignment="3" max="32767" attributes="0"/>
+                          <Component id="btnCompraIncluir" linkSize="3" alignment="3" pref="35" max="32767" attributes="0"/>
+                          <Component id="btnCompraSalvar" linkSize="3" alignment="3" max="32767" attributes="0"/>
+                          <Component id="btnCompraCancelar" linkSize="3" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -150,7 +150,7 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtVendaCodCliente" max="32767" attributes="0"/>
+                                      <Component id="txtCompraCodFornecedor" max="32767" attributes="0"/>
                                       <Component id="txtVendaCodProduto" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -164,7 +164,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtVendaQuantidade" min="-2" pref="61" max="-2" attributes="0"/>
+                                          <Component id="txtCompraQuantidade" min="-2" pref="61" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="txtVendaPrecoOculto" min="-2" pref="3" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -173,13 +173,13 @@
                                           <Component id="btnRemoverProduto" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Component id="txtVendaNomeCliente" min="-2" pref="401" max="-2" attributes="0"/>
+                                          <Component id="txtCompraNomeFornecedor" min="-2" pref="401" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="btnBuscarFornecedor" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtVendaNumero" min="-2" pref="94" max="-2" attributes="0"/>
+                                          <Component id="txtCompraNumero" min="-2" pref="94" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -189,26 +189,26 @@
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtVendaObservacao" min="-2" pref="692" max="-2" attributes="0"/>
+                                          <Component id="txtCompraObservacao" min="-2" pref="692" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtVendaData" min="-2" pref="79" max="-2" attributes="0"/>
+                                          <Component id="txtCompraData" min="-2" pref="79" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="cbVendaTipoPagamento" min="-2" pref="96" max="-2" attributes="0"/>
+                                          <Component id="cbCompraTipoPagamento" min="-2" pref="96" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtVendaDesconto" min="-2" pref="82" max="-2" attributes="0"/>
+                                          <Component id="txtCompraDesconto" min="-2" pref="82" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="btnVendaCalculaDesconto" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnCompraCalculaDesconto" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtVendaTotal" min="-2" pref="117" max="-2" attributes="0"/>
+                                          <Component id="txtCompraTotal" min="-2" pref="117" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -222,18 +222,18 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtVendaCodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraCodFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaNomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraNomeFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnBuscarFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtVendaDescricaoProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnBuscarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtVendaCodProduto" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -247,19 +247,19 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel6" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="cbVendaTipoPagamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbCompraTipoPagamento" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaTotal" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraTotal" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaData" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnVendaCalculaDesconto" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaDesconto" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraData" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnCompraCalculaDesconto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraDesconto" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaObservacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraObservacao" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -267,7 +267,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="txtVendaCodCliente">
+                <Component class="javax.swing.JTextField" name="txtCompraCodFornecedor">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
@@ -278,12 +278,12 @@
                     <Property name="text" type="java.lang.String" value="Fornecedor:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtVendaNomeCliente">
+                <Component class="javax.swing.JTextField" name="txtCompraNomeFornecedor">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtVendaNomeClienteActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCompraNomeFornecedorActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">
@@ -291,7 +291,7 @@
                     <Property name="text" type="java.lang.String" value="N&#xba; da Compra"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtVendaNumero">
+                <Component class="javax.swing.JTextField" name="txtCompraNumero">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -305,13 +305,13 @@
                     <Property name="text" type="java.lang.String" value="Produto:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtVendaQuantidade">
+                <Component class="javax.swing.JTextField" name="txtCompraQuantidade">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtVendaQuantidadeActionPerformed"/>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtVendaQuantidadeKeyTyped"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCompraQuantidadeActionPerformed"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCompraQuantidadeKeyTyped"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
@@ -346,7 +346,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tblListaItensVendas">
+                    <Component class="javax.swing.JTable" name="tblListaItensCompras">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="5" rowCount="0">
@@ -398,7 +398,7 @@
                     <Property name="text" type="java.lang.String" value="Tipo de Pagamento:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cbVendaTipoPagamento">
+                <Component class="javax.swing.JComboBox" name="cbCompraTipoPagamento">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
@@ -423,7 +423,7 @@
                     <Property name="text" type="java.lang.String" value="Total:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtVendaTotal">
+                <Component class="javax.swing.JTextField" name="txtCompraTotal">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -470,7 +470,7 @@
                     <Property name="text" type="java.lang.String" value="Data:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="txtVendaData">
+                <Component class="javax.swing.JFormattedTextField" name="txtCompraData">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                       <Format format="##/##/####" subtype="-1" type="5"/>
@@ -505,15 +505,15 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnVendaCalculaDesconto">
+                <Component class="javax.swing.JButton" name="btnCompraCalculaDesconto">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="$"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendaCalculaDescontoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompraCalculaDescontoActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="txtVendaDesconto">
+                <Component class="javax.swing.JFormattedTextField" name="txtCompraDesconto">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                       <Format format="#,##0.00" subtype="-1" type="4"/>
@@ -529,11 +529,11 @@
                     <Property name="text" type="java.lang.String" value="Observa&#xe7;&#xe3;o:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtVendaObservacao">
+                <Component class="javax.swing.JTextField" name="txtCompraObservacao">
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JTextField" name="txtVendaStatus">
+            <Component class="javax.swing.JTextField" name="txtCompraStatus">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -543,7 +543,7 @@
                 <Property name="text" type="java.lang.String" value="STATUS"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnVendaIncluir">
+            <Component class="javax.swing.JButton" name="btnCompraIncluir">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/produto_incluir.png"/>
@@ -551,10 +551,10 @@
                 <Property name="text" type="java.lang.String" value="Incluir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendaIncluirActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompraIncluirActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnVendaSalvar">
+            <Component class="javax.swing.JButton" name="btnCompraSalvar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/salvar.png"/>
@@ -562,10 +562,10 @@
                 <Property name="text" type="java.lang.String" value="Salvar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendaSalvarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompraSalvarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnVendaCancelar">
+            <Component class="javax.swing.JButton" name="btnCompraCancelar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/inativar.png"/>
@@ -573,7 +573,7 @@
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendaCancelarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompraCancelarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -581,8 +581,8 @@
         <Container class="javax.swing.JPanel" name="jPanelConsultarVendas">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Consultar Vendas">
-                <Property name="tabTitle" type="java.lang.String" value="Consultar Vendas"/>
+              <JTabbedPaneConstraints tabName="Consultar Compras">
+                <Property name="tabTitle" type="java.lang.String" value="Consultar Compras"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -599,28 +599,28 @@
                               <EmptySpace pref="7" max="32767" attributes="0"/>
                               <Component id="txtConsultaVenda" min="-2" pref="436" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnConsultaVendaPesquisar" min="-2" pref="113" max="-2" attributes="0"/>
+                              <Component id="btnConsultaComprasPesquisar" min="-2" pref="113" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnConsultaVendaImprimir" pref="160" max="32767" attributes="0"/>
+                              <Component id="btnConsultaCompraImprimir" pref="160" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnCompraAprovar1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnCompraFaturar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnCompraReprovar1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnCompraReprovar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnConsultaVendaExcluir" linkSize="5" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnConsultaCompraExcluir" linkSize="5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnConsultaVendaAlterar" linkSize="5" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnConsultaCompraAlterar" linkSize="5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnConsultaVendaCancelar" linkSize="5" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnConsultaCompraCancelar" linkSize="5" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="rbVendaStatusAprovacaoTodos" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbCompraStatusAprovacaoTodos" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="rbVendaStatusAprovacaoAguardando" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbCompraStatusAprovacaoAguardando" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -634,24 +634,24 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtConsultaVenda" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnConsultaVendaImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnConsultaVendaPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnConsultaCompraImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnConsultaComprasPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="373" max="-2" attributes="0"/>
                       <EmptySpace pref="8" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="rbVendaStatusAprovacaoAguardando" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbVendaStatusAprovacaoTodos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbCompraStatusAprovacaoAguardando" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbCompraStatusAprovacaoTodos" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnConsultaVendaExcluir" linkSize="4" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="btnConsultaVendaAlterar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnConsultaVendaCancelar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCompraAprovar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCompraReprovar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnConsultaCompraExcluir" linkSize="4" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="btnConsultaCompraAlterar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnConsultaCompraCancelar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCompraFaturar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCompraReprovar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -673,7 +673,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tblVendasRealizadas">
+                <Component class="javax.swing.JTable" name="tblComprasRealizadas">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="0">
@@ -720,17 +720,17 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnConsultaVendaImprimir">
+            <Component class="javax.swing.JButton" name="btnConsultaCompraImprimir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Imprimir"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnConsultaVendaPesquisar">
+            <Component class="javax.swing.JButton" name="btnConsultaComprasPesquisar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pesquisar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnConsultaVendaExcluir">
+            <Component class="javax.swing.JButton" name="btnConsultaCompraExcluir">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/produto_excluir.png"/>
@@ -738,10 +738,10 @@
                 <Property name="text" type="java.lang.String" value="Excluir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaVendaExcluirActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaCompraExcluirActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnConsultaVendaAlterar">
+            <Component class="javax.swing.JButton" name="btnConsultaCompraAlterar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/produto_editar.png"/>
@@ -749,10 +749,10 @@
                 <Property name="text" type="java.lang.String" value="Alterar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaVendaAlterarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaCompraAlterarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnConsultaVendaCancelar">
+            <Component class="javax.swing.JButton" name="btnConsultaCompraCancelar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/cancelar.png"/>
@@ -760,10 +760,10 @@
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaVendaCancelarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaCompraCancelarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCompraReprovar1">
+            <Component class="javax.swing.JButton" name="btnCompraReprovar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/cancelar.png"/>
@@ -771,7 +771,7 @@
                 <Property name="text" type="java.lang.String" value="Reprovar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCompraAprovar1">
+            <Component class="javax.swing.JButton" name="btnCompraFaturar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/aceitar.png"/>
@@ -779,10 +779,10 @@
                 <Property name="text" type="java.lang.String" value="Fatuirar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompraAprovar1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompraFaturarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="rbVendaStatusAprovacaoTodos">
+            <Component class="javax.swing.JRadioButton" name="rbCompraStatusAprovacaoTodos">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="rbGroupStatusVenda"/>
@@ -790,13 +790,13 @@
                 <Property name="text" type="java.lang.String" value="Todos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbVendaStatusAprovacaoTodosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbCompraStatusAprovacaoTodosActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="rbVendaStatusAprovacaoAguardando">
+            <Component class="javax.swing.JRadioButton" name="rbCompraStatusAprovacaoAguardando">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="rbGroupStatusVenda"/>
@@ -804,7 +804,7 @@
                 <Property name="text" type="java.lang.String" value="Aguardando"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbVendaStatusAprovacaoAguardandoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbCompraStatusAprovacaoAguardandoActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
