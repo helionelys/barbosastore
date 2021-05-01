@@ -162,6 +162,7 @@ public class ContasPagarView extends javax.swing.JDialog {
             }
         });
 
+        btnContasAPagarCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Exit.png"))); // NOI18N
         btnContasAPagarCancelar.setText("Cancelar");
         btnContasAPagarCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
