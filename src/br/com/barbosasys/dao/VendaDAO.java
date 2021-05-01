@@ -127,17 +127,20 @@ public class VendaDAO extends ConexaoBanco {
             this.conectar();
             this.executarSQL(
                     "SELECT "
-                    + "CODVENDA,"
-                    + "TOTALVENDA,"
-                    + "CODCLIENTE,"
-                    + "DATAVENDA,"
-                    + "DESCONTO,"
-                    + "CODSTATUSVENDA,"
-                    + "CODTIPOPAGAMENTO"
+                    + "TBL_VENDA.CODVENDA,"
+                    + "TBL_VENDA.TOTALVENDA,"
+                    + "TBL_VENDA.CODCLIENTE,"
+                    + "TBL_VENDA.DATAVENDA,"
+                    + "TBL_VENDA.DESCONTO,"
+                    + "TBL_VENDA.CODSTATUSVENDA,"
+                    + "TBL_VENDA.CODTIPOPAGAMENTO,"
+                    + "TBL_STATUSVENDA.DESCRICAO"
                     + " FROM"
                     + " TBL_VENDA"
+                    + " INNER JOIN TBL_STATUSVENDA"
+                    + " ON TBL_VENDA.CODSTATUSVENDA = TBL_STATUSVENDA.CODSTATUSVENDA"
                     + " WHERE"
-                    + " CODVENDA = '" + codigo + "'"
+                    + " TBL_VENDA.CODVENDA = '" + codigo + "'"
                     + ";"
             );
 
@@ -149,6 +152,7 @@ public class VendaDAO extends ConexaoBanco {
                 venda.setValorDesconto(this.getResultSet().getDouble(5));
                 venda.setCodStatusVenda(this.getResultSet().getInt(6));
                 venda.setTipoPagamento(this.getResultSet().getInt(7));
+                venda.setDescricaoStatus(this.getResultSet().getString(8));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -118,7 +118,7 @@ public class VendasView extends javax.swing.JDialog {
         txtVendaDesconto = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
         txtVendaObservacao = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        txtVendaStatus = new javax.swing.JTextField();
         btnVendaIncluir = new javax.swing.JButton();
         btnVendaSalvar = new javax.swing.JButton();
         btnVendaCancelar = new javax.swing.JButton();
@@ -167,10 +167,12 @@ public class VendasView extends javax.swing.JDialog {
             .addGap(0, 21, Short.MAX_VALUE)
         );
 
+        txtVendaCodCliente.setEditable(false);
         txtVendaCodCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel2.setText("Cliente:");
 
+        txtVendaNomeCliente.setEditable(false);
         txtVendaNomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtVendaNomeClienteActionPerformed(evt);
@@ -314,7 +316,7 @@ public class VendasView extends javax.swing.JDialog {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtVendaCodCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                            .addComponent(txtVendaCodCliente)
                             .addComponent(txtVendaCodProduto))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -342,29 +344,31 @@ public class VendasView extends javax.swing.JDialog {
                                 .addComponent(btnIncluirProduto)
                                 .addGap(5, 5, 5)
                                 .addComponent(btnRemoverProduto))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtVendaObservacao))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtVendaData, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbVendaTipoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtVendaDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVendaCalculaDesconto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtVendaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtVendaObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtVendaData, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbVendaTipoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtVendaDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnVendaCalculaDesconto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtVendaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -412,10 +416,10 @@ public class VendasView extends javax.swing.JDialog {
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtVendaDesconto, txtVendaTotal});
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("STATUS");
+        txtVendaStatus.setEditable(false);
+        txtVendaStatus.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtVendaStatus.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtVendaStatus.setText("STATUS");
 
         btnVendaIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_incluir.png"))); // NOI18N
         btnVendaIncluir.setText("Incluir");
@@ -448,7 +452,7 @@ public class VendasView extends javax.swing.JDialog {
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelVendasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1)
+                .addComponent(txtVendaStatus)
                 .addGap(253, 253, 253)
                 .addComponent(btnVendaIncluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -467,7 +471,7 @@ public class VendasView extends javax.swing.JDialog {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1)
+                    .addComponent(txtVendaStatus)
                     .addComponent(btnVendaIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(btnVendaSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVendaCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -530,7 +534,7 @@ public class VendasView extends javax.swing.JDialog {
         btnCompraReprovar1.setText("Reprovar");
 
         btnCompraAprovar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/aceitar.png"))); // NOI18N
-        btnCompraAprovar1.setText("Aprovar");
+        btnCompraAprovar1.setText("Fatuirar");
         btnCompraAprovar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompraAprovar1ActionPerformed(evt);
@@ -1039,6 +1043,7 @@ public class VendasView extends javax.swing.JDialog {
             this.txtVendaNomeCliente.setText(nomeCliente);
             this.txtVendaNumero.setText(String.valueOf(venda.getCodVenda()));
             this.txtVendaData.setText(String.valueOf(venda.getDataVenda()));
+            this.txtVendaStatus.setText(String.valueOf(venda.getDescricaStatus()));
 
             Double valorDesconto = venda.getValorDesconto();
             DecimalFormat df = new DecimalFormat("#,##0.00");
@@ -1278,7 +1283,6 @@ public class VendasView extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.ButtonGroup rbGroupStatusVenda;
     protected javax.swing.JRadioButton rbVendaStatusAprovacaoAguardando;
     protected javax.swing.JRadioButton rbVendaStatusAprovacaoTodos;
@@ -1296,6 +1300,7 @@ public class VendasView extends javax.swing.JDialog {
     private javax.swing.JTextField txtVendaPrecoOculto;
     private javax.swing.JTextField txtVendaProdutoValorUnitario;
     private javax.swing.JTextField txtVendaQuantidade;
+    private javax.swing.JTextField txtVendaStatus;
     private javax.swing.JTextField txtVendaTotal;
     // End of variables declaration//GEN-END:variables
 }
