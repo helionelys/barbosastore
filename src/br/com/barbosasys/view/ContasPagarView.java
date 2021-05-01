@@ -154,6 +154,7 @@ public class ContasPagarView extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblLancamentosAPagar);
 
+        btnContasAPagarExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Delete.png"))); // NOI18N
         btnContasAPagarExcluir.setText("Excluir");
         btnContasAPagarExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,7 +169,7 @@ public class ContasPagarView extends javax.swing.JDialog {
             }
         });
 
-        btnContasAPagarIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Create.png"))); // NOI18N
+        btnContasAPagarIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Add.png"))); // NOI18N
         btnContasAPagarIncluir.setText("Incluir");
         btnContasAPagarIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,6 +177,7 @@ public class ContasPagarView extends javax.swing.JDialog {
             }
         });
 
+        btnContasAPagarEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Modify.png"))); // NOI18N
         btnContasAPagarEditar.setText("Editar");
         btnContasAPagarEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
