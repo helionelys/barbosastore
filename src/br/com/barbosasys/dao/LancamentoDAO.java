@@ -528,7 +528,7 @@ public class LancamentoDAO extends ConexaoBanco {
                     + " INNER JOIN TBL_STATUSLANCAMENTO"
                     + " ON TBL_LANCAMENTO.CODSTATUSLANCAMENTO = TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO"
                     + " WHERE TBL_LANCAMENTO.CODTIPOLANCAMENTO = 2 AND TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO = 2 "
-                    + ";"
+                    + "ORDER BY TBL_LANCAMENTO.CODLANCAMENTO DESC;"
             );
 
             while (this.getResultSet().next()) {
@@ -589,6 +589,24 @@ public class LancamentoDAO extends ConexaoBanco {
             this.executarUpdateDeleteSQL(
                     "UPDATE TBL_LANCAMENTO SET "
                     + "CODSTATUSLANCAMENTO = '1'"
+                    + " WHERE CODLANCAMENTO = '" + codigo + "'"
+                    + ";"
+            );
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            this.fecharConexao();
+        }
+    }
+        
+        public boolean revogarLancamentoBaixadoDAO(int codigo) {
+        try {
+            this.conectar();
+            this.executarUpdateDeleteSQL(
+                    "UPDATE TBL_LANCAMENTO SET "
+                    + "CODSTATUSLANCAMENTO = '2'"
                     + " WHERE CODLANCAMENTO = '" + codigo + "'"
                     + ";"
             );

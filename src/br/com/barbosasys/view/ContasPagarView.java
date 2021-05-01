@@ -183,6 +183,7 @@ public class ContasPagarView extends javax.swing.JDialog {
 
         btnLancamentosAPagarImprimir.setText("Imprimir");
 
+        btnLancamentosAPagarImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Dollar.png"))); // NOI18N
         btnLancamentosAPagarImprimir1.setText("Pagar");
         btnLancamentosAPagarImprimir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,7 +231,7 @@ public class ContasPagarView extends javax.swing.JDialog {
                     .addComponent(txtLancamentoPagoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLancamentoPagoPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnContasAPagarExcluir)
@@ -269,6 +270,11 @@ public class ContasPagarView extends javax.swing.JDialog {
         jScrollPane4.setViewportView(tblLancamentosPagos);
 
         btnLancamentosPagosRevogar.setText("Revogar Pagamento");
+        btnLancamentosPagosRevogar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLancamentosPagosRevogarActionPerformed(evt);
+            }
+        });
 
         btnLancamentosPagosCancelar.setText("Cancelar");
         btnLancamentosPagosCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -589,8 +595,8 @@ public class ContasPagarView extends javax.swing.JDialog {
 
             // Questiona se realmente deseja excluir
             int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir o lancamento"
-                    + "?\n" +"Codigo: "+ codLancamento + "\n"+"Fornecedor: " + nomeFornecedor + "\n"+"Valor: R$ " + valor, "Atenção", JOptionPane.YES_NO_OPTION);
-            
+                    + "?\n" + "Codigo: " + codLancamento + "\n" + "Fornecedor: " + nomeFornecedor + "\n" + "Valor: R$ " + valor, "Atenção", JOptionPane.YES_NO_OPTION);
+
             ////se sim exclui, se não, faz nada3
             if (opcao == JOptionPane.OK_OPTION) {
                 if (lancamentoController.excluirLancamentoController(codLancamento)) {
@@ -609,6 +615,7 @@ public class ContasPagarView extends javax.swing.JDialog {
 
     private void btnLancamentosAPagarImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentosAPagarImprimir1ActionPerformed
         // TODO add your handling code here: if (testarSelecao() == true) {
+        if (testarSelecao() == true) {
             int linha = tblLancamentosAPagar.getSelectedRow();
             int codLancamento = (int) tblLancamentosAPagar.getValueAt(linha, 0);
             String nomeFornecedor = (String) tblLancamentosAPagar.getValueAt(linha, 2);
@@ -616,8 +623,8 @@ public class ContasPagarView extends javax.swing.JDialog {
 
             // Questiona se realmente deseja excluir
             int opcao = JOptionPane.showConfirmDialog(this, "Efetuar pagamento do lancamento"
-                    + "?\n" +"Codigo: "+ codLancamento + "\n"+"Fornecedor: " + nomeFornecedor + "\n"+"Valor: R$ " + valor, "Atenção", JOptionPane.YES_NO_OPTION);
-            
+                    + "?\n" + "Codigo: " + codLancamento + "\n" + "Fornecedor: " + nomeFornecedor + "\n" + "Valor: R$ " + valor, "Atenção", JOptionPane.YES_NO_OPTION);
+
             ////se sim exclui, se não, faz nada3
             if (opcao == JOptionPane.OK_OPTION) {
                 if (lancamentoController.baixarLancamentoControllerAPagar(codLancamento)) {
@@ -628,11 +635,37 @@ public class ContasPagarView extends javax.swing.JDialog {
 
                 } else {
                     JOptionPane.showMessageDialog(this, "Erro!", "ERRO", JOptionPane.ERROR_MESSAGE);
-
                 }
             }
-        
+        }
     }//GEN-LAST:event_btnLancamentosAPagarImprimir1ActionPerformed
+
+    private void btnLancamentosPagosRevogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentosPagosRevogarActionPerformed
+        // TODO add your handling code here:
+        if (testarSelecaoLancamentosBaixados()== true) {
+            int linha = tblLancamentosPagos.getSelectedRow();
+            int codLancamento = (int) tblLancamentosPagos.getValueAt(linha, 0);
+            String nomeFornecedor = (String) tblLancamentosPagos.getValueAt(linha, 2);
+            String valor = (String) tblLancamentosPagos.getValueAt(linha, 5);
+
+            // Questiona se realmente deseja excluir
+            int opcao = JOptionPane.showConfirmDialog(this, "Efetuar revogação de pagamento"
+                    + "?\n" + "Codigo: " + codLancamento + "\n" + "Fornecedor: " + nomeFornecedor + "\n" + "Valor: R$ " + valor, "Atenção", JOptionPane.YES_NO_OPTION);
+
+            ////se sim exclui, se não, faz nada3
+            if (opcao == JOptionPane.OK_OPTION) {
+                if (lancamentoController.revogarLancamentoControllerAPagar(codLancamento)) {
+                    JOptionPane.showMessageDialog(this, "Pagamento revogado com sucesso!");
+                    carregarLancamentosAPagarAberto();
+                    carregarLancamentosAPagarBaixados();
+                    jTabbedPaneContaAPagar.setSelectedIndex(0);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnLancamentosPagosRevogarActionPerformed
 
     private void DadosLimpeza() {
         listaTiposPagamento();
@@ -659,6 +692,15 @@ public class ContasPagarView extends javax.swing.JDialog {
 
     private boolean testarSelecao() {
         int linhaSelecionada = tblLancamentosAPagar.getSelectedRow();
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha para operação");
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean testarSelecaoLancamentosBaixados() {
+        int linhaSelecionada = tblLancamentosPagos.getSelectedRow();
         if (linhaSelecionada == -1) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha para operação");
             return false;

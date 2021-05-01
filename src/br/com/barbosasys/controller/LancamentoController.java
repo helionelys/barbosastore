@@ -59,6 +59,10 @@ public class LancamentoController {
     public boolean baixarLancamentoControllerAPagar(int codigo) {
         return this.lancamentoDAO.baixarLancamentoAbertoDAO(codigo);
     }
+    
+    public boolean revogarLancamentoControllerAPagar(int codigo) {
+        return this.lancamentoDAO.revogarLancamentoBaixadoDAO(codigo);
+    }
 
     public boolean excluirLancamentoController(int codigo) {
         return this.lancamentoDAO.excluirLancamentoDAO(codigo);

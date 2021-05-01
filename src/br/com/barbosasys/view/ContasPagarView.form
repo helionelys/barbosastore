@@ -137,7 +137,7 @@
                           <Component id="btnLancamentoPagoPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="291" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="289" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnContasAPagarExcluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -261,6 +261,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnLancamentosAPagarImprimir1">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/barbosasys/images/Dollar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Pagar"/>
               </Properties>
               <Events>
@@ -402,6 +405,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Revogar Pagamento"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLancamentosPagosRevogarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnLancamentosPagosCancelar">
               <Properties>
