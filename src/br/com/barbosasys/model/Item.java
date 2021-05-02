@@ -2,24 +2,26 @@ package br.com.barbosasys.model;
 
 import java.util.ArrayList;
 
-public class ItemVenda {
-    private int codItemVenda;
+public class Item {
+    private int codItem;
     private Venda venda;
     private Produto produto;
+    private Compra compra;
     private int quantidade;
     private Double subtotal;
-    private ArrayList<ItemVenda> listaItemVenda;
+    private ArrayList<Item> listaItemVenda;
+    private ArrayList<Item> listaItemCompra;
     
-    public ItemVenda(){
+    public Item(){
         
     }
 
-    public int getCodItemVenda() {
-        return codItemVenda;
+    public int getCodItem() {
+        return codItem;
     }
 
-    public void setCodItemVenda(int codItemVenda) {
-        this.codItemVenda = codItemVenda;
+    public void setCodItem(int codItem) {
+        this.codItem = codItem;
     }
 
     public Venda getVenda() {
@@ -28,6 +30,13 @@ public class ItemVenda {
 
     public void setVenda(Venda venda) {
         this.venda = venda;
+    }
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
 
     public Produto getProduto() {
@@ -54,17 +63,25 @@ public class ItemVenda {
         this.subtotal = subtotal;
     }
 
-    public ArrayList<ItemVenda> getListaItemVenda() {
+    public ArrayList<Item> getListaItemVenda() {
         return listaItemVenda;
     }
+    
+    public ArrayList<Item> getListaItemCompra() {
+        return listaItemCompra;
+    }
 
-    public void setListaItemVenda(ArrayList<ItemVenda> listaItemVenda) {
+    public void setListaItemVenda(ArrayList<Item> listaItemVenda) {
         this.listaItemVenda = listaItemVenda;
+    }
+    
+    public void setListaItemCompra(ArrayList<Item> listaItemCompra) {
+        this.listaItemCompra = listaItemCompra;
     }
     
     @Override
     public String toString(){
-    return "ItemVenda {" + "::codItemVenda = " + this.codItemVenda + " ::quantidade = " + this.quantidade +"::subTotal = " + this.subtotal +"}";
+    return "ItemVenda {" + "::codItemVenda = " + this.codItem + " ::quantidade = " + this.quantidade +"::subTotal = " + this.subtotal +"}";
     }
     
 }

@@ -134,14 +134,14 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtDataVencimentoVenda" max="32767" attributes="0"/>
-                                      <Component id="txtDataPagamentoVenda" max="32767" attributes="0"/>
+                                      <Component id="txtDataVencimentoCompra" max="32767" attributes="0"/>
+                                      <Component id="txtDataPagamentoCompra" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblDataVenda" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="lblDataCompra" alignment="1" max="32767" attributes="0"/>
                                       <Component id="lblValorDesconto" pref="204" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblTipodePagamentoDescricao" min="-2" pref="155" max="-2" attributes="0"/>
@@ -154,7 +154,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblNomeCliente" max="32767" attributes="0"/>
+                          <Component id="lblNomeFornecedor" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -165,7 +165,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lblNumeroDaVenda" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNumeroDaCompra" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -182,16 +182,16 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblNumeroDaVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNumeroDaCompra" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblNomeCliente" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="lblNomeFornecedor" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblDataVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDataCompra" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCodTipodePagamento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -207,13 +207,13 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtDataVencimentoVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtDataVencimentoCompra" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtDataPagamentoVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtDataPagamentoCompra" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -280,7 +280,7 @@
             <Property name="text" type="java.lang.String" value="Data de Vencimento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtDataVencimentoVenda">
+        <Component class="javax.swing.JFormattedTextField" name="txtDataVencimentoCompra">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##/##/####" subtype="-1" type="5"/>
@@ -306,15 +306,15 @@
             <Property name="text" type="java.lang.String" value="lblValorDesconto"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblNumeroDaVenda">
+        <Component class="javax.swing.JLabel" name="lblNumeroDaCompra">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="22" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="lblNumeroVenda"/>
+            <Property name="text" type="java.lang.String" value="lblNumeroCompra"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblNomeCliente">
+        <Component class="javax.swing.JLabel" name="lblNomeFornecedor">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="22" style="1"/>
@@ -323,7 +323,7 @@
             <Property name="text" type="java.lang.String" value="lblNomeDoClienteFornecedor"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblDataVenda">
+        <Component class="javax.swing.JLabel" name="lblDataCompra">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="22" style="1"/>
@@ -350,7 +350,7 @@
             <Property name="text" type="java.lang.String" value="lblCodTPg"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtDataPagamentoVenda">
+        <Component class="javax.swing.JFormattedTextField" name="txtDataPagamentoCompra">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##/##/####" subtype="-1" type="5"/>

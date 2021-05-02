@@ -151,22 +151,22 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txtCompraCodFornecedor" max="32767" attributes="0"/>
-                                      <Component id="txtVendaCodProduto" max="32767" attributes="0"/>
+                                      <Component id="txtCompraCodProduto" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="txtVendaDescricaoProduto" max="32767" attributes="0"/>
+                                          <Component id="txtCompraDescricaoProduto" max="32767" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="btnBuscarProduto" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtVendaProdutoValorUnitario" min="-2" pref="72" max="-2" attributes="0"/>
+                                          <Component id="txtCompraProdutoValorUnitario" min="-2" pref="72" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="txtCompraQuantidade" min="-2" pref="61" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtVendaPrecoOculto" min="-2" pref="3" max="-2" attributes="0"/>
+                                          <Component id="txtCompraPrecoOculto" min="-2" pref="3" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="btnIncluirProduto" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -234,13 +234,13 @@
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtCompraQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaDescricaoProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraDescricaoProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnBuscarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaCodProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraCodProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnIncluirProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnRemoverProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaProdutoValorUnitario" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtVendaPrecoOculto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraProdutoValorUnitario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompraPrecoOculto" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="295" max="-2" attributes="0"/>
@@ -435,12 +435,12 @@
                     <Property name="horizontalAlignment" type="int" value="4"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtVendaDescricaoProduto">
+                <Component class="javax.swing.JTextField" name="txtCompraDescricaoProduto">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtVendaDescricaoProdutoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCompraDescricaoProdutoActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBuscarProduto">
@@ -484,14 +484,14 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtVendaCodProduto">
+                <Component class="javax.swing.JTextField" name="txtCompraCodProduto">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtVendaProdutoValorUnitario">
+                <Component class="javax.swing.JTextField" name="txtCompraProdutoValorUnitario">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -500,7 +500,7 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtVendaPrecoOculto">
+                <Component class="javax.swing.JTextField" name="txtCompraPrecoOculto">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
@@ -677,8 +677,8 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="0">
-                        <Column editable="false" title="N&#xba; da Venda" type="java.lang.Object"/>
-                        <Column editable="false" title="Cliente" type="java.lang.Object"/>
+                        <Column editable="false" title="N&#xba; da Compra" type="java.lang.Object"/>
+                        <Column editable="false" title="Fornecedor" type="java.lang.Object"/>
                         <Column editable="false" title="Valor" type="java.lang.Object"/>
                         <Column editable="false" title="Data" type="java.lang.Object"/>
                         <Column editable="false" title="Status" type="java.lang.Object"/>

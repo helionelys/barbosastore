@@ -5,6 +5,7 @@
  */
 package br.com.barbosasys.model;
 
+import br.com.barbosasys.model.Fornecedor;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -16,13 +17,17 @@ public class Compra {
     private int codCompra;
     private int codProduto;
     private int codFornecedor;
-    private Date dataCompra;
+    private String nomeRazaoSocial;
+    private String dataCompra;
     private int quantidade;
-    private Double valor;
-    private Float valorTotal;
-    private Float desconto;
+    private Double subTotal;
+    private Double valorTotal;
+    private Double valorDesconto;
     private int tipoPagamento;
     private ArrayList<Compra> listaCompra;
+    private int codStatusCompra;
+    private String descricaoStatus;
+    private String observacao;
 
     public Compra() {
     }
@@ -47,15 +52,15 @@ public class Compra {
         return codFornecedor;
     }
 
-    public void setCodFornecedor(int codCliente) {
-        this.codFornecedor = codCliente;
+    public void setCodFornecedor(int codFornecedor) {
+        this.codFornecedor = codFornecedor;
     }
 
-    public Date getDataCompra() {
+    public String getDataCompra() {
         return dataCompra;
     }
 
-    public void setDataCompra(Date dataCompra) {
+    public void setDataCompra(String dataCompra) {
         this.dataCompra = dataCompra;
     }
 
@@ -67,28 +72,28 @@ public class Compra {
         this.quantidade = quantidade;
     }
 
-    public Double getValor() {
-        return valor;
+    public Double getSubTotal() {
+        return subTotal;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setSubTotal(Double subTotal) {
+        this.subTotal = subTotal;
     }
 
-    public Float getValorTotal() {
+    public double getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(Float valorTotal) {
+    public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
 
-    public Float getDesconto() {
-        return desconto;
+    public double getValorDesconto() {
+        return valorDesconto;
     }
 
-    public void setDesconto(Float desconto) {
-        this.desconto = desconto;
+    public void setValorDesconto(Double valorDesconto) {
+        this.valorDesconto = valorDesconto;
     }
 
     public int getTipoPagamento() {
@@ -99,16 +104,48 @@ public class Compra {
         this.tipoPagamento = tipoPagamento;
     }
 
-    public ArrayList<Compra> getListaVendas() {
+    public ArrayList<Compra> getListaCompra() {
         return listaCompra;
     }
 
-    public void setListaVendas(ArrayList<Venda> listaVendas) {
+    public void setListaCompra(ArrayList<Compra> listaCompra) {
         this.listaCompra = listaCompra;
     }
     
     @Override
     public String toString(){
-        return "Vendas {" + "::codigoCompra = " + this.codCompra + "::codigoProduto = " + this.codProduto + "::codigoFornecedor = " + this.codFornecedor + "::dataVenda = " + this.dataCompra + "::quantidade = " + this.quantidade +  "}";
+        return "Compras {" + "::codigoCompra = " + this.codCompra + "::codigoProduto = " + this.codProduto + "::codigoFornecedor = " + this.codFornecedor + "::dataCompra = " + this.dataCompra + "::quantidade = " + this.quantidade +  "}";
+    }
+
+    public int getCodStatusCompra() {
+        return codStatusCompra;
+    }
+
+    public void setCodStatusCompra(int codStatusCompra) {
+        this.codStatusCompra = codStatusCompra;
+    }
+
+    public String getNomeRazaoSocial() {
+        return nomeRazaoSocial;
+    }
+
+    public void setNomeRazaoSocial(String nomeRazaoSocial) {
+        this.nomeRazaoSocial = nomeRazaoSocial;
+    }
+    
+    public String getObservavao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+    
+    public String getDescricaStatus() {
+        return descricaoStatus;
+    }
+
+    public void setDescricaoStatus(String descricaoStatus) {
+        this.descricaoStatus = descricaoStatus;
     }
 }

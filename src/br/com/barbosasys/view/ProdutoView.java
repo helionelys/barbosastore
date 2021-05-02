@@ -445,12 +445,13 @@ public class ProdutoView extends javax.swing.JDialog {
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFabricanteProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtValorProdutoCompra)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtValorProduto)))
+                        .addComponent(txtValorProduto))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtValorProdutoCompra)))
                 .addGap(18, 18, 18))
         );
 
@@ -622,7 +623,7 @@ public class ProdutoView extends javax.swing.JDialog {
             Double valorRetorno2 = produto.getValorCompra();
             DecimalFormat df2 = new DecimalFormat("#,##0.00");
             String valorCompraTela = df2.format(valorRetorno2);
-            this.txtValorProduto.setText(valorCompraTela);
+            this.txtValorProdutoCompra.setText(valorCompraTela);
 
             //System.out.println(valorTela);
             this.cbFornecedorProduto.setSelectedItem(fornecedorController.getFornecedorController(produto.getCodFornecedor()).getNomeRazaoSocial());

@@ -21,11 +21,12 @@ public class BuscarProdutosComprasView extends javax.swing.JDialog {
     private int codigoProduto;
     private String descricaoProduto;
     private String valorProdutoFormatado;
-    private Double valorProduto;
+    private Double valorProdutoCompra;
     
     Produto produto = new Produto();
     ProdutoController produtoController = new ProdutoController();
     ArrayList<Produto> listProduto = new ArrayList<>();
+    DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
     String tipoCadastro;
 
     /**
@@ -59,7 +60,7 @@ public class BuscarProdutosComprasView extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Barbosa Store - Usuários");
+        setTitle("Barbosa Store -  Produto Compras");
 
         jPanel4.setBackground(new java.awt.Color(51, 153, 255));
 
@@ -79,11 +80,11 @@ public class BuscarProdutosComprasView extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Descrição", "Valor Unitário"
+                "Código", "Descrição", "Valor de Compra", "Valor de Vendas"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -179,11 +180,11 @@ public class BuscarProdutosComprasView extends javax.swing.JDialog {
        
         try {
         //retorna os dados do banco de dados
-        produto = produtoController.getProdutoControllerSimples(codigo);
+        produto = produtoController.getProdutoControllerCompraSimples(codigo);
         this.codigoProduto = Integer.valueOf(produto.getCodProduto());
         this.descricaoProduto = (produto.getDescricao());
-        this.valorProduto = Double.valueOf(produto.getValor());
-        Double valorRetorno = (produto.getValor());
+        this.valorProdutoCompra = Double.valueOf(produto.getValorCompra());
+        Double valorRetorno = (produto.getValorCompra());
         DecimalFormat df = new DecimalFormat("#,##0.00");
         String valorTela = df.format(valorRetorno);
         this.valorProdutoFormatado = valorTela;
@@ -195,7 +196,7 @@ public class BuscarProdutosComprasView extends javax.swing.JDialog {
     }    
     
     private void carregarProdutos() {
-        listProduto = produtoController.getListaProdutoControllerSimples();
+        listProduto = produtoController.getListaProdutoControllerCompraSimples();
         DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
         modelo.setNumRows(0);
         //CARREGA OS DADOS DA LISTA NA TABELA
@@ -204,7 +205,8 @@ public class BuscarProdutosComprasView extends javax.swing.JDialog {
             modelo.addRow(new Object[]{
                 listProduto.get(i).getCodProduto(),
                 listProduto.get(i).getDescricao(),
-                listProduto.get(i).getValor(),
+                valoresMonentarios.format(listProduto.get(i).getValorCompra()),
+                valoresMonentarios.format(listProduto.get(i).getValor()),
             });
         }
     }
@@ -232,19 +234,19 @@ public class BuscarProdutosComprasView extends javax.swing.JDialog {
         this.descricaoProduto = descricaoProduto;
     }
     
-    public Double getValorProduto(){
-        return valorProduto;
+    public Double getValorProdutoCompra(){
+        return valorProdutoCompra;
     }
     
-    public void setValorProduto(Double valorProduto){
-        this.valorProduto = valorProduto;
+    public void setValorProduto(Double valorProdutoCompra){
+        this.valorProdutoCompra = valorProdutoCompra;
     }
     
     public String getValorProdutoFormatado(){
         return valorProdutoFormatado;
     }
     
-    public void valorProdutoFormatado(String valorProduto){
+    public void valorProdutoFormatado(String valorProdutoCompra){
         this.valorProdutoFormatado = valorProdutoFormatado;
     }
     

@@ -12,7 +12,7 @@ import br.com.barbosasys.controller.TipoPagamentoController;
 import br.com.barbosasys.controller.VendaController;
 import br.com.barbosasys.model.Caixa;
 import br.com.barbosasys.model.Cliente;
-import br.com.barbosasys.model.ItemVenda;
+import br.com.barbosasys.model.Item;
 import br.com.barbosasys.model.Produto;
 import br.com.barbosasys.model.TipoPagamento;
 import br.com.barbosasys.model.Venda;
@@ -34,9 +34,9 @@ public class VendasView extends javax.swing.JDialog {
     VendaController vendasController = new VendaController();
     Venda venda = new Venda();
     Produto produto = new Produto();
-    ItemVenda itemVenda = new ItemVenda();
+    Item itemVenda = new Item();
     ArrayList<Venda> listaVendas = new ArrayList<>();
-    ArrayList<ItemVenda> listaItensVendas = new ArrayList<>();
+    ArrayList<Item> listaItensVendas = new ArrayList<>();
     ArrayList<Cliente> listaCliente = new ArrayList<>();
     ArrayList<Produto> listaProduto = new ArrayList<>();
     ProdutoController produtoController = new ProdutoController();
@@ -985,7 +985,7 @@ public class VendasView extends javax.swing.JDialog {
 
             // Cadastrando os produtos na tabela ItemVendas
             for (int i = 0; i < tblListaItensVendas.getRowCount(); i++) {
-                ItemVenda objItemVenda = new ItemVenda();
+                Item objItemVenda = new Item();
                 Produto objProdutoVenda = new Produto();
                 objItemVenda.setVenda(venda);
                 objProdutoVenda.setCodProduto(Integer.parseInt(tblListaItensVendas.getValueAt(i, 0).toString()));
@@ -1159,7 +1159,7 @@ public class VendasView extends javax.swing.JDialog {
             boolean statusRetornoVenda = vendasController.atualizarVendasController(objVenda);
 
             for (int i = 0; i < tblListaItensVendas.getRowCount(); i++) {
-                ItemVenda objItemVenda = new ItemVenda();
+                Item objItemVenda = new Item();
                 Produto objProdutoVenda = new Produto();
                 objVenda.setCodVenda(Integer.parseInt(this.txtVendaNumero.getText()));
                 objItemVenda.setVenda(objVenda);

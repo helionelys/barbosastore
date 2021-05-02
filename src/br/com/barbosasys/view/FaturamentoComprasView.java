@@ -13,8 +13,8 @@ import br.com.barbosasys.model.Lancamento;
  */
 public class FaturamentoComprasView extends javax.swing.JDialog {
     // Variaveis para armazenar dados da venda
-    private int codigoVenda, codTipoPagamento;
-    private String nomeCliente, dataLancamento,tipoPagamento, valorDesconto, 
+    private int codigoCompra, codTipoPagamento;
+    private String nomeFornecedor, dataLancamento,tipoPagamento, valorDesconto, 
                    dataVencimento, dataPagamento, valorLancamemto;
     
     Lancamento lancamentoFaturar = new Lancamento();
@@ -47,14 +47,14 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtDataVencimentoVenda = new javax.swing.JFormattedTextField();
+        txtDataVencimentoCompra = new javax.swing.JFormattedTextField();
         lblValorDesconto = new javax.swing.JLabel();
-        lblNumeroDaVenda = new javax.swing.JLabel();
-        lblNomeCliente = new javax.swing.JLabel();
-        lblDataVenda = new javax.swing.JLabel();
+        lblNumeroDaCompra = new javax.swing.JLabel();
+        lblNomeFornecedor = new javax.swing.JLabel();
+        lblDataCompra = new javax.swing.JLabel();
         lblTipodePagamentoDescricao = new javax.swing.JLabel();
         lblCodTipodePagamento = new javax.swing.JLabel();
-        txtDataPagamentoVenda = new javax.swing.JFormattedTextField();
+        txtDataPagamentoCompra = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         btnGerarLancamento = new javax.swing.JButton();
         lblMoney = new javax.swing.JLabel();
@@ -112,28 +112,28 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         jLabel8.setText("Data de Vencimento:");
 
         try {
-            txtDataVencimentoVenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDataVencimentoCompra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtDataVencimentoVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtDataVencimentoVenda.setCaretColor(new java.awt.Color(153, 0, 0));
-        txtDataVencimentoVenda.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
+        txtDataVencimentoCompra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDataVencimentoCompra.setCaretColor(new java.awt.Color(153, 0, 0));
+        txtDataVencimentoCompra.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
 
         lblValorDesconto.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
         lblValorDesconto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblValorDesconto.setText("lblValorDesconto");
 
-        lblNumeroDaVenda.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
-        lblNumeroDaVenda.setText("lblNumeroVenda");
+        lblNumeroDaCompra.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
+        lblNumeroDaCompra.setText("lblNumeroCompra");
 
-        lblNomeCliente.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
-        lblNomeCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNomeCliente.setText("lblNomeDoClienteFornecedor");
+        lblNomeFornecedor.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
+        lblNomeFornecedor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNomeFornecedor.setText("lblNomeDoClienteFornecedor");
 
-        lblDataVenda.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
-        lblDataVenda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDataVenda.setText("lblDataDaVenda");
+        lblDataCompra.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
+        lblDataCompra.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblDataCompra.setText("lblDataDaVenda");
 
         lblTipodePagamentoDescricao.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
         lblTipodePagamentoDescricao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -144,13 +144,13 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         lblCodTipodePagamento.setText("lblCodTPg");
 
         try {
-            txtDataPagamentoVenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDataPagamentoCompra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtDataPagamentoVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtDataPagamentoVenda.setCaretColor(new java.awt.Color(0, 102, 51));
-        txtDataPagamentoVenda.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
+        txtDataPagamentoCompra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDataPagamentoCompra.setCaretColor(new java.awt.Color(0, 102, 51));
+        txtDataPagamentoCompra.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         jLabel10.setText("Data de Pagamento:");
@@ -177,12 +177,12 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDataVencimentoVenda)
-                                    .addComponent(txtDataPagamentoVenda)))
+                                    .addComponent(txtDataVencimentoCompra)
+                                    .addComponent(txtDataPagamentoCompra)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDataVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDataCompra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblValorDesconto, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(lblTipodePagamentoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,7 +190,7 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblNomeFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -199,7 +199,7 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNumeroDaVenda)))
+                                .addComponent(lblNumeroDaCompra)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -210,14 +210,14 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(lblNumeroDaVenda))
+                    .addComponent(lblNumeroDaCompra))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(lblNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNomeFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDataVenda)
+                    .addComponent(lblDataCompra)
                     .addComponent(jLabel4)
                     .addComponent(lblCodTipodePagamento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -230,12 +230,12 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                     .addComponent(lblValorDesconto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDataVencimentoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDataVencimentoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txtDataPagamentoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDataPagamentoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -308,12 +308,12 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGerarLancamentoActionPerformed
 
-    public int getCodigoVenda() {
-        return codigoVenda;
+    public int getCodigoCompra() {
+        return codigoCompra;
     }
 
-    public void setCodigoVenda(int codigoVenda) {
-        this.codigoVenda = codigoVenda;
+    public void setCodigoCompra(int codigoCompra) {
+        this.codigoCompra = codigoCompra;
     }    
 
     public int getCodTipoPagamento() {
@@ -324,12 +324,12 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         this.codTipoPagamento = codTipoPagamento;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
+    public String getNomeFornecedor() {
+        return nomeFornecedor;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    public void setNomeFornecedor(String nomeFornecedor) {
+        this.nomeFornecedor = nomeFornecedor;
     }
 
     public String getDataLancamento() {
@@ -380,16 +380,16 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         this.valorLancamemto = valorLancamemto;
     }
     
-    public void setLblNumeroVenda(int numeroDaVenda){
-        this.lblNumeroDaVenda.setText(String.valueOf(numeroDaVenda)); 
+    public void setLblNumeroCompra(int numeroDaCompra){
+        this.lblNumeroDaCompra.setText(String.valueOf(numeroDaCompra)); 
     }
     
-    public void setLblNomeCliente(String nomeCliente){
-        this.lblNomeCliente.setText(String.valueOf(nomeCliente)); 
+    public void setLblNomeFornecedor(String nomeFornecedor){
+        this.lblNomeFornecedor.setText(String.valueOf(nomeFornecedor)); 
     }
     
-    public void setLblDataVenda(String dataVenda){
-        this.lblDataVenda.setText(String.valueOf(dataVenda)); 
+    public void setLblDataCompra(String dataCompra){
+        this.lblDataCompra.setText(String.valueOf(dataCompra)); 
     }
     
     public void setLblCodTipoPagamento(int tipoPagamento){
@@ -404,12 +404,12 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         this.lblValorDesconto.setText(String.valueOf(valorDesconto)); 
     }
     
-    public void setLblDataVencimento(String dataVendaVencimento){
-        this.lblDataVenda.setText(String.valueOf(dataVendaVencimento)); 
+    public void setLblDataVencimento(String dataCompraVencimento){
+        this.lblDataCompra.setText(String.valueOf(dataCompraVencimento)); 
     }
     
-    public void setLblDataVendaPagamento(String dataVendaPagamento){
-        this.lblDataVenda.setText(String.valueOf(dataVendaPagamento)); 
+    public void setLblDataCompraPagamento(String dataCompraPagamento){
+        this.lblDataCompra.setText(String.valueOf(dataCompraPagamento)); 
     }
     
     public void setLblValorTotal(String valorTotal){
@@ -435,14 +435,14 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel lblCodTipodePagamento;
-    private javax.swing.JLabel lblDataVenda;
+    private javax.swing.JLabel lblDataCompra;
     private javax.swing.JLabel lblMoney;
-    private javax.swing.JLabel lblNomeCliente;
-    private javax.swing.JLabel lblNumeroDaVenda;
+    private javax.swing.JLabel lblNomeFornecedor;
+    private javax.swing.JLabel lblNumeroDaCompra;
     private javax.swing.JLabel lblTipodePagamentoDescricao;
     private javax.swing.JLabel lblValorDesconto;
     private javax.swing.JLabel lblValorTotal;
-    protected javax.swing.JFormattedTextField txtDataPagamentoVenda;
-    protected javax.swing.JFormattedTextField txtDataVencimentoVenda;
+    protected javax.swing.JFormattedTextField txtDataPagamentoCompra;
+    protected javax.swing.JFormattedTextField txtDataVencimentoCompra;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,16 +6,16 @@
 package br.com.barbosasys.view;
 
 import br.com.barbosasys.controller.CaixaController;
-import br.com.barbosasys.controller.ClienteController;
+import br.com.barbosasys.controller.FornecedorController;
 import br.com.barbosasys.controller.ProdutoController;
 import br.com.barbosasys.controller.TipoPagamentoController;
-import br.com.barbosasys.controller.VendaController;
+import br.com.barbosasys.controller.CompraController;
 import br.com.barbosasys.model.Caixa;
-import br.com.barbosasys.model.Cliente;
-import br.com.barbosasys.model.ItemVenda;
+import br.com.barbosasys.model.Fornecedor;
+import br.com.barbosasys.model.Item;
 import br.com.barbosasys.model.Produto;
 import br.com.barbosasys.model.TipoPagamento;
-import br.com.barbosasys.model.Venda;
+import br.com.barbosasys.model.Compra;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -31,16 +31,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ComprasView extends javax.swing.JDialog {
 
-    VendaController vendasController = new VendaController();
-    Venda venda = new Venda();
+    CompraController comprasController = new CompraController();
+    Compra compra = new Compra();
     Produto produto = new Produto();
-    ItemVenda itemVenda = new ItemVenda();
-    ArrayList<Venda> listaVendas = new ArrayList<>();
-    ArrayList<ItemVenda> listaItensVendas = new ArrayList<>();
-    ArrayList<Cliente> listaCliente = new ArrayList<>();
+    Item itemCompra = new Item();
+    ArrayList<Compra> listaCompras = new ArrayList<>();
+    ArrayList<Item> listaItensCompras = new ArrayList<>();
+    ArrayList<Fornecedor> listaFornecedor = new ArrayList<>();
     ArrayList<Produto> listaProduto = new ArrayList<>();
     ProdutoController produtoController = new ProdutoController();
-    ClienteController clienteController = new ClienteController();
+    FornecedorController clienteController = new FornecedorController();
     Caixa caixa = new Caixa();
     CaixaController caixaController = new CaixaController();
     TipoPagamento tipoPagamento = new TipoPagamento();
@@ -56,22 +56,22 @@ public class ComprasView extends javax.swing.JDialog {
     String precoFormatado, subTotalValorFormatado, totalValorFormatado;
     double preco, subtotal, total;
     int quantidade;
-    DefaultTableModel carrinhos, itensDaVenda;
+    DefaultTableModel carrinhos, itensDaCompra;
 
     /**
-     * Creates new form VendasView
+     * Creates new form ComprasView
      */
     public ComprasView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         carregarTipoPagamento();
-        this.txtVendaPrecoOculto.setVisible(false);
-        this.carregarVendas();
+        this.txtCompraPrecoOculto.setVisible(false);
+        this.carregarCompras();
         this.carregamentoInicial();
 
     }
 
-    private void carregarClientes() {
+    private void carregarFornecedors() {
 
     }
 
@@ -110,14 +110,14 @@ public class ComprasView extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtCompraTotal = new javax.swing.JTextField();
-        txtVendaDescricaoProduto = new javax.swing.JTextField();
+        txtCompraDescricaoProduto = new javax.swing.JTextField();
         btnBuscarProduto = new javax.swing.JButton();
         btnBuscarFornecedor = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtCompraData = new javax.swing.JFormattedTextField();
-        txtVendaCodProduto = new javax.swing.JTextField();
-        txtVendaProdutoValorUnitario = new javax.swing.JTextField();
-        txtVendaPrecoOculto = new javax.swing.JTextField();
+        txtCompraCodProduto = new javax.swing.JTextField();
+        txtCompraProdutoValorUnitario = new javax.swing.JTextField();
+        txtCompraPrecoOculto = new javax.swing.JTextField();
         btnCompraCalculaDesconto = new javax.swing.JButton();
         txtCompraDesconto = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -250,10 +250,10 @@ public class ComprasView extends javax.swing.JDialog {
         txtCompraTotal.setForeground(new java.awt.Color(0, 0, 0));
         txtCompraTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        txtVendaDescricaoProduto.setEditable(false);
-        txtVendaDescricaoProduto.addActionListener(new java.awt.event.ActionListener() {
+        txtCompraDescricaoProduto.setEditable(false);
+        txtCompraDescricaoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtVendaDescricaoProdutoActionPerformed(evt);
+                txtCompraDescricaoProdutoActionPerformed(evt);
             }
         });
 
@@ -283,15 +283,15 @@ public class ComprasView extends javax.swing.JDialog {
         txtCompraData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCompraData.setFont(new java.awt.Font("Cantarell", 0, 11)); // NOI18N
 
-        txtVendaCodProduto.setEditable(false);
-        txtVendaCodProduto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtVendaCodProduto.setToolTipText("");
+        txtCompraCodProduto.setEditable(false);
+        txtCompraCodProduto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCompraCodProduto.setToolTipText("");
 
-        txtVendaProdutoValorUnitario.setEditable(false);
-        txtVendaProdutoValorUnitario.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        txtVendaProdutoValorUnitario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCompraProdutoValorUnitario.setEditable(false);
+        txtCompraProdutoValorUnitario.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        txtCompraProdutoValorUnitario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        txtVendaPrecoOculto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCompraPrecoOculto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnCompraCalculaDesconto.setText("$");
         btnCompraCalculaDesconto.addActionListener(new java.awt.event.ActionListener() {
@@ -321,21 +321,21 @@ public class ComprasView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCompraCodFornecedor)
-                            .addComponent(txtVendaCodProduto))
+                            .addComponent(txtCompraCodProduto))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtVendaDescricaoProduto)
+                                .addComponent(txtCompraDescricaoProduto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscarProduto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVendaProdutoValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCompraProdutoValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCompraQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVendaPrecoOculto, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCompraPrecoOculto, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnIncluirProduto)
                                 .addGap(5, 5, 5)
@@ -391,13 +391,13 @@ public class ComprasView extends javax.swing.JDialog {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(txtCompraQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVendaDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCompraDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarProduto)
-                    .addComponent(txtVendaCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCompraCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIncluirProduto)
                     .addComponent(btnRemoverProduto)
-                    .addComponent(txtVendaProdutoValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVendaPrecoOculto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCompraProdutoValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCompraPrecoOculto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -493,7 +493,7 @@ public class ComprasView extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nº da Venda", "Cliente", "Valor", "Data", "Status"
+                "Nº da Compra", "Fornecedor", "Valor", "Data", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -662,13 +662,13 @@ public class ComprasView extends javax.swing.JDialog {
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
         // TODO add your handling code here:
-        BuscarProdutosComprasView telaBuscaProduto = new BuscarProdutosComprasView(this, rootPaneCheckingEnabled);
-        telaBuscaProduto.setVisible(true);
+        BuscarProdutosComprasView telaBuscaProdutoCompra = new BuscarProdutosComprasView(this, rootPaneCheckingEnabled);
+        telaBuscaProdutoCompra.setVisible(true);
 
-        txtVendaCodProduto.setText(String.valueOf(telaBuscaProduto.getCodigoProduto()));
-        txtVendaDescricaoProduto.setText(telaBuscaProduto.getDescricaoProduto());
-        txtVendaProdutoValorUnitario.setText(telaBuscaProduto.getValorProdutoFormatado());
-        txtVendaPrecoOculto.setText(String.valueOf(telaBuscaProduto.getValorProduto()));
+        txtCompraCodProduto.setText(String.valueOf(telaBuscaProdutoCompra.getCodigoProduto()));
+        txtCompraDescricaoProduto.setText(telaBuscaProdutoCompra.getDescricaoProduto());
+        txtCompraProdutoValorUnitario.setText(telaBuscaProdutoCompra.getValorProdutoFormatado());
+        txtCompraPrecoOculto.setText(String.valueOf(telaBuscaProdutoCompra.getValorProdutoCompra()));
     }//GEN-LAST:event_btnBuscarProdutoActionPerformed
 
     private void btnBuscarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFornecedorActionPerformed
@@ -691,7 +691,7 @@ public class ComprasView extends javax.swing.JDialog {
             this.totalValorFormatado = valorTotalTela;
             this.txtCompraTotal.setText(String.valueOf(totalValorFormatado));
 
-            this.txtVendaProdutoValorUnitario.setText("");
+            this.txtCompraProdutoValorUnitario.setText("");
         } else {
             //JOptionPane.showMessageDialog(this, "É preciso um produto selecionado.");
         }
@@ -703,10 +703,10 @@ public class ComprasView extends javax.swing.JDialog {
         this.txtCompraNomeFornecedor.setEnabled(false);
         this.btnBuscarFornecedor.setEnabled(false);
         this.txtCompraNumero.setEnabled(false);
-        this.txtVendaCodProduto.setEnabled(false);
-        this.txtVendaDescricaoProduto.setEnabled(false);
+        this.txtCompraCodProduto.setEnabled(false);
+        this.txtCompraDescricaoProduto.setEnabled(false);
         this.btnBuscarProduto.setEnabled(false);
-        this.txtVendaProdutoValorUnitario.setEnabled(false);
+        this.txtCompraProdutoValorUnitario.setEnabled(false);
         this.txtCompraQuantidade.setEnabled(false);
         this.btnIncluirProduto.setEnabled(false);
         this.btnRemoverProduto.setEnabled(false);
@@ -725,10 +725,10 @@ public class ComprasView extends javax.swing.JDialog {
         this.txtCompraNomeFornecedor.setEnabled(true);
         this.btnBuscarFornecedor.setEnabled(true);
         this.txtCompraNumero.setEnabled(true);
-        this.txtVendaCodProduto.setEnabled(true);
-        this.txtVendaDescricaoProduto.setEnabled(true);
+        this.txtCompraCodProduto.setEnabled(true);
+        this.txtCompraDescricaoProduto.setEnabled(true);
         this.btnBuscarProduto.setEnabled(true);
-        this.txtVendaProdutoValorUnitario.setEnabled(true);
+        this.txtCompraProdutoValorUnitario.setEnabled(true);
         this.txtCompraQuantidade.setEnabled(true);
         this.btnIncluirProduto.setEnabled(true);
         this.btnRemoverProduto.setEnabled(true);
@@ -745,7 +745,7 @@ public class ComprasView extends javax.swing.JDialog {
 
     private void InclurProduto() {
         quantidade = Integer.parseInt(this.txtCompraQuantidade.getText());
-        preco = Double.parseDouble(this.txtVendaPrecoOculto.getText());
+        preco = Double.parseDouble(this.txtCompraPrecoOculto.getText());
 
         subtotal = quantidade * preco;
 
@@ -769,20 +769,20 @@ public class ComprasView extends javax.swing.JDialog {
             carrinhos.setNumRows(0);
         }
         carrinhos.addRow(new Object[]{
-            this.txtVendaCodProduto.getText(),//0
-            this.txtVendaDescricaoProduto.getText(),//1
-            this.txtVendaProdutoValorUnitario.getText(),//2
+            this.txtCompraCodProduto.getText(),//0
+            this.txtCompraDescricaoProduto.getText(),//1
+            this.txtCompraProdutoValorUnitario.getText(),//2
             this.txtCompraQuantidade.getText(),//3
             this.subTotalValorFormatado,//4
             this.subtotal//5
 
         });
 
-        this.itensDaVenda = carrinhos;
+        this.itensDaCompra = carrinhos;
 
-        this.txtVendaCodProduto.setText(null);
-        this.txtVendaDescricaoProduto.setText(null);
-        this.txtVendaProdutoValorUnitario.setText(null);
+        this.txtCompraCodProduto.setText(null);
+        this.txtCompraDescricaoProduto.setText(null);
+        this.txtCompraProdutoValorUnitario.setText(null);
         this.txtCompraQuantidade.setText(null);
     }
 
@@ -799,13 +799,13 @@ public class ComprasView extends javax.swing.JDialog {
             String valorTotalTela = df.format(valorTotalRetorno);
 
             this.txtCompraTotal.setText(valorTotalTela);
-            //this.txtVendaTotal.setText(String.valueOf(this.atualizarValorTotal()));
+            //this.txtCompraTotal.setText(String.valueOf(this.atualizarValorTotal()));
         }
     }//GEN-LAST:event_btnRemoverProdutoActionPerformed
 
-    private void txtVendaDescricaoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVendaDescricaoProdutoActionPerformed
+    private void txtCompraDescricaoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCompraDescricaoProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtVendaDescricaoProdutoActionPerformed
+    }//GEN-LAST:event_txtCompraDescricaoProdutoActionPerformed
 
     private void txtCompraQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCompraQuantidadeKeyTyped
         // TODO add your handling code here:
@@ -824,7 +824,7 @@ public class ComprasView extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.calcularDesconto();
 
-//        String valorDesconto = this.txtVendaDesconto.getText();
+//        String valorDesconto = this.txtCompraDesconto.getText();
 //        String resultadoFormatado = valorDesconto.replace(".", "");
 //        String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
 //        Double valorDescontoFormatado = Double.parseDouble(resultadoFormatado2);
@@ -832,23 +832,23 @@ public class ComprasView extends javax.swing.JDialog {
 //        Double valorTotalRetorno = (this.atualizarValorTotal());
 //        DecimalFormat df = new DecimalFormat("#,##0.00");
 //        String valorTotalTela = df.format(valorTotalRetorno);
-//        this.txtVendaTotal.setText(valorTotalTela);
+//        this.txtCompraTotal.setText(valorTotalTela);
     }//GEN-LAST:event_btnCompraCalculaDescontoActionPerformed
 
     private void btnCompraIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraIncluirActionPerformed
         // TODO add your handling code here:
         this.liberaCampos();
-        this.novoVenda();
+        this.novoCompra();
     }//GEN-LAST:event_btnCompraIncluirActionPerformed
 
     private void btnCompraSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraSalvarActionPerformed
         // TODO add your handling code here:
         if (alteracao == false) {
-            salvarVenda();
-            this.novoVenda();
+            salvarCompra();
+            this.novoCompra();
         } else {
-            atualizarVenda();
-            //this.novoVenda();
+            atualizarCompra();
+            //this.novoCompra();
             //this.carregamentoInicial();
         }
     }//GEN-LAST:event_btnCompraSalvarActionPerformed
@@ -865,8 +865,8 @@ public class ComprasView extends javax.swing.JDialog {
 
     private void btnConsultaCompraAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaCompraAlterarActionPerformed
         // TODO add your handling code here:
-        if (testarSelecaoVendas() == true) {
-            recuperarVenda();
+        if (testarSelecaoCompras() == true) {
+            recuperarCompra();
             this.liberaCampos();
             alteracao = true;
             jTabbedPane1.setSelectedIndex(0);
@@ -875,53 +875,53 @@ public class ComprasView extends javax.swing.JDialog {
 
     private void rbCompraStatusAprovacaoAguardandoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCompraStatusAprovacaoAguardandoActionPerformed
         // TODO add your handling code here:
-        this.carregarVendasAguardando();
+        this.carregarComprasAguardando();
     }//GEN-LAST:event_rbCompraStatusAprovacaoAguardandoActionPerformed
 
     private void rbCompraStatusAprovacaoTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCompraStatusAprovacaoTodosActionPerformed
         // TODO add your handling code here:
-        this.carregarVendas();
+        this.carregarCompras();
     }//GEN-LAST:event_rbCompraStatusAprovacaoTodosActionPerformed
 
     private void btnCompraFaturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraFaturarActionPerformed
         // TODO add your handling code here:
-        if (testarSelecaoVendas() == true) {
-            recuperarVendaFaturameto();
+        if (testarSelecaoCompras() == true) {
+            recuperarCompraFaturameto();
     }//GEN-LAST:event_btnCompraFaturarActionPerformed
 
-    }    
+    }
 
-    private void carregarVendasAguardando() {
-        listaVendas = vendasController.getListaVendaStatusAguardandoController();
+    private void carregarComprasAguardando() {
+        listaCompras = comprasController.getListaCompraStatusAguardandoController();
         DefaultTableModel modelo = (DefaultTableModel) tblComprasRealizadas.getModel();
         modelo.setNumRows(0);
         // Carrega dados da lista na tabela
-        int cont = listaVendas.size();
+        int cont = listaCompras.size();
         for (int i = 0; i < cont; i++) {
             modelo.addRow(new Object[]{
-                listaVendas.get(i).getCodVenda(),
-                listaVendas.get(i).getNomeRazaoSocial(),
-                valoresMonentarios.format(listaVendas.get(i).getValorTotal()),
-                listaVendas.get(i).getDataVenda(),
-                listaVendas.get(i).getDescricaStatus()
+                listaCompras.get(i).getCodCompra(),
+                listaCompras.get(i).getNomeRazaoSocial(),
+                valoresMonentarios.format(listaCompras.get(i).getValorTotal()),
+                listaCompras.get(i).getDataCompra(),
+                listaCompras.get(i).getDescricaStatus()
 
             });
         }
     }
 
-    private void carregarVendas() {
-        listaVendas = vendasController.getListaVendaController();
+    private void carregarCompras() {
+        listaCompras = comprasController.getListaCompraController();
         DefaultTableModel modelo = (DefaultTableModel) tblComprasRealizadas.getModel();
         modelo.setNumRows(0);
         // Carrega dados da lista na tabela
-        int cont = listaVendas.size();
+        int cont = listaCompras.size();
         for (int i = 0; i < cont; i++) {
             modelo.addRow(new Object[]{
-                listaVendas.get(i).getCodVenda(),
-                listaVendas.get(i).getNomeRazaoSocial(),
-                valoresMonentarios.format(listaVendas.get(i).getValorTotal()),
-                listaVendas.get(i).getDataVenda(),
-                listaVendas.get(i).getDescricaStatus()
+                listaCompras.get(i).getCodCompra(),
+                listaCompras.get(i).getNomeRazaoSocial(),
+                valoresMonentarios.format(listaCompras.get(i).getValorTotal()),
+                listaCompras.get(i).getDataCompra(),
+                listaCompras.get(i).getDescricaStatus()
 
             });
         }
@@ -929,7 +929,7 @@ public class ComprasView extends javax.swing.JDialog {
 
     private void calcularDesconto() {
 //        if (alteracao = true) {
-//            this.btnVendaCalculaDesconto.setEnabled(false);
+//            this.btnCompraCalculaDesconto.setEnabled(false);
 //        } else {
         String valorDesconto = this.txtCompraDesconto.getText();
         String resultadoFormatado = valorDesconto.replace(".", "");
@@ -943,66 +943,66 @@ public class ComprasView extends javax.swing.JDialog {
 //        }
     }
 
-    private void salvarVenda() {
+    private void salvarCompra() {
         if (txtCompraCodFornecedor.getText().equals("") || tblListaItensCompras.getRowCount() < 1) {
             JOptionPane.showMessageDialog(this, "É necessário informar um cliente e selecionar um produto!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
         } else {
-            Venda objVenda = new Venda();
+            Compra objCompra = new Compra();
 
             //Dados do cliente
-            objVenda.setCodCliente(Integer.parseInt(this.txtCompraCodFornecedor.getText()));
+            objCompra.setCodFornecedor(Integer.parseInt(this.txtCompraCodFornecedor.getText()));
 
-            // Data da venda
-            Date dataCadastramentoCliente = new Date();
+            // Data da compra
+            Date dataCadastramentoFornecedor = new Date();
             String formatoDataMysql = ("yyyy-MM-dd");
             SimpleDateFormat formatarData = new SimpleDateFormat(formatoDataMysql);
-            String dataMysql = formatarData.format(dataCadastramentoCliente);
-            objVenda.setDataVenda(dataMysql);
-            
-            objVenda.setTipoPagamento((tipoPagamentoController.getTipoPagamentoController(this.cbCompraTipoPagamento.getSelectedItem().toString()).getCodTipoPagamento()));
+            String dataMysql = formatarData.format(dataCadastramentoFornecedor);
+            objCompra.setDataCompra(dataMysql);
 
-            // valor do Desconto da venda
+            objCompra.setTipoPagamento((tipoPagamentoController.getTipoPagamentoController(this.cbCompraTipoPagamento.getSelectedItem().toString()).getCodTipoPagamento()));
+
+            // valor do Desconto da compra
             String desconto = this.txtCompraDesconto.getText();
             String descontoFormatado = desconto.replace(".", "");
             String descontoFormatado2 = descontoFormatado.replace(",", ".");
             Double descontoBanco = Double.parseDouble(descontoFormatado2);
-            objVenda.setValorDesconto(descontoBanco);
+            objCompra.setValorDesconto(descontoBanco);
 
-            // valor Total da Venda
+            // valor Total da Compra
             String valorTotal = this.txtCompraTotal.getText();
             String totalFormatado = valorTotal.replace(".", "");
             String totalFormatado2 = totalFormatado.replace(",", ".");
             Double totalBanco = Double.parseDouble(totalFormatado2);
-            objVenda.setValorTotal(totalBanco);
+            objCompra.setValorTotal(totalBanco);
 
-            objVenda.setCodStatusVenda(2);
-            objVenda.setObservacao(this.txtCompraObservacao.getText());
+            objCompra.setCodStatusCompra(2);
+            objCompra.setObservacao(this.txtCompraObservacao.getText());
 
-            int codigoVenda = vendasController.SalvarVendaController(objVenda);
+            int codigoCompra = comprasController.SalvarCompraController(objCompra);
 
-            // Captura o código da ultima venda salva no Banco
-            venda.setCodVenda(vendasController.getUltimaVendaDAO());
+            // Captura o código da ultima compra salva no Banco
+            compra.setCodCompra(comprasController.getUltimaCompraDAO());
 
-            // Cadastrando os produtos na tabela ItemVendas
+            // Cadastrando os produtos na tabela ItemCompras
             for (int i = 0; i < tblListaItensCompras.getRowCount(); i++) {
-                ItemVenda objItemVenda = new ItemVenda();
-                Produto objProdutoVenda = new Produto();
-                objItemVenda.setVenda(venda);
-                objProdutoVenda.setCodProduto(Integer.parseInt(tblListaItensCompras.getValueAt(i, 0).toString()));
-                objItemVenda.setProduto(objProdutoVenda);
-                objItemVenda.setQuantidade(Integer.parseInt(tblListaItensCompras.getValueAt(i, 3).toString()));
-                //objItemVenda.setSubtotal(Double.parseDouble(tblListaItensVendas.getValueAt(i, 5).toString()));
+                Item objItemCompra = new Item();
+                Produto objProdutoCompra = new Produto();
+                objItemCompra.setCompra(compra);
+                objProdutoCompra.setCodProduto(Integer.parseInt(tblListaItensCompras.getValueAt(i, 0).toString()));
+                objItemCompra.setProduto(objProdutoCompra);
+                objItemCompra.setQuantidade(Integer.parseInt(tblListaItensCompras.getValueAt(i, 3).toString()));
+                //objItemCompra.setSubtotal(Double.parseDouble(tblListaItensCompras.getValueAt(i, 5).toString()));
                 String valorItemProduto = String.valueOf(tblListaItensCompras.getValueAt(i, 4).toString());
                 String vlItemFormatado = valorItemProduto.replace(".", "");
                 String vlItemFormatado2 = vlItemFormatado.replace(",", ".");
                 Double subTotalBanco = Double.parseDouble(vlItemFormatado2);
-                objItemVenda.setSubtotal(subTotalBanco);
-                listaItensVendas.add(objItemVenda);
+                objItemCompra.setSubtotal(subTotalBanco);
+                listaItensCompras.add(objItemCompra);
             }
 
-            itemVenda.setListaItemVenda(listaItensVendas);
-            if (codigoVenda > 0) {
-                vendasController.salvarItensVendaController(itemVenda);
+            itemCompra.setListaItemCompra(listaItensCompras);
+            if (codigoCompra > 0) {
+                comprasController.salvarItensCompraController(itemCompra);
                 JOptionPane.showMessageDialog(this, "Registro gravado com sucesso!");
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -1013,58 +1013,58 @@ public class ComprasView extends javax.swing.JDialog {
         }
     }
 
-    private boolean recuperarVenda() {
+    private boolean recuperarCompra() {
 
         try {
             int linha = this.tblComprasRealizadas.getSelectedRow();
-            String nomeCliente = (String) tblComprasRealizadas.getValueAt(linha, 1);
+            String nomeFornecedor = (String) tblComprasRealizadas.getValueAt(linha, 1);
 
-            int codigoVenda = (Integer) tblComprasRealizadas.getValueAt(linha, 0);
+            int codigoCompra = (Integer) tblComprasRealizadas.getValueAt(linha, 0);
             int codigoProduto;
-            venda.setCodVenda(codigoVenda);
+            compra.setCodCompra(codigoCompra);
             //Recupera os dados no banco de dados
-            venda = vendasController.getVendaController(codigoVenda);
-            this.txtCompraCodFornecedor.setText(String.valueOf(venda.getCodCliente()));
-            this.txtCompraNomeFornecedor.setText(nomeCliente);
-            this.txtCompraNumero.setText(String.valueOf(venda.getCodVenda()));
-                        
-            String dataRetorno = venda.getDataVenda();
+            compra = comprasController.getCompraController(codigoCompra);
+            this.txtCompraCodFornecedor.setText(String.valueOf(compra.getCodFornecedor()));
+            this.txtCompraNomeFornecedor.setText(nomeFornecedor);
+            this.txtCompraNumero.setText(String.valueOf(compra.getCodCompra()));
+
+            String dataRetorno = compra.getDataCompra();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate = LocalDate.parse(dataRetorno, formatter);
             String dataCadastramentoTela = localDate.format(formatter2);
             this.txtCompraData.setText(dataCadastramentoTela);
-            
-            this.txtCompraStatus.setText(String.valueOf(venda.getDescricaStatus()));
-            this.cbCompraTipoPagamento.setSelectedItem(tipoPagamentoController.getTipoPagamentController(venda.getTipoPagamento()).getDescricao());
-            
-            Double valorDesconto = venda.getValorDesconto();
+
+            this.txtCompraStatus.setText(String.valueOf(compra.getDescricaStatus()));
+            this.cbCompraTipoPagamento.setSelectedItem(tipoPagamentoController.getTipoPagamentController(compra.getTipoPagamento()).getDescricao());
+
+            Double valorDesconto = compra.getValorDesconto();
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String DescontoTela = df.format(valorDesconto);
             this.txtCompraDesconto.setText(DescontoTela);
 
-            //(String.valueOf(venda.getValorDesconto()));
-            Double valorRetornoTotal = venda.getValorTotal();
+            //(String.valueOf(compra.getValorDesconto()));
+            Double valorRetornoTotal = compra.getValorTotal();
             DecimalFormat dfs = new DecimalFormat("#,##0.00");
             String ValorTotalTela = df.format(valorRetornoTotal);
             this.txtCompraTotal.setText(ValorTotalTela);
-            //this.txtVendaTotal.setText(String.valueOf(venda.getValorTotal()));
+            //this.txtCompraTotal.setText(String.valueOf(compra.getValorTotal()));
 
-            listaItensVendas = vendasController.getListaItensVendaController(codigoVenda);
+            listaItensCompras = comprasController.getListaItensCompraController(codigoCompra);
 
             DefaultTableModel dados = (DefaultTableModel) tblListaItensCompras.getModel();
             dados.setNumRows(0);
 
-            int cont = listaItensVendas.size();
+            int cont = listaItensCompras.size();
             for (int i = 0; i < cont; i++) {
-                //codigoProduto = listaItensVendas.get(i).getProduto().getCodProduto();
+                //codigoProduto = listaItensCompras.get(i).getProduto().getCodProduto();
                 //produto = produtoController.getProdutoController(codigoProduto);
                 dados.addRow(new Object[]{
-                    listaItensVendas.get(i).getProduto().getCodProduto(),
-                    listaItensVendas.get(i).getProduto().getDescricao(),
-                    valoresMonentarios.format(listaItensVendas.get(i).getProduto().getValor()),
-                    listaItensVendas.get(i).getQuantidade(),
-                    valoresMonentarios.format(listaItensVendas.get(i).getSubtotal()) //* produto.getValor()
+                    listaItensCompras.get(i).getProduto().getCodProduto(),
+                    listaItensCompras.get(i).getProduto().getDescricao(),
+                    valoresMonentarios.format(listaItensCompras.get(i).getProduto().getValor()),
+                    listaItensCompras.get(i).getQuantidade(),
+                    valoresMonentarios.format(listaItensCompras.get(i).getSubtotal()) //* produto.getValor()
                 });
                 //System.out.println(i);
             }
@@ -1075,34 +1075,34 @@ public class ComprasView extends javax.swing.JDialog {
         }
     }
 
-    private boolean recuperarVendaFaturameto() {
+    private boolean recuperarCompraFaturameto() {
         telaFaturamento = new FaturamentoComprasView(this, rootPaneCheckingEnabled);
         try {
             int linha = this.tblComprasRealizadas.getSelectedRow();
-            String nomeCliente = (String) tblComprasRealizadas.getValueAt(linha, 1);
-            int codigoVenda = (Integer) tblComprasRealizadas.getValueAt(linha, 0);
-            System.out.println(codigoVenda);
-            venda.setCodVenda(codigoVenda);
+            String nomeFornecedor = (String) tblComprasRealizadas.getValueAt(linha, 1);
+            int codigoCompra = (Integer) tblComprasRealizadas.getValueAt(linha, 0);
+            System.out.println(codigoCompra);
+            compra.setCodCompra(codigoCompra);
             //Recupera os dados no banco de dados
-            venda = (vendasController.getVendaController(codigoVenda));
-            telaFaturamento.setLblNumeroVenda(codigoVenda);
-            telaFaturamento.setLblNomeCliente(nomeCliente);
-            
-            String dataRetorno = venda.getDataVenda();
+            compra = (comprasController.getCompraController(codigoCompra));
+            telaFaturamento.setLblNumeroCompra(codigoCompra);
+            telaFaturamento.setLblNomeFornecedor(nomeFornecedor);
+
+            String dataRetorno = compra.getDataCompra();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate = LocalDate.parse(dataRetorno, formatter);
-            String dataVendaInclusao = localDate.format(formatter2);
-            telaFaturamento.setLblDataVenda(dataVendaInclusao);
+            String dataCompraInclusao = localDate.format(formatter2);
+            telaFaturamento.setLblDataCompra(dataCompraInclusao);
 
-            telaFaturamento.setLblCodTipoPagamento(tipoPagamentoController.getTipoPagamentController(venda.getTipoPagamento()).getCodTipoPagamento());
-            telaFaturamento.setLblTipoPagamentoDescricao(tipoPagamentoController.getTipoPagamentController(venda.getTipoPagamento()).getDescricao());
-            Double valorDesconto = venda.getValorDesconto();
+            telaFaturamento.setLblCodTipoPagamento(tipoPagamentoController.getTipoPagamentController(compra.getTipoPagamento()).getCodTipoPagamento());
+            telaFaturamento.setLblTipoPagamentoDescricao(tipoPagamentoController.getTipoPagamentController(compra.getTipoPagamento()).getDescricao());
+            Double valorDesconto = compra.getValorDesconto();
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String DescontoTela = df.format(valorDesconto);
             telaFaturamento.setLblValorDesconto(DescontoTela);
-            
-            Double valorRetornoTotal = venda.getValorTotal();
+
+            Double valorRetornoTotal = compra.getValorTotal();
             DecimalFormat dfs = new DecimalFormat("#,##0.00");
             String ValorTotalTela = df.format(valorRetornoTotal);
             telaFaturamento.setLblValorTotal(ValorTotalTela);
@@ -1114,73 +1114,73 @@ public class ComprasView extends javax.swing.JDialog {
         }
     }
 
-    private void atualizarVenda() {
-        listaItensVendas = new ArrayList<>();
+    private void atualizarCompra() {
+        listaItensCompras = new ArrayList<>();
 
         if (tblListaItensCompras.getRowCount() < 1) {
             JOptionPane.showMessageDialog(this, "Você deve selecionar os produtos!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
         } else {
 
-//        if (this.txtVendaDesconto.getText().equals("")) {
-//            txtVendaDesconto.setText("0,00");
+//        if (this.txtCompraDesconto.getText().equals("")) {
+//            txtCompraDesconto.setText("0,00");
 //        }
-            Venda objVenda = new Venda();
+            Compra objCompra = new Compra();
 
-            //Dados da Venda
-            objVenda.setCodVenda(Integer.parseInt(this.txtCompraNumero.getText()));
+            //Dados da Compra
+            objCompra.setCodCompra(Integer.parseInt(this.txtCompraNumero.getText()));
 
             //Dados do cliente
-            objVenda.setCodCliente(Integer.parseInt(this.txtCompraCodFornecedor.getText()));
+            objCompra.setCodFornecedor(Integer.parseInt(this.txtCompraCodFornecedor.getText()));
 
-            // Data da venda
-            Date dataCadastramentoCliente = new Date();
+            // Data da compra
+            Date dataCadastramentoFornecedor = new Date();
             String formatoDataMysql = ("yyyy-MM-dd");
             SimpleDateFormat formatarData = new SimpleDateFormat(formatoDataMysql);
-            String dataMysql = formatarData.format(dataCadastramentoCliente);
-            objVenda.setDataVenda(dataMysql);
-            objVenda.setTipoPagamento((tipoPagamentoController.getTipoPagamentoController(this.cbCompraTipoPagamento.getSelectedItem().toString()).getCodTipoPagamento()));
-            // valor do Desconto da venda
+            String dataMysql = formatarData.format(dataCadastramentoFornecedor);
+            objCompra.setDataCompra(dataMysql);
+            objCompra.setTipoPagamento((tipoPagamentoController.getTipoPagamentoController(this.cbCompraTipoPagamento.getSelectedItem().toString()).getCodTipoPagamento()));
+            // valor do Desconto da compra
             String desconto = this.txtCompraDesconto.getText();
             String descontoFormatado = desconto.replace(".", "");
             String descontoFormatado2 = descontoFormatado.replace(",", ".");
             Double descontoBanco = Double.parseDouble(descontoFormatado2);
-            objVenda.setValorDesconto(descontoBanco);
+            objCompra.setValorDesconto(descontoBanco);
 
-            // valor Total da Venda
+            // valor Total da Compra
             String valorTotal = this.txtCompraTotal.getText();
             String totalFormatado = valorTotal.replace(".", "");
             String totalFormatado2 = totalFormatado.replace(",", ".");
             Double totalBanco = Double.parseDouble(totalFormatado2);
-            objVenda.setValorTotal(totalBanco);
+            objCompra.setValorTotal(totalBanco);
 
-            objVenda.setCodStatusVenda(2);
-            objVenda.setObservacao(this.txtCompraObservacao.getText());
+            objCompra.setCodStatusCompra(2);
+            objCompra.setObservacao(this.txtCompraObservacao.getText());
 
-            boolean statusRetornoVenda = vendasController.atualizarVendasController(objVenda);
+            boolean statusRetornoCompra = comprasController.atualizarComprasController(objCompra);
 
             for (int i = 0; i < tblListaItensCompras.getRowCount(); i++) {
-                ItemVenda objItemVenda = new ItemVenda();
-                Produto objProdutoVenda = new Produto();
-                objVenda.setCodVenda(Integer.parseInt(this.txtCompraNumero.getText()));
-                objItemVenda.setVenda(objVenda);
-                objProdutoVenda.setCodProduto(Integer.parseInt(tblListaItensCompras.getValueAt(i, 0).toString()));
-                objItemVenda.setProduto(objProdutoVenda);
-                objItemVenda.setQuantidade(Integer.parseInt(tblListaItensCompras.getValueAt(i, 3).toString()));
-                //objItemVenda.setSubtotal(Double.parseDouble(tblListaItensVendas.getValueAt(i, 5).toString()));
+                Item objItemCompra = new Item();
+                Produto objProdutoCompra = new Produto();
+                objCompra.setCodCompra(Integer.parseInt(this.txtCompraNumero.getText()));
+                objItemCompra.setCompra(objCompra);
+                objProdutoCompra.setCodProduto(Integer.parseInt(tblListaItensCompras.getValueAt(i, 0).toString()));
+                objItemCompra.setProduto(objProdutoCompra);
+                objItemCompra.setQuantidade(Integer.parseInt(tblListaItensCompras.getValueAt(i, 3).toString()));
+                //objItemCompra.setSubtotal(Double.parseDouble(tblListaItensCompras.getValueAt(i, 5).toString()));
                 String valorItemProduto = String.valueOf(tblListaItensCompras.getValueAt(i, 4).toString());
                 String vlItemFormatado = valorItemProduto.replace(".", "");
                 String vlItemFormatado2 = vlItemFormatado.replace(",", ".");
                 Double subTotalBanco = Double.parseDouble(vlItemFormatado2);
-                objItemVenda.setSubtotal(subTotalBanco);
-                listaItensVendas.add(objItemVenda);
+                objItemCompra.setSubtotal(subTotalBanco);
+                listaItensCompras.add(objItemCompra);
             }
 
-            itemVenda.setListaItemVenda(listaItensVendas);
+            itemCompra.setListaItemCompra(listaItensCompras);
 
-            if (statusRetornoVenda == true) {
-                vendasController.excluirItensVendaController(Integer.parseInt(this.txtCompraNumero.getText()));
-                vendasController.atualizarItensVendasController(itemVenda);
-                this.carregarVendas();
+            if (statusRetornoCompra == true) {
+                comprasController.excluirItensCompraController(Integer.parseInt(this.txtCompraNumero.getText()));
+                comprasController.atualizarItensComprasController(itemCompra);
+                this.carregarCompras();
                 JOptionPane.showMessageDialog(this, "Registro atualizado com sucesso!");
                 jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() + 1);
 
@@ -1204,7 +1204,7 @@ public class ComprasView extends javax.swing.JDialog {
 
     }
 
-    private boolean testarSelecaoVendas() {
+    private boolean testarSelecaoCompras() {
         int selecao = tblComprasRealizadas.getSelectedRow();
         if (selecao == -1) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha para realizar essa operação.");
@@ -1215,7 +1215,7 @@ public class ComprasView extends javax.swing.JDialog {
     }
 
     private boolean testarSelecaoProduto() {
-        if (txtCompraCodFornecedor.getText().equals("") && txtVendaDescricaoProduto.getText().equals("")) {
+        if (txtCompraCodFornecedor.getText().equals("") && txtCompraDescricaoProduto.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "É necessário selecionar um produto.");
             return false;
         }
@@ -1235,8 +1235,8 @@ public class ComprasView extends javax.swing.JDialog {
         this.txtCompraCodFornecedor.setText(null);
         this.txtCompraNomeFornecedor.setText(null);
         this.txtCompraNumero.setText(null);
-        this.txtVendaCodProduto.setText(null);
-        this.txtVendaDescricaoProduto.setText(null);
+        this.txtCompraCodProduto.setText(null);
+        this.txtCompraDescricaoProduto.setText(null);
         this.txtCompraDesconto.setText(null);
         this.txtCompraTotal.setText(null);
         this.txtCompraObservacao.setText(null);
@@ -1244,7 +1244,7 @@ public class ComprasView extends javax.swing.JDialog {
         modelo.setNumRows(0);
     }
 
-    private void novoVenda() {
+    private void novoCompra() {
         txtCompraNumero.setText("Novo");
         txtCompraQuantidade.setText("");
         DefaultTableModel modelo = (DefaultTableModel) tblListaItensCompras.getModel();
@@ -1258,7 +1258,7 @@ public class ComprasView extends javax.swing.JDialog {
         Double valor;
         int contador = tblListaItensCompras.getRowCount();
         for (int i = 0; i < contador; i++) {
-            //valor = Double.parseDouble(String.valueOf(tblListaItensVendas.getValueAt(i, 3)));
+            //valor = Double.parseDouble(String.valueOf(tblListaItensCompras.getValueAt(i, 3)));
             String valorOriginal = String.valueOf(tblListaItensCompras.getValueAt(i, 4));
             String valorOriginalFormatado = valorOriginal.replace(".", "");
             String valorOriginalFormatado2 = valorOriginalFormatado.replace(",", ".");
@@ -1272,7 +1272,7 @@ public class ComprasView extends javax.swing.JDialog {
             String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
             Double valorDescontoFormatado = Double.parseDouble(resultadoFormatado2);
 
-            //operacaoSoma = operacaoSoma - Double.valueOf(txtVendaDesconto.getText());
+            //operacaoSoma = operacaoSoma - Double.valueOf(txtCompraDesconto.getText());
             operacaoSoma = operacaoSoma - valorDescontoFormatado;
         }
         return operacaoSoma;
@@ -1321,18 +1321,18 @@ public class ComprasView extends javax.swing.JDialog {
     private javax.swing.JTable tblComprasRealizadas;
     private javax.swing.JTable tblListaItensCompras;
     private javax.swing.JTextField txtCompraCodFornecedor;
+    private javax.swing.JTextField txtCompraCodProduto;
     protected javax.swing.JFormattedTextField txtCompraData;
     private javax.swing.JFormattedTextField txtCompraDesconto;
+    private javax.swing.JTextField txtCompraDescricaoProduto;
     private javax.swing.JTextField txtCompraNomeFornecedor;
     private javax.swing.JTextField txtCompraNumero;
     private javax.swing.JTextField txtCompraObservacao;
+    private javax.swing.JTextField txtCompraPrecoOculto;
+    private javax.swing.JTextField txtCompraProdutoValorUnitario;
     private javax.swing.JTextField txtCompraQuantidade;
     private javax.swing.JTextField txtCompraStatus;
     private javax.swing.JTextField txtCompraTotal;
     private javax.swing.JTextField txtConsultaVenda;
-    private javax.swing.JTextField txtVendaCodProduto;
-    private javax.swing.JTextField txtVendaDescricaoProduto;
-    private javax.swing.JTextField txtVendaPrecoOculto;
-    private javax.swing.JTextField txtVendaProdutoValorUnitario;
     // End of variables declaration//GEN-END:variables
 }

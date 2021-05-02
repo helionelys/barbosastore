@@ -6,7 +6,7 @@
 package br.com.barbosasys.dao;
 
 import br.com.barbosasys.jdbc.ConexaoBanco;
-import br.com.barbosasys.model.ItemVenda;
+import br.com.barbosasys.model.Item;
 import br.com.barbosasys.model.Produto;
 import br.com.barbosasys.model.TipoPagamento;
 import br.com.barbosasys.model.Venda;
@@ -52,7 +52,7 @@ public class VendaDAO extends ConexaoBanco {
         }
     }
 
-    public boolean salvarItensVendasDAO(ItemVenda itemVenda) {
+    public boolean salvarItensVendasDAO(Item itemVenda) {
         try {
             this.conectar();
             int tamanhoLista = itemVenda.getListaItemVenda().size();
@@ -94,7 +94,7 @@ public class VendaDAO extends ConexaoBanco {
             }
         }
         
-        public boolean salvarItensVendasUpdateDAO(ItemVenda itemVenda) {
+        public boolean salvarItensVendasUpdateDAO(Item itemVenda) {
         try {
             this.conectar();
             int tamanhoLista = itemVenda.getListaItemVenda().size();
@@ -255,8 +255,8 @@ public class VendaDAO extends ConexaoBanco {
     }
     
 
-    public ArrayList<ItemVenda> getListaItensVendaDAO(int codigo) {
-        ArrayList<ItemVenda> listaItensVenda = new ArrayList();
+    public ArrayList<Item> getListaItensVendaDAO(int codigo) {
+        ArrayList<Item> listaItensVenda = new ArrayList();
         
         
         try {
@@ -282,7 +282,7 @@ public class VendaDAO extends ConexaoBanco {
             while (this.getResultSet().next()) {
                 //Venda venda = new Venda();
                 Produto produto = new Produto();
-                ItemVenda itemVenda = new ItemVenda();
+                Item itemVenda = new Item();
                 //venda.setCodVenda(this.getResultSet().getInt(1));
                 //itemVenda.setVenda(venda);
                 produto.setCodProduto(this.getResultSet().getInt(1));

@@ -24,6 +24,10 @@ public class ProdutoController {
         return this.produtoDAO.getProdutoSimplesDAO(codigo);
     }
     
+    public Produto getProdutoControllerCompraSimples(int codigo){
+        return this.produtoDAO.getProdutoCompraSimplesDAO(codigo);
+    }
+    
     public Produto getProdutoController(String nome){
         return this.produtoDAO.getProdutoDAO(nome);
     }
@@ -34,6 +38,10 @@ public class ProdutoController {
     
     public ArrayList<Produto> getListaProdutoControllerSimples(){
         return this.produtoDAO.getListaProdutoSimplesDAO();
+    }
+    
+    public ArrayList<Produto> getListaProdutoControllerCompraSimples(){
+        return this.produtoDAO.getListaProdutoSimplesComprasDAO();
     }
     
     public boolean atualizarProdutoController(Produto produto){

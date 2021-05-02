@@ -6,7 +6,7 @@
 package br.com.barbosasys.controller;
 
 import br.com.barbosasys.dao.VendaDAO;
-import br.com.barbosasys.model.ItemVenda;
+import br.com.barbosasys.model.Item;
 import br.com.barbosasys.model.Venda;
 import java.util.ArrayList;
 
@@ -34,7 +34,7 @@ public class VendaController {
         return this.vendaDAO.getListaVendaStatusAguardandoDAO();
     }
     
-    public ArrayList<ItemVenda> getListaItensVendaController(int codigo){
+    public ArrayList<Item> getListaItensVendaController(int codigo){
         return this.vendaDAO.getListaItensVendaDAO(codigo);
     }
     
@@ -42,7 +42,7 @@ public class VendaController {
         return this.vendaDAO.atualizarVendaDAO(venda);
     }
     
-    public boolean atualizarItensVendasController(ItemVenda itemVenda){
+    public boolean atualizarItensVendasController(Item itemVenda){
         return this.vendaDAO.salvarItensVendasUpdateDAO(itemVenda);
     }
     
@@ -58,7 +58,7 @@ public class VendaController {
         return this.vendaDAO.excluirItensVendasDAO(codigo);
     }
     
-    public boolean salvarItensVendaController(ItemVenda itemVenda){
+    public boolean salvarItensVendaController(Item itemVenda){
         return this.vendaDAO.salvarItensVendasDAO(itemVenda);
     }
     

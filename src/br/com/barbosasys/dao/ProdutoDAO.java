@@ -85,6 +85,35 @@ public class ProdutoDAO extends ConexaoBanco {
         return produto;
         }
     
+        public Produto getProdutoCompraSimplesDAO(int codigo) {
+        Produto produto = new Produto();
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "CODPRODUTO," //1
+                    + "DESCRICAO," //2
+                    + "VALORCOMPRA" //3
+                    + " FROM"
+                    + " TBL_PRODUTO"
+                    + " WHERE"
+                    + " CODPRODUTO = '" + codigo + "'"
+                    + ";"
+            );
+            
+             while (this.getResultSet().next()) {
+
+            produto.setCodProduto(this.getResultSet().getInt(1));
+            produto.setDescricao(this.getResultSet().getString(2));
+            produto.setValorCompra(Double.parseDouble(this.getResultSet().getString(3)));
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        } 
+        return produto;
+        }
     
     // Recupera produto através do codigo
     public Produto getProdutoDAO(int codigo) {
@@ -120,10 +149,10 @@ public class ProdutoDAO extends ConexaoBanco {
                 produto.setCodUnidadeMedida(this.getResultSet().getInt(4));
                 produto.setCodCategoriaProduto(this.getResultSet().getInt(5));
                 produto.setValor(Double.parseDouble(this.getResultSet().getString(6)));
-                produto.setValorCompra(Double.parseDouble(this.getResultSet().getString(6)));
-                produto.setCodFornecedor(this.getResultSet().getInt(7));
-                produto.setFabricante(this.getResultSet().getString(8));
-                produto.setObservacao(this.getResultSet().getString(9));
+                produto.setValorCompra(Double.parseDouble(this.getResultSet().getString(7)));
+                produto.setCodFornecedor(this.getResultSet().getInt(8));
+                produto.setFabricante(this.getResultSet().getString(9));
+                produto.setObservacao(this.getResultSet().getString(10));
 
             }
         } catch (Exception e) {
@@ -210,74 +239,7 @@ public class ProdutoDAO extends ConexaoBanco {
         return produto;
     }
 
-//    public ArrayList<Produto> getListaTodosProdutoDAO() {
-//        ArrayList<Produto> listaProduto = new ArrayList();
-//        Produto produto = new Produto();
-//
-//        try {
-//
-//            this.conectar();
-//            this.executarSQL(
-//                    "SELECT "
-//                    + "CODPRODUTO,"
-//                    + "TIPOPRODUTO,"
-//                    + "DATANASCIMENTO,"
-//                    + "NOME_RAZAOSOCIAL,"
-//                    + "APELIDO_NOMEFANTASIA,"
-//                    + "CPF_CNPJ,"
-//                    + "RG_INSCRICAOESTADUAL,"
-//                    + "CEP,"
-//                    + "CIDADE,"
-//                    + "UF,"
-//                    + "LOGRADOURO,"
-//                    + "NUMERO,"
-//                    + "BAIRRO,"
-//                    + "COMPLEMENTO,"
-//                    + "CELULAR,"
-//                    + "TELEFONE,"
-//                    + "EMAIL,"
-//                    + "DATACADASTRAMENTO"
-//                    + " FROM"
-//                    + " TBL_PRODUTO"
-//                    + ";"
-//            );
-//
-//            while (this.getResultSet().next()) {
-//                Endereco end = new Endereco();
-//                Contato cont = new Contato();
-//                                
-//                produto.setCodigo(this.getResultSet().getInt(1));
-//                produto.setPessoaTipo(this.getResultSet().getInt(2));
-//                produto.setDataNascimento(this.getResultSet().getString(3));
-//                produto.setNomeRazaoSocial(this.getResultSet().getString(4));
-//                produto.setApelidoNomeFantasia(this.getResultSet().getString(5));
-//                produto.setCpfCnpj(this.getResultSet().getString(6));
-//                
-//                produto.setCep(this.getResultSet().getString(7));
-//                produto.setCidade(this.getResultSet().getString(8));
-//                produto.setUf(this.getResultSet().getString(9));
-//                produto.setLogradouro(this.getResultSet().getString(10));
-//                produto.setNumero(this.getResultSet().getString(11));
-//                produto.setBairro(this.getResultSet().getString(12));
-//                produto.setComplemento(this.getResultSet().getString(13));
-//                
-//                produto.setCelular(this.getResultSet().getString(14));
-//                produto.setTelefone(this.getResultSet().getString(15));
-//                produto.setEmail(this.getResultSet().getString(16));
-//                
-//                produto.setDataCadastramento(this.getResultSet().getString(17));
-//
-//                listaProduto.add(produto);
-//
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            this.fecharConexao();
-//        }
-//        return listaProduto;
-//    }
+
     public ArrayList<Produto> getListaProdutoDAO() {
         ArrayList<Produto> listaProduto = new ArrayList();
         Produto produto = new Produto();
@@ -347,7 +309,44 @@ public class ProdutoDAO extends ConexaoBanco {
         }
         return listaProduto;
     }
+       
+       public ArrayList<Produto> getListaProdutoSimplesComprasDAO() {
+        ArrayList<Produto> listaProduto = new ArrayList();
+        Produto produto = new Produto();
 
+        try {
+
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "TBL_PRODUTO.CODPRODUTO,"
+                    + "TBL_PRODUTO.DESCRICAO,"
+                    + "TBL_PRODUTO.VALORCOMPRA,"
+                    + "TBL_PRODUTO.VALOR"
+                    + " FROM"
+                    + " TBL_PRODUTO "
+                    + ";"
+            );
+
+            while (this.getResultSet().next()) {
+                produto = new Produto();
+                produto.setCodProduto(this.getResultSet().getInt(1));
+                produto.setDescricao(this.getResultSet().getString(2));
+                produto.setValorCompra(Double.parseDouble(this.getResultSet().getString(3)));
+                produto.setValor(Double.parseDouble(this.getResultSet().getString(4)));
+
+                listaProduto.add(produto);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return listaProduto;
+    }
+
+       
     public boolean atualizarProdutoDAO(Produto produto) {
         try {
             this.conectar();
