@@ -190,7 +190,7 @@ public class ContasReceberView extends javax.swing.JDialog {
         btnLancamentosAReceberImprimir.setText("Imprimir");
 
         btnLancamentosReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Dollar.png"))); // NOI18N
-        btnLancamentosReceber.setText("Pagar");
+        btnLancamentosReceber.setText("Receber");
         btnLancamentosReceber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLancamentosReceberActionPerformed(evt);
@@ -636,13 +636,13 @@ public class ContasReceberView extends javax.swing.JDialog {
             String valor = (String) tblLancamentosAReceber.getValueAt(linha, 5);
 
             // Questiona se realmente deseja excluir
-            int opcao = JOptionPane.showConfirmDialog(this, "Efetuar pagamento do lancamento"
+            int opcao = JOptionPane.showConfirmDialog(this, "Efetuar recebimento  do lancamento"
                     + "?\n" + "Codigo: " + codLancamento + "\n" + "Fornecedor: " + nomeFornecedor + "\n" + "Valor: R$ " + valor, "Atenção", JOptionPane.YES_NO_OPTION);
 
             ////se sim exclui, se não, faz nada3
             if (opcao == JOptionPane.OK_OPTION) {
-                if (lancamentoController.baixarLancamentoControllerAPagar(codLancamento)) {
-                    JOptionPane.showMessageDialog(this, "Pagamento efetuado com sucesso!");
+                if (lancamentoController.baixarLancamentoController(codLancamento)) {
+                    JOptionPane.showMessageDialog(this, "Lancamento recebido com sucesso!");
                     carregarLancamentosAReceberAberto();
                     carregarLancamentosAReceberBaixados();
                     jTabbedPaneContaAPagar.setSelectedIndex(1);
@@ -663,13 +663,13 @@ public class ContasReceberView extends javax.swing.JDialog {
             String valor = (String) tblLancamentosRecebidos.getValueAt(linha, 5);
 
             // Questiona se realmente deseja excluir
-            int opcao = JOptionPane.showConfirmDialog(this, "Efetuar revogação de pagamento"
+            int opcao = JOptionPane.showConfirmDialog(this, "Efetuar revogação de recebimento"
                     + "?\n" + "Codigo: " + codLancamento + "\n" + "Fornecedor: " + nomeFornecedor + "\n" + "Valor: R$ " + valor, "Atenção", JOptionPane.YES_NO_OPTION);
 
             ////se sim exclui, se não, faz nada3
             if (opcao == JOptionPane.OK_OPTION) {
-                if (lancamentoController.revogarLancamentoControllerAPagar(codLancamento)) {
-                    JOptionPane.showMessageDialog(this, "Pagamento revogado com sucesso!");
+                if (lancamentoController.revogarLancamentoController(codLancamento)) {
+                    JOptionPane.showMessageDialog(this, "Lancamento revogado com sucesso!");
                     carregarLancamentosAReceberAberto();
                     carregarLancamentosAReceberBaixados();
                     jTabbedPaneContaAPagar.setSelectedIndex(0);

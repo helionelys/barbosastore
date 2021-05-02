@@ -846,6 +846,7 @@ public class ComprasView extends javax.swing.JDialog {
         if (alteracao == false) {
             salvarCompra();
             this.novoCompra();
+            this.carregarCompras();
         } else {
             atualizarCompra();
             //this.novoCompra();

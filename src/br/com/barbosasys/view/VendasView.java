@@ -846,6 +846,7 @@ public class VendasView extends javax.swing.JDialog {
         if (alteracao == false) {
             salvarVenda();
             this.novoVenda();
+            carregarVendas();
         } else {
             atualizarVenda();
             //this.novoVenda();
@@ -1004,6 +1005,7 @@ public class VendasView extends javax.swing.JDialog {
             if (codigoVenda > 0) {
                 vendasController.salvarItensVendaController(itemVenda);
                 JOptionPane.showMessageDialog(this, "Registro gravado com sucesso!");
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
             }

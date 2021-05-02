@@ -641,7 +641,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
 
             ////se sim exclui, se não, faz nada3
             if (opcao == JOptionPane.OK_OPTION) {
-                if (lancamentoController.baixarLancamentoControllerAPagar(codLancamento)) {
+                if (lancamentoController.baixarLancamentoController(codLancamento)) {
                     JOptionPane.showMessageDialog(this, "Pagamento efetuado com sucesso!");
                     carregarLancamentosAPagarAberto();
                     carregarLancamentosAPagarBaixados();
@@ -668,7 +668,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
 
             ////se sim exclui, se não, faz nada3
             if (opcao == JOptionPane.OK_OPTION) {
-                if (lancamentoController.revogarLancamentoControllerAPagar(codLancamento)) {
+                if (lancamentoController.revogarLancamentoController(codLancamento)) {
                     JOptionPane.showMessageDialog(this, "Pagamento revogado com sucesso!");
                     carregarLancamentosAPagarAberto();
                     carregarLancamentosAPagarBaixados();
