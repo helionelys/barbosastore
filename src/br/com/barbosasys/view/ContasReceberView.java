@@ -32,7 +32,7 @@ public class ContasReceberView extends javax.swing.JDialog {
     Fornecedor fornecedor = new Fornecedor();
     FornecedorController fornecedorController = new FornecedorController();
     Pessoa pessoa = new Pessoa();
-    ArrayList<Lancamento> listaLancamentoContaAPagar = new ArrayList<>();
+    ArrayList<Lancamento> listaLancamentoContaAReceber = new ArrayList<>();
     LancamentoController lancamentoController = new LancamentoController();
     TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
     ArrayList<TipoPagamento> listaTipoPagamentos = new ArrayList<>();
@@ -615,8 +615,8 @@ public class ContasReceberView extends javax.swing.JDialog {
             if (opcao == JOptionPane.OK_OPTION) {
                 if (lancamentoController.excluirLancamentoController(codLancamento)) {
                     JOptionPane.showMessageDialog(this, "Registro excluído com sucesso!");
-                    carregarLancamentosAPagarAberto();
-                    carregarLancamentosAPagarBaixados();
+                    carregarLancamentosAReceberAberto();
+                    carregarLancamentosAReceberBaixados();
                     jTabbedPaneContaAPagar.setSelectedIndex(0);
 
                 } else {
@@ -643,8 +643,8 @@ public class ContasReceberView extends javax.swing.JDialog {
             if (opcao == JOptionPane.OK_OPTION) {
                 if (lancamentoController.baixarLancamentoControllerAPagar(codLancamento)) {
                     JOptionPane.showMessageDialog(this, "Pagamento efetuado com sucesso!");
-                    carregarLancamentosAPagarAberto();
-                    carregarLancamentosAPagarBaixados();
+                    carregarLancamentosAReceberAberto();
+                    carregarLancamentosAReceberBaixados();
                     jTabbedPaneContaAPagar.setSelectedIndex(1);
 
                 } else {
@@ -670,8 +670,8 @@ public class ContasReceberView extends javax.swing.JDialog {
             if (opcao == JOptionPane.OK_OPTION) {
                 if (lancamentoController.revogarLancamentoControllerAPagar(codLancamento)) {
                     JOptionPane.showMessageDialog(this, "Pagamento revogado com sucesso!");
-                    carregarLancamentosAPagarAberto();
-                    carregarLancamentosAPagarBaixados();
+                    carregarLancamentosAReceberAberto();
+                    carregarLancamentosAReceberBaixados();
                     jTabbedPaneContaAPagar.setSelectedIndex(0);
 
                 } else {
@@ -683,8 +683,8 @@ public class ContasReceberView extends javax.swing.JDialog {
 
     private void DadosLimpeza() {
         listaTiposPagamento();
-        carregarLancamentosAPagarAberto();
-        carregarLancamentosAPagarBaixados();
+        carregarLancamentosAReceberAberto();
+        carregarLancamentosAReceberBaixados();
         this.txtLancamentoNumero.setText("Novo Lancamento");
         this.txtLancamentoCodCliente.setText(null);
         this.txtLancamentoNomeCliente.setText(null);
@@ -752,43 +752,44 @@ public class ContasReceberView extends javax.swing.JDialog {
         this.btnLancamentoSalvar.setEnabled(true);
     }
 
-    private void carregarLancamentosAPagarAberto() {
-        listaLancamentoContaAPagar = lancamentoController.getListaLancamentoAPagarAbertoController();
+    private void carregarLancamentosAReceberAberto() {
+        listaLancamentoContaAReceber = lancamentoController.getListaLancamentoAReceberAbertoController();
         DefaultTableModel modelo = (DefaultTableModel) tblLancamentosAReceber.getModel();
         modelo.setNumRows(0);
-        int cont = listaLancamentoContaAPagar.size();
+        int cont = listaLancamentoContaAReceber.size();
         for (int i = 0; i < cont; i++) {
             modelo.addRow(new Object[]{
-                listaLancamentoContaAPagar.get(i).getCodLancamento(),
-                listaLancamentoContaAPagar.get(i).getDescricaoLancamento(),
+                listaLancamentoContaAReceber.get(i).getCodLancamento(),
+                listaLancamentoContaAReceber.get(i).getDescricaoLancamento(),
                 //listaLancamentoContaAPagar.get(i).getCliente().getCodigo(),
-                listaLancamentoContaAPagar.get(i).getPessoa().getNomeRazaoSocial(),
-                listaLancamentoContaAPagar.get(i).getDataLancamento(),
-                listaLancamentoContaAPagar.get(i).getDataVencimento(),
-                valoresMonentarios.format(listaLancamentoContaAPagar.get(i).getValorLancamento())
+                listaLancamentoContaAReceber.get(i).getPessoa().getNomeRazaoSocial(),
+                listaLancamentoContaAReceber.get(i).getDataLancamento(),
+                listaLancamentoContaAReceber.get(i).getDataVencimento(),
+                valoresMonentarios.format(listaLancamentoContaAReceber.get(i).getValorLancamento())
 
             });
         }
     }
 
-    private void carregarLancamentosAPagarBaixados() {
-        listaLancamentoContaAPagar = lancamentoController.getListaLancamentoAPagarBaixadoController();
+    private void carregarLancamentosAReceberBaixados() {
+        listaLancamentoContaAReceber = lancamentoController.getListaLancamentoAReceberBaixadoController();
         DefaultTableModel modelo = (DefaultTableModel) tblLancamentosRecebidos.getModel();
         modelo.setNumRows(0);
-        int cont = listaLancamentoContaAPagar.size();
+        int cont = listaLancamentoContaAReceber.size();
         for (int i = 0; i < cont; i++) {
             modelo.addRow(new Object[]{
-                listaLancamentoContaAPagar.get(i).getCodLancamento(),
-                listaLancamentoContaAPagar.get(i).getDescricaoLancamento(),
+                listaLancamentoContaAReceber.get(i).getCodLancamento(),
+                listaLancamentoContaAReceber.get(i).getDescricaoLancamento(),
                 //listaLancamentoContaAPagar.get(i).getCliente().getCodigo(),
-                listaLancamentoContaAPagar.get(i).getPessoa().getNomeRazaoSocial(),
-                listaLancamentoContaAPagar.get(i).getDataLancamento(),
-                listaLancamentoContaAPagar.get(i).getDataVencimento(),
-                valoresMonentarios.format(listaLancamentoContaAPagar.get(i).getValorLancamento())
+                listaLancamentoContaAReceber.get(i).getPessoa().getNomeRazaoSocial(),
+                listaLancamentoContaAReceber.get(i).getDataLancamento(),
+                listaLancamentoContaAReceber.get(i).getDataVencimento(),
+                valoresMonentarios.format(listaLancamentoContaAReceber.get(i).getValorLancamento())
 
             });
         }
     }
+    
 
     private boolean recuperarLancamento() {
 
@@ -796,7 +797,7 @@ public class ContasReceberView extends javax.swing.JDialog {
         int codLancamento = (Integer) tblLancamentosAReceber.getValueAt(linha, 0);
 
         try {
-            lancamento = lancamentoController.getLancamentoControllerAPagar(codLancamento);
+            lancamento = lancamentoController.getLancamentoControllerAReceber(codLancamento);
             //Recupera os dados no banco de dados
             this.txtLancamentoNumero.setText(String.valueOf(lancamento.getCodLancamento()));
             this.txtLancamentoCodCliente.setText(String.valueOf(lancamento.getPessoa().getCodigo()));
@@ -873,14 +874,14 @@ public class ContasReceberView extends javax.swing.JDialog {
 
         lancamento.setCodTipoPagamento(tipoPagamentoController.getTipoPagamentoController(this.cbLancamentoTipoPagamento.getSelectedItem().toString()).getCodTipoPagamento());
         lancamento.setObservacao(this.txtLancamentoObservacao.getText());
-        lancamento.setCodTipoLancamento(2);
+        lancamento.setCodTipoLancamento(1);
         lancamento.setCodStatusLancamento(2);
 
         //Salvar
-        if (lancamentoController.salvarLancamentoControllerAPagar(lancamento) > 0) {
+        if (lancamentoController.salvarLancamentoControllerAReceber(lancamento) > 0) {
             JOptionPane.showMessageDialog(this, "Lancamento incluído com sucesso!");
             this.DadosLimpeza();
-            this.carregarLancamentosAPagarAberto();
+            this.carregarLancamentosAReceberAberto();
             return true;
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -921,14 +922,14 @@ public class ContasReceberView extends javax.swing.JDialog {
 
         lancamento.setCodTipoPagamento(tipoPagamentoController.getTipoPagamentoController(this.cbLancamentoTipoPagamento.getSelectedItem().toString()).getCodTipoPagamento());
         lancamento.setObservacao(this.txtLancamentoObservacao.getText());
-        lancamento.setCodTipoLancamento(2);
+        lancamento.setCodTipoLancamento(1);
         lancamento.setCodStatusLancamento(2);
 
         //Salvar
         if (lancamentoController.atualizarLancamentoControllerAPagar(lancamento)) {
             JOptionPane.showMessageDialog(this, "Lancamento Alterado com sucesso!");
             this.DadosLimpeza();
-            this.carregarLancamentosAPagarAberto();
+            this.carregarLancamentosAReceberAberto();
             return true;
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);

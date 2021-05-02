@@ -94,7 +94,7 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         jLabel1.setText("Assistente de Faturamento");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
-        jLabel2.setText("Venda:");
+        jLabel2.setText("Compra:");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
         jLabel3.setText("Cliente:");

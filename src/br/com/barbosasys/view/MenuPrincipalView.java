@@ -646,14 +646,14 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
     private void MenuFinanceiroContaPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFinanceiroContaPagarActionPerformed
         // TODO add your handling code here:
-        ContasReceberView telaContasPagar = new ContasReceberView(this, rootPaneCheckingEnabled);
+        ContasAPagarView telaContasPagar = new ContasAPagarView(this, rootPaneCheckingEnabled);
         telaContasPagar.setLocationRelativeTo(this);
         telaContasPagar.setVisible(true);
     }//GEN-LAST:event_MenuFinanceiroContaPagarActionPerformed
 
     private void MenuFinanceiroContaReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFinanceiroContaReceberActionPerformed
         // TODO add your handling code here:
-        ContasReceberViewOld telaContasReceberView = new ContasReceberViewOld(this, rootPaneCheckingEnabled);
+        ContasReceberView telaContasReceberView = new ContasReceberView(this, rootPaneCheckingEnabled);
         telaContasReceberView.setLocationRelativeTo(this);
         telaContasReceberView.setVisible(true);
     }//GEN-LAST:event_MenuFinanceiroContaReceberActionPerformed

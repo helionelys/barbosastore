@@ -59,7 +59,7 @@ public class CompraDAO extends ConexaoBanco {
             for (int i = 0; i < tamanhoLista; i++) {
                 this.insertSQL(
                         "INSERT INTO TBL_ITENSCOMPRA "
-                        + "(CODFORNECEDOR,CODPRODUTO,QUANTIDADE,SUBTOTAL)"
+                        + "(CODCOMPRA,CODPRODUTO,QUANTIDADE,SUBTOTAL)"
                         + "VALUES ("
                         //+ "'" + compra.getListaCompra().get(i).getProduto().getCodProduto() + "',"
                         //+ "'" + itemCompra.getCompra().getCodCompra()+ "',"
@@ -83,7 +83,7 @@ public class CompraDAO extends ConexaoBanco {
             try {
                 this.conectar();
                 this.executarUpdateDeleteSQL(
-                        "DELETE FROM TBL_ITENSCOMPRA WHERE CODFORNECEDOR = '" + codigo +"';"
+                        "DELETE FROM TBL_ITENSCOMPRA WHERE CODCOMPRA = '" + codigo +"';"
                 );
                 return true;
             } catch (Exception e) {
@@ -101,7 +101,7 @@ public class CompraDAO extends ConexaoBanco {
             for (int i = 0; i < tamanhoLista; i++) {    
                 this.insertSQL(
                         "INSERT INTO TBL_ITENSCOMPRA "
-                        + "(CODFORNECEDOR,CODPRODUTO,QUANTIDADE,SUBTOTAL)"
+                        + "(CODCOMPRA,CODPRODUTO,QUANTIDADE,SUBTOTAL)"
                         + "VALUES ("
                         //+ "'" + compra.getListaCompra().get(i).getProduto().getCodProduto() + "',"
                         //+ "'" + itemCompra.getCompra().getCodCompra()+ "',"
@@ -129,7 +129,7 @@ public class CompraDAO extends ConexaoBanco {
             this.conectar();
             this.executarSQL(
                     "SELECT "
-                    + "TBL_COMPRA.CODFORNECEDOR,"
+                    + "TBL_COMPRA.CODCOMPRA,"
                     + "TBL_COMPRA.TOTALCOMPRA,"
                     + "TBL_COMPRA.CODFORNECEDOR,"
                     + "TBL_COMPRA.DATACOMPRA,"
@@ -142,7 +142,7 @@ public class CompraDAO extends ConexaoBanco {
                     + " INNER JOIN TBL_STATUSCOMPRA"
                     + " ON TBL_COMPRA.CODSTATUSCOMPRA = TBL_STATUSCOMPRA.CODSTATUSCOMPRA"
                     + " WHERE"
-                    + " TBL_COMPRA.CODFORNECEDOR = '" + codigo + "'"
+                    + " TBL_COMPRA.CODCOMPRA = '" + codigo + "'"
                     + ";"
             );
 
@@ -171,18 +171,18 @@ public class CompraDAO extends ConexaoBanco {
             this.conectar();
             this.executarSQL(
                     "SELECT "
-                    + "TBL_COMPRA.CODFORNECEDOR,"
-                    + "TBL_CLIENTE.NOME_RAZAOSOCIAL,"
+                    + "TBL_COMPRA.CODCOMPRA,"
+                    + "TBL_FORNECEDOR.NOME_RAZAOSOCIAL,"
                     + "TBL_COMPRA.TOTALCOMPRA,"
                     + "TBL_COMPRA.DATACOMPRA,"
                     + "TBL_STATUSCOMPRA.DESCRICAO"
                     + " FROM"
                     + " TBL_COMPRA"
-                    + " INNER JOIN TBL_CLIENTE"
-                    + " ON TBL_COMPRA.CODFORNECEDOR = TBL_CLIENTE.CODFORNECEDOR"
+                    + " INNER JOIN TBL_FORNECEDOR"
+                    + " ON TBL_COMPRA.CODFORNECEDOR = TBL_FORNECEDOR.CODFORNECEDOR"
                     + " INNER JOIN TBL_STATUSCOMPRA"
                     + " ON TBL_COMPRA.CODSTATUSCOMPRA = TBL_STATUSCOMPRA.CODSTATUSCOMPRA"
-                    + " ORDER BY TBL_COMPRA.CODFORNECEDOR DESC;"
+                    + " ORDER BY TBL_COMPRA.CODCOMPRA DESC;"
             );
 
             while (this.getResultSet().next()) {
@@ -216,18 +216,18 @@ public class CompraDAO extends ConexaoBanco {
             this.conectar();
             this.executarSQL(
                     "SELECT "
-                    + "TBL_COMPRA.CODFORNECEDOR,"
-                    + "TBL_CLIENTE.NOME_RAZAOSOCIAL,"
+                    + "TBL_COMPRA.CODCOMPRA,"
+                    + "TBL_FORNECEDOR.NOME_RAZAOSOCIAL,"
                     + "TBL_COMPRA.TOTALCOMPRA,"
                     + "TBL_COMPRA.DATACOMPRA,"
                     + "TBL_STATUSCOMPRA.DESCRICAO"
                     + " FROM"
                     + " TBL_COMPRA"
-                    + " INNER JOIN TBL_CLIENTE"
-                    + " ON TBL_COMPRA.CODFORNECEDOR = TBL_CLIENTE.CODFORNECEDOR"
+                    + " INNER JOIN TBL_FORNECEDOR"
+                    + " ON TBL_COMPRA.CODFORNECEDOR = TBL_FORNECEDOR.CODFORNECEDOR"
                     + " INNER JOIN TBL_STATUSCOMPRA"
                     + " ON TBL_COMPRA.CODSTATUSCOMPRA = TBL_STATUSCOMPRA.CODSTATUSCOMPRA"
-                    + " WHERE TBL_COMPRA.CODSTATUSCOMPRA = 2 ORDER BY TBL_COMPRA.CODFORNECEDOR DESC;"
+                    + " WHERE TBL_COMPRA.CODSTATUSCOMPRA = 2 ORDER BY TBL_COMPRA.CODCOMPRA DESC;"
             );
 
             while (this.getResultSet().next()) {
@@ -272,10 +272,10 @@ public class CompraDAO extends ConexaoBanco {
                     + "FROM"
                     + " TBL_ITENSCOMPRA"
                     + " INNER JOIN TBL_COMPRA"
-                    + " ON TBL_ITENSCOMPRA.CODFORNECEDOR = TBL_COMPRA.CODFORNECEDOR"
+                    + " ON TBL_ITENSCOMPRA.CODCOMPRA = TBL_COMPRA.CODCOMPRA"
                     + " INNER JOIN TBL_PRODUTO"
                     + " ON TBL_ITENSCOMPRA.CODPRODUTO = TBL_PRODUTO.CODPRODUTO"
-                    + "  WHERE TBL_ITENSCOMPRA.CODFORNECEDOR = '" + codigo + "'"
+                    + "  WHERE TBL_ITENSCOMPRA.CODCOMPRA = '" + codigo + "'"
                     + ";"
             );
 
@@ -315,7 +315,7 @@ public class CompraDAO extends ConexaoBanco {
                     + "OBSERVACAO = '" + compra.getObservavao()+ "'"
                    // + "CODTIPOPAGAMENTO = '" + compra.getTipoPagamento()+ "'"
                     + "WHERE "
-                    + "CODFORNECEDOR = '" + compra.getCodCompra() + "'"
+                    + "CODCOMPRA = '" + compra.getCodCompra() + "'"
                     + ";"
             );
             return true;
@@ -350,7 +350,7 @@ public class CompraDAO extends ConexaoBanco {
         try {
             this.conectar();
             this.executarSQL(
-                    "DELETE FROM TBL_COMPRA WHERE CODFORNECEDOR = '" + codigo + "';"
+                    "DELETE FROM TBL_COMPRA WHERE CODCOMPRA = '" + codigo + "';"
             );
             return true;
         } catch (Exception e) {
@@ -367,7 +367,7 @@ public class CompraDAO extends ConexaoBanco {
         try {
             this.conectar();
             this.executarSQL(
-                    "SELECT MAX(CODFORNECEDOR) CODFORNECEDOR FROM TBL_COMPRA"
+                    "SELECT MAX(CODCOMPRA) CODCOMPRA FROM TBL_COMPRA"
             );
 
             while (this.getResultSet().next()) {
