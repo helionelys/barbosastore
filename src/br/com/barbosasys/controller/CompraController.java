@@ -46,8 +46,8 @@ public class CompraController {
         return this.compraDAO.salvarItensComprasUpdateDAO(itemCompra);
     }
     
-    public boolean atualizarComprasAutorizacaoController(Compra compra){
-        return this.compraDAO.atualizarCompraAprovacaoDAO(compra);
+    public boolean atualizarComprasFaturamentoController(Compra compra){
+        return this.compraDAO.atualizarCompraFaturamentoDAO(compra);
     }
     
     public boolean excluirCompraController(int codigo){

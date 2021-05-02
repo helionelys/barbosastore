@@ -862,7 +862,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
         DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate2 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
-        String dataLacamentoPagamentoBanco = localDate.format(dataFormatada2);
+        String dataLacamentoPagamentoBanco = localDate2.format(dataFormatada2);
         lancamento.setDataPagamento(dataLacamentoPagamentoBanco);
 
         String valorLancamentoOriginal = txtLancamentoValor.getText();

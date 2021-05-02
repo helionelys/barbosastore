@@ -801,7 +801,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="rbGroupStatusVenda"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Aguardando"/>
+                <Property name="text" type="java.lang.String" value="Pendente"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbCompraStatusAprovacaoAguardandoActionPerformed"/>

@@ -327,7 +327,7 @@ public class CompraDAO extends ConexaoBanco {
         }
     }
     
-    public boolean atualizarCompraAprovacaoDAO(Compra compra) {
+    public boolean atualizarCompraFaturamentoDAO(Compra compra) {
         try {
             this.conectar();
             this.executarUpdateDeleteSQL(

@@ -5,7 +5,14 @@
  */
 package br.com.barbosasys.view;
 
+import br.com.barbosasys.controller.CompraController;
+import br.com.barbosasys.controller.LancamentoController;
+import br.com.barbosasys.model.Compra;
 import br.com.barbosasys.model.Lancamento;
+import br.com.barbosasys.model.Pessoa;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,7 +24,12 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
     private String nomeFornecedor, dataLancamento,tipoPagamento, valorDesconto, 
                    dataVencimento, dataPagamento, valorLancamemto;
     
+    Pessoa pessoa = new Pessoa();
+    
     Lancamento lancamentoFaturar = new Lancamento();
+    LancamentoController lancamentoController = new LancamentoController();
+    CompraController compraController = new CompraController();
+    Compra compra = new Compra();
     /**
      * Creates new form FaturamentoView
      */
@@ -56,9 +68,10 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         lblCodTipodePagamento = new javax.swing.JLabel();
         txtDataPagamentoCompra = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
+        lblCodFornecedor = new javax.swing.JLabel();
         btnGerarLancamento = new javax.swing.JButton();
-        lblMoney = new javax.swing.JLabel();
         lblValorTotal = new javax.swing.JLabel();
+        lbMoneyy = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -155,6 +168,8 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         jLabel10.setText("Data de Pagamento:");
 
+        lblCodFornecedor.setText("jLabel7");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -164,8 +179,11 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel6)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblCodFornecedor)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6))
                                 .addComponent(jLabel8)
                                 .addComponent(jLabel5))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -227,7 +245,8 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(lblValorDesconto))
+                    .addComponent(lblValorDesconto)
+                    .addComponent(lblCodFornecedor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDataVencimentoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,14 +266,14 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
             }
         });
 
-        lblMoney.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblMoney.setForeground(new java.awt.Color(153, 0, 51));
-        lblMoney.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblMoney.setText("0,00");
-
         lblValorTotal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblValorTotal.setForeground(new java.awt.Color(153, 0, 51));
-        lblValorTotal.setText("R$");
+        lblValorTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblValorTotal.setText("0,00");
+
+        lbMoneyy.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lbMoneyy.setForeground(new java.awt.Color(153, 0, 51));
+        lbMoneyy.setText("R$");
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel9.setText("Valor:");
@@ -274,9 +293,9 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblValorTotal)
+                        .addComponent(lbMoneyy)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblMoney, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnGerarLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))))
@@ -290,15 +309,15 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblMoney)
                         .addComponent(lblValorTotal)
+                        .addComponent(lbMoneyy)
                         .addComponent(jLabel9))
                     .addComponent(btnGerarLancamento))
                 .addGap(25, 25, 25)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnGerarLancamento, lblMoney});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnGerarLancamento, lblValorTotal});
 
         pack();
         setLocationRelativeTo(null);
@@ -306,82 +325,143 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
 
     private void btnGerarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarLancamentoActionPerformed
         // TODO add your handling code here:
+        this.salvarLancamentoCompras();
     }//GEN-LAST:event_btnGerarLancamentoActionPerformed
 
-    public int getCodigoCompra() {
-        return codigoCompra;
-    }
+//    public int getCodigoCompra() {
+//        return codigoCompra;
+//    }
+//
+//    public void setCodigoCompra(int codigoCompra) {
+//        this.codigoCompra = codigoCompra;
+//    }    
+//
+//    public int getCodTipoPagamento() {
+//        return codTipoPagamento;
+//    }
+//
+//    public void setCodTipoPagamento(int codTipoPagamento) {
+//        this.codTipoPagamento = codTipoPagamento;
+//    }
+//
+//    public String getNomeFornecedor() {
+//        return nomeFornecedor;
+//    }
+//
+//    public void setNomeFornecedor(String nomeFornecedor) {
+//        this.nomeFornecedor = nomeFornecedor;
+//    }
+//
+//    public String getDataLancamento() {
+//        return dataLancamento;
+//    }
+//
+//    public void setDataLancamento(String dataLancamento) {
+//        this.dataLancamento = dataLancamento;
+//    }
+//
+//    public String getTipoPagamento() {
+//        return tipoPagamento;
+//    }
+//
+//    public void setTipoPagamento(String tipoPagamento) {
+//        this.tipoPagamento = tipoPagamento;
+//    }
+//
+//    public String getValorDesconto() {
+//        return valorDesconto;
+//    }
+//
+//    public void setValorDesconto(String valorDesconto) {
+//        this.valorDesconto = valorDesconto;
+//    }
+//
+//    public String getDataVencimento() {
+//        return dataVencimento;
+//    }
+//
+//    public void setDataVencimento(String dataVencimento) {
+//        this.dataVencimento = dataVencimento;
+//    }
+//
+//    public String getDataPagamento() {
+//        return dataPagamento;
+//    }
+//
+//    public void setDataPagamento(String dataPagamento) {
+//        this.dataPagamento = dataPagamento;
+//    }
+//
+//    public String getValorLancamemto() {
+//        return valorLancamemto;
+//    }
+//
+//    public void setValorLancamemto(String valorLancamemto) {
+//        this.valorLancamemto = valorLancamemto;
+//    }
+    
+    private boolean salvarLancamentoCompras(){
+        pessoa.setCodigo(Integer.parseInt(this.lblCodFornecedor.getText()));
+        lancamentoFaturar.setPessoa(pessoa);
+        compra.setCodCompra(Integer.parseInt(this.lblNumeroDaCompra.getText()));
+        String descricaoLancamento = "LANÇAMENTO REFERENTE A COMPRA Nº: " + lblNumeroDaCompra.getText() + " NO VALOR DE: "+ lblValorTotal.getText();
+        lancamentoFaturar.setDescricaoLancamento(descricaoLancamento);
+        
+        String dataLancamento = this.lblDataCompra.getText();
+        DateTimeFormatter dataLancamentoRecebida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dataLancamentoFormatada = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(dataLancamento, dataLancamentoRecebida);
+        String dataLacamentoBanco = localDate.format(dataLancamentoFormatada);
+        lancamentoFaturar.setDataLancamento(dataLacamentoBanco);
+        
+        
+        String dataLancamentoVencimento = this.txtDataVencimentoCompra.getText();
+        DateTimeFormatter dataRecebida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dataFormatada = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate2 = LocalDate.parse(dataLancamentoVencimento, dataRecebida);
+        String dataLacamentoVencimentoBanco = localDate2.format(dataFormatada);
+        lancamentoFaturar.setDataVencimento(dataLacamentoVencimentoBanco);
 
-    public void setCodigoCompra(int codigoCompra) {
-        this.codigoCompra = codigoCompra;
-    }    
 
-    public int getCodTipoPagamento() {
-        return codTipoPagamento;
-    }
+        String dataLancamentoPagamento = this.txtDataPagamentoCompra.getText();
+        DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate3 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
+        String dataLacamentoPagamentoBanco = localDate3.format(dataFormatada2);
+        lancamentoFaturar.setDataPagamento(dataLacamentoPagamentoBanco);
+        
+        String valorLancamentoOriginal = lblValorTotal.getText();
+        String valorLancamentoFormatado = valorLancamentoOriginal.replace(".", "");
+        String valorLancamentoFormatado2 = valorLancamentoFormatado.replace(",", ".");
+        Double valorBanco = Double.parseDouble(valorLancamentoFormatado2);
+        lancamentoFaturar.setValorLancamento(valorBanco);
+        lancamentoFaturar.setCodTipoPagamento(Integer.parseInt(lblCodTipodePagamento.getText()));
+        lancamentoFaturar.setObservacao("");
+        lancamentoFaturar.setCodTipoLancamento(2);
+        lancamentoFaturar.setCodStatusLancamento(2);
 
-    public void setCodTipoPagamento(int codTipoPagamento) {
-        this.codTipoPagamento = codTipoPagamento;
-    }
-
-    public String getNomeFornecedor() {
-        return nomeFornecedor;
-    }
-
-    public void setNomeFornecedor(String nomeFornecedor) {
-        this.nomeFornecedor = nomeFornecedor;
-    }
-
-    public String getDataLancamento() {
-        return dataLancamento;
-    }
-
-    public void setDataLancamento(String dataLancamento) {
-        this.dataLancamento = dataLancamento;
-    }
-
-    public String getTipoPagamento() {
-        return tipoPagamento;
-    }
-
-    public void setTipoPagamento(String tipoPagamento) {
-        this.tipoPagamento = tipoPagamento;
-    }
-
-    public String getValorDesconto() {
-        return valorDesconto;
-    }
-
-    public void setValorDesconto(String valorDesconto) {
-        this.valorDesconto = valorDesconto;
-    }
-
-    public String getDataVencimento() {
-        return dataVencimento;
-    }
-
-    public void setDataVencimento(String dataVencimento) {
-        this.dataVencimento = dataVencimento;
-    }
-
-    public String getDataPagamento() {
-        return dataPagamento;
-    }
-
-    public void setDataPagamento(String dataPagamento) {
-        this.dataPagamento = dataPagamento;
-    }
-
-    public String getValorLancamemto() {
-        return valorLancamemto;
-    }
-
-    public void setValorLancamemto(String valorLancamemto) {
-        this.valorLancamemto = valorLancamemto;
+                
+        if (lancamentoController.salvarLancamentoControllerAPagar(lancamentoFaturar) > 0) {
+            //lancamentoController.
+            compraController.atualizarComprasFaturamentoController(compra);
+            JOptionPane.showMessageDialog(this, "Lancamento incluído com sucesso!");
+            JOptionPane.showMessageDialog(this, "Compra Faturada!");
+            
+            this.dispose();
+            return true;
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+            return false;
+        }
     }
     
     public void setLblNumeroCompra(int numeroDaCompra){
         this.lblNumeroDaCompra.setText(String.valueOf(numeroDaCompra)); 
+    }
+    public void setLblCodFornecedor(int codFornecedor){
+        this.lblCodFornecedor.setText(String.valueOf(codFornecedor)); 
     }
     
     public void setLblNomeFornecedor(String nomeFornecedor){
@@ -413,12 +493,9 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
     }
     
     public void setLblValorTotal(String valorTotal){
-        this.lblMoney.setText(String.valueOf(valorTotal)); 
+        this.lblValorTotal.setText(String.valueOf(valorTotal)); 
     }
     
-    private void salvarLancamentoFaturar(){
-        
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGerarLancamento;
@@ -434,9 +511,10 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel lbMoneyy;
+    private javax.swing.JLabel lblCodFornecedor;
     private javax.swing.JLabel lblCodTipodePagamento;
     private javax.swing.JLabel lblDataCompra;
-    private javax.swing.JLabel lblMoney;
     private javax.swing.JLabel lblNomeFornecedor;
     private javax.swing.JLabel lblNumeroDaCompra;
     private javax.swing.JLabel lblTipodePagamentoDescricao;

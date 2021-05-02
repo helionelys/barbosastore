@@ -554,7 +554,7 @@ public class ComprasView extends javax.swing.JDialog {
         });
 
         rbGroupStatusVenda.add(rbCompraStatusAprovacaoAguardando);
-        rbCompraStatusAprovacaoAguardando.setText("Aguardando");
+        rbCompraStatusAprovacaoAguardando.setText("Pendente");
         rbCompraStatusAprovacaoAguardando.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbCompraStatusAprovacaoAguardandoActionPerformed(evt);
@@ -888,6 +888,8 @@ public class ComprasView extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (testarSelecaoCompras() == true) {
             recuperarCompraFaturameto();
+            carregarCompras();
+            
     }//GEN-LAST:event_btnCompraFaturarActionPerformed
 
     }
@@ -1087,6 +1089,7 @@ public class ComprasView extends javax.swing.JDialog {
             //Recupera os dados no banco de dados
             compra = (comprasController.getCompraController(codigoCompra));
             telaFaturamento.setLblNumeroCompra(codigoCompra);
+            telaFaturamento.setLblCodFornecedor(compra.getCodFornecedor());
             telaFaturamento.setLblNomeFornecedor(nomeFornecedor);
 
             String dataRetorno = compra.getDataCompra();
