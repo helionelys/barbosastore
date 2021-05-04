@@ -706,8 +706,6 @@ public class ContasAPagarView extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnLancamentosPagosDetalheActionPerformed
 
-    
-
     private void DadosLimpeza() {
         listaTiposPagamento();
         carregarLancamentosAPagarAberto();

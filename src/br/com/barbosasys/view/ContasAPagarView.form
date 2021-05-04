@@ -512,15 +512,13 @@
                                       <Component id="cbLancamentoTipoPagamento" min="-2" pref="308" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane3" min="-2" pref="596" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
-                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtLancamentoDataVencimento" min="-2" pref="111" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtLancamentoDataInclusao" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtLancamentoDataVencimento" min="-2" pref="111" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="txtLancamentoDataInclusao" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                                   <Component id="txtLancamentoNumero" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="txtLancamentoCodFornecedor" min="-2" pref="54" max="-2" attributes="0"/>

@@ -29,6 +29,6 @@ public class TipoPagamento {
     
     @Override
     public String toString(){
-        return "ModelTipoPagamento {" + "::codigo = " + this.codTipoPagamento + "::descricao = " + this.descricao +  "}";
+        return "TipoPagamento {" + "::codigo = " + this.codTipoPagamento + "::descricao = " + this.descricao +  "}";
     }
 }

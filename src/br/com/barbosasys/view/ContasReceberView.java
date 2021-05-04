@@ -91,8 +91,6 @@ public class ContasReceberView extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtLancamentoObservacao = new javax.swing.JTextArea();
         txtLancamentoDescricao = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtLancamentoDataPagamento = new javax.swing.JFormattedTextField();
         txtLancamentoDataVencimento = new javax.swing.JFormattedTextField();
         txtLancamentoDataInclusao = new javax.swing.JFormattedTextField();
         cbLancamentoTipoPagamento = new javax.swing.JComboBox<>();
@@ -366,15 +364,6 @@ public class ContasReceberView extends javax.swing.JDialog {
         txtLancamentoObservacao.setRows(5);
         jScrollPane3.setViewportView(txtLancamentoObservacao);
 
-        jLabel9.setText("Data Pagamento");
-
-        try {
-            txtLancamentoDataPagamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtLancamentoDataPagamento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         try {
             txtLancamentoDataVencimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -449,18 +438,13 @@ public class ContasReceberView extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbLancamentoTipoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jpLancamentosContasAPagarLayout.createSequentialGroup()
-                                .addGroup(jpLancamentosContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jpLancamentosContasAPagarLayout.createSequentialGroup()
-                                        .addGap(151, 151, 151)
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtLancamentoDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtLancamentoDataInclusao, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtLancamentoDataPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpLancamentosContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jpLancamentosContasAPagarLayout.createSequentialGroup()
+                                    .addGap(151, 151, 151)
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtLancamentoDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtLancamentoDataInclusao, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtLancamentoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jpLancamentosContasAPagarLayout.createSequentialGroup()
                                 .addComponent(txtLancamentoCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -496,9 +480,7 @@ public class ContasReceberView extends javax.swing.JDialog {
                     .addComponent(labelPagamento)
                     .addComponent(txtLancamentoDataInclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(txtLancamentoDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtLancamentoDataPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLancamentoDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpLancamentosContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -558,7 +540,9 @@ public class ContasReceberView extends javax.swing.JDialog {
     private void btnLancamentoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentoSalvarActionPerformed
         // TODO add your handling code here:
         if (txtLancamentoDescricao.getText().equals("") || txtLancamentoDataVencimento.getText().equals("")
-                || txtLancamentoDataVencimento.getText().equals("") || txtLancamentoDataPagamento.getText().equals("")) {
+                || txtLancamentoDataVencimento.getText().equals("")) 
+                //|| txtLancamentoDataPagamento.getText().equals(""))
+                {
             JOptionPane.showMessageDialog(this, "Você deve preencher todos os campos corretamente", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
         } else if (tipoCadastro.equals("cadastro")) {
             this.salvarLancamento();
@@ -698,7 +682,6 @@ public class ContasReceberView extends javax.swing.JDialog {
         this.txtLancamentoDescricao.setText(null);
         this.txtLancamentoDataInclusao.setText(null);
         this.txtLancamentoDataVencimento.setText(null);
-        this.txtLancamentoDataPagamento.setText(null);
         this.txtLancamentoValor.setText(null);
         this.txtLancamentoObservacao.setText(null);
     }
@@ -737,7 +720,6 @@ public class ContasReceberView extends javax.swing.JDialog {
         this.txtLancamentoDescricao.setEnabled(false);
         this.txtLancamentoDataInclusao.setEnabled(false);
         this.txtLancamentoDataVencimento.setEnabled(false);
-        this.txtLancamentoDataPagamento.setEnabled(false);
         this.txtLancamentoValor.setEnabled(false);
         this.cbLancamentoTipoPagamento.setEnabled(false);
         this.txtLancamentoObservacao.setEnabled(false);
@@ -752,7 +734,6 @@ public class ContasReceberView extends javax.swing.JDialog {
         this.txtLancamentoDescricao.setEnabled(true);
         this.txtLancamentoDataInclusao.setEnabled(true);
         this.txtLancamentoDataVencimento.setEnabled(true);
-        this.txtLancamentoDataPagamento.setEnabled(true);
         this.txtLancamentoValor.setEnabled(true);
         this.cbLancamentoTipoPagamento.setEnabled(true);
         this.txtLancamentoObservacao.setEnabled(true);
@@ -825,12 +806,12 @@ public class ContasReceberView extends javax.swing.JDialog {
             String dataLancamentoVencimento = localDate2.format(formatter4);
             this.txtLancamentoDataVencimento.setText(dataLancamentoVencimento);
 
-            String dataRetorno3 = lancamento.getDataLancamento();
-            DateTimeFormatter formatter5 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            DateTimeFormatter formatter6 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate localDate3 = LocalDate.parse(dataRetorno3, formatter5);
-            String dataLancamentoPagamento = localDate3.format(formatter6);
-            this.txtLancamentoDataPagamento.setText(dataLancamentoPagamento);
+//            String dataRetorno3 = lancamento.getDataLancamento();
+//            DateTimeFormatter formatter5 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//            DateTimeFormatter formatter6 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//            LocalDate localDate3 = LocalDate.parse(dataRetorno3, formatter5);
+//            String dataLancamentoPagamento = localDate3.format(formatter6);
+//            this.txtLancamentoDataPagamento.setText(dataLancamentoPagamento);
 
             Double valorLancamentoRetorno = lancamento.getValorLancamento();
             DecimalFormat df = new DecimalFormat("#,##0.00");
@@ -866,12 +847,12 @@ public class ContasReceberView extends javax.swing.JDialog {
         String dataLacamentoVencimentoBanco = localDate.format(dataFormatada);
         lancamento.setDataVencimento(dataLacamentoVencimentoBanco);
 
-        String dataLancamentoPagamento = this.txtLancamentoDataVencimento.getText();
-        DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate2 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
-        String dataLacamentoPagamentoBanco = localDate.format(dataFormatada2);
-        lancamento.setDataPagamento(dataLacamentoPagamentoBanco);
+//        String dataLancamentoPagamento = this.txtLancamentoDataVencimento.getText();
+//        DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        LocalDate localDate2 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
+//        String dataLacamentoPagamentoBanco = localDate.format(dataFormatada2);
+//        lancamento.setDataPagamento(dataLacamentoPagamentoBanco);
 
         String valorLancamentoOriginal = txtLancamentoValor.getText();
         String valorLancamentoFormatado = valorLancamentoOriginal.replace(".", "");
@@ -914,12 +895,12 @@ public class ContasReceberView extends javax.swing.JDialog {
         String dataLacamentoVencimentoBanco = localDate.format(dataFormatada);
         lancamento.setDataVencimento(dataLacamentoVencimentoBanco);
 
-        String dataLancamentoPagamento = this.txtLancamentoDataVencimento.getText();
-        DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate2 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
-        String dataLacamentoPagamentoBanco = localDate.format(dataFormatada2);
-        lancamento.setDataPagamento(dataLacamentoPagamentoBanco);
+//        String dataLancamentoPagamento = this.txtLancamentoDataVencimento.getText();
+//        DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        LocalDate localDate2 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
+//        String dataLacamentoPagamentoBanco = localDate.format(dataFormatada2);
+//        lancamento.setDataPagamento(dataLacamentoPagamentoBanco);
 
         String valorLancamentoOriginal = txtLancamentoValor.getText();
         String valorLancamentoFormatado = valorLancamentoOriginal.replace(".", "");
@@ -973,7 +954,6 @@ public class ContasReceberView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
@@ -989,7 +969,6 @@ public class ContasReceberView extends javax.swing.JDialog {
     private javax.swing.JTable tblLancamentosRecebidos;
     private javax.swing.JTextField txtLancamentoCodCliente;
     private javax.swing.JFormattedTextField txtLancamentoDataInclusao;
-    private javax.swing.JFormattedTextField txtLancamentoDataPagamento;
     private javax.swing.JFormattedTextField txtLancamentoDataVencimento;
     private javax.swing.JTextField txtLancamentoDescricao;
     private javax.swing.JTextField txtLancamentoNomeCliente;

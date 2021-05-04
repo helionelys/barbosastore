@@ -325,7 +325,7 @@ public class LancamentoDAO extends ConexaoBanco {
                     + " INNER JOIN TBL_STATUSLANCAMENTO"
                     + " ON TBL_LANCAMENTO.CODSTATUSLANCAMENTO = TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO"
                     + " WHERE TBL_LANCAMENTO.CODTIPOLANCAMENTO = 1 AND TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO = 2 "
-                    + ";"
+                    + "ORDER BY TBL_LANCAMENTO.CODLANCAMENTO DESC;"
             );
 
             while (this.getResultSet().next()) {
@@ -384,7 +384,7 @@ public class LancamentoDAO extends ConexaoBanco {
                     + " INNER JOIN TBL_STATUSLANCAMENTO"
                     + " ON TBL_LANCAMENTO.CODSTATUSLANCAMENTO = TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO"
                     + " WHERE TBL_LANCAMENTO.CODTIPOLANCAMENTO = 1 AND TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO = 1 "
-                    + ";"
+                    + "ORDER BY TBL_LANCAMENTO.CODLANCAMENTO DESC;"
             );
 
             while (this.getResultSet().next()) {

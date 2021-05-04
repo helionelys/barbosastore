@@ -104,6 +104,7 @@ public class Venda {
         this.tipoPagamento = tipoPagamento;
     }
 
+
     public ArrayList<Venda> getListaVenda() {
         return listaVenda;
     }

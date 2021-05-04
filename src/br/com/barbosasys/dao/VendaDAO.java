@@ -312,8 +312,8 @@ public class VendaDAO extends ConexaoBanco {
                     + "DATAVENDA =  '" + venda.getDataVenda()  + "',"
                     + "DESCONTO = '" + venda.getValorDesconto()+ "',"
                     + "CODSTATUSVENDA = '" + venda.getCodStatusVenda()+ "',"
-                    + "OBSERVACAO = '" + venda.getObservavao()+ "'"
-                   // + "CODTIPOPAGAMENTO = '" + venda.getTipoPagamento()+ "'"
+                    + "OBSERVACAO = '" + venda.getObservavao()+ "',"
+                    + "CODTIPOPAGAMENTO = '" + venda.getTipoPagamento()+ "'"
                     + "WHERE "
                     + "CODVENDA = '" + venda.getCodVenda() + "'"
                     + ";"
@@ -349,7 +349,7 @@ public class VendaDAO extends ConexaoBanco {
     public boolean excluirVendaDAO(int codigo) {
         try {
             this.conectar();
-            this.executarSQL(
+            this.executarUpdateDeleteSQL(
                     "DELETE FROM TBL_VENDA WHERE CODVENDA = '" + codigo + "';"
             );
             return true;

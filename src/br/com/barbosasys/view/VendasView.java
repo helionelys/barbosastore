@@ -239,8 +239,6 @@ public class VendasView extends javax.swing.JDialog {
 
         jLabel6.setText("Tipo de Pagamento:");
 
-        cbVendaTipoPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel7.setText("Valor Desconto:");
 
         jLabel8.setText("Total:");
@@ -538,7 +536,7 @@ public class VendasView extends javax.swing.JDialog {
         btnCompraReprovar1.setText("Reprovar");
 
         btnCompraAprovar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/aceitar.png"))); // NOI18N
-        btnCompraAprovar1.setText("Fatuirar");
+        btnCompraAprovar1.setText("Faturar");
         btnCompraAprovar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompraAprovar1ActionPerformed(evt);
@@ -554,7 +552,7 @@ public class VendasView extends javax.swing.JDialog {
         });
 
         rbGroupStatusVenda.add(rbVendaStatusAprovacaoAguardando);
-        rbVendaStatusAprovacaoAguardando.setText("Aguardando");
+        rbVendaStatusAprovacaoAguardando.setText("Pendentes");
         rbVendaStatusAprovacaoAguardando.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbVendaStatusAprovacaoAguardandoActionPerformed(evt);
@@ -658,6 +656,9 @@ public class VendasView extends javax.swing.JDialog {
 
     private void btnConsultaVendaExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaVendaExcluirActionPerformed
         // TODO add your handling code here:
+        if(testarSelecaoVendas() == true){
+            this.excluirVenda();
+        }
     }//GEN-LAST:event_btnConsultaVendaExcluirActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
@@ -839,6 +840,7 @@ public class VendasView extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.liberaCampos();
         this.novoVenda();
+        this.carregarTipoPagamento();
     }//GEN-LAST:event_btnVendaIncluirActionPerformed
 
     private void btnVendaSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaSalvarActionPerformed
@@ -1018,13 +1020,14 @@ public class VendasView extends javax.swing.JDialog {
 
     private boolean recuperarVenda() {
 
-        try {
+        
             int linha = this.tblVendasRealizadas.getSelectedRow();
             String nomeCliente = (String) tblVendasRealizadas.getValueAt(linha, 1);
 
             int codigoVenda = (Integer) tblVendasRealizadas.getValueAt(linha, 0);
             int codigoProduto;
             venda.setCodVenda(codigoVenda);
+            try {
             //Recupera os dados no banco de dados
             venda = vendasController.getVendaController(codigoVenda);
             this.txtVendaCodCliente.setText(String.valueOf(venda.getCodCliente()));
@@ -1100,7 +1103,7 @@ public class VendasView extends javax.swing.JDialog {
             telaFaturamento.setLblDataVenda(dataVendaInclusao);
 
             telaFaturamento.setLblCodTipoPagamento(tipoPagamentoController.getTipoPagamentController(venda.getTipoPagamento()).getCodTipoPagamento());
-            telaFaturamento.setLblTipoPagamentoDescricao(tipoPagamentoController.getTipoPagamentController(venda.getTipoPagamento()).getDescricao());
+            telaFaturamento.setLblTipoPagamentoDescricao((tipoPagamentoController.getTipoPagamentoController(this.cbVendaTipoPagamento.getSelectedItem().toString()).getDescricao()));
             Double valorDesconto = venda.getValorDesconto();
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String DescontoTela = df.format(valorDesconto);
@@ -1118,6 +1121,27 @@ public class VendasView extends javax.swing.JDialog {
         }
     }
 
+    private void excluirVenda(){
+        int linha = tblVendasRealizadas.getSelectedRow();
+        String cliente = (String) tblVendasRealizadas.getValueAt(linha, 1);
+        int codigo = (Integer) tblVendasRealizadas.getValueAt(linha, 0);
+        
+        //Questiona Exclusão
+        int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja"
+                    + " excluir a venda \nNúmero: "+ codigo + " ?\n"
+                    + "Fornecedor: " + cliente, "Atenção", JOptionPane.YES_NO_OPTION);
+            //se sim exclui, se não não faz nada
+            if (opcao == JOptionPane.OK_OPTION) {
+                if (vendasController.excluirVendaController(codigo)) {
+                    JOptionPane.showMessageDialog(this, "Venda excluída com suscesso!");
+                    carregarVendas();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao processar operação!", "ERRO", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+    }
+    
     private void atualizarVenda() {
         listaItensVendas = new ArrayList<>();
 
@@ -1212,6 +1236,11 @@ public class VendasView extends javax.swing.JDialog {
         int selecao = tblVendasRealizadas.getSelectedRow();
         if (selecao == -1) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha para realizar essa operação.");
+            return false;
+        }
+        String status = (String) tblVendasRealizadas.getValueAt(selecao, 4);
+        if (!status.equals("PENDENTE")) {
+            JOptionPane.showMessageDialog(this, "Operação impossivel!\n Compra já 'FATURADA' ou 'CANCELADA' !");
             return false;
         }
         return true;

@@ -9,6 +9,7 @@ import br.com.barbosasys.controller.LancamentoController;
 import br.com.barbosasys.controller.VendaController;
 import br.com.barbosasys.model.Lancamento;
 import br.com.barbosasys.model.Pessoa;
+import br.com.barbosasys.model.TipoPagamento;
 import br.com.barbosasys.model.Venda;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -341,7 +342,7 @@ public class FaturamentoView extends javax.swing.JDialog {
         
         lancamentoFaturar.setCodTipoPagamento(Integer.parseInt(lblCodTipodePagamento.getText()));
         lancamentoFaturar.setObservacao("");
-        lancamentoFaturar.setCodTipoLancamento(2);
+        lancamentoFaturar.setCodTipoLancamento(1);
         lancamentoFaturar.setCodStatusLancamento(2);
 
         if (lancamentoController.salvarLancamentoControllerAReceber(lancamentoFaturar) > 0) {

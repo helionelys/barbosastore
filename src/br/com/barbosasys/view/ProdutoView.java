@@ -736,7 +736,7 @@ public class ProdutoView extends javax.swing.JDialog {
         produto.setValor(valorProdutoBancoDados);
         
         String valorProdutoCompra = this.txtValorProdutoCompra.getText();
-        String resultadoFormatado3 = valorProduto.replace(".", "");
+        String resultadoFormatado3 = valorProdutoCompra.replace(".", "");
         String resultadoFormatado4 = resultadoFormatado3.replace(",", ".");
         Double valorProdutoCompraBancoDados = Double.parseDouble(resultadoFormatado4);
         produto.setValorCompra(valorProdutoCompraBancoDados);
