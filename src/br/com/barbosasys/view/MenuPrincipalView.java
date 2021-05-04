@@ -533,6 +533,9 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
     private void MenuFinanceiroFluxoCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFinanceiroFluxoCaixaActionPerformed
         // TODO add your handling code here:
+        FluxoCaixaView telaFluxaCaixa = new FluxoCaixaView(this, rootPaneCheckingEnabled);
+        telaFluxaCaixa.setLocationRelativeTo(this);
+        telaFluxaCaixa.setVisible(true);
     }//GEN-LAST:event_MenuFinanceiroFluxoCaixaActionPerformed
 
     private void MenuCadastroFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroFuncionarioActionPerformed
