@@ -46,8 +46,8 @@ public class VendaController {
         return this.vendaDAO.salvarItensVendasUpdateDAO(itemVenda);
     }
     
-    public boolean atualizarVendasAutorizacaoController(Venda venda){
-        return this.vendaDAO.atualizarVendaAprovacaoDAO(venda);
+    public boolean atualizarVendasFaturamentoController(Venda venda){
+        return this.vendaDAO.atualizarVendaFaturamentoDAO(venda);
     }
     
     public boolean excluirVendaController(int codigo){

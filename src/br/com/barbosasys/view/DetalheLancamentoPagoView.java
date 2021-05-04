@@ -143,6 +143,7 @@ public class DetalheLancamentoPagoView extends javax.swing.JDialog {
             }
         });
 
+        txtLancamentoObservacao.setEditable(false);
         txtLancamentoObservacao.setColumns(20);
         txtLancamentoObservacao.setRows(5);
         jScrollPane1.setViewportView(txtLancamentoObservacao);

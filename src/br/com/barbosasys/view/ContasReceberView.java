@@ -634,6 +634,13 @@ public class ContasReceberView extends javax.swing.JDialog {
             int codLancamento = (int) tblLancamentosAReceber.getValueAt(linha, 0);
             String nomeFornecedor = (String) tblLancamentosAReceber.getValueAt(linha, 2);
             String valor = (String) tblLancamentosAReceber.getValueAt(linha, 5);
+            
+            Date dataPagamentoLancamento = new Date();
+            String formatoDataMysql = ("yyyy-MM-dd");
+            SimpleDateFormat formatarData = new SimpleDateFormat(formatoDataMysql);
+            String dataMysql = formatarData.format(dataPagamentoLancamento);
+            lancamento.setCodLancamento(codLancamento);
+            lancamento.setDataPagamento(dataMysql);
 
             // Questiona se realmente deseja excluir
             int opcao = JOptionPane.showConfirmDialog(this, "Efetuar recebimento  do lancamento"
@@ -641,7 +648,7 @@ public class ContasReceberView extends javax.swing.JDialog {
 
             ////se sim exclui, se não, faz nada3
             if (opcao == JOptionPane.OK_OPTION) {
-                if (lancamentoController.baixarLancamentoController(codLancamento)) {
+                if (lancamentoController.baixarLancamentoController(lancamento)) {
                     JOptionPane.showMessageDialog(this, "Lancamento recebido com sucesso!");
                     carregarLancamentosAReceberAberto();
                     carregarLancamentosAReceberBaixados();

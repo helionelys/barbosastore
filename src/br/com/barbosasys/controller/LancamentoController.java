@@ -56,8 +56,8 @@ public class LancamentoController {
         return this.lancamentoDAO.atualizarLancamentoAReceberDAO(Lancamento);
     }
     
-    public boolean baixarLancamentoController(int codigo) {
-        return this.lancamentoDAO.baixarLancamentoAbertoDAO(codigo);
+    public boolean baixarLancamentoController(Lancamento Lancamento) {
+        return this.lancamentoDAO.baixarLancamentoAbertoDAO(Lancamento);
     }
     
     public boolean revogarLancamentoController(int codigo) {

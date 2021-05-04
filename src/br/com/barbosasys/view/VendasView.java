@@ -888,6 +888,7 @@ public class VendasView extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (testarSelecaoVendas() == true) {
             recuperarVendaFaturameto();
+            carregarVendas();
     }//GEN-LAST:event_btnCompraAprovar1ActionPerformed
 
     }    
@@ -1088,6 +1089,7 @@ public class VendasView extends javax.swing.JDialog {
             //Recupera os dados no banco de dados
             venda = (vendasController.getVendaController(codigoVenda));
             telaFaturamento.setLblNumeroVenda(codigoVenda);
+            telaFaturamento.setLblCodCliente(venda.getCodCliente());
             telaFaturamento.setLblNomeCliente(nomeCliente);
             
             String dataRetorno = venda.getDataVenda();
@@ -1106,7 +1108,7 @@ public class VendasView extends javax.swing.JDialog {
             
             Double valorRetornoTotal = venda.getValorTotal();
             DecimalFormat dfs = new DecimalFormat("#,##0.00");
-            String ValorTotalTela = df.format(valorRetornoTotal);
+            String ValorTotalTela = dfs.format(valorRetornoTotal);
             telaFaturamento.setLblValorTotal(ValorTotalTela);
             telaFaturamento.setVisible(true);
             return true;

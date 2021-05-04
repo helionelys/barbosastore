@@ -30,7 +30,7 @@ public class LancamentoDAO extends ConexaoBanco {
                     + "DESCRICAO,"
                     + "DATALANCAMENTO,"
                     + "DATAVENCIMENTO,"
-                    + "DATAPAGAMENTO,"
+                    //+ "DATAPAGAMENTO,"
                     + "VALOR,"
                     + "CODTIPOPAGAMENTO,"
                     + "OBSERVACAO,"
@@ -41,7 +41,7 @@ public class LancamentoDAO extends ConexaoBanco {
                     + "'" + lancamento.getDescricaoLancamento() + "',"
                     + "'" + lancamento.getDataLancamento() + "',"
                     + "'" + lancamento.getDataVencimento() + "',"
-                    + "'" + lancamento.getDataPagamento() + "',"
+                    //+ "'" + lancamento.getDataPagamento() + "',"
                     + "'" + lancamento.getValorLancamento() + "',"
                     + "'" + lancamento.getCodTipoPagamento() + "',"
                     + "'" + lancamento.getObservacao() + "',"
@@ -66,7 +66,7 @@ public class LancamentoDAO extends ConexaoBanco {
                     + "DESCRICAO,"
                     + "DATALANCAMENTO,"
                     + "DATAVENCIMENTO,"
-                    + "DATAPAGAMENTO,"
+                   // + "DATAPAGAMENTO,"
                     + "VALOR,"
                     + "CODTIPOPAGAMENTO,"
                     + "OBSERVACAO,"
@@ -77,7 +77,7 @@ public class LancamentoDAO extends ConexaoBanco {
                     + "'" + lancamento.getDescricaoLancamento() + "',"
                     + "'" + lancamento.getDataLancamento() + "',"
                     + "'" + lancamento.getDataVencimento() + "',"
-                    + "'" + lancamento.getDataPagamento() + "',"
+                    //+ "'" + lancamento.getDataPagamento() + "',"
                     + "'" + lancamento.getValorLancamento() + "',"
                     + "'" + lancamento.getCodTipoPagamento() + "',"
                     + "'" + lancamento.getObservacao() + "',"
@@ -429,7 +429,7 @@ public class LancamentoDAO extends ConexaoBanco {
                     + "DESCRICAO = '" + lancamento.getDescricaoLancamento()+ "',"
                     //+ "DATALANCAMENTO = '" + lancamento.getDataLancamento()+ "',"
                     + "DATAVENCIMENTO = '" + lancamento.getDataVencimento()+ "',"
-                    + "DATAPAGAMENTO = '" + lancamento.getDataPagamento()+ "',"
+                    //+ "DATAPAGAMENTO = '" + lancamento.getDataPagamento()+ "',"
                     + "VALOR = '" + lancamento.getValorLancamento()+ "',"
                     + "CODTIPOPAGAMENTO = '" + lancamento.getCodTipoPagamento()+ "',"
                     + "OBSERVACAO = '"+ lancamento.getObservacao()+ "'"
@@ -610,13 +610,14 @@ public class LancamentoDAO extends ConexaoBanco {
         }
     }
     
-        public boolean baixarLancamentoAbertoDAO(int codigo) {
+        public boolean baixarLancamentoAbertoDAO(Lancamento lancamento) {
         try {
             this.conectar();
             this.executarUpdateDeleteSQL(
                     "UPDATE TBL_LANCAMENTO SET "
-                    + "CODSTATUSLANCAMENTO = '1'"
-                    + " WHERE CODLANCAMENTO = '" + codigo + "'"
+                    + "CODSTATUSLANCAMENTO = '1',"
+                    + "DATAPAGAMENTO = '" + lancamento.getDataPagamento()+ "'"
+                    + " WHERE CODLANCAMENTO = '" + lancamento.getCodLancamento() + "'"
                     + ";"
             );
             return true;

@@ -67,8 +67,6 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         lblDataCompra = new javax.swing.JLabel();
         lblTipodePagamentoDescricao = new javax.swing.JLabel();
         lblCodTipodePagamento = new javax.swing.JLabel();
-        txtDataPagamentoCompra = new javax.swing.JFormattedTextField();
-        jLabel10 = new javax.swing.JLabel();
         lblCodFornecedor = new javax.swing.JLabel();
         btnGerarLancamento = new javax.swing.JButton();
         lblValorTotal = new javax.swing.JLabel();
@@ -105,7 +103,7 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel1.setText("Assistente de Faturamento");
+        jLabel1.setText("Assistente de Faturamento de Compras");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
         jLabel2.setText("Compra:");
@@ -157,18 +155,6 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         lblCodTipodePagamento.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblCodTipodePagamento.setText("lblCodTPg");
 
-        try {
-            txtDataPagamentoCompra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtDataPagamentoCompra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtDataPagamentoCompra.setCaretColor(new java.awt.Color(0, 102, 51));
-        txtDataPagamentoCompra.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
-
-        jLabel10.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jLabel10.setText("Data de Pagamento:");
-
         lblCodFornecedor.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -179,46 +165,45 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(lblCodFornecedor)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6))
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel5))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblCodTipodePagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4))
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDataVencimentoCompra)
-                                    .addComponent(txtDataPagamentoCompra)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDataCompra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblValorDesconto, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblTipodePagamentoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNomeFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel1))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel8))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblCodTipodePagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblCodFornecedor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(txtDataVencimentoCompra))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDataCompra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblValorDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblTipodePagamentoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNumeroDaCompra)))
+                                .addComponent(lblNumeroDaCompra))
+                            .addComponent(jLabel1))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -243,20 +228,16 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(lblTipodePagamentoDescricao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(lblValorDesconto)
                     .addComponent(lblCodFornecedor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDataVencimentoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtDataPagamentoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jLabel8)
+                    .addComponent(txtDataVencimentoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         btnGerarLancamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Money_Calculator_32.png"))); // NOI18N
@@ -424,18 +405,19 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         lancamentoFaturar.setDataVencimento(dataLacamentoVencimentoBanco);
 
 
-        String dataLancamentoPagamento = this.txtDataPagamentoCompra.getText();
-        DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate3 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
-        String dataLacamentoPagamentoBanco = localDate3.format(dataFormatada2);
-        lancamentoFaturar.setDataPagamento(dataLacamentoPagamentoBanco);
+//        String dataLancamentoPagamento = this.txtDataPagamentoCompra.getText();
+//        DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        LocalDate localDate3 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
+//        String dataLacamentoPagamentoBanco = localDate3.format(dataFormatada2);
+//        lancamentoFaturar.setDataPagamento(dataLacamentoPagamentoBanco);
         
         String valorLancamentoOriginal = lblValorTotal.getText();
         String valorLancamentoFormatado = valorLancamentoOriginal.replace(".", "");
         String valorLancamentoFormatado2 = valorLancamentoFormatado.replace(",", ".");
         Double valorBanco = Double.parseDouble(valorLancamentoFormatado2);
         lancamentoFaturar.setValorLancamento(valorBanco);
+        
         lancamentoFaturar.setCodTipoPagamento(Integer.parseInt(lblCodTipodePagamento.getText()));
         lancamentoFaturar.setObservacao("");
         lancamentoFaturar.setCodTipoLancamento(2);
@@ -488,11 +470,7 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
     public void setLblDataVencimento(String dataCompraVencimento){
         this.lblDataCompra.setText(String.valueOf(dataCompraVencimento)); 
     }
-    
-    public void setLblDataCompraPagamento(String dataCompraPagamento){
-        this.lblDataCompra.setText(String.valueOf(dataCompraPagamento)); 
-    }
-    
+       
     public void setLblValorTotal(String valorTotal){
         this.lblValorTotal.setText(String.valueOf(valorTotal)); 
     }
@@ -501,7 +479,6 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGerarLancamento;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -521,7 +498,6 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
     private javax.swing.JLabel lblTipodePagamentoDescricao;
     private javax.swing.JLabel lblValorDesconto;
     private javax.swing.JLabel lblValorTotal;
-    protected javax.swing.JFormattedTextField txtDataPagamentoCompra;
     protected javax.swing.JFormattedTextField txtDataVencimentoCompra;
     // End of variables declaration//GEN-END:variables
 }
