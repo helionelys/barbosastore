@@ -50,6 +50,10 @@ public class CompraController {
         return this.compraDAO.atualizarCompraFaturamentoDAO(compra);
     }
     
+    public boolean cancelarComprasController(Compra compra){
+        return this.compraDAO.cancelarCompraDAO(compra);
+    }
+    
     public boolean excluirCompraController(int codigo){
         return this.compraDAO.excluirCompraDAO(codigo);
     }

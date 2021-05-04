@@ -346,10 +346,29 @@ public class CompraDAO extends ConexaoBanco {
         }
     }
     
+    public boolean cancelarCompraDAO(Compra compra) {
+        try {
+            this.conectar();
+            this.executarUpdateDeleteSQL(
+                    "UPDATE TBL_COMPRA SET "
+                    + "CODSTATUSCOMPRA = '3'"
+                    + "WHERE "
+                    + "CODCOMPRA = '" + compra.getCodCompra() + "'"
+                    + ";"
+            );
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            this.fecharConexao();
+        }
+    }
+    
     public boolean excluirCompraDAO(int codigo) {
         try {
             this.conectar();
-            this.executarSQL(
+            this.executarUpdateDeleteSQL(
                     "DELETE FROM TBL_COMPRA WHERE CODCOMPRA = '" + codigo + "';"
             );
             return true;

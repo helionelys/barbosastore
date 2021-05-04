@@ -38,6 +38,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
     ArrayList<TipoPagamento> listaTipoPagamentos = new ArrayList<>();
     String tipoCadastro = "cadastro";
     DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
+    DetalheLancamentoPagoView telaDetalheLancamentoPago = new DetalheLancamentoPagoView(this, rootPaneCheckingEnabled);
 
     /**
      * Creates new form ContasPagarView
@@ -77,6 +78,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
         btnLancamentosPagosRevogar = new javax.swing.JButton();
         btnLancamentosPagosCancelar = new javax.swing.JButton();
         btnLancamentosPagosImprimir = new javax.swing.JButton();
+        btnLancamentosPagosDetalhe = new javax.swing.JButton();
         jpLancamentosContasAPagar = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtLancamentoCodFornecedor = new javax.swing.JTextField();
@@ -297,6 +299,14 @@ public class ContasAPagarView extends javax.swing.JDialog {
         btnLancamentosPagosImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/print22.png"))); // NOI18N
         btnLancamentosPagosImprimir.setText("Imprimir");
 
+        btnLancamentosPagosDetalhe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Report.png"))); // NOI18N
+        btnLancamentosPagosDetalhe.setText("Detalhe ");
+        btnLancamentosPagosDetalhe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLancamentosPagosDetalheActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpContasPagasLayout = new javax.swing.GroupLayout(jpContasPagas);
         jpContasPagas.setLayout(jpContasPagasLayout);
         jpContasPagasLayout.setHorizontalGroup(
@@ -313,12 +323,17 @@ public class ContasAPagarView extends javax.swing.JDialog {
                         .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jpContasPagasLayout.createSequentialGroup()
                         .addComponent(btnLancamentosPagosImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLancamentosPagosDetalhe)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLancamentosPagosRevogar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLancamentosPagosCancelar)))
                 .addContainerGap())
         );
+
+        jpContasPagasLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnLancamentosPagosDetalhe, btnLancamentosPagosImprimir});
+
         jpContasPagasLayout.setVerticalGroup(
             jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContasPagasLayout.createSequentialGroup()
@@ -334,9 +349,13 @@ public class ContasAPagarView extends javax.swing.JDialog {
                     .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnLancamentosPagosRevogar)
                         .addComponent(btnLancamentosPagosCancelar))
-                    .addComponent(btnLancamentosPagosImprimir))
+                    .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnLancamentosPagosImprimir)
+                        .addComponent(btnLancamentosPagosDetalhe)))
                 .addContainerGap())
         );
+
+        jpContasPagasLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnLancamentosPagosDetalhe, btnLancamentosPagosImprimir});
 
         jTabbedPaneContaAPagar.addTab("Contas Pagas", jpContasPagas);
 
@@ -356,7 +375,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
 
         jLabel8.setText("Vencimento:");
 
-        labelPagamento.setText("Data Pagamento:");
+        labelPagamento.setText("Data Lançamento:");
 
         jLabel10.setText("Tipo de pagamento:");
 
@@ -656,7 +675,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
 
     private void btnLancamentosPagosRevogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentosPagosRevogarActionPerformed
         // TODO add your handling code here:
-        if (testarSelecaoLancamentosBaixados()== true) {
+        if (testarSelecaoLancamentosBaixados() == true) {
             int linha = tblLancamentosPagos.getSelectedRow();
             int codLancamento = (int) tblLancamentosPagos.getValueAt(linha, 0);
             String nomeFornecedor = (String) tblLancamentosPagos.getValueAt(linha, 2);
@@ -680,6 +699,23 @@ public class ContasAPagarView extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btnLancamentosPagosRevogarActionPerformed
+
+    private void btnLancamentosPagosDetalheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentosPagosDetalheActionPerformed
+        // TODO add your handling code here:
+//        if (testarSelecaoLancamentosBaixados()== true) {
+//            int linha = tblLancamentosPagos.getSelectedRow();
+//            int codLancamento = (Integer) tblLancamentosPagos.getValueAt(linha, 0);
+//            System.out.println(codLancamento);
+//            DetalheLancamentoPagoView telaDetalheLancamentoPago = new DetalheLancamentoPagoView(this, rootPaneCheckingEnabled);
+//            telaDetalheLancamentoPago.setLblCodLancamento(codLancamento);
+//        telaDetalheLancamentoPago.setVisible(true);
+        if (testarSelecaoLancamentosBaixados() == true) {
+            recuperarLancamentoBaixadoDetalhe();
+        }
+
+    }//GEN-LAST:event_btnLancamentosPagosDetalheActionPerformed
+
+    
 
     private void DadosLimpeza() {
         listaTiposPagamento();
@@ -712,7 +748,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
         }
         return true;
     }
-    
+
     private boolean testarSelecaoLancamentosBaixados() {
         int linhaSelecionada = tblLancamentosPagos.getSelectedRow();
         if (linhaSelecionada == -1) {
@@ -839,6 +875,54 @@ public class ContasAPagarView extends javax.swing.JDialog {
 
     }
 
+    private boolean recuperarLancamentoBaixadoDetalhe() {
+        telaDetalheLancamentoPago = new DetalheLancamentoPagoView(this, rootPaneCheckingEnabled);
+        try {
+            int linha = this.tblLancamentosPagos.getSelectedRow();
+            String nomeFornecedor = (String) tblLancamentosPagos.getValueAt(linha, 2);
+            int codigoLancamento = (Integer) tblLancamentosPagos.getValueAt(linha, 0);
+            //Recupera os dados no banco de dados
+            lancamento = (lancamentoController.getLancamentoControllerAPagar(codigoLancamento));
+            telaDetalheLancamentoPago.setLblCodLancamento(codigoLancamento);
+            telaDetalheLancamentoPago.setTxtCodFornecedor(lancamento.getPessoa().getCodigo());
+            telaDetalheLancamentoPago.setTxtNomeFornecedor(nomeFornecedor);
+
+            String dataLancamento = lancamento.getDataLancamento();
+            DateTimeFormatter dataLancamentoRecebida = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter dataLancamentoFormatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(dataLancamento, dataLancamentoRecebida);
+            String dataLacamentoTela = localDate.format(dataLancamentoFormatada);
+            telaDetalheLancamentoPago.setTextDataLancamento(dataLacamentoTela);
+
+            String dataLancamentoVencimento = lancamento.getDataVencimento();
+            DateTimeFormatter dataRecebida = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter dataFormatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate2 = LocalDate.parse(dataLancamentoVencimento, dataRecebida);
+            String dataLacamentoVencimentoTela = localDate2.format(dataFormatada);
+            telaDetalheLancamentoPago.setTxtDataVencimento(dataLacamentoVencimentoTela);
+
+            String dataLancamentoPagamento = lancamento.getDataPagamento();
+            DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate3 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
+            String dataLacamentoPagamentoTela = localDate3.format(dataFormatada2);
+            telaDetalheLancamentoPago.setTxtDataPagamento(dataLacamentoPagamentoTela);
+
+            Double valorLancamentoRetorno = lancamento.getValorLancamento();
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            String valorLancamentoTela = df.format(valorLancamentoRetorno);
+            telaDetalheLancamentoPago.setTxtValorLancamento(valorLancamentoTela);
+
+            telaDetalheLancamentoPago.setTxtTipoPagamento(String.valueOf(tipoPagamentoController.getTipoPagamentController(lancamento.getCodTipoPagamento()).getDescricao()));
+            telaDetalheLancamentoPago.setTxtObservacao(lancamento.getObservacao());
+            telaDetalheLancamentoPago.setVisible(true);
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     private boolean salvarLancamento() {
 
         pessoa.setCodigo(Integer.parseInt(this.txtLancamentoCodFornecedor.getText()));
@@ -952,6 +1036,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
     private javax.swing.JButton btnLancamentosAPagarImprimir;
     private javax.swing.JButton btnLancamentosPagar;
     private javax.swing.JButton btnLancamentosPagosCancelar;
+    private javax.swing.JButton btnLancamentosPagosDetalhe;
     private javax.swing.JButton btnLancamentosPagosImprimir;
     private javax.swing.JButton btnLancamentosPagosRevogar;
     private javax.swing.JComboBox<String> cbLancamentoTipoPagamento;

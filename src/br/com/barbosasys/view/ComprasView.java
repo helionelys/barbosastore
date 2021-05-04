@@ -136,11 +136,11 @@ public class ComprasView extends javax.swing.JDialog {
         btnConsultaCompraExcluir = new javax.swing.JButton();
         btnConsultaCompraAlterar = new javax.swing.JButton();
         btnConsultaCompraCancelar = new javax.swing.JButton();
-        btnCompraReprovar = new javax.swing.JButton();
         btnCompraFaturar = new javax.swing.JButton();
         rbCompraStatusAprovacaoTodos = new javax.swing.JRadioButton();
         rbCompraStatusAprovacaoAguardando = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
+        btnCompraReprovar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Barbosa Store - Compras");
@@ -534,9 +534,6 @@ public class ComprasView extends javax.swing.JDialog {
             }
         });
 
-        btnCompraReprovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
-        btnCompraReprovar.setText("Reprovar");
-
         btnCompraFaturar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/aceitar.png"))); // NOI18N
         btnCompraFaturar.setText("Fatuirar");
         btnCompraFaturar.addActionListener(new java.awt.event.ActionListener() {
@@ -562,6 +559,14 @@ public class ComprasView extends javax.swing.JDialog {
         });
 
         jLabel1.setText("Status:");
+
+        btnCompraReprovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
+        btnCompraReprovar.setText("Reprovar");
+        btnCompraReprovar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompraReprovarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelConsultarVendasLayout = new javax.swing.GroupLayout(jPanelConsultarVendas);
         jPanelConsultarVendas.setLayout(jPanelConsultarVendasLayout);
@@ -657,7 +662,10 @@ public class ComprasView extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCompraNomeFornecedorActionPerformed
 
     private void btnConsultaCompraExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaCompraExcluirActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:if (testarSelecaoCompras() == true) {
+        if (testarSelecaoCompras() == true) {
+            this.excluirCompra();
+        }
     }//GEN-LAST:event_btnConsultaCompraExcluirActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
@@ -889,10 +897,16 @@ public class ComprasView extends javax.swing.JDialog {
         if (testarSelecaoCompras() == true) {
             recuperarCompraFaturameto();
             carregarCompras();
-            
+        }
     }//GEN-LAST:event_btnCompraFaturarActionPerformed
 
-    }
+    private void btnCompraReprovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraReprovarActionPerformed
+        // TODO add your handling code here:
+        if (testarSelecaoCompras() == true) {
+            reprovarCompra();
+            carregarCompras();
+        }
+    }//GEN-LAST:event_btnCompraReprovarActionPerformed
 
     private void carregarComprasAguardando() {
         listaCompras = comprasController.getListaCompraStatusAguardandoController();
@@ -931,9 +945,7 @@ public class ComprasView extends javax.swing.JDialog {
     }
 
     private void calcularDesconto() {
-//        if (alteracao = true) {
-//            this.btnCompraCalculaDesconto.setEnabled(false);
-//        } else {
+
         String valorDesconto = this.txtCompraDesconto.getText();
         String resultadoFormatado = valorDesconto.replace(".", "");
         String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
@@ -1015,6 +1027,27 @@ public class ComprasView extends javax.swing.JDialog {
             this.carregamentoInicial();
         }
     }
+    
+    private void excluirCompra(){
+        int linha = tblComprasRealizadas.getSelectedRow();
+            String fornecedor = (String) tblComprasRealizadas.getValueAt(linha, 1);
+            int codigo = (Integer) tblComprasRealizadas.getValueAt(linha, 0);
+
+            // Questiona a exclusão
+            int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja"
+                    + " excluir a compra \nNúmero: "+ codigo + " ?\n"
+                    + "Fornecedor: " + fornecedor, "Atenção", JOptionPane.YES_NO_OPTION);
+            //se sim exclui, se não não faz nada    
+            if (opcao == JOptionPane.OK_OPTION) {
+                if (comprasController.excluirCompraController(codigo)) {
+                    JOptionPane.showMessageDialog(this, "Compra excluída com suscesso!");
+                    carregarCompras();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao processar operação!", "ERRO", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+    }
 
     private boolean recuperarCompra() {
 
@@ -1075,6 +1108,27 @@ public class ComprasView extends javax.swing.JDialog {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Código inválido ou nenhum registro selecionado", "Aviso", JOptionPane.WARNING_MESSAGE);
             return false;
+        }
+    }
+
+    private void reprovarCompra() {
+        int linha = this.tblComprasRealizadas.getSelectedRow();
+        String nomeFornecedor = (String) tblComprasRealizadas.getValueAt(linha, 1);
+        int codigoCompra = (Integer) tblComprasRealizadas.getValueAt(linha, 0);
+        compra.setCodCompra(codigoCompra);
+        // Questiona a reprovação
+        int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja"
+                + " reprova a compra \nNumero: "
+                + codigoCompra + " \nFornecedor: " + nomeFornecedor + " ?", "Atenção", JOptionPane.YES_NO_OPTION);
+        //se sim exclui, se não não faz nada    
+        if (opcao == JOptionPane.OK_OPTION) {
+            if (comprasController.cancelarComprasController(compra)) {
+                JOptionPane.showMessageDialog(this, "Registro compra reprovada com suscesso!");
+                carregarCompras();
+                //incluirProduto();
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao e os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -1210,8 +1264,14 @@ public class ComprasView extends javax.swing.JDialog {
 
     private boolean testarSelecaoCompras() {
         int selecao = tblComprasRealizadas.getSelectedRow();
+        //
         if (selecao == -1) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha para realizar essa operação.");
+            return false;
+        }
+        String status = (String) tblComprasRealizadas.getValueAt(selecao, 4);
+        if (!status.equals("PENDENTE")) {
+            JOptionPane.showMessageDialog(this, "Operação impossivel!\n Compra já 'FATURADA' ou 'CANCELADA' !");
             return false;
         }
         return true;

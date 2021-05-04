@@ -37,6 +37,7 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         super(owner, modal);
         initComponents();
         lblCodTipodePagamento.setVisible(false);
+        lblCodFornecedor.setVisible(false);
     }
     
 

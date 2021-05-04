@@ -20,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -525,6 +526,7 @@ public class ProdutoView extends javax.swing.JDialog {
     private void btnIncluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirProdutoActionPerformed
         // TODO add your handling code here:
         incluirProduto();
+        camposAtivados();
 
     }//GEN-LAST:event_btnIncluirProdutoActionPerformed
 
@@ -537,6 +539,7 @@ public class ProdutoView extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (testarSelecao() == true) {
             recuperarProduto();
+            camposAtivados();
             tipoCadastro = "alteracao";
         }
     }//GEN-LAST:event_btnAlterarProdutoActionPerformed
@@ -548,8 +551,11 @@ public class ProdutoView extends javax.swing.JDialog {
             txtDescricaoProduto.grabFocus();
         } else if (tipoCadastro.equals("novo")) {
             salvarProduto();
+            carregarProdutos();
+            jTabbedPaneProduto.setSelectedIndex(0);
         } else if (tipoCadastro.equals("alteracao")) {
             alterarProduto();
+            jTabbedPaneProduto.setSelectedIndex(0);
         }
 
     }//GEN-LAST:event_btnSalvarProdutoActionPerformed
@@ -585,6 +591,7 @@ public class ProdutoView extends javax.swing.JDialog {
                 listaProduto.get(i).getDescricaoUnidadeMedida()
             });
         }
+        this.camposDesativados();
     }
 
     private boolean recuperarProduto() {
@@ -638,6 +645,7 @@ public class ProdutoView extends javax.swing.JDialog {
 
     private void incluirProduto() {
         jTabbedPaneProduto.setSelectedIndex(1);
+        camposAtivados();
         txtCodigoProduto.setText("novo");
         txtDataCadastroProduto.setText(null);
         txtDescricaoProduto.setText(null);
@@ -743,12 +751,46 @@ public class ProdutoView extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Registro gravado com sucesso!");
             //this.incluirProduto();
             this.carregarProdutos();
+            
+            
             return true;
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
+    }
+    
+    private void camposDesativados(){
+        this.txtCodigoProduto.setEnabled(false);
+        this.cbStatusProduto.setEnabled(false);
+        this.txtDataCadastroProduto.setEnabled(false);
+        this.txtDescricaoProduto.setEnabled(false);
+        this.cbUnidadeProduto.setEnabled(false);
+        this.cbCategoriaProduto.setEnabled(false);
+        this.cbFornecedorProduto.setEnabled(false);
+        this.txtFabricanteProduto.setEnabled(false);
+        this.txtValorProduto.setEnabled(false);
+        this.txtValorProdutoCompra.setEnabled(false);
+        this.txtObservacaoProduto.setEnabled(false);
+        this.txtObservacaoProduto.setEnabled(false);
+        this.btnSalvarProduto.setEnabled(false);
+    }
+    
+    private void camposAtivados(){
+        this.txtCodigoProduto.setEnabled(true);
+        this.cbStatusProduto.setEnabled(true);
+        this.txtDataCadastroProduto.setEnabled(true);
+        this.txtDescricaoProduto.setEnabled(true);
+        this.cbUnidadeProduto.setEnabled(true);
+        this.cbCategoriaProduto.setEnabled(true);
+        this.cbFornecedorProduto.setEnabled(true);
+        this.txtFabricanteProduto.setEnabled(true);
+        this.txtValorProduto.setEnabled(true);
+        this.txtValorProdutoCompra.setEnabled(true);
+        this.txtObservacaoProduto.setEnabled(true);
+        this.txtObservacaoProduto.setEnabled(true);
+        this.btnSalvarProduto.setEnabled(true);
     }
 
     private void carregarUnidadeMedida() {
