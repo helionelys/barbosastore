@@ -17,6 +17,7 @@ public class Produto {
     private int codUnidadeMedida;
     private String descricaoUnidadeMedida;
     private String observacao;
+    private int quantidade;
     private ArrayList<Produto> listaItensVendas;
     
     public Produto() {
@@ -124,6 +125,14 @@ public class Produto {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+    
+    public int getQuantidade(){
+        return quantidade;
+    }
+    
+    public void setQuantidade(int quantidade){
+        this.quantidade = quantidade;
     }
 
     @Override

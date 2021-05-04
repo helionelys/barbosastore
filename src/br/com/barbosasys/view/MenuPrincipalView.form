@@ -167,6 +167,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajuste de Estoque de Produto"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuMovimentoAjusteEstoqueActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

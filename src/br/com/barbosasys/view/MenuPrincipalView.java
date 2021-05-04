@@ -429,6 +429,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuMovimento.add(jSeparator2);
 
         MenuMovimentoAjusteEstoque.setText("Ajuste de Estoque de Produto");
+        MenuMovimentoAjusteEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuMovimentoAjusteEstoqueActionPerformed(evt);
+            }
+        });
         MenuMovimento.add(MenuMovimentoAjusteEstoque);
 
         jMenuBar1.add(MenuMovimento);
@@ -742,6 +747,13 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         telaCompras.setTelaConsultaCompras();
         telaCompras.setVisible(true);
     }//GEN-LAST:event_MenuMovimentoConsultarComprasActionPerformed
+
+    private void MenuMovimentoAjusteEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoAjusteEstoqueActionPerformed
+        // TODO add your handling code here:
+        EstoqueView telaEstoque = new EstoqueView(this, rootPaneCheckingEnabled);
+        telaEstoque.setLocationRelativeTo(this);
+        telaEstoque.setVisible(true);
+    }//GEN-LAST:event_MenuMovimentoAjusteEstoqueActionPerformed
     
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;

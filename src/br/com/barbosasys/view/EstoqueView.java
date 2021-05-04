@@ -5,12 +5,28 @@
  */
 package br.com.barbosasys.view;
 
+import br.com.barbosasys.controller.CategoriaProdutoController;
+import br.com.barbosasys.controller.ProdutoController;
+import br.com.barbosasys.controller.UnidadeMedidaController;
+import br.com.barbosasys.model.CategoriaProduto;
+import br.com.barbosasys.model.Produto;
+import br.com.barbosasys.model.UnidadeMedida;
+import java.text.DecimalFormat;
+
 /**
  *
  * @author helionelys
  */
 public class EstoqueView extends javax.swing.JDialog {
-
+    
+    Produto produto = new Produto();
+    CategoriaProduto categoriaProduto = new CategoriaProduto();
+    UnidadeMedida unidadeMedida = new UnidadeMedida();
+    
+    ProdutoController produtoController = new ProdutoController();
+    CategoriaProdutoController categoriaProdutoController = new CategoriaProdutoController();
+    UnidadeMedidaController unidadeMedidaController = new UnidadeMedidaController();
+    
     /**
      * Creates new form EstoqueView
      */
@@ -80,29 +96,43 @@ public class EstoqueView extends javax.swing.JDialog {
 
         jLabel1.setText("Código:");
 
-        txtCodProduto.setEditable(false);
+        txtCodProduto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodProdutoKeyTyped(evt);
+            }
+        });
 
         btnBuscaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
         btnBuscaProduto.setText("Pesquisar");
+        btnBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaProdutoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Descricão");
 
         txtDescricaoProduto.setEditable(false);
+        txtDescricaoProduto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         jLabel4.setText("Categoria:");
 
         txtDescricaoCategoria.setEditable(false);
+        txtDescricaoCategoria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel8.setText("Quantidade Atual");
 
         txtQuantidadeAtual.setEditable(false);
         txtQuantidadeAtual.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtQuantidadeAtual.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel9.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel9.setText("Atualizar Quantidade");
 
         txtNovaQuantidade.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtNovaQuantidade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/salvar.png"))); // NOI18N
         jButton2.setText("Atualizar Saldo");
@@ -110,14 +140,17 @@ public class EstoqueView extends javax.swing.JDialog {
         jLabel5.setText("Un Medida:");
 
         txtDescricaoUniMedida.setEditable(false);
+        txtDescricaoUniMedida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel6.setText("V. Compra:");
 
         txtValorCompra.setEditable(false);
+        txtValorCompra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel10.setText("Vl. Venda:");
 
         txtValorVenda.setEditable(false);
+        txtValorVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -220,6 +253,37 @@ public class EstoqueView extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtCodProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProdutoKeyTyped
+        // TODO add your handling code here:
+        String caracteres = "0987654321";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodProdutoKeyTyped
+
+    private void btnBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaProdutoActionPerformed
+        // TODO add your handling code here:
+        int codigoProduto = Integer.parseInt(this.txtCodProduto.getText());
+        produto=produtoController.getProdutoController(codigoProduto);
+        
+        this.txtDescricaoProduto.setText(produto.getDescricao());
+        this.txtDescricaoCategoria.setText(categoriaProdutoController.getCategoriaProdutoController(produto.getCodCategoriaProduto()).getDescricao());
+        this.txtDescricaoUniMedida.setText((unidadeMedidaController.getUnidadeMedidaController(produto.getCodUnidadeMedida()).getDescricao()));
+        
+        Double valorRetorno2 = produto.getValorCompra();
+        DecimalFormat df2 = new DecimalFormat("#,##0.00");
+        String valorCompraTela = df2.format(valorRetorno2);
+        this.txtValorCompra.setText(valorCompraTela);
+        
+        Double valorRetorno = produto.getValor();
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        String valorTela = df.format(valorRetorno);
+        this.txtValorVenda.setText(valorTela);
+        
+        this.txtQuantidadeAtual.setText(String.valueOf(produto.getQuantidade()));
+        
+    }//GEN-LAST:event_btnBuscaProdutoActionPerformed
 
 
 

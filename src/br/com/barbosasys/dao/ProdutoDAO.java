@@ -133,7 +133,8 @@ public class ProdutoDAO extends ConexaoBanco {
                     + "VALORCOMPRA," //7
                     + "CODFORNECEDOR," //8
                     + "FABRICANTE," //9
-                    + "OBSERVACAO" //10
+                    + "OBSERVACAO," //10
+                    + "QUANTIDADE" //10
                     + " FROM"
                     + " TBL_PRODUTO"
                     + " WHERE"
@@ -153,6 +154,7 @@ public class ProdutoDAO extends ConexaoBanco {
                 produto.setCodFornecedor(this.getResultSet().getInt(8));
                 produto.setFabricante(this.getResultSet().getString(9));
                 produto.setObservacao(this.getResultSet().getString(10));
+                produto.setQuantidade(this.getResultSet().getInt(11));
 
             }
         } catch (Exception e) {
