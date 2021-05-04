@@ -1310,6 +1310,10 @@ public class VendasView extends javax.swing.JDialog {
         }
         return operacaoSoma;
     }
+    
+    public void setTelaConsultaVendas(){
+        jTabbedPane1.setSelectedIndex(1);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

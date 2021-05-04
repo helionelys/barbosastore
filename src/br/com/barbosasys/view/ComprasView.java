@@ -1341,6 +1341,10 @@ public class ComprasView extends javax.swing.JDialog {
         }
         return operacaoSoma;
     }
+    
+    public void setTelaConsultaCompras(){
+        jTabbedPane1.setSelectedIndex(1);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
