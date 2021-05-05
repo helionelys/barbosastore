@@ -388,6 +388,7 @@ public class ProdutoView extends javax.swing.JDialog {
         jLabel14.setText("Estoque:");
 
         txtQtdEstoqueProduto.setEditable(false);
+        txtQtdEstoqueProduto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -646,6 +647,7 @@ public class ProdutoView extends javax.swing.JDialog {
             this.cbFornecedorProduto.setSelectedItem(fornecedorController.getFornecedorController(produto.getCodFornecedor()).getNomeRazaoSocial());
             this.txtFabricanteProduto.setText(produto.getFabricante());
             this.txtObservacaoProduto.setText(produto.getObservacao());
+            this.txtQtdEstoqueProduto.setText(String.valueOf(produto.getQuantidade()));
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Código inválido ou nenhum registro selecionado", "Aviso", JOptionPane.WARNING_MESSAGE);

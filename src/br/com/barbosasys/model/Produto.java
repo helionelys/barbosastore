@@ -19,6 +19,7 @@ public class Produto {
     private String observacao;
     private int quantidade;
     private ArrayList<Produto> listaItensVendas;
+    private String dataEstoqueAtualizacao;
     
     public Produto() {
     }
@@ -142,6 +143,14 @@ public class Produto {
     
     public void setListaItensVendas(ArrayList<Produto> listaItensVendas){
         this.listaItensVendas = listaItensVendas;
+    }
+
+    public String getDataEstoqueAtualizacao() {
+        return dataEstoqueAtualizacao;
+    }
+
+    public void setDataEstoqueAtualizacao(String dataEstoqueAtualizacao) {
+        this.dataEstoqueAtualizacao = dataEstoqueAtualizacao;
     }
     
     

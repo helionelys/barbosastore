@@ -134,7 +134,8 @@ public class ProdutoDAO extends ConexaoBanco {
                     + "CODFORNECEDOR," //8
                     + "FABRICANTE," //9
                     + "OBSERVACAO," //10
-                    + "QUANTIDADE" //10
+                    + "QUANTIDADE," //10
+                    + "DATAATUALIZACAOESTOQUE" //10
                     + " FROM"
                     + " TBL_PRODUTO"
                     + " WHERE"
@@ -155,6 +156,7 @@ public class ProdutoDAO extends ConexaoBanco {
                 produto.setFabricante(this.getResultSet().getString(9));
                 produto.setObservacao(this.getResultSet().getString(10));
                 produto.setQuantidade(this.getResultSet().getInt(11));
+                produto.setDataEstoqueAtualizacao(this.getResultSet().getString(12));
 
             }
         } catch (Exception e) {
@@ -347,8 +349,8 @@ public class ProdutoDAO extends ConexaoBanco {
         }
         return listaProduto;
     }
-
-       
+ 
+         
     public boolean atualizarProdutoDAO(Produto produto) {
         try {
             this.conectar();
@@ -367,6 +369,25 @@ public class ProdutoDAO extends ConexaoBanco {
                     + "CODPRODUTO = '" + produto.getCodProduto() + "'"
                     + ";"
             );
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            this.fecharConexao();
+        }
+    }
+    
+    public boolean atualizarEstoqueProduto(Produto produto){
+        try {
+            this.conectar();
+            this.executarUpdateDeleteSQL(
+                    "UPDATE TBL_PRODUTO SET "
+                    + "QUANTIDADE = '" + produto.getQuantidade() + "',"
+                    + "DATAATUALIZACAOESTOQUE = '" + produto.getDataEstoqueAtualizacao()+ "'"
+                    + "WHERE CODPRODUTO = '" + produto.getCodProduto() + "'"
+                    + ";"
+                    );
             return true;
         } catch (Exception e) {
             e.printStackTrace();

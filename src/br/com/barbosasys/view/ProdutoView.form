@@ -702,6 +702,7 @@
                 <Component class="javax.swing.JTextField" name="txtQtdEstoqueProduto">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
               </SubComponents>
