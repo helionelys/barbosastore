@@ -151,10 +151,7 @@ public class FuncionarioView extends javax.swing.JDialog {
 
         tblFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome", "CPF", "Nome Mãe", "E-mail"
@@ -176,6 +173,22 @@ public class FuncionarioView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblFuncionarios);
+        if (tblFuncionarios.getColumnModel().getColumnCount() > 0) {
+            tblFuncionarios.getColumnModel().getColumn(0).setMinWidth(50);
+            tblFuncionarios.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tblFuncionarios.getColumnModel().getColumn(0).setMaxWidth(50);
+            tblFuncionarios.getColumnModel().getColumn(1).setMinWidth(200);
+            tblFuncionarios.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tblFuncionarios.getColumnModel().getColumn(1).setMaxWidth(200);
+            tblFuncionarios.getColumnModel().getColumn(2).setMinWidth(120);
+            tblFuncionarios.getColumnModel().getColumn(2).setPreferredWidth(120);
+            tblFuncionarios.getColumnModel().getColumn(2).setMaxWidth(90);
+            tblFuncionarios.getColumnModel().getColumn(3).setMinWidth(180);
+            tblFuncionarios.getColumnModel().getColumn(3).setPreferredWidth(180);
+            tblFuncionarios.getColumnModel().getColumn(3).setMaxWidth(180);
+            tblFuncionarios.getColumnModel().getColumn(4).setMinWidth(180);
+            tblFuncionarios.getColumnModel().getColumn(4).setPreferredWidth(180);
+        }
 
         jLabel9.setText("Nome:");
 
@@ -513,7 +526,7 @@ public class FuncionarioView extends javax.swing.JDialog {
         jLabel12.setText("UF:");
 
         cbUfFuncionario.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
-        cbUfFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AM", "PE", "SP", "RJ", "MG" }));
+        cbUfFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AC", "AL", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", " ", "PE", "SP", "RJ", "MG" }));
 
         jLabel13.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel13.setText("Logradouro:");

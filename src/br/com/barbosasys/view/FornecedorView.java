@@ -164,6 +164,23 @@ public class FornecedorView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblFornecedores);
+        if (tblFornecedores.getColumnModel().getColumnCount() > 0) {
+            tblFornecedores.getColumnModel().getColumn(0).setMinWidth(50);
+            tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tblFornecedores.getColumnModel().getColumn(0).setMaxWidth(50);
+            tblFornecedores.getColumnModel().getColumn(1).setMinWidth(250);
+            tblFornecedores.getColumnModel().getColumn(1).setPreferredWidth(250);
+            tblFornecedores.getColumnModel().getColumn(1).setMaxWidth(250);
+            tblFornecedores.getColumnModel().getColumn(2).setMinWidth(80);
+            tblFornecedores.getColumnModel().getColumn(2).setPreferredWidth(80);
+            tblFornecedores.getColumnModel().getColumn(2).setMaxWidth(80);
+            tblFornecedores.getColumnModel().getColumn(3).setMinWidth(120);
+            tblFornecedores.getColumnModel().getColumn(3).setPreferredWidth(120);
+            tblFornecedores.getColumnModel().getColumn(3).setMaxWidth(120);
+            tblFornecedores.getColumnModel().getColumn(4).setMinWidth(250);
+            tblFornecedores.getColumnModel().getColumn(4).setPreferredWidth(250);
+            tblFornecedores.getColumnModel().getColumn(4).setMaxWidth(250);
+        }
 
         jLabel9.setText("Nome:");
 
@@ -431,7 +448,7 @@ public class FornecedorView extends javax.swing.JDialog {
         jLabel12.setText("UF:");
 
         cbUfFornecedor.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
-        cbUfFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AM", "PE", "SP", "RJ", "MG" }));
+        cbUfFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AC", "AL", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         jLabel13.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel13.setText("Logradouro:");
@@ -680,8 +697,14 @@ public class FornecedorView extends javax.swing.JDialog {
             txtNomeRazaoSocialFornecedor.grabFocus();
         } else if (tipoCadastro.equals("novo")) {
             salvarFornecedor();
+            carregarFornecedor();
+            incluirFornecedor();
+            jTabbedPaneFornecedor.setSelectedIndex(0);
         } else if (tipoCadastro.equals("alteracao")) {
             alteraFornecedor();
+            carregarFornecedor();
+            incluirFornecedor();
+            jTabbedPaneFornecedor.setSelectedIndex(0);
         }
 
     }//GEN-LAST:event_btnSalvarFornecedorActionPerformed
@@ -723,6 +746,7 @@ public class FornecedorView extends javax.swing.JDialog {
     private void btnIncluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirFornecedorActionPerformed
         // TODO add your handling code here:
         incluirFornecedor();
+        this.camposAtivadosPessoaFisica();
         txtCnpjFornecedor.setEnabled(false);
         txtInscricaoEstadualFornecedor.setEnabled(false);
         txtNomeRepresentanteFornecedor.setEnabled(false);
@@ -756,28 +780,28 @@ public class FornecedorView extends javax.swing.JDialog {
 
     private void btnExcluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFornecedorActionPerformed
         // TODO add your handling code here:
-        if(testarSelecao() == true ){
+        if (testarSelecao() == true) {
             int linha = tblFornecedores.getSelectedRow();
             String nome = (String) tblFornecedores.getValueAt(linha, 1);
             int codigo = (int) tblFornecedores.getValueAt(linha, 0);
-            
+
             // Questiona se realmente deseja excluir
             int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja"
-                    +  " excluir o registro:\n" + nome + "?", "Atenção", JOptionPane.YES_NO_OPTION);
+                    + " excluir o registro:\n" + nome + "?", "Atenção", JOptionPane.YES_NO_OPTION);
             //se sim exclui, se não não faz nada
             if (opcao == JOptionPane.OK_OPTION) {
                 if (fornecedorController.excluirFornecedorController(codigo)) {
                     JOptionPane.showMessageDialog(this, "Registro excluído com sucesso!");
-                    incluirFornecedor();
+                    //incluirFornecedor();
                     carregarFornecedor();
                 } else {
                     JOptionPane.showMessageDialog(this, "Erro!", "ERRO", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        
+
         }
     }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
-    
+
     private void carregarFornecedor() {
         listaFornecedor = fornecedorController.getListaFornecedorController();
         DefaultTableModel modelo = (DefaultTableModel) tblFornecedores.getModel();
@@ -794,7 +818,7 @@ public class FornecedorView extends javax.swing.JDialog {
             });
 
         }
-
+        this.camposDesativados();
     }
 
     private boolean recuperarFornecedor() {
@@ -814,7 +838,7 @@ public class FornecedorView extends javax.swing.JDialog {
 
             if (fornecedor.getPessoaTipo() == 1) {
                 this.rbTipoPFisicaFornecedor.setSelected(true);
-
+                this.camposAtivadosPessoaFisica();
                 this.txtCpfFornecedor.setText(fornecedor.getCpfCnpj());
                 this.txtRgFornecedor.setText(fornecedor.getRgInscricaoEstadual());
                 this.txtCnpjFornecedor.setEnabled(false);
@@ -823,6 +847,7 @@ public class FornecedorView extends javax.swing.JDialog {
                 this.txtInscricaoEstadualFornecedor.setText(null);
 
             } else if (fornecedor.getPessoaTipo() == 2) {
+                this.camposAtivadosPessoaJuridica();
                 this.rbTipoPJuridicaFornecedor.setSelected(true);
                 this.txtNomeRepresentanteFornecedor.setText(fornecedor.getNomeRepresentante());
                 this.txtCpfFornecedor.setEnabled(false);
@@ -856,7 +881,7 @@ public class FornecedorView extends javax.swing.JDialog {
         }
     }
 
-     boolean testarSelecao() {
+    boolean testarSelecao() {
         int selecao = tblFornecedores.getSelectedRow();
 
         if (selecao == -1) {
@@ -888,6 +913,81 @@ public class FornecedorView extends javax.swing.JDialog {
         txtEmailFornecedor.setText(null);
         txtCodigoFornecedor.setText("Novo");
         tipoCadastro = "novo";
+    }
+
+    private void camposDesativados() {
+
+        rbTipoPFisicaFornecedor.setEnabled(false);
+        rbTipoPJuridicaFornecedor.setEnabled(false);
+        txtNomeRepresentanteFornecedor.setEnabled(false);
+        txtNomeRazaoSocialFornecedor.setEnabled(false);
+        txtApelidoNomeFantasiatxtNomeRazaoSocialFornecedor.setEnabled(false);
+        txtCpfFornecedor.setEnabled(false);
+        txtRgFornecedor.setEnabled(false);
+        txtCnpjFornecedor.setEnabled(false);
+        txtInscricaoEstadualFornecedor.setEnabled(false);
+        txtCepFornecedor.setEnabled(false);
+        txtCidadeFornecedor.setEnabled(false);
+        cbUfFornecedor.setEnabled(false);
+        txtLogradouroFornecedor.setEnabled(false);
+        txtNumeroFornecedor.setEnabled(false);
+        txtBairroFornecedor.setEnabled(false);
+        txtComplementoFornecedor.setEnabled(false);
+        txtCelularFornecedor.setEnabled(false);
+        txtTelefoneFornecedor.setEnabled(false);
+        txtEmailFornecedor.setEnabled(false);
+        txtCodigoFornecedor.setEnabled(false);
+
+    }
+
+    private void camposAtivadosPessoaFisica() {
+
+        rbTipoPFisicaFornecedor.setEnabled(true);
+        rbTipoPJuridicaFornecedor.setEnabled(true);
+        txtNomeRepresentanteFornecedor.setEnabled(false);
+        txtNomeRazaoSocialFornecedor.setEnabled(true);
+        txtApelidoNomeFantasiatxtNomeRazaoSocialFornecedor.setEnabled(true);
+        txtCpfFornecedor.setEnabled(true);
+        txtRgFornecedor.setEnabled(true);
+        txtCnpjFornecedor.setEnabled(false);
+        txtInscricaoEstadualFornecedor.setEnabled(false);
+        txtCepFornecedor.setEnabled(true);
+        txtCidadeFornecedor.setEnabled(true);
+        cbUfFornecedor.setEnabled(true);
+        txtLogradouroFornecedor.setEnabled(true);
+        txtNumeroFornecedor.setEnabled(true);
+        txtBairroFornecedor.setEnabled(true);
+        txtComplementoFornecedor.setEnabled(true);
+        txtCelularFornecedor.setEnabled(true);
+        txtTelefoneFornecedor.setEnabled(true);
+        txtEmailFornecedor.setEnabled(true);
+        txtCodigoFornecedor.setEnabled(true);
+
+    }
+
+    private void camposAtivadosPessoaJuridica() {
+
+        rbTipoPFisicaFornecedor.setEnabled(true);
+        rbTipoPJuridicaFornecedor.setEnabled(true);
+        txtNomeRepresentanteFornecedor.setEnabled(true);
+        txtNomeRazaoSocialFornecedor.setEnabled(true);
+        txtApelidoNomeFantasiatxtNomeRazaoSocialFornecedor.setEnabled(true);
+        txtCpfFornecedor.setEnabled(false);
+        txtRgFornecedor.setEnabled(false);
+        txtCnpjFornecedor.setEnabled(true);
+        txtInscricaoEstadualFornecedor.setEnabled(true);
+        txtCepFornecedor.setEnabled(true);
+        txtCidadeFornecedor.setEnabled(true);
+        cbUfFornecedor.setEnabled(true);
+        txtLogradouroFornecedor.setEnabled(true);
+        txtNumeroFornecedor.setEnabled(true);
+        txtBairroFornecedor.setEnabled(true);
+        txtComplementoFornecedor.setEnabled(true);
+        txtCelularFornecedor.setEnabled(true);
+        txtTelefoneFornecedor.setEnabled(true);
+        txtEmailFornecedor.setEnabled(true);
+        txtCodigoFornecedor.setEnabled(true);
+
     }
 
     private boolean alteraFornecedor() {
@@ -960,7 +1060,6 @@ public class FornecedorView extends javax.swing.JDialog {
         fornecedor.setTelefone(this.txtTelefoneFornecedor.getText());
         fornecedor.setEmail(this.txtEmailFornecedor.getText());
 
-       
         if (fornecedorController.salvarFornecedorController(fornecedor) > 0) {
             JOptionPane.showMessageDialog(this, "Registro gravado com sucesso!");
             this.incluirFornecedor();

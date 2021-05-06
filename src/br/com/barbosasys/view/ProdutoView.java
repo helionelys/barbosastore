@@ -140,14 +140,14 @@ public class ProdutoView extends javax.swing.JDialog {
 
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+
             },
             new String [] {
                 "Codigo", "Descrição", "Unidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -155,6 +155,14 @@ public class ProdutoView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblProdutos);
+        if (tblProdutos.getColumnModel().getColumnCount() > 0) {
+            tblProdutos.getColumnModel().getColumn(0).setMinWidth(80);
+            tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tblProdutos.getColumnModel().getColumn(0).setMaxWidth(80);
+            tblProdutos.getColumnModel().getColumn(1).setMinWidth(400);
+            tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(400);
+            tblProdutos.getColumnModel().getColumn(1).setMaxWidth(400);
+        }
 
         jLabel1.setText("Descrição:");
 

@@ -166,6 +166,23 @@ public class ClienteView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblClientes);
+        if (tblClientes.getColumnModel().getColumnCount() > 0) {
+            tblClientes.getColumnModel().getColumn(0).setMinWidth(50);
+            tblClientes.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tblClientes.getColumnModel().getColumn(0).setMaxWidth(50);
+            tblClientes.getColumnModel().getColumn(1).setMinWidth(250);
+            tblClientes.getColumnModel().getColumn(1).setPreferredWidth(250);
+            tblClientes.getColumnModel().getColumn(1).setMaxWidth(250);
+            tblClientes.getColumnModel().getColumn(2).setMinWidth(80);
+            tblClientes.getColumnModel().getColumn(2).setPreferredWidth(80);
+            tblClientes.getColumnModel().getColumn(2).setMaxWidth(80);
+            tblClientes.getColumnModel().getColumn(3).setMinWidth(120);
+            tblClientes.getColumnModel().getColumn(3).setPreferredWidth(120);
+            tblClientes.getColumnModel().getColumn(3).setMaxWidth(120);
+            tblClientes.getColumnModel().getColumn(4).setMinWidth(250);
+            tblClientes.getColumnModel().getColumn(4).setPreferredWidth(250);
+            tblClientes.getColumnModel().getColumn(4).setMaxWidth(250);
+        }
 
         jLabel9.setText("Nome:");
 
@@ -442,7 +459,7 @@ public class ClienteView extends javax.swing.JDialog {
         jLabel12.setText("UF:");
 
         cbUfCliente.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
-        cbUfCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AM", "PE", "SP", "RJ", "MG" }));
+        cbUfCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AC", "AL", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         jLabel13.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel13.setText("Logradouro:");
@@ -709,8 +726,15 @@ public class ClienteView extends javax.swing.JDialog {
         } else if (tipoCadastro.equals("novo")) {
             salvarCliente();
             carregarCliente();
-            incluirCliente();
-            jTabbedPaneCliente.setSelectedIndex(0);
+            //incluirCliente();
+            int opcao = JOptionPane.showConfirmDialog(this, "Deseje realiza Inclui um novo cliente ?\n"
+                    +"", "Confirma", JOptionPane.YES_NO_OPTION);
+                        if(opcao == JOptionPane.OK_OPTION){
+                            this.incluirCliente();
+                            this.camposAtivadosPessoaFisica();
+                        } else{
+                            jTabbedPaneCliente.setSelectedIndex(0);
+                        }
             
         } else if (tipoCadastro.equals("alteracao")) {
             alteraCliente();
