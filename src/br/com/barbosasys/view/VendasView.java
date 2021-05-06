@@ -236,6 +236,22 @@ public class VendasView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblListaItensVendas);
+        if (tblListaItensVendas.getColumnModel().getColumnCount() > 0) {
+            tblListaItensVendas.getColumnModel().getColumn(0).setMinWidth(80);
+            tblListaItensVendas.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tblListaItensVendas.getColumnModel().getColumn(0).setMaxWidth(80);
+            tblListaItensVendas.getColumnModel().getColumn(1).setMinWidth(350);
+            tblListaItensVendas.getColumnModel().getColumn(1).setPreferredWidth(350);
+            tblListaItensVendas.getColumnModel().getColumn(1).setMaxWidth(350);
+            tblListaItensVendas.getColumnModel().getColumn(2).setMinWidth(100);
+            tblListaItensVendas.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblListaItensVendas.getColumnModel().getColumn(2).setMaxWidth(100);
+            tblListaItensVendas.getColumnModel().getColumn(3).setMinWidth(80);
+            tblListaItensVendas.getColumnModel().getColumn(3).setPreferredWidth(80);
+            tblListaItensVendas.getColumnModel().getColumn(3).setMaxWidth(80);
+            tblListaItensVendas.getColumnModel().getColumn(4).setMinWidth(100);
+            tblListaItensVendas.getColumnModel().getColumn(4).setPreferredWidth(100);
+        }
 
         jLabel6.setText("Tipo de Pagamento:");
 
@@ -503,6 +519,22 @@ public class VendasView extends javax.swing.JDialog {
             }
         });
         jScrollPane2.setViewportView(tblVendasRealizadas);
+        if (tblVendasRealizadas.getColumnModel().getColumnCount() > 0) {
+            tblVendasRealizadas.getColumnModel().getColumn(0).setMinWidth(100);
+            tblVendasRealizadas.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblVendasRealizadas.getColumnModel().getColumn(0).setMaxWidth(100);
+            tblVendasRealizadas.getColumnModel().getColumn(1).setMinWidth(350);
+            tblVendasRealizadas.getColumnModel().getColumn(1).setPreferredWidth(350);
+            tblVendasRealizadas.getColumnModel().getColumn(1).setMaxWidth(350);
+            tblVendasRealizadas.getColumnModel().getColumn(2).setMinWidth(100);
+            tblVendasRealizadas.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblVendasRealizadas.getColumnModel().getColumn(2).setMaxWidth(100);
+            tblVendasRealizadas.getColumnModel().getColumn(3).setMinWidth(80);
+            tblVendasRealizadas.getColumnModel().getColumn(3).setPreferredWidth(80);
+            tblVendasRealizadas.getColumnModel().getColumn(3).setMaxWidth(80);
+            tblVendasRealizadas.getColumnModel().getColumn(4).setMinWidth(100);
+            tblVendasRealizadas.getColumnModel().getColumn(4).setPreferredWidth(100);
+        }
 
         btnConsultaVendaImprimir.setText("Imprimir");
 

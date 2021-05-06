@@ -925,7 +925,7 @@
                       <Font name="Cantarell" size="12" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="32">
+                      <StringArray count="27">
                         <StringItem index="0" value="UF"/>
                         <StringItem index="1" value="AC"/>
                         <StringItem index="2" value="AL"/>
@@ -953,11 +953,6 @@
                         <StringItem index="24" value="SP"/>
                         <StringItem index="25" value="SE"/>
                         <StringItem index="26" value="TO"/>
-                        <StringItem index="27" value=" "/>
-                        <StringItem index="28" value="PE"/>
-                        <StringItem index="29" value="SP"/>
-                        <StringItem index="30" value="RJ"/>
-                        <StringItem index="31" value="MG"/>
                       </StringArray>
                     </Property>
                   </Properties>

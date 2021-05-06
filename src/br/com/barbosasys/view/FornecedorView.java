@@ -174,9 +174,9 @@ public class FornecedorView extends javax.swing.JDialog {
             tblFornecedores.getColumnModel().getColumn(2).setMinWidth(80);
             tblFornecedores.getColumnModel().getColumn(2).setPreferredWidth(80);
             tblFornecedores.getColumnModel().getColumn(2).setMaxWidth(80);
-            tblFornecedores.getColumnModel().getColumn(3).setMinWidth(120);
-            tblFornecedores.getColumnModel().getColumn(3).setPreferredWidth(120);
-            tblFornecedores.getColumnModel().getColumn(3).setMaxWidth(120);
+            tblFornecedores.getColumnModel().getColumn(3).setMinWidth(135);
+            tblFornecedores.getColumnModel().getColumn(3).setPreferredWidth(135);
+            tblFornecedores.getColumnModel().getColumn(3).setMaxWidth(135);
             tblFornecedores.getColumnModel().getColumn(4).setMinWidth(250);
             tblFornecedores.getColumnModel().getColumn(4).setPreferredWidth(250);
             tblFornecedores.getColumnModel().getColumn(4).setMaxWidth(250);

@@ -63,6 +63,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jButton16 = new javax.swing.JButton();
         btnSairLogout = new javax.swing.JButton();
         btnCompras = new javax.swing.JButton();
+        btnPDV = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastro = new javax.swing.JMenu();
         MenuCadastroCliente = new javax.swing.JMenuItem();
@@ -227,6 +228,17 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             }
         });
 
+        btnPDV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pdv.png"))); // NOI18N
+        btnPDV.setText("PDV");
+        btnPDV.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPDV.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnPDV.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPDV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDVActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -242,12 +254,15 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnServico)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPDV)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSairLogout))
+                .addComponent(btnSairLogout)
+                .addContainerGap())
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnCompras, btnProdutos, btnSairLogout, btnServico, btnVendas, jButton16});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnCompras, btnPDV, btnProdutos, btnSairLogout, btnServico, btnVendas, jButton16});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,11 +273,14 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             .addComponent(jButton16)
             .addComponent(btnSairLogout)
             .addComponent(btnCompras)
+            .addComponent(btnPDV)
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClientes, btnProdutos});
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCompras, btnVendas});
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnPDV, btnServico});
 
         Painel_desktop.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         Painel_desktop.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -274,7 +292,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(Painel_desktopLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 241, Short.MAX_VALUE))
+                .addGap(0, 128, Short.MAX_VALUE))
         );
         Painel_desktopLayout.setVerticalGroup(
             Painel_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -754,6 +772,12 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         telaEstoque.setLocationRelativeTo(this);
         telaEstoque.setVisible(true);
     }//GEN-LAST:event_MenuMovimentoAjusteEstoqueActionPerformed
+
+    private void btnPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDVActionPerformed
+        // TODO add your handling code here:
+        MenuMovimentoVendaPdvActionPerformed(evt);
+        
+    }//GEN-LAST:event_btnPDVActionPerformed
     
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;
@@ -812,6 +836,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JDesktopPane Painel_desktop;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnCompras;
+    private javax.swing.JButton btnPDV;
     private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnSairLogout;
     private javax.swing.JButton btnServico;

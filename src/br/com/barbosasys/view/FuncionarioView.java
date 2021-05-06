@@ -526,7 +526,7 @@ public class FuncionarioView extends javax.swing.JDialog {
         jLabel12.setText("UF:");
 
         cbUfFuncionario.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
-        cbUfFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AC", "AL", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", " ", "PE", "SP", "RJ", "MG" }));
+        cbUfFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AC", "AL", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         jLabel13.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel13.setText("Logradouro:");
@@ -755,8 +755,21 @@ public class FuncionarioView extends javax.swing.JDialog {
             txtNomeFuncionario.grabFocus();
         } else if (tipoCadastro.equals("novo")) {
             salvarFuncionario();
+            carregarFuncionario();
+            int opcao = JOptionPane.showConfirmDialog(this, "Deseje realiza Inclui um novo cliente ?\n"
+                    + "", "Confirma", JOptionPane.YES_NO_OPTION);
+            if (opcao == JOptionPane.OK_OPTION) {
+                this.incluirFuncionario();
+                this.camposAtivados();
+            } else {
+                
+                jTabbedPaneFuncionario.setSelectedIndex(0);
+            }
         } else if (tipoCadastro.equals("alteracao")) {
             alteraFuncionario();
+            carregarFuncionario();
+            incluirFuncionario();
+             jTabbedPaneFuncionario.setSelectedIndex(0);
         }
 
     }//GEN-LAST:event_btnSalvarFuncionarioActionPerformed
@@ -789,6 +802,7 @@ public class FuncionarioView extends javax.swing.JDialog {
     private void btnIncluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirFuncionarioActionPerformed
         // TODO add your handling code here:
         incluirFuncionario();
+        camposAtivados();
 
     }//GEN-LAST:event_btnIncluirFuncionarioActionPerformed
 
@@ -868,7 +882,7 @@ public class FuncionarioView extends javax.swing.JDialog {
             });
 
         }
-
+        this.camposDesativados();
     }
 
     private boolean recuperarFuncionario() {
@@ -879,6 +893,7 @@ public class FuncionarioView extends javax.swing.JDialog {
         int codigo = (Integer) tblFuncionarios.getValueAt(linhaTabela, 0);
         System.out.println(codigo);
         jTabbedPaneFuncionario.setSelectedIndex(1);
+        camposAtivados();
 
         try {
             // retorna os dados do banco
@@ -901,14 +916,14 @@ public class FuncionarioView extends javax.swing.JDialog {
             this.txtPaiFuncionario.setText(funcionario.getNomePai());
             this.cbEscolaridadeFuncionario.setSelectedItem(funcionario.getEscolaridade());
             this.cbEstadoCivelFuncionario.setSelectedItem(funcionario.getEstadoCivil());
-            
+
             Double salarioRetorno = funcionario.getSalario();
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String salarioTela = df.format(salarioRetorno);
             this.txtSalarioFuncionario.setText(salarioTela);
             //System.out.println(salarioTela);
-            
-           // this.txtSalarioFuncionario.setText(String.valueOf(funcionario.getSalario()));
+
+            // this.txtSalarioFuncionario.setText(String.valueOf(funcionario.getSalario()));
             this.txtFuncaoFuncionario.setText(funcionario.getFuncao());
             this.txtDepartamentoFuncionario.setText(funcionario.getDepartamento());
             this.txtCepFuncionario.setText(funcionario.getCep());
@@ -975,15 +990,15 @@ public class FuncionarioView extends javax.swing.JDialog {
         LocalDate localDate = LocalDate.parse(dataNascimento, dataRecebida);
         String dataFormatadaMysql = localDate.format(dataFormatda);
         funcionario.setDataNascimento(dataFormatadaMysql);
-        funcionario.setSexo((String)this.cbSexoFuncionario.getSelectedItem());
+        funcionario.setSexo((String) this.cbSexoFuncionario.getSelectedItem());
         funcionario.setCpfCnpj(this.txtCpfFuncionario.getText());
         funcionario.setRgInscricaoEstadual(this.txtRgFuncionario.getText());
         funcionario.setRgOrgaoExpedidor(this.txtRgOrgaoExpedidorFuncionario.getText());
         funcionario.setNomeMae(this.txtMaeFuncionario.getText());
         funcionario.setNomePai(this.txtPaiFuncionario.getText());
-        funcionario.setEscolaridade((String)this.cbEscolaridadeFuncionario.getSelectedItem());
-        funcionario.setEstadoCivil((String)this.cbEstadoCivelFuncionario.getSelectedItem());
-        
+        funcionario.setEscolaridade((String) this.cbEscolaridadeFuncionario.getSelectedItem());
+        funcionario.setEstadoCivil((String) this.cbEstadoCivelFuncionario.getSelectedItem());
+
         String salario = this.txtSalarioFuncionario.getText();
         String resultadoFormatado = salario.replace(".", "");
         String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
@@ -1025,17 +1040,17 @@ public class FuncionarioView extends javax.swing.JDialog {
         LocalDate localDate = LocalDate.parse(dataNascimento, dataRecebida);
         String dataFormatadaMysql = localDate.format(dataFormatda);
         funcionario.setDataNascimento(dataFormatadaMysql);
-        funcionario.setSexo((String)this.cbSexoFuncionario.getSelectedItem());
+        funcionario.setSexo((String) this.cbSexoFuncionario.getSelectedItem());
         funcionario.setCpfCnpj(this.txtCpfFuncionario.getText());
         funcionario.setRgInscricaoEstadual(this.txtRgFuncionario.getText());
         funcionario.setRgOrgaoExpedidor(this.txtRgOrgaoExpedidorFuncionario.getText());
         funcionario.setNomeMae(this.txtMaeFuncionario.getText());
         funcionario.setNomePai(this.txtPaiFuncionario.getText());
-        funcionario.setEscolaridade((String)this.cbEscolaridadeFuncionario.getSelectedItem());
+        funcionario.setEscolaridade((String) this.cbEscolaridadeFuncionario.getSelectedItem());
         funcionario.setEstadoCivil((String) this.cbEstadoCivelFuncionario.getSelectedItem());
-        
+
         String salario = this.txtSalarioFuncionario.getText();
-        String resultadoFormatado = salario.replace(".","");
+        String resultadoFormatado = salario.replace(".", "");
         String resultadoFormatado2 = resultadoFormatado.replace(",", ".");
         Double salarioBanco = Double.parseDouble(resultadoFormatado2);
         funcionario.setSalario(salarioBanco);
@@ -1052,7 +1067,6 @@ public class FuncionarioView extends javax.swing.JDialog {
         funcionario.setCelular(this.txtCelularFuncionario.getText());
         funcionario.setEmail(this.txtEmailFuncionario.getText());
 
-
         if (funcionarioController.salvarFuncionarioController(funcionario) > 0) {
             JOptionPane.showMessageDialog(this, "Registro gravado com sucesso!");
             this.incluirFuncionario();
@@ -1063,6 +1077,62 @@ public class FuncionarioView extends javax.swing.JDialog {
             return false;
         }
 
+    }
+
+    private void camposAtivados() {
+        txtNomeFuncionario.setEnabled(true);
+        txtDataNascimentoFuncionario.setEnabled(true);
+        txtDataNascimentoFuncionario.setEnabled(true);
+        cbSexoFuncionario.setEnabled(true);
+        txtCpfFuncionario.setEnabled(true);
+        txtRgFuncionario.setEnabled(true);
+        txtRgOrgaoExpedidorFuncionario.setEnabled(true);
+        txtMaeFuncionario.setEnabled(true);
+        txtPaiFuncionario.setEnabled(true);
+        cbEscolaridadeFuncionario.setEnabled(true);
+        cbEstadoCivelFuncionario.setEnabled(true);
+        cbEstadoCivelFuncionario.setEnabled(true);
+        txtSalarioFuncionario.setEnabled(true);
+        txtFuncaoFuncionario.setEnabled(true);
+        txtDepartamentoFuncionario.setEnabled(true);
+        txtCepFuncionario.setEnabled(true);
+        txtCidadeFuncionario.setEnabled(true);
+        cbUfFuncionario.setEnabled(true);
+        txtLogradouroFuncionario.setEnabled(true);
+        txtNumeroFuncionario.setEnabled(true);
+        txtBairroFuncionario.setEnabled(true);
+        txtComplementoFuncionario.setEnabled(true);
+        txtCelularFuncionario.setEnabled(true);
+        txtEmailFuncionario.setEnabled(true);
+        txtCodigoFuncionario.setEnabled(true);
+    }
+
+    private void camposDesativados() {
+        txtNomeFuncionario.setEnabled(false);
+        txtDataNascimentoFuncionario.setEnabled(false);
+        txtDataNascimentoFuncionario.setEnabled(false);
+        cbSexoFuncionario.setEnabled(false);
+        txtCpfFuncionario.setEnabled(false);
+        txtRgFuncionario.setEnabled(false);
+        txtRgOrgaoExpedidorFuncionario.setEnabled(false);
+        txtMaeFuncionario.setEnabled(false);
+        txtPaiFuncionario.setEnabled(false);
+        cbEscolaridadeFuncionario.setEnabled(false);
+        cbEstadoCivelFuncionario.setEnabled(false);
+        cbEstadoCivelFuncionario.setEnabled(false);
+        txtSalarioFuncionario.setEnabled(false);
+        txtFuncaoFuncionario.setEnabled(false);
+        txtDepartamentoFuncionario.setEnabled(false);
+        txtCepFuncionario.setEnabled(false);
+        txtCidadeFuncionario.setEnabled(false);
+        cbUfFuncionario.setEnabled(false);
+        txtLogradouroFuncionario.setEnabled(false);
+        txtNumeroFuncionario.setEnabled(false);
+        txtBairroFuncionario.setEnabled(true);
+        txtComplementoFuncionario.setEnabled(false);
+        txtCelularFuncionario.setEnabled(false);
+        txtEmailFuncionario.setEnabled(false);
+        txtCodigoFuncionario.setEnabled(false);
     }
 
     // Salvar

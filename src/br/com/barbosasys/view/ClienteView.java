@@ -176,9 +176,9 @@ public class ClienteView extends javax.swing.JDialog {
             tblClientes.getColumnModel().getColumn(2).setMinWidth(80);
             tblClientes.getColumnModel().getColumn(2).setPreferredWidth(80);
             tblClientes.getColumnModel().getColumn(2).setMaxWidth(80);
-            tblClientes.getColumnModel().getColumn(3).setMinWidth(120);
-            tblClientes.getColumnModel().getColumn(3).setPreferredWidth(120);
-            tblClientes.getColumnModel().getColumn(3).setMaxWidth(120);
+            tblClientes.getColumnModel().getColumn(3).setMinWidth(135);
+            tblClientes.getColumnModel().getColumn(3).setPreferredWidth(135);
+            tblClientes.getColumnModel().getColumn(3).setMaxWidth(135);
             tblClientes.getColumnModel().getColumn(4).setMinWidth(250);
             tblClientes.getColumnModel().getColumn(4).setPreferredWidth(250);
             tblClientes.getColumnModel().getColumn(4).setMaxWidth(250);

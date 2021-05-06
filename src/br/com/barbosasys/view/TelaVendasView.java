@@ -52,6 +52,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         rbTipoPFisicaCliente = new javax.swing.JRadioButton();
         rbTipoPJuridicaCliente = new javax.swing.JRadioButton();
+        rbTipoNaoIdentificado = new javax.swing.JRadioButton();
         txtCpfCliente = new javax.swing.JFormattedTextField();
         txtCnpjCliente = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -72,8 +73,6 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtCodigoProdutoVenda = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jTextField8 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProdutosVendas = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
@@ -81,7 +80,9 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txtTotalVendaPVD = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtTotalVendaPVD1 = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -124,6 +125,14 @@ public class TelaVendasView extends javax.swing.JFrame {
             }
         });
 
+        rbGroupClientes.add(rbTipoNaoIdentificado);
+        rbTipoNaoIdentificado.setText("Não Identificado");
+        rbTipoNaoIdentificado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbTipoNaoIdentificadoActionPerformed(evt);
+            }
+        });
+
         try {
             txtCpfCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -131,6 +140,11 @@ public class TelaVendasView extends javax.swing.JFrame {
         }
         txtCpfCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCpfCliente.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
+        txtCpfCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfClienteActionPerformed(evt);
+            }
+        });
 
         try {
             txtCnpjCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
@@ -139,6 +153,11 @@ public class TelaVendasView extends javax.swing.JFrame {
         }
         txtCnpjCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCnpjCliente.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
+        txtCnpjCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCnpjClienteActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel5.setText("CNPJ:");
@@ -172,28 +191,31 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNomeRazaoSocialCliente)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rbTipoPFisicaCliente))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rbTipoPFisicaCliente))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCnpjCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(rbTipoPJuridicaCliente)))
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCpfCnpjPesquisarTelaVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(txtCnpjCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCpfCnpjPesquisarTelaVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(rbTipoPJuridicaCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rbTipoNaoIdentificado)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -203,7 +225,8 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbTipoPFisicaCliente)
                     .addComponent(rbTipoPJuridicaCliente)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbTipoNaoIdentificado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,7 +263,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtDescricaoProdutoVenda.setEditable(false);
         txtDescricaoProdutoVenda.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         txtDescricaoProdutoVenda.setForeground(new java.awt.Color(0, 0, 0));
-        txtDescricaoProdutoVenda.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtDescricaoProdutoVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel12.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
         jLabel12.setText("Produto:");
@@ -248,7 +271,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtPrecoProdutoVenda.setEditable(false);
         txtPrecoProdutoVenda.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         txtPrecoProdutoVenda.setForeground(new java.awt.Color(0, 102, 0));
-        txtPrecoProdutoVenda.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtPrecoProdutoVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnAdicionarProdutoVenda.setText("Adicionar");
         btnAdicionarProdutoVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -309,23 +332,6 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addComponent(txtQuantidadeProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAdicionarProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        jTextField8.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField8)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -371,7 +377,6 @@ public class TelaVendasView extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -380,10 +385,8 @@ public class TelaVendasView extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -417,18 +420,38 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
         jLabel10.setText("TOTAL");
 
-        jTextField9.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(0, 0, 0));
+        txtTotalVendaPVD.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
+        txtTotalVendaPVD.setForeground(new java.awt.Color(0, 0, 0));
+        txtTotalVendaPVD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalVendaPVDActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
+        jLabel13.setText("Itens");
+
+        txtTotalVendaPVD1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
+        txtTotalVendaPVD1.setForeground(new java.awt.Color(0, 0, 0));
+        txtTotalVendaPVD1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalVendaPVD1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTotalVendaPVD1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField9)
+                .addComponent(txtTotalVendaPVD, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -437,8 +460,50 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtTotalVendaPVD, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(txtTotalVendaPVD1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jDesktop_Vendas.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktop_Vendas.setLayer(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktop_Vendas.setLayer(jPanel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktop_Vendas.setLayer(jPanel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktop_Vendas.setLayer(jPanel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktop_VendasLayout = new javax.swing.GroupLayout(jDesktop_Vendas);
+        jDesktop_Vendas.setLayout(jDesktop_VendasLayout);
+        jDesktop_VendasLayout.setHorizontalGroup(
+            jDesktop_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktop_VendasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDesktop_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDesktop_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jDesktop_VendasLayout.setVerticalGroup(
+            jDesktop_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktop_VendasLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jDesktop_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jDesktop_VendasLayout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jDesktop_VendasLayout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(2, Short.MAX_VALUE))
         );
 
         jLabel18.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
@@ -447,9 +512,10 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel19.setText("F3 - Cancelar Venda  F4 - Finalizar Venda  F5 - Alterar Quantidade  F6 - Cancelar Produto  F7 - Sair");
 
-        jLabel20.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel20.setText("BARBOSA STORE");
 
+        jLabel21.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel21.setText("Comércio e Serviços");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -459,9 +525,12 @@ public class TelaVendasView extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel21)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel19)
@@ -475,56 +544,9 @@ public class TelaVendasView extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel19)
                         .addComponent(jLabel18))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel21)))
-                .addContainerGap(84, Short.MAX_VALUE))
-        );
-
-        jDesktop_Vendas.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktop_Vendas.setLayer(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktop_Vendas.setLayer(jPanel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktop_Vendas.setLayer(jPanel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktop_Vendas.setLayer(jPanel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktop_Vendas.setLayer(jPanel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktop_VendasLayout = new javax.swing.GroupLayout(jDesktop_Vendas);
-        jDesktop_Vendas.setLayout(jDesktop_VendasLayout);
-        jDesktop_VendasLayout.setHorizontalGroup(
-            jDesktop_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktop_VendasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jDesktop_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktop_VendasLayout.createSequentialGroup()
-                        .addGroup(jDesktop_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktop_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jDesktop_VendasLayout.setVerticalGroup(
-            jDesktop_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktop_VendasLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jDesktop_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktop_VendasLayout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktop_VendasLayout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -533,12 +555,16 @@ public class TelaVendasView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jDesktop_Vendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jDesktop_Vendas, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jDesktop_Vendas, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jMenu1.setText("Comandos");
@@ -593,7 +619,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(995, 767));
@@ -604,12 +630,14 @@ public class TelaVendasView extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtCnpjCliente.setEnabled(true);
         txtCpfCliente.setEnabled(false);
+        txtCpfCliente.setText(null);
 
     }//GEN-LAST:event_rbTipoPJuridicaClienteActionPerformed
 
     private void rbTipoPFisicaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTipoPFisicaClienteActionPerformed
         // TODO add your handling code here:
         txtCnpjCliente.setEnabled(false);
+        txtCnpjCliente.setText(null);
         txtCpfCliente.setEnabled(true);
     }//GEN-LAST:event_rbTipoPFisicaClienteActionPerformed
 
@@ -680,6 +708,33 @@ public class TelaVendasView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAdicionarProdutoVendaActionPerformed
 
+    private void rbTipoNaoIdentificadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTipoNaoIdentificadoActionPerformed
+        // TODO add your handling code here:
+        txtCpfCliente.setEnabled(false);
+        txtCnpjCliente.setEnabled(false);
+        txtCpfCliente.setText(null);
+        txtCnpjCliente.setText(null);
+        txtNomeRazaoSocialCliente.setText("VENDA BALCAO PDV");
+    }//GEN-LAST:event_rbTipoNaoIdentificadoActionPerformed
+
+    private void txtTotalVendaPVDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalVendaPVDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalVendaPVDActionPerformed
+
+    private void txtCpfClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfClienteActionPerformed
+        // TODO add your handling code here:
+        btnCpfCnpjPesquisarTelaVendasActionPerformed(evt);
+    }//GEN-LAST:event_txtCpfClienteActionPerformed
+
+    private void txtCnpjClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCnpjClienteActionPerformed
+        // TODO add your handling code here:
+        btnCpfCnpjPesquisarTelaVendasActionPerformed(evt);
+    }//GEN-LAST:event_txtCnpjClienteActionPerformed
+
+    private void txtTotalVendaPVD1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalVendaPVD1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalVendaPVD1ActionPerformed
+
     private void incluirProdutoCarrinho(int codigoProduto){
         ProdutoController produtoController = new ProdutoController();
         Produto produtoModelo = new Produto();
@@ -714,6 +769,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -731,7 +787,6 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -739,9 +794,8 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.ButtonGroup rbGroupClientes;
+    protected javax.swing.JRadioButton rbTipoNaoIdentificado;
     protected javax.swing.JRadioButton rbTipoPFisicaCliente;
     protected javax.swing.JRadioButton rbTipoPJuridicaCliente;
     private javax.swing.JTable tblProdutosVendas;
@@ -752,5 +806,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     protected javax.swing.JTextField txtNomeRazaoSocialCliente;
     private javax.swing.JTextField txtPrecoProdutoVenda;
     private javax.swing.JTextField txtQuantidadeProdutoVenda;
+    private javax.swing.JTextField txtTotalVendaPVD;
+    private javax.swing.JTextField txtTotalVendaPVD1;
     // End of variables declaration//GEN-END:variables
 }
