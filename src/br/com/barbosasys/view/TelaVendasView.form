@@ -38,7 +38,7 @@
                 <Property name="text" type="java.lang.String" value="F5 - Alterar Quantidade"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+            <MenuItem class="javax.swing.JMenuItem" name="AtalhoRemoverProduto">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F6"/>
@@ -46,7 +46,7 @@
                 <Property name="text" type="java.lang.String" value="F6 - Cancelar Produto"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AtalhoRemoverProdutoActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuComandoItSair">
@@ -409,7 +409,6 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="txtCodigoProdutoVenda" min="-2" pref="294" max="-2" attributes="0"/>
@@ -417,13 +416,18 @@
                                   <Component id="btnBuscarProdutosVendas" min="-2" pref="103" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="txtPrecoProdutoVendaOculto" min="-2" pref="54" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtPrecoProdutoVenda" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnAdicionarProdutoVenda" alignment="0" pref="408" max="32767" attributes="0"/>
                                   <Component id="txtQuantidadeProdutoVenda" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtPrecoProdutoVenda" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtDescricaoProdutoVenda" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -444,7 +448,10 @@
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Component id="txtDescricaoProdutoVenda" min="-2" pref="48" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPrecoProdutoVendaOculto" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtPrecoProdutoVenda" min="-2" pref="48" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -488,6 +495,10 @@
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQuantidadeProdutoVendaActionPerformed"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQuantidadeProdutoVendaKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
@@ -517,7 +528,7 @@
                     <Property name="text" type="java.lang.String" value="Produto:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtPrecoProdutoVenda">
+                <Component class="javax.swing.JTextField" name="txtPrecoProdutoVendaOculto">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -527,6 +538,7 @@
                       <Color blue="0" green="66" red="0" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAdicionarProdutoVenda">
@@ -547,6 +559,9 @@
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodigoProdutoVendaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17">
                   <Properties>
@@ -554,6 +569,18 @@
                       <Font name="sansserif" size="28" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Quantidade:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtPrecoProdutoVenda">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="sansserif" size="36" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="66" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -588,7 +615,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tblProdutosVendas">
+                    <Component class="javax.swing.JTable" name="tblListaItensVendas">
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
@@ -602,7 +629,7 @@
                           </Table>
                         </Property>
                         <Property name="autoResizeMode" type="int" value="4"/>
-                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="if (tblProdutosVendas.getColumnModel().getColumnCount() &gt; 0) {&#xa;    tblProdutosVendas.getColumnModel().getColumn(0).setMinWidth(40);&#xa;    tblProdutosVendas.getColumnModel().getColumn(0).setMaxWidth(40);&#xa;    tblProdutosVendas.getColumnModel().getColumn(1).setMinWidth(80);&#xa;    tblProdutosVendas.getColumnModel().getColumn(1).setMaxWidth(80);&#xa;    tblProdutosVendas.getColumnModel().getColumn(2).setMinWidth(250);&#xa;    //jTable1.getColumnModel().getColumn(2).setMaxWidth(250);&#xa;    tblProdutosVendas.getColumnModel().getColumn(3).setMinWidth(90);&#xa;    tblProdutosVendas.getColumnModel().getColumn(3).setMaxWidth(90);&#xa;    tblProdutosVendas.getColumnModel().getColumn(4).setMinWidth(110);&#xa;    tblProdutosVendas.getColumnModel().getColumn(4).setMaxWidth(110);&#xa;    tblProdutosVendas.getColumnModel().getColumn(5).setMinWidth(100);&#xa;    tblProdutosVendas.getColumnModel().getColumn(5).setMaxWidth(100);&#xa;}">
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="if (tblListaItensVendas.getColumnModel().getColumnCount() &gt; 0) {&#xa;    tblListaItensVendas.getColumnModel().getColumn(0).setMinWidth(40);&#xa;    tblListaItensVendas.getColumnModel().getColumn(0).setMaxWidth(40);&#xa;    tblListaItensVendas.getColumnModel().getColumn(1).setMinWidth(80);&#xa;    tblListaItensVendas.getColumnModel().getColumn(1).setMaxWidth(80);&#xa;    tblListaItensVendas.getColumnModel().getColumn(2).setMinWidth(250);&#xa;    //jTable1.getColumnModel().getColumn(2).setMaxWidth(250);&#xa;    tblListaItensVendas.getColumnModel().getColumn(3).setMinWidth(90);&#xa;    tblListaItensVendas.getColumnModel().getColumn(3).setMaxWidth(90);&#xa;    tblListaItensVendas.getColumnModel().getColumn(4).setMinWidth(110);&#xa;    tblListaItensVendas.getColumnModel().getColumn(4).setMaxWidth(110);&#xa;    tblListaItensVendas.getColumnModel().getColumn(5).setMinWidth(100);&#xa;    tblListaItensVendas.getColumnModel().getColumn(5).setMaxWidth(100);&#xa;}">
                           <TableColumnModel selectionModel="0">
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
@@ -710,7 +737,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtTotalVendaPVD1" min="-2" pref="96" max="-2" attributes="0"/>
+                          <Component id="txtQtdItensTotal" min="-2" pref="96" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -727,7 +754,7 @@
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtTotalVendaPVD" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                               <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTotalVendaPVD1" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                              <Component id="txtQtdItensTotal" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="16" max="32767" attributes="0"/>
                       </Group>
@@ -751,6 +778,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTotalVendaPVDActionPerformed"/>
@@ -761,10 +789,10 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="sansserif" size="28" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Itens"/>
+                    <Property name="text" type="java.lang.String" value="QTD Itens"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtTotalVendaPVD1">
+                <Component class="javax.swing.JTextField" name="txtQtdItensTotal">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="sansserif" size="36" style="0"/>
@@ -772,9 +800,10 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTotalVendaPVD1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQtdItensTotalActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -789,7 +818,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel20" pref="220" max="32767" attributes="0"/>
+                          <Component id="jLabel20" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="jLabel21" min="-2" max="-2" attributes="0"/>

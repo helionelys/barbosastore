@@ -24,7 +24,11 @@ public class TelaVendasView extends javax.swing.JFrame {
     //Classe Modelos
     Cliente cliente = new Cliente();
     Produto produto = new Produto();
-    public int produtoQuantidade;
+    String precoFormatado, subTotalValorFormatado, totalValorFormatado;
+    double preco, subTotal, total;
+    int quantidade;
+    DefaultTableModel carrinhos, itensDaVenda;
+    DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
 
     //Classe Controller
     //ProdutoController produtoController = new ProdutoController();
@@ -33,6 +37,7 @@ public class TelaVendasView extends javax.swing.JFrame {
      */
     public TelaVendasView() {
         initComponents();
+        this.txtPrecoProdutoVendaOculto.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -68,13 +73,14 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         txtDescricaoProdutoVenda = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtPrecoProdutoVenda = new javax.swing.JTextField();
+        txtPrecoProdutoVendaOculto = new javax.swing.JTextField();
         btnAdicionarProdutoVenda = new javax.swing.JButton();
         txtCodigoProdutoVenda = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
+        txtPrecoProdutoVenda = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblProdutosVendas = new javax.swing.JTable();
+        tblListaItensVendas = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -82,7 +88,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtTotalVendaPVD = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        txtTotalVendaPVD1 = new javax.swing.JTextField();
+        txtQtdItensTotal = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -93,7 +99,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         MenuComandoItCancelarVenda = new javax.swing.JMenuItem();
         MenuComandoItFinalizarVenda = new javax.swing.JMenuItem();
         MenuComandoItCancelarProduto = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        AtalhoRemoverProduto = new javax.swing.JMenuItem();
         MenuComandoItSair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
@@ -256,6 +262,16 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtQuantidadeProdutoVenda.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         txtQuantidadeProdutoVenda.setForeground(new java.awt.Color(0, 0, 0));
         txtQuantidadeProdutoVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtQuantidadeProdutoVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuantidadeProdutoVendaActionPerformed(evt);
+            }
+        });
+        txtQuantidadeProdutoVenda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtQuantidadeProdutoVendaKeyTyped(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
         jLabel11.setText("Preço Unitário:");
@@ -268,10 +284,11 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
         jLabel12.setText("Produto:");
 
-        txtPrecoProdutoVenda.setEditable(false);
-        txtPrecoProdutoVenda.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        txtPrecoProdutoVenda.setForeground(new java.awt.Color(0, 102, 0));
-        txtPrecoProdutoVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPrecoProdutoVendaOculto.setEditable(false);
+        txtPrecoProdutoVendaOculto.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
+        txtPrecoProdutoVendaOculto.setForeground(new java.awt.Color(0, 102, 0));
+        txtPrecoProdutoVendaOculto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPrecoProdutoVendaOculto.setEnabled(false);
 
         btnAdicionarProdutoVenda.setText("Adicionar");
         btnAdicionarProdutoVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -283,9 +300,19 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtCodigoProdutoVenda.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         txtCodigoProdutoVenda.setForeground(new java.awt.Color(0, 0, 0));
         txtCodigoProdutoVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodigoProdutoVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoProdutoVendaActionPerformed(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
         jLabel17.setText("Quantidade:");
+
+        txtPrecoProdutoVenda.setEditable(false);
+        txtPrecoProdutoVenda.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
+        txtPrecoProdutoVenda.setForeground(new java.awt.Color(0, 102, 0));
+        txtPrecoProdutoVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -294,19 +321,22 @@ public class TelaVendasView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
                     .addComponent(jLabel3)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(txtCodigoProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscarProdutosVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel12)
+                    .addComponent(jLabel17)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel11)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtPrecoProdutoVendaOculto, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPrecoProdutoVenda, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnAdicionarProdutoVenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                         .addComponent(txtQuantidadeProdutoVenda, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtPrecoProdutoVenda, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtDescricaoProdutoVenda, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jLabel17))
+                        .addComponent(txtDescricaoProdutoVenda, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -323,7 +353,9 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addComponent(txtDescricaoProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtPrecoProdutoVendaOculto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPrecoProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -335,8 +367,8 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblProdutosVendas.setAutoCreateRowSorter(true);
-        tblProdutosVendas.setModel(new javax.swing.table.DefaultTableModel(
+        tblListaItensVendas.setAutoCreateRowSorter(true);
+        tblListaItensVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -352,25 +384,25 @@ public class TelaVendasView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblProdutosVendas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tblProdutosVendas.setMinimumSize(new java.awt.Dimension(360, 0));
-        tblProdutosVendas.setRowSelectionAllowed(false);
-        tblProdutosVendas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tblProdutosVendas.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblProdutosVendas);
-        if (tblProdutosVendas.getColumnModel().getColumnCount() > 0) {
-            tblProdutosVendas.getColumnModel().getColumn(0).setMinWidth(40);
-            tblProdutosVendas.getColumnModel().getColumn(0).setMaxWidth(40);
-            tblProdutosVendas.getColumnModel().getColumn(1).setMinWidth(80);
-            tblProdutosVendas.getColumnModel().getColumn(1).setMaxWidth(80);
-            tblProdutosVendas.getColumnModel().getColumn(2).setMinWidth(250);
+        tblListaItensVendas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblListaItensVendas.setMinimumSize(new java.awt.Dimension(360, 0));
+        tblListaItensVendas.setRowSelectionAllowed(false);
+        tblListaItensVendas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblListaItensVendas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblListaItensVendas);
+        if (tblListaItensVendas.getColumnModel().getColumnCount() > 0) {
+            tblListaItensVendas.getColumnModel().getColumn(0).setMinWidth(40);
+            tblListaItensVendas.getColumnModel().getColumn(0).setMaxWidth(40);
+            tblListaItensVendas.getColumnModel().getColumn(1).setMinWidth(80);
+            tblListaItensVendas.getColumnModel().getColumn(1).setMaxWidth(80);
+            tblListaItensVendas.getColumnModel().getColumn(2).setMinWidth(250);
             //jTable1.getColumnModel().getColumn(2).setMaxWidth(250);
-            tblProdutosVendas.getColumnModel().getColumn(3).setMinWidth(90);
-            tblProdutosVendas.getColumnModel().getColumn(3).setMaxWidth(90);
-            tblProdutosVendas.getColumnModel().getColumn(4).setMinWidth(110);
-            tblProdutosVendas.getColumnModel().getColumn(4).setMaxWidth(110);
-            tblProdutosVendas.getColumnModel().getColumn(5).setMinWidth(100);
-            tblProdutosVendas.getColumnModel().getColumn(5).setMaxWidth(100);
+            tblListaItensVendas.getColumnModel().getColumn(3).setMinWidth(90);
+            tblListaItensVendas.getColumnModel().getColumn(3).setMaxWidth(90);
+            tblListaItensVendas.getColumnModel().getColumn(4).setMinWidth(110);
+            tblListaItensVendas.getColumnModel().getColumn(4).setMaxWidth(110);
+            tblListaItensVendas.getColumnModel().getColumn(5).setMinWidth(100);
+            tblListaItensVendas.getColumnModel().getColumn(5).setMaxWidth(100);
         }
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -422,6 +454,7 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         txtTotalVendaPVD.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         txtTotalVendaPVD.setForeground(new java.awt.Color(0, 0, 0));
+        txtTotalVendaPVD.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalVendaPVD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalVendaPVDActionPerformed(evt);
@@ -429,13 +462,14 @@ public class TelaVendasView extends javax.swing.JFrame {
         });
 
         jLabel13.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
-        jLabel13.setText("Itens");
+        jLabel13.setText("QTD Itens");
 
-        txtTotalVendaPVD1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        txtTotalVendaPVD1.setForeground(new java.awt.Color(0, 0, 0));
-        txtTotalVendaPVD1.addActionListener(new java.awt.event.ActionListener() {
+        txtQtdItensTotal.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
+        txtQtdItensTotal.setForeground(new java.awt.Color(0, 0, 0));
+        txtQtdItensTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtQtdItensTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalVendaPVD1ActionPerformed(evt);
+                txtQtdItensTotalActionPerformed(evt);
             }
         });
 
@@ -447,7 +481,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTotalVendaPVD1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtQtdItensTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -462,7 +496,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(txtTotalVendaPVD, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(txtTotalVendaPVD1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtQtdItensTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -525,7 +559,7 @@ public class TelaVendasView extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(jLabel21)
@@ -586,14 +620,14 @@ public class TelaVendasView extends javax.swing.JFrame {
         MenuComandoItCancelarProduto.setText("F5 - Alterar Quantidade");
         jMenu1.add(MenuComandoItCancelarProduto);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
-        jMenuItem4.setText("F6 - Cancelar Produto");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        AtalhoRemoverProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        AtalhoRemoverProduto.setText("F6 - Cancelar Produto");
+        AtalhoRemoverProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                AtalhoRemoverProdutoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(AtalhoRemoverProduto);
 
         MenuComandoItSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         MenuComandoItSair.setText("F7 - Sair");
@@ -653,9 +687,10 @@ public class TelaVendasView extends javax.swing.JFrame {
         //        frame.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void AtalhoRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtalhoRemoverProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+        this.removerProduto();
+    }//GEN-LAST:event_AtalhoRemoverProdutoActionPerformed
 
     private void MenuComandoItFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuComandoItFinalizarVendaActionPerformed
         // TODO add your handling code here:
@@ -679,9 +714,11 @@ public class TelaVendasView extends javax.swing.JFrame {
         if (rbTipoPFisicaCliente.isSelected()) {
             cliente = clienteDados.getClienteControllerCpfCnpj(txtCpfCliente.getText());
             txtNomeRazaoSocialCliente.setText(cliente.getNomeRazaoSocial());
+            txtCodigoProdutoVenda.grabFocus();
         } else {
             cliente = clienteDados.getClienteControllerCpfCnpj(txtCnpjCliente.getText());
             txtNomeRazaoSocialCliente.setText(cliente.getNomeRazaoSocial());
+            txtCodigoProdutoVenda.grabFocus();
         }
 
 
@@ -689,24 +726,21 @@ public class TelaVendasView extends javax.swing.JFrame {
 
     private void btnBuscarProdutosVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutosVendasActionPerformed
         // TODO add your handling code here:
-        ProdutoController produtosDados = new ProdutoController();
-        produto = produtosDados.getProdutoControllerCodigoVenda(Integer.parseInt(this.txtCodigoProdutoVenda.getText()));
-        txtDescricaoProdutoVenda.setText(produto.getDescricao());
-        Double valorRetorno = produto.getValor();
-        DecimalFormat df = new DecimalFormat("#,##0.00");
-        String valorTela = df.format(valorRetorno);
-        this.txtPrecoProdutoVenda.setText(valorTela);
-    }//GEN-LAST:event_btnBuscarProdutosVendasActionPerformed
+        if (testarSelecaoCodProduto() == true) {
 
-    private void btnAdicionarProdutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarProdutoVendaActionPerformed
-        // TODO add your handling code here:
-         if (txtQuantidadeProdutoVenda.getText().equals("")) {
-            produtoQuantidade = 1;
+            ProdutoController produtosDados = new ProdutoController();
+            produto = produtosDados.getProdutoControllerCodigoVenda(Integer.parseInt(this.txtCodigoProdutoVenda.getText()));
+            txtDescricaoProdutoVenda.setText(produto.getDescricao());
+            txtPrecoProdutoVendaOculto.setText(String.valueOf(produto.getValor()));
+            Double valorRetorno = produto.getValor();
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            String valorTela = df.format(valorRetorno);
+            this.txtPrecoProdutoVenda.setText(valorTela);
+            this.txtQuantidadeProdutoVenda.grabFocus();
         } else {
-            incluirProdutoCarrinho(Integer.parseInt(txtCodigoProdutoVenda.getText()));
-           // this.jtfValorPagar.setText(String.valueOf(this.somaEAtualizaValorTotal()));
+
         }
-    }//GEN-LAST:event_btnAdicionarProdutoVendaActionPerformed
+    }//GEN-LAST:event_btnBuscarProdutosVendasActionPerformed
 
     private void rbTipoNaoIdentificadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTipoNaoIdentificadoActionPerformed
         // TODO add your handling code here:
@@ -715,6 +749,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtCpfCliente.setText(null);
         txtCnpjCliente.setText(null);
         txtNomeRazaoSocialCliente.setText("VENDA BALCAO PDV");
+        txtCodigoProdutoVenda.grabFocus();
     }//GEN-LAST:event_rbTipoNaoIdentificadoActionPerformed
 
     private void txtTotalVendaPVDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalVendaPVDActionPerformed
@@ -731,33 +766,165 @@ public class TelaVendasView extends javax.swing.JFrame {
         btnCpfCnpjPesquisarTelaVendasActionPerformed(evt);
     }//GEN-LAST:event_txtCnpjClienteActionPerformed
 
-    private void txtTotalVendaPVD1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalVendaPVD1ActionPerformed
+    private void txtQtdItensTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtdItensTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalVendaPVD1ActionPerformed
+    }//GEN-LAST:event_txtQtdItensTotalActionPerformed
 
-    private void incluirProdutoCarrinho(int codigoProduto){
-        ProdutoController produtoController = new ProdutoController();
-        Produto produtoModelo = new Produto();
-        DefaultTableModel modelo = (DefaultTableModel) tblProdutosVendas.getModel();
-        produtoModelo = produtoController.getProdutoControllerCodigoVenda(codigoProduto);
-        
-        modelo.addRow(new Object[]{
-            tblProdutosVendas.getRowCount() + 1,
-            produtoModelo.getCodProduto(),
-            produtoModelo.getDescricao(),
-            produtoQuantidade,
-            produtoModelo.getValor(),
-            produtoModelo.getValor() * produtoQuantidade
+    private void txtQuantidadeProdutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeProdutoVendaActionPerformed
+        // TODO add your handling code here:
+        btnAdicionarProdutoVendaActionPerformed(evt);
+
+    }//GEN-LAST:event_txtQuantidadeProdutoVendaActionPerformed
+
+    private void txtQuantidadeProdutoVendaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeProdutoVendaKeyTyped
+        // TODO add your handling code here:
+        String caracteres = "0987654321";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtQuantidadeProdutoVendaKeyTyped
+
+    private void btnAdicionarProdutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarProdutoVendaActionPerformed
+        // TODO add your handling code here:
+        if (testarSelecaoCodProduto() == true && testarSelecaoQuantidade() == true) {
+            this.incluirProduto();
+
+            Double valorTotalRetorno = (this.atualizarValorTotal());
+            DecimalFormat dfNovo = new DecimalFormat("#,##0.00");
+            String valorTotalTela = dfNovo.format(valorTotalRetorno);
+            this.totalValorFormatado = valorTotalTela;
+            this.txtTotalVendaPVD.setText(totalValorFormatado);
+
+            this.txtQtdItensTotal.setText(String.valueOf(this.atualizarQuantidadeItens()));
+
+            this.txtPrecoProdutoVendaOculto.setText("");
+            this.txtCodigoProdutoVenda.grabFocus();
+        } else {
+
+        }
+    }//GEN-LAST:event_btnAdicionarProdutoVendaActionPerformed
+
+    private void txtCodigoProdutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoProdutoVendaActionPerformed
+        // TODO add your handling code here:
+        btnBuscarProdutosVendasActionPerformed(evt);
+    }//GEN-LAST:event_txtCodigoProdutoVendaActionPerformed
+
+    private void incluirProduto() {
+        quantidade = Integer.parseInt(this.txtQuantidadeProdutoVenda.getText());
+        preco = Double.parseDouble(this.txtPrecoProdutoVendaOculto.getText());
+        subTotal = quantidade * preco;
+
+        precoFormatado = valoresMonentarios.format(preco);
+        Double valorSubTotalRetorno = (subTotal);
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        String valorSubTotalTela = df.format(valorSubTotalRetorno);
+        this.subTotalValorFormatado = valorSubTotalTela;
+
+        total += subTotal;
+
+        Double valorTotalRetorno = (total);
+        DecimalFormat dfNovo = new DecimalFormat("#,##0.00");
+        String valorTotalTela = dfNovo.format(valorTotalRetorno);
+        this.totalValorFormatado = valorTotalTela;
+
+        this.txtTotalVendaPVD.setText(totalValorFormatado);
+
+        carrinhos = (DefaultTableModel) tblListaItensVendas.getModel();
+        int cont = 0;
+        for (int i = 0; i < cont; i++) {
+            carrinhos.setNumRows(0);
+        }
+
+        carrinhos.addRow(new Object[]{
+            this.tblListaItensVendas.getRowCount() + 1,
+            this.txtCodigoProdutoVenda.getText(),
+            this.txtDescricaoProdutoVenda.getText(),
+            this.txtQuantidadeProdutoVenda.getText(),
+            this.precoFormatado,
+            this.subTotalValorFormatado,
+            this.subTotal
         });
-        
-        produtoQuantidade = 1;
+
+        this.itensDaVenda = carrinhos;
+
         this.txtCodigoProdutoVenda.setText(null);
+        this.txtDescricaoProdutoVenda.setText(null);
+        this.txtPrecoProdutoVenda.setText(null);
+        this.txtPrecoProdutoVendaOculto.setText(null);
         this.txtQuantidadeProdutoVenda.setText(null);
-        this.txtCodigoProdutoVenda.grabFocus();
     }
 
+    private boolean testarSelecaoCodProduto() {
+        if (txtCodigoProdutoVenda.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "É necessário selecionar um produto.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean testarSelecaoProduto() {
+        int selecao = tblListaItensVendas.getSelectedRow();
+        if (selecao == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha para realizar essa operação.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean testarSelecaoQuantidade() {
+        if (txtQuantidadeProdutoVenda.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "É necessário informar a quantidade");
+            return false;
+        }
+        return true;
+    }
+
+    private Double atualizarValorTotal() {
+        Double operacaoSoma = 0.00;
+        Double valor;
+        int contador = tblListaItensVendas.getRowCount();
+        for (int i = 0; i < contador; i++) {
+            //valor = Double.parseDouble(String.valueOf(tblListaItensVendas.getValueAt(i, 3)));
+            String valorOriginal = String.valueOf(tblListaItensVendas.getValueAt(i, 5));
+            String valorOriginalFormatado = valorOriginal.replace(".", "");
+            String valorOriginalFormatado2 = valorOriginalFormatado.replace(",", ".");
+            valor = Double.parseDouble(valorOriginalFormatado2);
+            operacaoSoma = valor + operacaoSoma;
+        }
+
+        return operacaoSoma;
+    }
+
+    private int atualizarQuantidadeItens() {
+        int operacaoSomaItens = 0;
+        int valor;
+        int contador = tblListaItensVendas.getRowCount();
+        for (int i = 0; i < contador; i++) {
+            //valor = Double.parseDouble(String.valueOf(tblListaItensVendas.getValueAt(i, 3)));
+            String valorOriginal = String.valueOf(tblListaItensVendas.getValueAt(i, 3));
+            valor = Integer.parseInt(valorOriginal);
+            operacaoSomaItens = valor + operacaoSomaItens;
+        }
+
+        return operacaoSomaItens;
+    }
+    
+    private void removerProduto(){
+        if(testarSelecaoProduto() == true){
+            int linhaSelecionada = tblListaItensVendas.getSelectedRow();
+            DefaultTableModel modelo = (DefaultTableModel) tblListaItensVendas.getModel();
+            // Remove a linha
+            modelo.removeRow(linhaSelecionada);
+            Double valorTotalRetorno = (this.atualizarValorTotal());
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            String valorTotalTela = df.format(valorTotalRetorno);
+            this.txtTotalVendaPVD.setText(valorTotalTela);
+            this.txtQtdItensTotal.setText(String.valueOf(atualizarQuantidadeItens()));
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AtalhoRemoverProduto;
     private javax.swing.JMenuItem MenuComandoItCancelarProduto;
     private javax.swing.JMenuItem MenuComandoItCancelarVenda;
     private javax.swing.JMenuItem MenuComandoItFinalizarVenda;
@@ -785,7 +952,6 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -798,15 +964,16 @@ public class TelaVendasView extends javax.swing.JFrame {
     protected javax.swing.JRadioButton rbTipoNaoIdentificado;
     protected javax.swing.JRadioButton rbTipoPFisicaCliente;
     protected javax.swing.JRadioButton rbTipoPJuridicaCliente;
-    private javax.swing.JTable tblProdutosVendas;
+    private javax.swing.JTable tblListaItensVendas;
     protected javax.swing.JFormattedTextField txtCnpjCliente;
     private javax.swing.JTextField txtCodigoProdutoVenda;
     protected javax.swing.JFormattedTextField txtCpfCliente;
     private javax.swing.JTextField txtDescricaoProdutoVenda;
     protected javax.swing.JTextField txtNomeRazaoSocialCliente;
     private javax.swing.JTextField txtPrecoProdutoVenda;
+    private javax.swing.JTextField txtPrecoProdutoVendaOculto;
+    private javax.swing.JTextField txtQtdItensTotal;
     private javax.swing.JTextField txtQuantidadeProdutoVenda;
     private javax.swing.JTextField txtTotalVendaPVD;
-    private javax.swing.JTextField txtTotalVendaPVD1;
     // End of variables declaration//GEN-END:variables
 }
