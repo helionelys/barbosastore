@@ -4,12 +4,15 @@ import br.com.barbosasys.controller.ClienteController;
 import br.com.barbosasys.controller.ProdutoController;
 import br.com.barbosasys.model.Cliente;
 import br.com.barbosasys.model.Produto;
+import br.com.barbosasys.model.Venda;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,7 +29,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     Produto produto = new Produto();
     String precoFormatado, subTotalValorFormatado, totalValorFormatado;
     double preco, subTotal, total;
-    int quantidade;
+    int quantidade, codigoCliente, quantidadeProduto;
     DefaultTableModel carrinhos, itensDaVenda;
     DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
 
@@ -38,6 +41,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     public TelaVendasView() {
         initComponents();
         this.txtPrecoProdutoVendaOculto.setVisible(false);
+        this.txtCodigoCliente.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -66,6 +70,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtNomeRazaoSocialCliente = new javax.swing.JTextField();
         btnCpfCnpjPesquisarTelaVendas = new javax.swing.JButton();
+        txtCodigoCliente = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btnBuscarProdutosVendas = new javax.swing.JButton();
@@ -98,7 +103,6 @@ public class TelaVendasView extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         MenuComandoItCancelarVenda = new javax.swing.JMenuItem();
         MenuComandoItFinalizarVenda = new javax.swing.JMenuItem();
-        MenuComandoItCancelarProduto = new javax.swing.JMenuItem();
         AtalhoRemoverProduto = new javax.swing.JMenuItem();
         MenuComandoItSair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -188,6 +192,9 @@ public class TelaVendasView extends javax.swing.JFrame {
             }
         });
 
+        txtCodigoCliente.setEditable(false);
+        txtCodigoCliente.setText("jTextField1");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -198,6 +205,8 @@ public class TelaVendasView extends javax.swing.JFrame {
                     .addComponent(txtNomeRazaoSocialCliente)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCodigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -242,7 +251,9 @@ public class TelaVendasView extends javax.swing.JFrame {
                         .addComponent(txtCnpjCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnCpfCnpjPesquisarTelaVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNomeRazaoSocialCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -368,6 +379,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         );
 
         tblListaItensVendas.setAutoCreateRowSorter(true);
+        tblListaItensVendas.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         tblListaItensVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -421,6 +433,8 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanel6.setToolTipText("");
 
         jLabel8.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
         jLabel8.setText("Operador:");
@@ -544,7 +558,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel18.setText("Opções");
 
         jLabel19.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel19.setText("F3 - Cancelar Venda  F4 - Finalizar Venda  F5 - Alterar Quantidade  F6 - Cancelar Produto  F7 - Sair");
+        jLabel19.setText("F3 - Cancelar Venda  F4 - Finalizar Venda  F6 - Cancelar Produto  F7 - Sair");
 
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel20.setText("BARBOSA STORE");
@@ -616,12 +630,8 @@ public class TelaVendasView extends javax.swing.JFrame {
         });
         jMenu1.add(MenuComandoItFinalizarVenda);
 
-        MenuComandoItCancelarProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        MenuComandoItCancelarProduto.setText("F5 - Alterar Quantidade");
-        jMenu1.add(MenuComandoItCancelarProduto);
-
         AtalhoRemoverProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
-        AtalhoRemoverProduto.setText("F6 - Cancelar Produto");
+        AtalhoRemoverProduto.setText("F6 - Remover Produto");
         AtalhoRemoverProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AtalhoRemoverProdutoActionPerformed(evt);
@@ -687,26 +697,6 @@ public class TelaVendasView extends javax.swing.JFrame {
         //        frame.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
 
-    private void AtalhoRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtalhoRemoverProdutoActionPerformed
-        // TODO add your handling code here:
-        this.removerProduto();
-    }//GEN-LAST:event_AtalhoRemoverProdutoActionPerformed
-
-    private void MenuComandoItFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuComandoItFinalizarVendaActionPerformed
-        // TODO add your handling code here:
-        PagamentosView telaPagamento = new PagamentosView(this, rootPaneCheckingEnabled);
-        telaPagamento.setLocationRelativeTo(this);
-        telaPagamento.setVisible(rootPaneCheckingEnabled);
-    }//GEN-LAST:event_MenuComandoItFinalizarVendaActionPerformed
-
-    private void MenuComandoItSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuComandoItSairActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        MenuPrincipalView telaprincipal = new MenuPrincipalView();
-        telaprincipal.setLocationRelativeTo(this);
-        telaprincipal.setVisible(true);
-    }//GEN-LAST:event_MenuComandoItSairActionPerformed
-
     private void btnCpfCnpjPesquisarTelaVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCpfCnpjPesquisarTelaVendasActionPerformed
         // TODO add your handling code here:
 
@@ -715,10 +705,12 @@ public class TelaVendasView extends javax.swing.JFrame {
             cliente = clienteDados.getClienteControllerCpfCnpj(txtCpfCliente.getText());
             txtNomeRazaoSocialCliente.setText(cliente.getNomeRazaoSocial());
             txtCodigoProdutoVenda.grabFocus();
+            txtCodigoCliente.setText(String.valueOf(cliente.getCodigo()));
         } else {
             cliente = clienteDados.getClienteControllerCpfCnpj(txtCnpjCliente.getText());
             txtNomeRazaoSocialCliente.setText(cliente.getNomeRazaoSocial());
             txtCodigoProdutoVenda.grabFocus();
+            txtCodigoCliente.setText(String.valueOf(cliente.getCodigo()));
         }
 
 
@@ -749,6 +741,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtCpfCliente.setText(null);
         txtCnpjCliente.setText(null);
         txtNomeRazaoSocialCliente.setText("VENDA BALCAO PDV");
+        txtCodigoCliente.setText("11");
         txtCodigoProdutoVenda.grabFocus();
     }//GEN-LAST:event_rbTipoNaoIdentificadoActionPerformed
 
@@ -808,6 +801,42 @@ public class TelaVendasView extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnBuscarProdutosVendasActionPerformed(evt);
     }//GEN-LAST:event_txtCodigoProdutoVendaActionPerformed
+
+    private void MenuComandoItSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuComandoItSairActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        MenuPrincipalView telaprincipal = new MenuPrincipalView();
+        telaprincipal.setLocationRelativeTo(this);
+        telaprincipal.setVisible(true);
+    }//GEN-LAST:event_MenuComandoItSairActionPerformed
+
+    private void AtalhoRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtalhoRemoverProdutoActionPerformed
+        // TODO add your handling code here:
+        this.removerProduto();
+    }//GEN-LAST:event_AtalhoRemoverProdutoActionPerformed
+
+    private void MenuComandoItFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuComandoItFinalizarVendaActionPerformed
+        // TODO add your handling code here:
+        if(txtCodigoCliente.getText().equals("") || tblListaItensVendas.getRowCount() < 1){
+            JOptionPane.showMessageDialog(this, "É necessário informar um cliente e selecionar um produto!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+
+        } else{
+            Cliente objCliente = new Cliente();
+
+            //Dados do cliente
+            objCliente.setCodigo(Integer.parseInt(this.txtCodigoCliente.getText()));
+
+            PagamentosView telaPagamento = new PagamentosView(this, rootPaneCheckingEnabled);
+            telaPagamento.setLocationRelativeTo(this);
+            telaPagamento.setLblValorTotal(totalValorFormatado);
+            telaPagamento.setLblValorTotalAReceber(totalValorFormatado);
+
+            telaPagamento.objClientesPagamentos = objCliente;
+            telaPagamento.itensDaVenda = this.itensDaVenda;
+
+            telaPagamento.setVisible(rootPaneCheckingEnabled);
+        }
+    }//GEN-LAST:event_MenuComandoItFinalizarVendaActionPerformed
 
     private void incluirProduto() {
         quantidade = Integer.parseInt(this.txtQuantidadeProdutoVenda.getText());
@@ -922,10 +951,11 @@ public class TelaVendasView extends javax.swing.JFrame {
             this.txtQtdItensTotal.setText(String.valueOf(atualizarQuantidadeItens()));
         }
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AtalhoRemoverProduto;
-    private javax.swing.JMenuItem MenuComandoItCancelarProduto;
     private javax.swing.JMenuItem MenuComandoItCancelarVenda;
     private javax.swing.JMenuItem MenuComandoItFinalizarVenda;
     private javax.swing.JMenuItem MenuComandoItSair;
@@ -966,6 +996,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     protected javax.swing.JRadioButton rbTipoPJuridicaCliente;
     private javax.swing.JTable tblListaItensVendas;
     protected javax.swing.JFormattedTextField txtCnpjCliente;
+    private javax.swing.JTextField txtCodigoCliente;
     private javax.swing.JTextField txtCodigoProdutoVenda;
     protected javax.swing.JFormattedTextField txtCpfCliente;
     private javax.swing.JTextField txtDescricaoProdutoVenda;

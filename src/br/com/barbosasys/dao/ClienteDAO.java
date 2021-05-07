@@ -74,6 +74,7 @@ public class ClienteDAO extends ConexaoBanco {
             this.conectar();
             this.executarSQL(
                     "SELECT "
+                    + "CODCLIENTE, "
                     + "CPF_CNPJ, "
                     + "NOME_RAZAOSOCIAL"
                     + " FROM"
@@ -83,8 +84,9 @@ public class ClienteDAO extends ConexaoBanco {
             );
 
             while (this.getResultSet().next()) {
-                cliente.setCpfCnpj(this.getResultSet().getString(1));
-                cliente.setNomeRazaoSocial(this.getResultSet().getString(2));
+                cliente.setCodigo(this.getResultSet().getInt(1));
+                cliente.setCpfCnpj(this.getResultSet().getString(2));
+                cliente.setNomeRazaoSocial(this.getResultSet().getString(3));
             }
 
         } catch (Exception e) {
