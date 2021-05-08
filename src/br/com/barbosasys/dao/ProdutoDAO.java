@@ -168,6 +168,35 @@ public class ProdutoDAO extends ConexaoBanco {
     }
 
     // Recupera produto através do codigo
+    public int getProdutoVendaQuantidadeEstoqueDAO(int codigo) {
+        int quantidadeEstoque = 0;
+
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "QUANTIDADE" //1
+                    + " FROM"
+                    + " TBL_PRODUTO"
+                    + " WHERE"
+                    + " CODPRODUTO = '" + codigo + "'"
+                    + ";"
+            );
+
+            while (this.getResultSet().next()) {
+
+                quantidadeEstoque =(this.getResultSet().getInt(1));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return quantidadeEstoque;
+    }
+    
+    // Recupera produto através do codigo
     public Produto getProdutoVendaDAO(int codigo) {
         Produto produto = new Produto();
 
@@ -396,6 +425,24 @@ public class ProdutoDAO extends ConexaoBanco {
             this.fecharConexao();
         }
     }
+    
+        public boolean baixarEstoqueProduto(Produto produto){
+        try {
+            this.conectar();
+            this.executarUpdateDeleteSQL(
+                    "UPDATE TBL_PRODUTO SET "
+                    + "QUANTIDADE = '" + produto.getQuantidade() + "'"
+                    + "WHERE CODPRODUTO = '" + produto.getCodProduto() + "'"
+                    + ";"
+                    );
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            this.fecharConexao();
+        }
+    }
 
     public boolean excluirProdutoDAO(int codigo) {
         try {
@@ -413,4 +460,5 @@ public class ProdutoDAO extends ConexaoBanco {
             this.fecharConexao();
         }
     }
+    
 }

@@ -13,6 +13,9 @@ public class Lancamento {
     private String observacao;
     private int codTipoLancamento;
     private int codStatusLancamento;
+    private String descricaoTipoLancamento;
+
+    
 
     public Lancamento() {
     }
@@ -104,6 +107,13 @@ public class Lancamento {
     public void setCodStatusLancamento(int codStatusLancamento) {
         this.codStatusLancamento = codStatusLancamento;
     }
+    
+    public String getDescricaoTipoLancamento() {
+        return descricaoTipoLancamento;
+    }
 
+    public void setDescricaoTipoLancamento(String descricaoTipoLancamento) {
+        this.descricaoTipoLancamento = descricaoTipoLancamento;
+    }
    
 }

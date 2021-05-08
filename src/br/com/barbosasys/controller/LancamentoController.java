@@ -47,6 +47,10 @@ public class LancamentoController {
     public ArrayList<Lancamento> getListaLancamentoAPagarBaixadoController() {
         return this.lancamentoDAO.getListaLancamentoAPagarBaixadosDAO();
     }
+    
+    public ArrayList<Lancamento> getListaLancamentosAbertos() {
+        return this.lancamentoDAO.getListaLancamentoAbertosDAO();
+    }
 
     public boolean atualizarLancamentoControllerAPagar(Lancamento Lancamento) {
         return this.lancamentoDAO.atualizarLancamentoAPagarDAO(Lancamento);

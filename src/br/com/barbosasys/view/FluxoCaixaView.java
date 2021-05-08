@@ -5,18 +5,44 @@
  */
 package br.com.barbosasys.view;
 
+import br.com.barbosasys.controller.ClienteController;
+import br.com.barbosasys.controller.FornecedorController;
+import br.com.barbosasys.controller.LancamentoController;
+import br.com.barbosasys.controller.TipoPagamentoController;
+import br.com.barbosasys.model.Cliente;
+import br.com.barbosasys.model.Fornecedor;
+import br.com.barbosasys.model.Lancamento;
+import br.com.barbosasys.model.Pessoa;
+import br.com.barbosasys.model.TipoPagamento;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author helionelys
  */
 public class FluxoCaixaView extends javax.swing.JDialog {
-
+    Lancamento lancamento = new Lancamento();
+    Fornecedor fornecedor = new Fornecedor();
+    FornecedorController fornecedorController = new FornecedorController();
+    Pessoa pessoa = new Pessoa();
+    ArrayList<Lancamento> listaLancamentoAbertos = new ArrayList<>();
+    LancamentoController lancamentoController = new LancamentoController();
+    TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
+    ArrayList<TipoPagamento> listaTipoPagamentos = new ArrayList<>();
+    String tipoCadastro = "cadastro";
+    DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
     /**
      * Creates new form FluxoCaixaView
      */
     public FluxoCaixaView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        carregarLancamentosAbertos();
+        somaEAtualizaValorTotal();
+        //somaEAtualizaValorTotal();
+        //carregarValores();
     }
 
     /**
@@ -32,31 +58,18 @@ public class FluxoCaixaView extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        lblDinheiro = new javax.swing.JLabel();
-        lblCheque = new javax.swing.JLabel();
-        lblCartao = new javax.swing.JLabel();
-        lblPix = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblFluxoCaixa = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lblTotalDespesas = new javax.swing.JLabel();
+        lblTotalReceitas = new javax.swing.JLabel();
+        lblCenario = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         btnVisualizarDetalhe = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        rbCompraStatusAprovacaoTodos = new javax.swing.JRadioButton();
-        rbCompraStatusAprovacaoAguardando = new javax.swing.JRadioButton();
-        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Barbosa Store - Fluxo de Caixa");
@@ -90,6 +103,7 @@ public class FluxoCaixaView extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/icon_login.png"))); // NOI18N
         jLabel1.setText("Fluxo de Caixa");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -106,75 +120,6 @@ public class FluxoCaixaView extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Em Caixa"));
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setText("Dinheiro:  R$");
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel3.setText("Cheque:   R$");
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel4.setText("Cartão:  R$");
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel5.setText("PIX: R$");
-
-        lblDinheiro.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblDinheiro.setText("jLabel6");
-
-        lblCheque.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblCheque.setText("jLabel6");
-
-        lblCartao.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblCartao.setText("jLabel6");
-
-        lblPix.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblPix.setText("jLabel6");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPix, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(lblDinheiro)
-                    .addComponent(lblCartao))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(lblCheque)
-                    .addComponent(lblPix))
-                .addContainerGap())
         );
 
         tblFluxoCaixa.setAutoCreateRowSorter(true);
@@ -204,36 +149,44 @@ public class FluxoCaixaView extends javax.swing.JDialog {
         tblFluxoCaixa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane2.setViewportView(tblFluxoCaixa);
         if (tblFluxoCaixa.getColumnModel().getColumnCount() > 0) {
-            tblFluxoCaixa.getColumnModel().getColumn(0).setResizable(false);
-            tblFluxoCaixa.getColumnModel().getColumn(1).setMinWidth(200);
-            tblFluxoCaixa.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tblFluxoCaixa.getColumnModel().getColumn(2).setMinWidth(200);
-            tblFluxoCaixa.getColumnModel().getColumn(2).setPreferredWidth(200);
-            tblFluxoCaixa.getColumnModel().getColumn(3).setResizable(false);
-            tblFluxoCaixa.getColumnModel().getColumn(6).setMinWidth(100);
-            tblFluxoCaixa.getColumnModel().getColumn(6).setPreferredWidth(100);
+            tblFluxoCaixa.getColumnModel().getColumn(0).setMinWidth(60);
+            tblFluxoCaixa.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tblFluxoCaixa.getColumnModel().getColumn(0).setMaxWidth(60);
+            tblFluxoCaixa.getColumnModel().getColumn(1).setMinWidth(230);
+            tblFluxoCaixa.getColumnModel().getColumn(1).setPreferredWidth(230);
+            tblFluxoCaixa.getColumnModel().getColumn(2).setMinWidth(230);
+            tblFluxoCaixa.getColumnModel().getColumn(2).setPreferredWidth(230);
+            tblFluxoCaixa.getColumnModel().getColumn(6).setMinWidth(80);
+            tblFluxoCaixa.getColumnModel().getColumn(6).setPreferredWidth(80);
         }
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Valores Totais"));
 
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Total Despesa:  R$");
 
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Total Receita:  R$");
 
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Saldo Caixa:  R$");
+        jLabel8.setText("Cenário:  R$");
 
-        jLabel9.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("lblTotalDespesa");
+        lblTotalDespesas.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        lblTotalDespesas.setForeground(new java.awt.Color(204, 0, 0));
+        lblTotalDespesas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTotalDespesas.setText("lblTotalDespesa");
 
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel10.setText("lblTotalReceita");
+        lblTotalReceitas.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        lblTotalReceitas.setForeground(new java.awt.Color(0, 102, 0));
+        lblTotalReceitas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTotalReceitas.setText("lblTotalReceita");
 
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel11.setText("lblSaldoCaixa");
+        lblCenario.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        lblCenario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCenario.setText("lblSaldoCaixa");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -241,32 +194,30 @@ public class FluxoCaixaView extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblTotalDespesas)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTotalReceitas)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCenario)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTotalDespesas)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTotalReceitas)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel11))
-                .addGap(0, 8, Short.MAX_VALUE))
+                    .addComponent(lblCenario))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Exit.png"))); // NOI18N
@@ -305,52 +256,22 @@ public class FluxoCaixaView extends javax.swing.JDialog {
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnVisualizarDetalhe, jButton1});
 
-        jLabel12.setText("Status:");
-
-        rbCompraStatusAprovacaoTodos.setText("Baixados");
-        rbCompraStatusAprovacaoTodos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCompraStatusAprovacaoTodosActionPerformed(evt);
-            }
-        });
-
-        rbCompraStatusAprovacaoAguardando.setText("Abertos");
-        rbCompraStatusAprovacaoAguardando.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCompraStatusAprovacaoAguardandoActionPerformed(evt);
-            }
-        });
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/icon_login.png"))); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel13)
-                .addGap(12, 12, 12)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(534, 534, 534)
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbCompraStatusAprovacaoTodos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbCompraStatusAprovacaoAguardando))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -360,78 +281,88 @@ public class FluxoCaixaView extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbCompraStatusAprovacaoAguardando)
-                            .addComponent(rbCompraStatusAprovacaoTodos)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(137, 137, 137)
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rbCompraStatusAprovacaoTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCompraStatusAprovacaoTodosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbCompraStatusAprovacaoTodosActionPerformed
-
-    private void rbCompraStatusAprovacaoAguardandoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCompraStatusAprovacaoAguardandoActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_rbCompraStatusAprovacaoAguardandoActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    private void carregarLancamentosAbertos(){
+        listaLancamentoAbertos = lancamentoController.getListaLancamentosAbertos();
+        DefaultTableModel modelo = (DefaultTableModel) tblFluxoCaixa.getModel();
+        modelo.setNumRows(0);
+        String nomePessoa = "";
+        int cont = listaLancamentoAbertos.size();
+        for (int i=0;i < cont; i++){
+            //if(listaLancamentoAbertos.get(i).getDescricaoTipoLancamento())
+            modelo.addRow(new Object[]{
+                listaLancamentoAbertos.get(i).getCodLancamento(),
+                listaLancamentoAbertos.get(i).getDescricaoLancamento(),
+                listaLancamentoAbertos.get(i).getPessoa().getNomeRazaoSocial(),
+                listaLancamentoAbertos.get(i).getDataLancamento(),
+                listaLancamentoAbertos.get(i).getDataVencimento(),
+                valoresMonentarios.format(listaLancamentoAbertos.get(i).getValorLancamento()),
+                listaLancamentoAbertos.get(i).getDescricaoTipoLancamento()
+            });
+        }
+    }
+    
+        private void somaEAtualizaValorTotal() {
+        double totalPagar = 0;
+        double totalReceber = 0;
+        double valorPagar = 0;
+        double valorReceber = 0;
+        
+        int cont = tblFluxoCaixa.getRowCount();
+        for (int i = 0; i < cont; i++) {
+            if (tblFluxoCaixa.getValueAt(i, 6).equals("A PAGAR")) {
+                String valorPagarOriginal = (String.valueOf(tblFluxoCaixa.getValueAt(i, 5)));
+                String valorPagarFormatado = valorPagarOriginal.replace(".", "");
+                String valorPagarFormatado2 = valorPagarFormatado.replace(",", ".");
+                valorPagar = Double.parseDouble(valorPagarFormatado2);
+                totalPagar = valorPagar + totalPagar;
+            } else {
+                String valorReceberOriginal = (String.valueOf(tblFluxoCaixa.getValueAt(i, 5)));
+                String valorReceberFormatado = valorReceberOriginal.replace(".", "");
+                String valorReceberFormatado2 = valorReceberFormatado.replace(",", ".");
+                valorReceber = Double.parseDouble(valorReceberFormatado2);
+                totalReceber = valorReceber + totalReceber;
+            }
+        }
+        lblTotalDespesas.setText(String.valueOf(valoresMonentarios.format(totalPagar)));
+        lblTotalReceitas.setText(String.valueOf(valoresMonentarios.format(totalReceber)));
+        lblCenario.setText(String.valueOf(valoresMonentarios.format(totalReceber-totalPagar)));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVisualizarDetalhe;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblCartao;
-    private javax.swing.JLabel lblCheque;
-    private javax.swing.JLabel lblDinheiro;
-    private javax.swing.JLabel lblPix;
-    protected javax.swing.JRadioButton rbCompraStatusAprovacaoAguardando;
-    protected javax.swing.JRadioButton rbCompraStatusAprovacaoTodos;
+    private javax.swing.JLabel lblCenario;
+    private javax.swing.JLabel lblTotalDespesas;
+    private javax.swing.JLabel lblTotalReceitas;
     private javax.swing.JTable tblFluxoCaixa;
     // End of variables declaration//GEN-END:variables
 }

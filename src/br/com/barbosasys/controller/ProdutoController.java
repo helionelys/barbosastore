@@ -24,6 +24,10 @@ public class ProdutoController {
         return this.produtoDAO.getProdutoSimplesDAO(codigo);
     }
     
+    public int getProdutoControllerVendaQuantidadeEstoque(int codigo){
+        return this.produtoDAO.getProdutoVendaQuantidadeEstoqueDAO(codigo);
+    }
+    
     public Produto getProdutoControllerCompraSimples(int codigo){
         return this.produtoDAO.getProdutoCompraSimplesDAO(codigo);
     }
@@ -50,6 +54,10 @@ public class ProdutoController {
     
     public boolean atualizarProdutoEstoqueController(Produto produto){
         return this.produtoDAO.atualizarEstoqueProduto(produto);
+    }
+    
+    public boolean atualizarProdutoBaixarEstoqueController(Produto produto){
+        return this.produtoDAO.baixarEstoqueProduto(produto);
     }
     
     public boolean excluirProdutoController(int codigo){

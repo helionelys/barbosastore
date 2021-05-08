@@ -532,6 +532,73 @@ public class LancamentoDAO extends ConexaoBanco {
         return listaLancamentoAPagarBaixado;
     }
     
+    public ArrayList<Lancamento> getListaLancamentoAbertosDAO() {
+        ArrayList<Lancamento> listaLancamentoAPagarBaixado = new ArrayList();
+        Lancamento lancamento = new Lancamento();
+
+        try {
+
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "TBL_LANCAMENTO.CODLANCAMENTO," //1
+                    + "TBL_LANCAMENTO.DESCRICAO," //2
+                    + "COALESCE(TBL_LANCAMENTO.CODCLIENTE,TBL_LANCAMENTO.CODFORNECEDOR) AS CODCLIFOR," //3
+                    + "COALESCE(TBL_FORNECEDOR.NOME_RAZAOSOCIAL,TBL_CLIENTE.NOME_RAZAOSOCIAL) AS CLIENTEFORNECEDOR," //4
+                    + "TBL_LANCAMENTO.DATALANCAMENTO," //5
+                    + "TBL_LANCAMENTO.DATAVENCIMENTO," //6
+                    + "TBL_LANCAMENTO.VALOR," //7
+                    + "TBL_LANCAMENTOTIPO.DESCRICAO" // 8
+                    + " FROM"
+                    + " TBL_LANCAMENTO"
+                    + " LEFT JOIN TBL_CLIENTE"
+                    + " ON TBL_LANCAMENTO.CODCLIENTE = TBL_CLIENTE.CODCLIENTE"
+                    + " LEFT JOIN TBL_FORNECEDOR"
+                    + " ON TBL_LANCAMENTO.CODFORNECEDOR = TBL_FORNECEDOR.CODFORNECEDOR"
+                    + " INNER JOIN TBL_LANCAMENTOTIPO"
+                    + " ON TBL_LANCAMENTO.CODTIPOLANCAMENTO = TBL_LANCAMENTOTIPO.CODTIPOLANCAMENTO"
+                    + " INNER JOIN TBL_STATUSLANCAMENTO"
+                    + " ON TBL_LANCAMENTO.CODSTATUSLANCAMENTO = TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO"
+                    + " WHERE TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO = 1 "
+                    + " ORDER BY TBL_LANCAMENTO.CODLANCAMENTO DESC;"
+            );
+
+            while (this.getResultSet().next()) {
+                lancamento = new Lancamento();
+                Pessoa pessoa = new Pessoa();
+                lancamento.setCodLancamento(this.getResultSet().getInt(1));
+                lancamento.setDescricaoLancamento(this.getResultSet().getString(2));
+                pessoa.setCodigo(this.getResultSet().getInt(3));
+                pessoa.setNomeRazaoSocial(this.getResultSet().getString(4));
+                lancamento.setPessoa(pessoa);
+                
+                String dataRetorno = (this.getResultSet().getString(5));
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate localDate = LocalDate.parse(dataRetorno, formatter);
+                String dataLancamentoFormatada = localDate.format(formatter2);
+                lancamento.setDataLancamento(dataLancamentoFormatada);
+                
+                String dataRetorno2 = (this.getResultSet().getString(6));
+                DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate localDate2 = LocalDate.parse(dataRetorno2, formatter3);
+                String dataLancamentoFormatada2 = localDate2.format(formatter4);
+                lancamento.setDataVencimento(dataLancamentoFormatada2);
+                
+                lancamento.setValorLancamento(Double.parseDouble(this.getResultSet().getString(7)));
+                lancamento.setDescricaoTipoLancamento(this.getResultSet().getString(8));
+                listaLancamentoAPagarBaixado.add(lancamento);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return listaLancamentoAPagarBaixado;
+    }
+    
     public ArrayList<Lancamento> getListaLancamentoAPagarAbertoDAO() {
         ArrayList<Lancamento> listaLancamentoAPagarAberto = new ArrayList();
         Lancamento lancamento = new Lancamento();

@@ -42,6 +42,8 @@ public class TelaVendasView extends javax.swing.JFrame {
         initComponents();
         this.txtPrecoProdutoVendaOculto.setVisible(false);
         this.txtCodigoCliente.setVisible(false);
+        this.lblSatusOperacao.setText("Livre");
+        this.carregamentoInicial();
     }
 
     @SuppressWarnings("unchecked")
@@ -89,6 +91,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        lblSatusOperacao = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         txtTotalVendaPVD = new javax.swing.JTextField();
@@ -101,6 +104,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        MenuComandoItNovoVenda = new javax.swing.JMenuItem();
         MenuComandoItCancelarVenda = new javax.swing.JMenuItem();
         MenuComandoItFinalizarVenda = new javax.swing.JMenuItem();
         AtalhoRemoverProduto = new javax.swing.JMenuItem();
@@ -442,6 +446,9 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
         jLabel9.setText("Status:");
 
+        lblSatusOperacao.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
+        lblSatusOperacao.setText("StatusCaixa");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -449,6 +456,8 @@ public class TelaVendasView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSatusOperacao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addGap(123, 123, 123))
@@ -459,13 +468,15 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel8))
-                .addContainerGap(9, Short.MAX_VALUE))
+                    .addComponent(jLabel8)
+                    .addComponent(lblSatusOperacao))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel10.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
         jLabel10.setText("TOTAL");
 
+        txtTotalVendaPVD.setEditable(false);
         txtTotalVendaPVD.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         txtTotalVendaPVD.setForeground(new java.awt.Color(0, 0, 0));
         txtTotalVendaPVD.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -478,6 +489,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
         jLabel13.setText("QTD Itens");
 
+        txtQtdItensTotal.setEditable(false);
         txtQtdItensTotal.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         txtQtdItensTotal.setForeground(new java.awt.Color(0, 0, 0));
         txtQtdItensTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -551,14 +563,14 @@ public class TelaVendasView extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(2, Short.MAX_VALUE))
+                .addContainerGap(5, Short.MAX_VALUE))
         );
 
         jLabel18.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
         jLabel18.setText("Opções");
 
         jLabel19.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel19.setText("F3 - Cancelar Venda  F4 - Finalizar Venda  F6 - Cancelar Produto  F7 - Sair");
+        jLabel19.setText("F2 - Nova Vebda  F3 - Cancelar Venda  F4 - Finalizar Venda  F6 - Cancelar Produto  F7 - Sair");
 
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel20.setText("BARBOSA STORE");
@@ -617,8 +629,22 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         jMenu1.setText("Comandos");
 
+        MenuComandoItNovoVenda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        MenuComandoItNovoVenda.setText("F2 - Nova Venda");
+        MenuComandoItNovoVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuComandoItNovoVendaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuComandoItNovoVenda);
+
         MenuComandoItCancelarVenda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         MenuComandoItCancelarVenda.setText("F3 - Cancelar Venda");
+        MenuComandoItCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuComandoItCancelarVendaActionPerformed(evt);
+            }
+        });
         jMenu1.add(MenuComandoItCancelarVenda);
 
         MenuComandoItFinalizarVenda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
@@ -838,6 +864,16 @@ public class TelaVendasView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MenuComandoItFinalizarVendaActionPerformed
 
+    private void MenuComandoItNovoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuComandoItNovoVendaActionPerformed
+        // TODO add your handling code here:
+        this.novaVenda();
+    }//GEN-LAST:event_MenuComandoItNovoVendaActionPerformed
+
+    private void MenuComandoItCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuComandoItCancelarVendaActionPerformed
+        // TODO add your handling code here:
+        finalizarVenda();
+    }//GEN-LAST:event_MenuComandoItCancelarVendaActionPerformed
+
     private void incluirProduto() {
         quantidade = Integer.parseInt(this.txtQuantidadeProdutoVenda.getText());
         preco = Double.parseDouble(this.txtPrecoProdutoVendaOculto.getText());
@@ -952,12 +988,71 @@ public class TelaVendasView extends javax.swing.JFrame {
         }
     }
     
+    private void novaVenda(){
+        lblSatusOperacao.setText("Ocupado");
+        camposBotoesAtivados();
+        
+    }
+    
+    private void carregamentoInicial(){
+        lblSatusOperacao.setText("Fechado");
+        camposBotoesDesativados();
+    }
+    
+    public void finalizarVenda(){
+        lblSatusOperacao.setText("Livre");
+        camposBotoesDesativados();
+    }
+    
+    public void camposBotoesDesativados(){
+        rbTipoPFisicaCliente.setEnabled(false);
+        rbTipoPJuridicaCliente.setEnabled(false);
+        rbTipoNaoIdentificado.setEnabled(false);
+        txtCnpjCliente.setEnabled(false);
+        txtCpfCliente.setEnabled(false);
+        btnCpfCnpjPesquisarTelaVendas.setEnabled(false);
+        txtNomeRazaoSocialCliente.setEnabled(false);
+        txtNomeRazaoSocialCliente.setEnabled(false);
+        txtCodigoProdutoVenda.setEnabled(false);
+        btnBuscarProdutosVendas.setEnabled(false);
+        txtDescricaoProdutoVenda.setEnabled(false);
+        txtQuantidadeProdutoVenda.setEnabled(false);
+        txtPrecoProdutoVenda.setEnabled(false);
+        txtQuantidadeProdutoVenda.setEnabled(false);
+        btnAdicionarProdutoVenda.setEnabled(false);
+        MenuComandoItFinalizarVenda.setEnabled(false);
+        MenuComandoItCancelarVenda.setEnabled(false);
+        AtalhoRemoverProduto.setEnabled(false);
+    }
+    
+        public void camposBotoesAtivados(){
+        rbTipoPFisicaCliente.setEnabled(true);
+        rbTipoPJuridicaCliente.setEnabled(true);
+        rbTipoNaoIdentificado.setEnabled(true);
+        txtCnpjCliente.setEnabled(true);
+        txtCpfCliente.setEnabled(true);
+        btnCpfCnpjPesquisarTelaVendas.setEnabled(true);
+        txtNomeRazaoSocialCliente.setEnabled(true);
+        txtNomeRazaoSocialCliente.setEnabled(true);
+        txtCodigoProdutoVenda.setEnabled(true);
+        btnBuscarProdutosVendas.setEnabled(true);
+        txtDescricaoProdutoVenda.setEnabled(true);
+        txtQuantidadeProdutoVenda.setEnabled(true);
+        txtPrecoProdutoVenda.setEnabled(true);
+        txtQuantidadeProdutoVenda.setEnabled(true);
+        btnAdicionarProdutoVenda.setEnabled(true);
+        MenuComandoItFinalizarVenda.setEnabled(true);
+        MenuComandoItCancelarVenda.setEnabled(true);
+        AtalhoRemoverProduto.setEnabled(true);
+    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AtalhoRemoverProduto;
     private javax.swing.JMenuItem MenuComandoItCancelarVenda;
     private javax.swing.JMenuItem MenuComandoItFinalizarVenda;
+    private javax.swing.JMenuItem MenuComandoItNovoVenda;
     private javax.swing.JMenuItem MenuComandoItSair;
     private javax.swing.JButton btnAdicionarProdutoVenda;
     private javax.swing.JButton btnBuscarProdutosVendas;
@@ -990,6 +1085,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblSatusOperacao;
     private javax.swing.ButtonGroup rbGroupClientes;
     protected javax.swing.JRadioButton rbTipoNaoIdentificado;
     protected javax.swing.JRadioButton rbTipoPFisicaCliente;

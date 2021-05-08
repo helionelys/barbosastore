@@ -59,7 +59,7 @@ public class BuscarProdutosView extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Barbosa Store - Usuários");
+        setTitle("Barbosa Store - Busca Produtos");
 
         jPanel4.setBackground(new java.awt.Color(51, 153, 255));
 
@@ -92,7 +92,7 @@ public class BuscarProdutosView extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblProdutos);
 
-        jLabel1.setText("Perfil:");
+        jLabel1.setText("Descrição");
 
         btnProdutoSelecionar.setText("Selecionar");
         btnProdutoSelecionar.addActionListener(new java.awt.event.ActionListener() {

@@ -1,5 +1,6 @@
 package br.com.barbosasys.view;
 
+import br.com.barbosasys.controller.ProdutoController;
 import br.com.barbosasys.controller.TipoPagamentoController;
 import br.com.barbosasys.controller.VendaController;
 import br.com.barbosasys.model.Cliente;
@@ -20,12 +21,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PagamentosView extends javax.swing.JDialog {
 
+    TelaVendasView telaVenda = new TelaVendasView();
     TipoPagamento tipoPagamento = new TipoPagamento();
     Cliente objClientesPagamentos = new Cliente();
     Venda venda = new Venda();
     Item itemVenda = new Item();
+    Produto produto = new Produto();
     VendaController vendaController = new VendaController();
     TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
+    ProdutoController produtoController = new ProdutoController();
     ArrayList<TipoPagamento> listaTipoPagamento = new ArrayList<>();
     ArrayList<Item> listaItensVendas = new ArrayList<>();
     double valorRecebido, valorDesconto, valorTroco, valorAReceber;
@@ -344,6 +348,7 @@ public class PagamentosView extends javax.swing.JDialog {
             
         // Cadastrando os produtos na tabela ItemVendas
         for (int i = 0; i < itensDaVenda.getRowCount(); i++) {
+            int quantidadeEstoque, quantidadeVendida, quantidadeAtualizada;
             Item objItemVenda = new Item();
                 Produto objProdutoVenda = new Produto();
                 objItemVenda.setVenda(venda);
@@ -356,6 +361,13 @@ public class PagamentosView extends javax.swing.JDialog {
                 String vlItemFormatado2 = vlItemFormatado.replace(",", ".");
                 Double subTotalBanco = Double.parseDouble(vlItemFormatado2);
                 objItemVenda.setSubtotal(subTotalBanco);
+                
+                //Baixa no Estoque
+                quantidadeEstoque = produtoController.getProdutoControllerVendaQuantidadeEstoque(objProdutoVenda.getCodProduto());
+                quantidadeVendida = Integer.parseInt(itensDaVenda.getValueAt(i, 3).toString());
+                quantidadeAtualizada = quantidadeEstoque - quantidadeVendida;
+                objProdutoVenda.setQuantidade(quantidadeAtualizada);
+                produtoController.atualizarProdutoBaixarEstoqueController(objProdutoVenda);
                 listaItensVendas.add(objItemVenda);
         }
         
@@ -363,7 +375,7 @@ public class PagamentosView extends javax.swing.JDialog {
             if (codigoVenda > 0) {
                 vendaController.salvarItensVendaController(itemVenda);
                 JOptionPane.showMessageDialog(this, "Registro gravado com sucesso!");
-                
+                telaVenda.finalizarVenda();
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
             }

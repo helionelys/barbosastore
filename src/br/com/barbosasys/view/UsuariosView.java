@@ -34,6 +34,7 @@ public class UsuariosView extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.carregarUsuarios();
+        camposDesativados();
         BuscarFuncionarioView telaBuscarFuncionarios = new BuscarFuncionarioView(this, true);
         BuscarPerfilUsuarioView teleBuscarPerfilUsuario = new BuscarPerfilUsuarioView(this, true);
     }
@@ -219,6 +220,7 @@ public class UsuariosView extends javax.swing.JDialog {
         txtNomeFuncionarioCadUsuarios.setEditable(false);
         txtNomeFuncionarioCadUsuarios.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
+        txtCodigoCadUsuarios.setEditable(false);
         txtCodigoCadUsuarios.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         txtCodigoCadUsuarios.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -415,6 +417,7 @@ public class UsuariosView extends javax.swing.JDialog {
     private void btnIncluirCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirCadUsuariosActionPerformed
         // TODO add your handling code here:
         incluirUsuario();
+        camposAtivados();
         txtCodigoCadUsuarios.setEditable(false);
     }//GEN-LAST:event_btnIncluirCadUsuariosActionPerformed
 
@@ -480,6 +483,7 @@ public class UsuariosView extends javax.swing.JDialog {
         if (testarSelecao() == true) {
             recuperaUsuario();
             alteracao = true;
+            camposAtivados();
             txtCodigoCadUsuarios.setEditable(false);
             txtLoginCadUsuarios.setEditable(false);
             txtLoginCadUsuarios.setEnabled(false);
@@ -603,6 +607,7 @@ public class UsuariosView extends javax.swing.JDialog {
             usuarioController.atualizarUsuarioController(usuario);
             JOptionPane.showMessageDialog(this,"Dados atualizados com sucesso");
             this.carregarUsuarios();
+            camposDesativados();
             jTabbedPaneCadUsuarios.setSelectedIndex(0);
             return true;
             } else {
@@ -627,11 +632,40 @@ public class UsuariosView extends javax.swing.JDialog {
             this.carregarUsuarios();
             this.incluirUsuario();
             jTabbedPaneCadUsuarios.setSelectedIndex(0);
+            camposDesativados();
             return true;
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao salvar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+    }
+    
+    private void camposDesativados(){
+        txtCodigoCadUsuarios.setEnabled(false);
+        txtCodifgoFuncionarioCadUsuario.setEnabled(false);
+        txtNomeFuncionarioCadUsuarios.setEnabled(false);
+        txtLoginCadUsuarios.setEnabled(false);
+        txtSenhaCadUsuarios.setEnabled(false);
+        txtConfirmarSenhaCadUsuarios.setEnabled(false);
+        txtCodPerfilCadUsuarios.setEnabled(false);
+        txtNomePerfilCadUsuarios.setEnabled(false);
+        btnSalvarCadUsuarios.setEnabled(false);
+        btnBucarNomeFuncionarioCadUsuarios.setEnabled(false);
+        btnBucarNomePerfilCadUsuarios.setEnabled(false);
+    }
+    
+    private void camposAtivados(){
+        txtCodigoCadUsuarios.setEnabled(true);
+        txtCodifgoFuncionarioCadUsuario.setEnabled(true);
+        txtNomeFuncionarioCadUsuarios.setEnabled(true);
+        txtLoginCadUsuarios.setEnabled(true);
+        txtSenhaCadUsuarios.setEnabled(true);
+        txtConfirmarSenhaCadUsuarios.setEnabled(true);
+        txtCodPerfilCadUsuarios.setEnabled(true);
+        txtNomePerfilCadUsuarios.setEnabled(true);
+        btnSalvarCadUsuarios.setEnabled(true);
+        btnBucarNomeFuncionarioCadUsuarios.setEnabled(true);
+        btnBucarNomePerfilCadUsuarios.setEnabled(true);
     }
 
     /**

@@ -6,14 +6,19 @@
 package br.com.barbosasys.view;
 
 import br.com.barbosasys.controller.LancamentoController;
+import br.com.barbosasys.controller.ProdutoController;
 import br.com.barbosasys.controller.VendaController;
+import br.com.barbosasys.model.Item;
 import br.com.barbosasys.model.Lancamento;
 import br.com.barbosasys.model.Pessoa;
+import br.com.barbosasys.model.Produto;
 import br.com.barbosasys.model.TipoPagamento;
 import br.com.barbosasys.model.Venda;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,12 +28,14 @@ public class FaturamentoView extends javax.swing.JDialog {
     // Variaveis para armazenar dados da venda
 
     Pessoa pessoa = new Pessoa();
-
+    Venda venda = new Venda();
     Lancamento lancamentoFaturar = new Lancamento();
     LancamentoController lancamentoController = new LancamentoController();
+    ProdutoController produtoController = new ProdutoController();
     VendaController vendaController = new VendaController();
-    Venda venda = new Venda();
-    
+    ArrayList<Item> listaItensVendas = new ArrayList<>();
+    DefaultTableModel itensDaVenda;
+
 
     /**
      * Creates new form FaturamentoView
@@ -37,7 +44,7 @@ public class FaturamentoView extends javax.swing.JDialog {
         super(owner, modal);
         initComponents();
         lblCodTipodePagamento.setVisible(false);
-        lblCodCliente.setVisible(true);
+        lblCodCliente.setVisible(false);
     }
 
     /**
@@ -163,51 +170,48 @@ public class FaturamentoView extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblNumeroDaVenda)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addContainerGap(13, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(lblCodCliente)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6))
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel5))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblCodTipodePagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDataVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblTipodePagamentoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblCodTipodePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel4))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblCodCliente)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel6))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDataVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblTipodePagamentoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(txtDataVencimentoVenda)
-                                    .addComponent(lblValorDesconto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblValorDesconto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNumeroDaVenda))
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(lblNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lblNumeroDaVenda))
@@ -225,15 +229,16 @@ public class FaturamentoView extends javax.swing.JDialog {
                     .addComponent(jLabel5)
                     .addComponent(lblTipodePagamentoDescricao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(lblValorDesconto)
-                    .addComponent(lblCodCliente))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCodCliente)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(lblValorDesconto)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtDataVencimentoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
 
         btnGerarLancamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Money_Calculator_32.png"))); // NOI18N
@@ -265,18 +270,16 @@ public class FaturamentoView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblMoney)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGerarLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))))
+                        .addComponent(btnGerarLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,14 +287,14 @@ public class FaturamentoView extends javax.swing.JDialog {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGerarLancamento)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblValorTotal)
                         .addComponent(lblMoney)
-                        .addComponent(jLabel9))
-                    .addComponent(btnGerarLancamento))
-                .addGap(25, 25, 25)
+                        .addComponent(jLabel9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -333,13 +336,12 @@ public class FaturamentoView extends javax.swing.JDialog {
 //        LocalDate localDate3 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
 //        String dataLacamentoPagamentoBanco = localDate3.format(dataFormatada2);
 //        lancamentoFaturar.setDataPagamento(dataLacamentoPagamentoBanco);
-        
         String valorLancamentoOriginal = lblValorTotal.getText();
         String valorLancamentoFormatado = valorLancamentoOriginal.replace(".", "");
         String valorLancamentoFormatado2 = valorLancamentoFormatado.replace(",", ".");
         Double valorBanco = Double.parseDouble(valorLancamentoFormatado2);
         lancamentoFaturar.setValorLancamento(valorBanco);
-        
+
         lancamentoFaturar.setCodTipoPagamento(Integer.parseInt(lblCodTipodePagamento.getText()));
         lancamentoFaturar.setObservacao("");
         lancamentoFaturar.setCodTipoLancamento(1);
@@ -364,8 +366,8 @@ public class FaturamentoView extends javax.swing.JDialog {
     public void setLblNumeroVenda(int numeroDaVenda) {
         this.lblNumeroDaVenda.setText(String.valueOf(numeroDaVenda));
     }
-    
-    public void setLblCodCliente(int codCliente){
+
+    public void setLblCodCliente(int codCliente) {
         this.lblCodCliente.setText(String.valueOf(codCliente));
     }
 
@@ -397,7 +399,28 @@ public class FaturamentoView extends javax.swing.JDialog {
         this.lblValorTotal.setText(String.valueOf(valorTotal));
     }
 
-
+//    private boolean recuperarItensVendasFaturamento(){
+//        Produto objProduto = new Produto();
+//        int quantidadeEstoque, quantidadeVendida, quantidadeAtualizada;
+//        listaItensVendas = vendaController.getListaItensVendaController(Integer.parseInt(lblNumeroDaVenda.getText()));
+//        
+//        int cont = listaItensVendas.size();
+//        for(int i=0; i < cont; i++){
+//            objProduto.setCodProduto((listaItensVendas.get(i).getProduto().getCodProduto()));
+//            listaItensVendas.get(i).getProduto().getQuantidade();
+//            
+//            quantidadeEstoque = produtoController.getProdutoControllerVendaQuantidadeEstoque(objProduto.getCodProduto());
+//            quantidadeVendida = listaItensVendas.get(i).getProduto().getQuantidade();
+//            quantidadeAtualizada = quantidadeEstoque - quantidadeVendida;
+//            
+//            objProduto.setQuantidade(quantidadeAtualizada);
+//            System.out.println(objProduto.getCodProduto());
+//            System.out.println(quantidadeAtualizada);
+//            produtoController.atualizarProdutoBaixarEstoqueController(objProduto);
+//        }
+//        return true;
+//    }
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGerarLancamento;
     private javax.swing.JLabel jLabel1;
