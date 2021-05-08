@@ -8,6 +8,7 @@ import br.com.barbosasys.model.Item;
 import br.com.barbosasys.model.Produto;
 import br.com.barbosasys.model.TipoPagamento;
 import br.com.barbosasys.model.Venda;
+import static br.com.barbosasys.view.PagamentosView.RET_CANCEL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,6 +33,11 @@ public class PagamentosView extends javax.swing.JDialog {
     ProdutoController produtoController = new ProdutoController();
     ArrayList<TipoPagamento> listaTipoPagamento = new ArrayList<>();
     ArrayList<Item> listaItensVendas = new ArrayList<>();
+    
+    public static final int RET_CANCEL = 0;
+    public static final int RET_OK = 1;
+    
+    
     double valorRecebido, valorDesconto, valorTroco, valorAReceber;
     DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
 
@@ -375,13 +381,12 @@ public class PagamentosView extends javax.swing.JDialog {
             if (codigoVenda > 0) {
                 vendaController.salvarItensVendaController(itemVenda);
                 JOptionPane.showMessageDialog(this, "Registro gravado com sucesso!");
-                telaVenda.finalizarVenda();
+                doClose(RET_OK);
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                doClose(RET_CANCEL);
+                
             }
-        //JOptionPane.showMessageDialog(null, "Venda efetuada com sucesso");
-        this.dispose();
-        
     }//GEN-LAST:event_btnFinalizarPagamentoActionPerformed
 
 
@@ -419,6 +424,7 @@ public class PagamentosView extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        doClose(RET_CANCEL);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -467,6 +473,15 @@ public class PagamentosView extends javax.swing.JDialog {
         lblValorTroco.setText(String.valueOf(valoresMonentarios.format(valorTroco)));
 
     }
+    
+    private void doClose(int stsRetorno) {
+        statusRetorno = stsRetorno;
+        dispose();
+    }
+    
+    public int getStatusRetorno() {
+        return statusRetorno;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFinalizarPagamento;
@@ -487,4 +502,7 @@ public class PagamentosView extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField txtPagamentoValorDesconto;
     private javax.swing.JFormattedTextField txtPagamentoValorRecebido;
     // End of variables declaration//GEN-END:variables
+    
+    int statusRetorno = RET_CANCEL;
 }
+

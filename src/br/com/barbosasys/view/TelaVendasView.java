@@ -701,6 +701,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtCnpjCliente.setEnabled(true);
         txtCpfCliente.setEnabled(false);
         txtCpfCliente.setText(null);
+        btnCpfCnpjPesquisarTelaVendas.setEnabled(true);
 
     }//GEN-LAST:event_rbTipoPJuridicaClienteActionPerformed
 
@@ -709,6 +710,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtCnpjCliente.setEnabled(false);
         txtCnpjCliente.setText(null);
         txtCpfCliente.setEnabled(true);
+        btnCpfCnpjPesquisarTelaVendas.setEnabled(true);
     }//GEN-LAST:event_rbTipoPFisicaClienteActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -766,6 +768,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtCnpjCliente.setEnabled(false);
         txtCpfCliente.setText(null);
         txtCnpjCliente.setText(null);
+        btnCpfCnpjPesquisarTelaVendas.setEnabled(false);
         txtNomeRazaoSocialCliente.setText("VENDA BALCAO PDV");
         txtCodigoCliente.setText("11");
         txtCodigoProdutoVenda.grabFocus();
@@ -843,10 +846,10 @@ public class TelaVendasView extends javax.swing.JFrame {
 
     private void MenuComandoItFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuComandoItFinalizarVendaActionPerformed
         // TODO add your handling code here:
-        if(txtCodigoCliente.getText().equals("") || tblListaItensVendas.getRowCount() < 1){
+        if (txtCodigoCliente.getText().equals("") || tblListaItensVendas.getRowCount() < 1) {
             JOptionPane.showMessageDialog(this, "É necessário informar um cliente e selecionar um produto!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
 
-        } else{
+        } else {
             Cliente objCliente = new Cliente();
 
             //Dados do cliente
@@ -859,8 +862,11 @@ public class TelaVendasView extends javax.swing.JFrame {
 
             telaPagamento.objClientesPagamentos = objCliente;
             telaPagamento.itensDaVenda = this.itensDaVenda;
-
             telaPagamento.setVisible(rootPaneCheckingEnabled);
+
+            if (telaPagamento.getStatusRetorno() == 1) {
+                finalizarVenda();
+            }
         }
     }//GEN-LAST:event_MenuComandoItFinalizarVendaActionPerformed
 
@@ -973,9 +979,9 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         return operacaoSomaItens;
     }
-    
-    private void removerProduto(){
-        if(testarSelecaoProduto() == true){
+
+    private void removerProduto() {
+        if (testarSelecaoProduto() == true) {
             int linhaSelecionada = tblListaItensVendas.getSelectedRow();
             DefaultTableModel modelo = (DefaultTableModel) tblListaItensVendas.getModel();
             // Remove a linha
@@ -987,24 +993,30 @@ public class TelaVendasView extends javax.swing.JFrame {
             this.txtQtdItensTotal.setText(String.valueOf(atualizarQuantidadeItens()));
         }
     }
-    
-    private void novaVenda(){
+
+    private void novaVenda() {
         lblSatusOperacao.setText("Ocupado");
+        rbTipoNaoIdentificado.setSelected(true);
+        txtNomeRazaoSocialCliente.setText("VENDA BALCAO PDV");
+        txtCodigoCliente.setText("11");
         camposBotoesAtivados();
-        
+        MenuComandoItNovoVenda.setEnabled(false);
+
     }
-    
-    private void carregamentoInicial(){
+
+    private void carregamentoInicial() {
         lblSatusOperacao.setText("Fechado");
         camposBotoesDesativados();
     }
-    
-    public void finalizarVenda(){
+
+    public void finalizarVenda() {
         lblSatusOperacao.setText("Livre");
         camposBotoesDesativados();
+        limparCampos();
+        limparTabela();
     }
-    
-    public void camposBotoesDesativados(){
+
+    public void camposBotoesDesativados() {
         rbTipoPFisicaCliente.setEnabled(false);
         rbTipoPJuridicaCliente.setEnabled(false);
         rbTipoNaoIdentificado.setEnabled(false);
@@ -1020,17 +1032,16 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtPrecoProdutoVenda.setEnabled(false);
         txtQuantidadeProdutoVenda.setEnabled(false);
         btnAdicionarProdutoVenda.setEnabled(false);
+        MenuComandoItNovoVenda.setEnabled(true);
         MenuComandoItFinalizarVenda.setEnabled(false);
         MenuComandoItCancelarVenda.setEnabled(false);
         AtalhoRemoverProduto.setEnabled(false);
     }
-    
-        public void camposBotoesAtivados(){
+
+    public void camposBotoesAtivados() {
         rbTipoPFisicaCliente.setEnabled(true);
         rbTipoPJuridicaCliente.setEnabled(true);
         rbTipoNaoIdentificado.setEnabled(true);
-        txtCnpjCliente.setEnabled(true);
-        txtCpfCliente.setEnabled(true);
         btnCpfCnpjPesquisarTelaVendas.setEnabled(true);
         txtNomeRazaoSocialCliente.setEnabled(true);
         txtNomeRazaoSocialCliente.setEnabled(true);
@@ -1045,8 +1056,28 @@ public class TelaVendasView extends javax.swing.JFrame {
         MenuComandoItCancelarVenda.setEnabled(true);
         AtalhoRemoverProduto.setEnabled(true);
     }
+
+    public void limparCampos() {
+        txtCnpjCliente.setText("");
+        txtCpfCliente.setText("");
+        txtNomeRazaoSocialCliente.setText("");
+        txtNomeRazaoSocialCliente.setText("");
+        txtCodigoProdutoVenda.setText("");
+        txtDescricaoProdutoVenda.setText("");
+        txtQuantidadeProdutoVenda.setText("");
+        txtPrecoProdutoVenda.setText("");
+        txtQuantidadeProdutoVenda.setText("");
+        txtTotalVendaPVD.setText("");
+        txtQtdItensTotal.setText("");
+
+    }
     
-    
+    private void limparTabela() {
+        carrinhos = (DefaultTableModel) tblListaItensVendas.getModel();
+        carrinhos.setNumRows(0);
+        //tfCodigoProduto.grabFocus();
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AtalhoRemoverProduto;
