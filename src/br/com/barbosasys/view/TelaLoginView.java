@@ -193,6 +193,7 @@ public class TelaLoginView extends javax.swing.JDialog {
 
         if (usuarioController.getUsuarioController(usuario)) {
             usuarioSessao.nome = usuarioController.getUsuarioController(usuario.getLogin()).getNomeRazaoSocial();
+            usuarioSessao.codPerfil = usuarioController.getUsuarioController(usuario.getLogin()).getCodigoPerfil();
             MenuPrincipalView telaMenuPrincipal = new MenuPrincipalView();
             telaMenuPrincipal.setVisible(true);
             this.dispose();

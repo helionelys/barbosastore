@@ -5,7 +5,6 @@
  */
 package br.com.barbosasys.view;
 
-
 import br.com.barbosasys.model.DadosEmpresa;
 import br.com.barbosasys.model.UsuarioSessao;
 import javax.swing.ImageIcon;
@@ -15,14 +14,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Helionelys
  */
 public class MenuPrincipalView extends javax.swing.JFrame {
-    
+
     public String nomeFuncionarioLogado;
-    
+    public int codPerfilUsuario;
+
     /**
      * Creates new form MenuPrincipalView
      */
@@ -30,7 +31,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         setExtendedState(this.MAXIMIZED_BOTH);
         initComponents();
         configurar();
-        
+
     }
 
     /**
@@ -55,16 +56,18 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         lblNomeFuncionarioLogado = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblDataUltimoLogin = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblCodigoPerfilUsuario = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnClientes = new javax.swing.JButton();
         btnProdutos = new javax.swing.JButton();
         btnVendas = new javax.swing.JButton();
         btnServico = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
+        btnOrcamento = new javax.swing.JButton();
         btnSairLogout = new javax.swing.JButton();
         btnCompras = new javax.swing.JButton();
         btnPDV = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        BarraDeMenuPrincipal = new javax.swing.JMenuBar();
         MenuCadastro = new javax.swing.JMenu();
         MenuCadastroCliente = new javax.swing.JMenuItem();
         MenuCadastroFornecedor = new javax.swing.JMenuItem();
@@ -127,31 +130,49 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         lblDataUltimoLogin.setForeground(new java.awt.Color(204, 0, 0));
         lblDataUltimoLogin.setText("jLabel2");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setText("Perfil:");
+
+        lblCodigoPerfilUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblCodigoPerfilUsuario.setForeground(new java.awt.Color(204, 0, 0));
+        lblCodigoPerfilUsuario.setText("CodPerfil");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCodigoPerfilUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNomeFuncionarioLogado, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblNomeFuncionarioLogado, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDataUltimoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                .addComponent(lblDataUltimoLogin))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblNomeFuncionarioLogado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNomeFuncionarioLogado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblCodigoPerfilUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDataUltimoLogin)
+                            .addComponent(jLabel3))
+                        .addContainerGap())))
         );
 
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/People-32.png"))); // NOI18N
@@ -200,11 +221,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             }
         });
 
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Money_Calculator_32.png"))); // NOI18N
-        jButton16.setText("Orçamentos");
-        jButton16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton16.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton16.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnOrcamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Money_Calculator_32.png"))); // NOI18N
+        btnOrcamento.setText("Orçamentos");
+        btnOrcamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnOrcamento.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnOrcamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btnSairLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Exit-32_1.png"))); // NOI18N
         btnSairLogout.setText("Sair");
@@ -256,13 +277,13 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPDV)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton16)
+                .addComponent(btnOrcamento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSairLogout)
                 .addContainerGap())
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnCompras, btnPDV, btnProdutos, btnSairLogout, btnServico, btnVendas, jButton16});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnCompras, btnOrcamento, btnPDV, btnProdutos, btnSairLogout, btnServico, btnVendas});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,7 +291,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             .addComponent(btnProdutos)
             .addComponent(btnVendas)
             .addComponent(btnServico)
-            .addComponent(jButton16)
+            .addComponent(btnOrcamento)
             .addComponent(btnSairLogout)
             .addComponent(btnCompras)
             .addComponent(btnPDV)
@@ -298,7 +319,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             Painel_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Painel_desktopLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 471, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 478, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -385,7 +406,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
         MenuCadastro.add(jMenu7);
 
-        jMenuBar1.add(MenuCadastro);
+        BarraDeMenuPrincipal.add(MenuCadastro);
 
         MenuMovimento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Shopping cart.png"))); // NOI18N
         MenuMovimento.setText("Movimento");
@@ -394,6 +415,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuMovimento.add(MenuMovimentoOrcamento);
 
         MenuMovimentoServicos.setText("Serviços");
+        MenuMovimentoServicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuMovimentoServicosActionPerformed(evt);
+            }
+        });
         MenuMovimento.add(MenuMovimentoServicos);
 
         jMenu8.setText("Vendas");
@@ -454,7 +480,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         });
         MenuMovimento.add(MenuMovimentoAjusteEstoque);
 
-        jMenuBar1.add(MenuMovimento);
+        BarraDeMenuPrincipal.add(MenuMovimento);
 
         MenuFinanceiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Dollar.png"))); // NOI18N
         MenuFinanceiro.setText("Financeiro");
@@ -483,11 +509,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         });
         MenuFinanceiro.add(MenuFinanceiroFluxoCaixa);
 
-        jMenuBar1.add(MenuFinanceiro);
+        BarraDeMenuPrincipal.add(MenuFinanceiro);
 
         MenuRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Report.png"))); // NOI18N
         MenuRelatorio.setText("Relatorios");
-        jMenuBar1.add(MenuRelatorio);
+        BarraDeMenuPrincipal.add(MenuRelatorio);
 
         MenuSeguranca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Lock.png"))); // NOI18N
         MenuSeguranca.setText("Segurança");
@@ -516,7 +542,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         });
         MenuSeguranca.add(MenuSegurancaDadosEmpresas);
 
-        jMenuBar1.add(MenuSeguranca);
+        BarraDeMenuPrincipal.add(MenuSeguranca);
 
         MenuOpcoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Application.png"))); // NOI18N
         MenuOpcoes.setText("Opções");
@@ -540,9 +566,9 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuOpcoesSobre.setText("Sobre");
         MenuOpcoes.add(MenuOpcoesSobre);
 
-        jMenuBar1.add(MenuOpcoes);
+        BarraDeMenuPrincipal.add(MenuOpcoes);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(BarraDeMenuPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -660,7 +686,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 //       TelaVendasView telaVendas = new TelaVendasView();
         telaVendas.setLocationRelativeTo(this);
         telaVendas.setVisible(true);
-        
+
 //        TelaVendasView telaVenda = new TelaVendasView();
 //         telaVenda.setLocationRelativeTo(this);
 //         telaVenda.setVisible(true);
@@ -669,10 +695,10 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
     private void MenuMovimentoVendaPdvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoVendaPdvActionPerformed
         // TODO add your handling code here:
-         TelaVendasView telaVenda = new TelaVendasView();
-         telaVenda.setLocationRelativeTo(this);
-         telaVenda.setVisible(true);
-         this.dispose();
+        TelaVendasView telaVenda = new TelaVendasView();
+        telaVenda.setLocationRelativeTo(this);
+        telaVenda.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_MenuMovimentoVendaPdvActionPerformed
 
     private void MenuFinanceiroContaPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFinanceiroContaPagarActionPerformed
@@ -706,7 +732,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private void btnSairLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairLogoutActionPerformed
         // TODO add your handling code here:
         MenuOpcoesLogffActionPerformed(evt);
-       
+
     }//GEN-LAST:event_btnSairLogoutActionPerformed
 
     private void MenuOpcoesLogffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOpcoesLogffActionPerformed
@@ -714,9 +740,9 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         int confirma = JOptionPane.showConfirmDialog(null, "Deseja finalizar sua sessão ?", "Atenção",
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (confirma == 0) {
-                TelaLoginView tela = new TelaLoginView(this, rootPaneCheckingEnabled);
-                this.dispose();
-                tela.setVisible(true);
+            TelaLoginView tela = new TelaLoginView(this, rootPaneCheckingEnabled);
+            this.dispose();
+            tela.setVisible(true);
         }
     }//GEN-LAST:event_MenuOpcoesLogffActionPerformed
 
@@ -754,8 +780,8 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         telaVendas.setLocationRelativeTo(this);
         telaVendas.setTelaConsultaVendas();
         telaVendas.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_MenuMovimentoVendaConsultaActionPerformed
 
     private void MenuMovimentoConsultarComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoConsultarComprasActionPerformed
@@ -776,32 +802,157 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private void btnPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDVActionPerformed
         // TODO add your handling code here:
         MenuMovimentoVendaPdvActionPerformed(evt);
-        
+
     }//GEN-LAST:event_btnPDVActionPerformed
-    
+
+    private void MenuMovimentoServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoServicosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuMovimentoServicosActionPerformed
+
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;
     }
-    
-    public String retonraDadosEmpresaNomeFantasia(){
+
+    public int retornarCodigoPerfil() {
+        return new UsuarioSessao().codPerfil;
+    }
+
+    public String retonraDadosEmpresaNomeFantasia() {
         return new DadosEmpresa().getApelidoNomeFantasia();
     }
-    
-    public String retonraDadosEmpresaCnpj(){
+
+    public String retonraDadosEmpresaCnpj() {
         return new DadosEmpresa().getCpfCnpj();
     }
-    
-    public void configurar(){
+
+    public void configurar() {
         nomeFuncionarioLogado = retornarUsuarioLogado();
+        codPerfilUsuario = retornarCodigoPerfil();
 //        nomeFantasia = retonraDadosEmpresaNomeFantasia();
 //        cnpjEmpresa = retonraDadosEmpresaCnpj();
         lblNomeFuncionarioLogado.setText(nomeFuncionarioLogado);
-//        lblCnpjEmpresa.setText(cnpjEmpresa);
-        //System.out.println("Usuario: "+nomeFuncionarioLogado);
+        lblCodigoPerfilUsuario.setText(String.valueOf(codPerfilUsuario));
+
+        Date agora = new Date();
+        SimpleDateFormat dataBr = new SimpleDateFormat("dd/MM/yyyy");
+        String dataformatada = dataBr.format(agora);
+        lblDataUltimoLogin.setText(dataformatada);
+        ValidarPerfil();
     }
-    
-    
+
+    private void ValidarPerfil() {
+        int codPerfil = (Integer.parseInt(lblCodigoPerfilUsuario.getText()));
+
+        switch (codPerfil) {
+            case 5:
+                //Perfil Balcao/Caixa
+                MenuCadastro.setEnabled(false);
+                MenuMovimento.setEnabled(false);
+                MenuFinanceiro.setEnabled(false);
+                MenuRelatorio.setEnabled(false);
+                MenuSeguranca.setEnabled(false);
+
+                // Botoes Rapidos
+                btnClientes.setEnabled(false);
+                btnProdutos.setEnabled(false);
+                btnVendas.setEnabled(false);
+                btnCompras.setEnabled(false);
+                btnServico.setEnabled(false);
+                btnPDV.setEnabled(true);
+                btnOrcamento.setEnabled(false);
+                break;
+            case 4:
+                //Perfil Financeiro
+                MenuCadastro.setEnabled(true);
+                // Item Menu
+                MenuCadastroFuncionario.setEnabled(false);
+                MenuMovimento.setEnabled(false);
+                MenuFinanceiro.setEnabled(true);
+                // Item Menu Financeiro
+                MenuRelatorio.setEnabled(false);
+                MenuSeguranca.setEnabled(false);
+
+                // Botoes Rapidos
+                btnClientes.setEnabled(true);
+                btnProdutos.setEnabled(true);
+                btnVendas.setEnabled(false);
+                btnCompras.setEnabled(false);
+                btnServico.setEnabled(false);
+                btnPDV.setEnabled(false);
+                btnOrcamento.setEnabled(false);
+                break;
+            case 3:
+                //Perfil Gerencia
+                MenuCadastro.setEnabled(true);
+                MenuMovimento.setEnabled(true);
+                MenuFinanceiro.setEnabled(true);
+                MenuRelatorio.setEnabled(true);
+                MenuSeguranca.setEnabled(false);
+                break;
+            case 2:
+                //Perfil Comercial
+                MenuCadastro.setEnabled(true);
+                // Item Menu
+                MenuCadastroFuncionario.setEnabled(false);
+                MenuMovimento.setEnabled(true);
+                MenuMovimentoAjusteEstoque.setEnabled(false);
+                MenuMovimentoVendaPdv.setEnabled(false);
+                MenuFinanceiro.setEnabled(false);
+                MenuRelatorio.setEnabled(false);
+                MenuSeguranca.setEnabled(false);
+                
+                // Botoes Rapidos
+                btnClientes.setEnabled(true);
+                btnProdutos.setEnabled(true);
+                btnVendas.setEnabled(true);
+                btnCompras.setEnabled(true);
+                btnServico.setEnabled(true);
+                btnPDV.setEnabled(false);
+                btnOrcamento.setEnabled(true);
+                break;
+            case 1:
+                //Perfil Administrador - Acesso Completo
+                MenuCadastro.setEnabled(true);
+                MenuCadastro.setEnabled(true);
+                MenuMovimento.setEnabled(true);
+                MenuFinanceiro.setEnabled(true);
+                MenuRelatorio.setEnabled(true);
+                MenuSeguranca.setEnabled(true);
+                break;
+            default:
+                MenuCadastro.setEnabled(false);
+                MenuMovimento.setEnabled(false);
+                MenuFinanceiro.setEnabled(false);
+                MenuRelatorio.setEnabled(false);
+                MenuSeguranca.setEnabled(false);
+                
+                // Botoes Rapidos
+                btnClientes.setEnabled(false);
+                btnProdutos.setEnabled(false);
+                btnVendas.setEnabled(false);
+                btnCompras.setEnabled(false);
+                btnServico.setEnabled(false);
+                btnPDV.setEnabled(false);
+                btnOrcamento.setEnabled(false);
+
+                System.out.println("Nenhum Perfil vinculado, procure o administrador");
+                break;
+        }
+//        if (codPerfil == 6) {
+//            //Caixa
+//            MenuCadastro.setEnabled(false);
+//            MenuMovimento.setEnabled(false);
+//            MenuFinanceiro.setEnabled(false);
+//            MenuRelatorio.setEnabled(false);
+//            MenuSeguranca.setEnabled(false);
+//            break;
+//        }
+
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar BarraDeMenuPrincipal;
     private javax.swing.JMenu MenuCadastro;
     private javax.swing.JMenuItem MenuCadastroCadAuxCatProduto;
     private javax.swing.JMenuItem MenuCadastroCadAuxCatServico;
@@ -836,24 +987,25 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JDesktopPane Painel_desktop;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnCompras;
+    private javax.swing.JButton btnOrcamento;
     private javax.swing.JButton btnPDV;
     private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnSairLogout;
     private javax.swing.JButton btnServico;
     private javax.swing.JButton btnVendas;
-    private javax.swing.JButton jButton16;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JLabel lblCodigoPerfilUsuario;
     public javax.swing.JLabel lblDataUltimoLogin;
     private javax.swing.JLabel lblNomeFuncionarioLogado;
     // End of variables declaration//GEN-END:variables

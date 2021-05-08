@@ -95,7 +95,8 @@ public class UsuarioDAO extends ConexaoBanco {
                     + "TBL_USUARIO.CODUSUARIO,"
                     + "TBL_USUARIO.LOGIN, "
                     + "TBL_FUNCIONARIO.NOME,"
-                    + "TBL_PERFILUSUARIO.NOME"
+                    + "TBL_PERFILUSUARIO.NOME,"
+                    + "TBL_USUARIO.CODPERFIL"
                     + " FROM"
                     + " TBL_USUARIO"
                     + " INNER JOIN TBL_FUNCIONARIO"
@@ -112,6 +113,7 @@ public class UsuarioDAO extends ConexaoBanco {
                 usuario.setLogin(this.getResultSet().getString(2));
                 usuario.setNomeRazaoSocial(this.getResultSet().getString(3));
                 usuario.setNomePerfil(this.getResultSet().getString(4));
+                usuario.setCodigoPerfil(this.getResultSet().getInt(5));
 
             }
         } catch (Exception e) {

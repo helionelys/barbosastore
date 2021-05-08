@@ -14,4 +14,5 @@ public class UsuarioSessao {
     public static int codigo;
     public static String login;
     public static String nome;
+    public static int codPerfil;
 }
