@@ -161,18 +161,15 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNomeFuncionarioLogado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblCodigoPerfilUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDataUltimoLogin)
-                            .addComponent(jLabel3))
-                        .addContainerGap())))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNomeFuncionarioLogado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblCodigoPerfilUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblDataUltimoLogin)
+                        .addComponent(jLabel3)))
+                .addContainerGap())
         );
 
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/People-32.png"))); // NOI18N
@@ -564,6 +561,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuOpcoes.add(MenuOpcoesSair);
 
         MenuOpcoesSobre.setText("Sobre");
+        MenuOpcoesSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuOpcoesSobreActionPerformed(evt);
+            }
+        });
         MenuOpcoes.add(MenuOpcoesSobre);
 
         BarraDeMenuPrincipal.add(MenuOpcoes);
@@ -808,6 +810,12 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private void MenuMovimentoServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentoServicosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MenuMovimentoServicosActionPerformed
+
+    private void MenuOpcoesSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOpcoesSobreActionPerformed
+        // TODO add your handling code here:
+        TelaSobreView telaSobre = new TelaSobreView(this, rootPaneCheckingEnabled);
+        telaSobre.setVisible(true);
+    }//GEN-LAST:event_MenuOpcoesSobreActionPerformed
 
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;
