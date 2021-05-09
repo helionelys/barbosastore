@@ -63,7 +63,6 @@ public class ContasAPagarView extends javax.swing.JDialog {
         jpContasAPagar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtLancamentoAPagarPesquisar = new javax.swing.JTextField();
-        btnLancamentoAReceberPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLancamentosAPagar = new javax.swing.JTable();
         btnContasAPagarExcluir = new javax.swing.JButton();
@@ -75,7 +74,6 @@ public class ContasAPagarView extends javax.swing.JDialog {
         jpContasPagas = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtLancamentoPagosPesquisar = new javax.swing.JTextField();
-        jButton14 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblLancamentosPagos = new javax.swing.JTable();
         btnLancamentosPagosRevogar = new javax.swing.JButton();
@@ -142,9 +140,6 @@ public class ContasAPagarView extends javax.swing.JDialog {
             }
         });
 
-        btnLancamentoAReceberPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-        btnLancamentoAReceberPesquisar.setText("Buscar");
-
         tblLancamentosAPagar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -172,9 +167,9 @@ public class ContasAPagarView extends javax.swing.JDialog {
             tblLancamentosAPagar.getColumnModel().getColumn(2).setMinWidth(220);
             tblLancamentosAPagar.getColumnModel().getColumn(2).setPreferredWidth(220);
             tblLancamentosAPagar.getColumnModel().getColumn(2).setMaxWidth(220);
-            tblLancamentosAPagar.getColumnModel().getColumn(3).setMinWidth(70);
-            tblLancamentosAPagar.getColumnModel().getColumn(3).setPreferredWidth(70);
-            tblLancamentosAPagar.getColumnModel().getColumn(3).setMaxWidth(70);
+            tblLancamentosAPagar.getColumnModel().getColumn(3).setMinWidth(80);
+            tblLancamentosAPagar.getColumnModel().getColumn(3).setPreferredWidth(80);
+            tblLancamentosAPagar.getColumnModel().getColumn(3).setMaxWidth(80);
             tblLancamentosAPagar.getColumnModel().getColumn(4).setMinWidth(80);
             tblLancamentosAPagar.getColumnModel().getColumn(4).setPreferredWidth(80);
             tblLancamentosAPagar.getColumnModel().getColumn(4).setMaxWidth(80);
@@ -237,9 +232,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
                     .addGroup(jpContasAPagarLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtLancamentoAPagarPesquisar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLancamentoAReceberPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtLancamentoAPagarPesquisar))
                     .addGroup(jpContasAPagarLayout.createSequentialGroup()
                         .addComponent(btnLancamentosPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -263,10 +256,9 @@ public class ContasAPagarView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtLancamentoAPagarPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLancamentoAReceberPesquisar))
+                    .addComponent(txtLancamentoAPagarPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnContasAPagarExcluir)
@@ -291,9 +283,6 @@ public class ContasAPagarView extends javax.swing.JDialog {
                 txtLancamentoPagosPesquisarKeyReleased(evt);
             }
         });
-
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-        jButton14.setText("Buscar");
 
         tblLancamentosPagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -371,9 +360,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
                     .addGroup(jpContasPagasLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtLancamentoPagosPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtLancamentoPagosPesquisar))
                     .addGroup(jpContasPagasLayout.createSequentialGroup()
                         .addComponent(btnLancamentosPagosImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -393,10 +380,9 @@ public class ContasAPagarView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtLancamentoPagosPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14))
+                    .addComponent(txtLancamentoPagosPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1091,7 +1077,6 @@ public class ContasAPagarView extends javax.swing.JDialog {
     private javax.swing.JButton btnContasAPagarEditar;
     private javax.swing.JButton btnContasAPagarExcluir;
     private javax.swing.JButton btnContasAPagarIncluir;
-    private javax.swing.JButton btnLancamentoAReceberPesquisar;
     private javax.swing.JButton btnLancamentoBuscaFornecedor;
     private javax.swing.JButton btnLancamentoCancelar;
     private javax.swing.JButton btnLancamentoSalvar;
@@ -1102,7 +1087,6 @@ public class ContasAPagarView extends javax.swing.JDialog {
     private javax.swing.JButton btnLancamentosPagosImprimir;
     private javax.swing.JButton btnLancamentosPagosRevogar;
     private javax.swing.JComboBox<String> cbLancamentoTipoPagamento;
-    private javax.swing.JButton jButton14;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

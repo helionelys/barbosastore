@@ -62,7 +62,6 @@ public class ContasReceberView extends javax.swing.JDialog {
         jpContasAPagar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtLancamentoAReceberPesquisar = new javax.swing.JTextField();
-        btnLancamentoAReceberPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLancamentosAReceber = new javax.swing.JTable();
         btnContasAReceberExcluir = new javax.swing.JButton();
@@ -74,7 +73,6 @@ public class ContasReceberView extends javax.swing.JDialog {
         jpContasPagas = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtLancamentoRecebidosPesquisar = new javax.swing.JTextField();
-        jButton14 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblLancamentosRecebidos = new javax.swing.JTable();
         btnLancamentosRecebidosRevogar = new javax.swing.JButton();
@@ -140,9 +138,6 @@ public class ContasReceberView extends javax.swing.JDialog {
             }
         });
 
-        btnLancamentoAReceberPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-        btnLancamentoAReceberPesquisar.setText("Buscar");
-
         tblLancamentosAReceber.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -170,9 +165,9 @@ public class ContasReceberView extends javax.swing.JDialog {
             tblLancamentosAReceber.getColumnModel().getColumn(2).setMinWidth(220);
             tblLancamentosAReceber.getColumnModel().getColumn(2).setPreferredWidth(220);
             tblLancamentosAReceber.getColumnModel().getColumn(2).setMaxWidth(220);
-            tblLancamentosAReceber.getColumnModel().getColumn(3).setMinWidth(70);
-            tblLancamentosAReceber.getColumnModel().getColumn(3).setPreferredWidth(70);
-            tblLancamentosAReceber.getColumnModel().getColumn(3).setMaxWidth(70);
+            tblLancamentosAReceber.getColumnModel().getColumn(3).setMinWidth(80);
+            tblLancamentosAReceber.getColumnModel().getColumn(3).setPreferredWidth(80);
+            tblLancamentosAReceber.getColumnModel().getColumn(3).setMaxWidth(80);
             tblLancamentosAReceber.getColumnModel().getColumn(4).setMinWidth(80);
             tblLancamentosAReceber.getColumnModel().getColumn(4).setPreferredWidth(80);
             tblLancamentosAReceber.getColumnModel().getColumn(4).setMaxWidth(80);
@@ -234,9 +229,7 @@ public class ContasReceberView extends javax.swing.JDialog {
                     .addGroup(jpContasAPagarLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtLancamentoAReceberPesquisar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLancamentoAReceberPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtLancamentoAReceberPesquisar))
                     .addGroup(jpContasAPagarLayout.createSequentialGroup()
                         .addComponent(btnLancamentosReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,10 +253,9 @@ public class ContasReceberView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtLancamentoAReceberPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLancamentoAReceberPesquisar))
+                    .addComponent(txtLancamentoAReceberPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContasAPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnContasAReceberExcluir)
@@ -288,9 +280,6 @@ public class ContasReceberView extends javax.swing.JDialog {
                 txtLancamentoRecebidosPesquisarKeyReleased(evt);
             }
         });
-
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-        jButton14.setText("Buscar");
 
         tblLancamentosRecebidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -319,9 +308,9 @@ public class ContasReceberView extends javax.swing.JDialog {
             tblLancamentosRecebidos.getColumnModel().getColumn(2).setMinWidth(220);
             tblLancamentosRecebidos.getColumnModel().getColumn(2).setPreferredWidth(220);
             tblLancamentosRecebidos.getColumnModel().getColumn(2).setMaxWidth(220);
-            tblLancamentosRecebidos.getColumnModel().getColumn(3).setMinWidth(70);
-            tblLancamentosRecebidos.getColumnModel().getColumn(3).setPreferredWidth(70);
-            tblLancamentosRecebidos.getColumnModel().getColumn(3).setMaxWidth(70);
+            tblLancamentosRecebidos.getColumnModel().getColumn(3).setMinWidth(80);
+            tblLancamentosRecebidos.getColumnModel().getColumn(3).setPreferredWidth(80);
+            tblLancamentosRecebidos.getColumnModel().getColumn(3).setMaxWidth(80);
             tblLancamentosRecebidos.getColumnModel().getColumn(4).setMinWidth(80);
             tblLancamentosRecebidos.getColumnModel().getColumn(4).setPreferredWidth(80);
             tblLancamentosRecebidos.getColumnModel().getColumn(4).setMaxWidth(80);
@@ -360,9 +349,7 @@ public class ContasReceberView extends javax.swing.JDialog {
                     .addGroup(jpContasPagasLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtLancamentoRecebidosPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtLancamentoRecebidosPesquisar))
                     .addGroup(jpContasPagasLayout.createSequentialGroup()
                         .addComponent(btnLancamentosRecebidosImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -377,10 +364,9 @@ public class ContasReceberView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtLancamentoRecebidosPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14))
+                    .addComponent(txtLancamentoRecebidosPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1005,7 +991,6 @@ public class ContasReceberView extends javax.swing.JDialog {
     private javax.swing.JButton btnContasAReceberExcluir;
     private javax.swing.JButton btnContasAReceberIncluir;
     private javax.swing.JButton btnContasARecebrCancelar;
-    private javax.swing.JButton btnLancamentoAReceberPesquisar;
     private javax.swing.JButton btnLancamentoBuscaCliente;
     private javax.swing.JButton btnLancamentoCancelar;
     private javax.swing.JButton btnLancamentoSalvar;
@@ -1015,7 +1000,6 @@ public class ContasReceberView extends javax.swing.JDialog {
     private javax.swing.JButton btnLancamentosRecebidosImprimir;
     private javax.swing.JButton btnLancamentosRecebidosRevogar;
     private javax.swing.JComboBox<String> cbLancamentoTipoPagamento;
-    private javax.swing.JButton jButton14;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

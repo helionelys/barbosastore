@@ -106,8 +106,6 @@
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtLancamentoAReceberPesquisar" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnLancamentoAReceberPesquisar" min="-2" pref="119" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnLancamentosReceber" min="-2" pref="108" max="-2" attributes="0"/>
@@ -134,10 +132,9 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtLancamentoAReceberPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnLancamentoAReceberPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="285" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="293" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnContasAReceberExcluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -162,14 +159,6 @@
               <Events>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtLancamentoAReceberPesquisarKeyReleased"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnLancamentoAReceberPesquisar">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/barbosasys/images/pesquisar.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Buscar"/>
-              </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 
@@ -204,7 +193,7 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="70" minWidth="70" prefWidth="70" resizable="true">
+                        <Column maxWidth="80" minWidth="80" prefWidth="80" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -312,9 +301,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtLancamentoRecebidosPesquisar" min="-2" pref="526" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButton14" max="32767" attributes="0"/>
+                              <Component id="txtLancamentoRecebidosPesquisar" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnLancamentosRecebidosImprimir" min="-2" pref="108" max="-2" attributes="0"/>
@@ -335,10 +322,9 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtLancamentoRecebidosPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton14" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="285" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="293" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -362,14 +348,6 @@
               <Events>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtLancamentoRecebidosPesquisarKeyReleased"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButton14">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/barbosasys/images/pesquisar.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Buscar"/>
-              </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane4">
 
@@ -404,7 +382,7 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="70" minWidth="70" prefWidth="70" resizable="true">
+                        <Column maxWidth="80" minWidth="80" prefWidth="80" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
