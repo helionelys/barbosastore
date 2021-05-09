@@ -505,7 +505,7 @@ public class ComprasView extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Operacão Compras", jPanelVendas);
 
-        jLabel9.setText("Codigo:");
+        jLabel9.setText("Nº da Compra");
 
         txtConsultaCompra.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -622,12 +622,12 @@ public class ComprasView extends javax.swing.JDialog {
                     .addComponent(jScrollPane2)
                     .addGroup(jPanelConsultarVendasLayout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtConsultaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConsultaComprasPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConsultaCompraImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                        .addComponent(btnConsultaCompraImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelConsultarVendasLayout.createSequentialGroup()
                         .addComponent(btnCompraFaturar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

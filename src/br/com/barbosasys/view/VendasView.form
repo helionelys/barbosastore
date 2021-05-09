@@ -591,12 +591,12 @@
                           <Component id="jScrollPane2" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="7" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="txtConsultaVenda" min="-2" pref="436" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnConsultaVendaPesquisar" min="-2" pref="113" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnConsultaVendaImprimir" pref="160" max="32767" attributes="0"/>
+                              <Component id="btnConsultaVendaImprimir" pref="135" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="btnCompraAprovar1" min="-2" max="-2" attributes="0"/>
@@ -656,7 +656,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Codigo:"/>
+                <Property name="text" type="java.lang.String" value="N&#xba; da Venda"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtConsultaVenda">
