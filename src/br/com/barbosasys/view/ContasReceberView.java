@@ -132,7 +132,7 @@ public class ContasReceberView extends javax.swing.JDialog {
             .addGap(0, 21, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("Descrição:");
+        jLabel1.setText("Cliente:");
 
         txtLancamentoAReceberPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -148,7 +148,7 @@ public class ContasReceberView extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Descrição", "Fornecedor", "Data", "Vencimento", "Valor"
+                "Código", "Descrição", "Cliente", "Data", "Vencimento", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -160,6 +160,25 @@ public class ContasReceberView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblLancamentosAReceber);
+        if (tblLancamentosAReceber.getColumnModel().getColumnCount() > 0) {
+            tblLancamentosAReceber.getColumnModel().getColumn(0).setMinWidth(60);
+            tblLancamentosAReceber.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tblLancamentosAReceber.getColumnModel().getColumn(0).setMaxWidth(60);
+            tblLancamentosAReceber.getColumnModel().getColumn(1).setMinWidth(220);
+            tblLancamentosAReceber.getColumnModel().getColumn(1).setPreferredWidth(220);
+            tblLancamentosAReceber.getColumnModel().getColumn(1).setMaxWidth(220);
+            tblLancamentosAReceber.getColumnModel().getColumn(2).setMinWidth(220);
+            tblLancamentosAReceber.getColumnModel().getColumn(2).setPreferredWidth(220);
+            tblLancamentosAReceber.getColumnModel().getColumn(2).setMaxWidth(220);
+            tblLancamentosAReceber.getColumnModel().getColumn(3).setMinWidth(70);
+            tblLancamentosAReceber.getColumnModel().getColumn(3).setPreferredWidth(70);
+            tblLancamentosAReceber.getColumnModel().getColumn(3).setMaxWidth(70);
+            tblLancamentosAReceber.getColumnModel().getColumn(4).setMinWidth(80);
+            tblLancamentosAReceber.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tblLancamentosAReceber.getColumnModel().getColumn(4).setMaxWidth(80);
+            tblLancamentosAReceber.getColumnModel().getColumn(5).setMinWidth(80);
+            tblLancamentosAReceber.getColumnModel().getColumn(5).setPreferredWidth(80);
+        }
 
         btnContasAReceberExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Delete.png"))); // NOI18N
         btnContasAReceberExcluir.setText("Excluir");
@@ -262,7 +281,7 @@ public class ContasReceberView extends javax.swing.JDialog {
 
         jTabbedPaneContaAPagar.addTab("Contas a Receber", jpContasAPagar);
 
-        jLabel6.setText("Descrição:");
+        jLabel6.setText("Cliente:");
 
         txtLancamentoRecebidosPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -278,7 +297,7 @@ public class ContasReceberView extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Descrição", "Fornecedor", "Data", "Vencimento", "Valor"
+                "Código", "Descrição", "Cliente", "Data", "Vencimento", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -290,6 +309,26 @@ public class ContasReceberView extends javax.swing.JDialog {
             }
         });
         jScrollPane4.setViewportView(tblLancamentosRecebidos);
+        if (tblLancamentosRecebidos.getColumnModel().getColumnCount() > 0) {
+            tblLancamentosRecebidos.getColumnModel().getColumn(0).setMinWidth(60);
+            tblLancamentosRecebidos.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tblLancamentosRecebidos.getColumnModel().getColumn(0).setMaxWidth(60);
+            tblLancamentosRecebidos.getColumnModel().getColumn(1).setMinWidth(220);
+            tblLancamentosRecebidos.getColumnModel().getColumn(1).setPreferredWidth(220);
+            tblLancamentosRecebidos.getColumnModel().getColumn(1).setMaxWidth(220);
+            tblLancamentosRecebidos.getColumnModel().getColumn(2).setMinWidth(220);
+            tblLancamentosRecebidos.getColumnModel().getColumn(2).setPreferredWidth(220);
+            tblLancamentosRecebidos.getColumnModel().getColumn(2).setMaxWidth(220);
+            tblLancamentosRecebidos.getColumnModel().getColumn(3).setMinWidth(70);
+            tblLancamentosRecebidos.getColumnModel().getColumn(3).setPreferredWidth(70);
+            tblLancamentosRecebidos.getColumnModel().getColumn(3).setMaxWidth(70);
+            tblLancamentosRecebidos.getColumnModel().getColumn(4).setMinWidth(80);
+            tblLancamentosRecebidos.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tblLancamentosRecebidos.getColumnModel().getColumn(4).setMaxWidth(80);
+            tblLancamentosRecebidos.getColumnModel().getColumn(5).setMinWidth(80);
+            tblLancamentosRecebidos.getColumnModel().getColumn(5).setPreferredWidth(80);
+            tblLancamentosRecebidos.getColumnModel().getColumn(5).setMaxWidth(80);
+        }
 
         btnLancamentosRecebidosRevogar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Back.png"))); // NOI18N
         btnLancamentosRecebidosRevogar.setText("Revogar Recebimento");
@@ -369,7 +408,7 @@ public class ContasReceberView extends javax.swing.JDialog {
 
         jLabel8.setText("Vencimento:");
 
-        labelPagamento.setText("Data Pagamento:");
+        labelPagamento.setText("Data Lançamento:");
 
         jLabel10.setText("Tipo de pagamento:");
 
@@ -692,7 +731,7 @@ public class ContasReceberView extends javax.swing.JDialog {
         final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
         this.tblLancamentosAReceber.setRowSorter(pesquisa);
         String text = txtLancamentoAReceberPesquisar.getText();
-        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 2));
     }//GEN-LAST:event_txtLancamentoAReceberPesquisarKeyReleased
 
     private void txtLancamentoRecebidosPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLancamentoRecebidosPesquisarKeyReleased
@@ -701,7 +740,7 @@ public class ContasReceberView extends javax.swing.JDialog {
         final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
         this.tblLancamentosRecebidos.setRowSorter(pesquisa);
         String text = txtLancamentoRecebidosPesquisar.getText();
-        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 2));
     }//GEN-LAST:event_txtLancamentoRecebidosPesquisarKeyReleased
 
     private void DadosLimpeza() {

@@ -155,7 +155,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o:"/>
+                <Property name="text" type="java.lang.String" value="Cliente:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtLancamentoAReceberPesquisar">
@@ -181,7 +181,7 @@
                       <Table columnCount="6" rowCount="0">
                         <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
                         <Column editable="false" title="Descri&#xe7;&#xe3;o" type="java.lang.Object"/>
-                        <Column editable="false" title="Fornecedor" type="java.lang.Object"/>
+                        <Column editable="false" title="Cliente" type="java.lang.Object"/>
                         <Column editable="false" title="Data" type="java.lang.Object"/>
                         <Column editable="false" title="Vencimento" type="java.lang.Object"/>
                         <Column editable="false" title="Valor" type="java.lang.Object"/>
@@ -189,32 +189,32 @@
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="60" minWidth="60" prefWidth="60" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="220" minWidth="220" prefWidth="220" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="220" minWidth="220" prefWidth="220" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="70" minWidth="70" prefWidth="70" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="80" minWidth="80" prefWidth="80" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="-1" minWidth="80" prefWidth="80" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -355,7 +355,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o:"/>
+                <Property name="text" type="java.lang.String" value="Cliente:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtLancamentoRecebidosPesquisar">
@@ -381,7 +381,7 @@
                       <Table columnCount="6" rowCount="0">
                         <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
                         <Column editable="false" title="Descri&#xe7;&#xe3;o" type="java.lang.Object"/>
-                        <Column editable="false" title="Fornecedor" type="java.lang.Object"/>
+                        <Column editable="false" title="Cliente" type="java.lang.Object"/>
                         <Column editable="false" title="Data" type="java.lang.Object"/>
                         <Column editable="false" title="Vencimento" type="java.lang.Object"/>
                         <Column editable="false" title="Valor" type="java.lang.Object"/>
@@ -389,32 +389,32 @@
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="60" minWidth="60" prefWidth="60" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="220" minWidth="220" prefWidth="220" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="220" minWidth="220" prefWidth="220" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="70" minWidth="70" prefWidth="70" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="80" minWidth="80" prefWidth="80" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="80" minWidth="80" prefWidth="80" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -614,7 +614,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="labelPagamento">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Data Pagamento:"/>
+                <Property name="text" type="java.lang.String" value="Data Lan&#xe7;amento:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">

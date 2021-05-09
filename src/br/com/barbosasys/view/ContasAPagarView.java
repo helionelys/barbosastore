@@ -162,6 +162,26 @@ public class ContasAPagarView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblLancamentosAPagar);
+        if (tblLancamentosAPagar.getColumnModel().getColumnCount() > 0) {
+            tblLancamentosAPagar.getColumnModel().getColumn(0).setMinWidth(60);
+            tblLancamentosAPagar.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tblLancamentosAPagar.getColumnModel().getColumn(0).setMaxWidth(60);
+            tblLancamentosAPagar.getColumnModel().getColumn(1).setMinWidth(220);
+            tblLancamentosAPagar.getColumnModel().getColumn(1).setPreferredWidth(220);
+            tblLancamentosAPagar.getColumnModel().getColumn(1).setMaxWidth(220);
+            tblLancamentosAPagar.getColumnModel().getColumn(2).setMinWidth(220);
+            tblLancamentosAPagar.getColumnModel().getColumn(2).setPreferredWidth(220);
+            tblLancamentosAPagar.getColumnModel().getColumn(2).setMaxWidth(220);
+            tblLancamentosAPagar.getColumnModel().getColumn(3).setMinWidth(70);
+            tblLancamentosAPagar.getColumnModel().getColumn(3).setPreferredWidth(70);
+            tblLancamentosAPagar.getColumnModel().getColumn(3).setMaxWidth(70);
+            tblLancamentosAPagar.getColumnModel().getColumn(4).setMinWidth(80);
+            tblLancamentosAPagar.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tblLancamentosAPagar.getColumnModel().getColumn(4).setMaxWidth(80);
+            tblLancamentosAPagar.getColumnModel().getColumn(5).setMinWidth(80);
+            tblLancamentosAPagar.getColumnModel().getColumn(5).setPreferredWidth(80);
+            tblLancamentosAPagar.getColumnModel().getColumn(5).setMaxWidth(80);
+        }
 
         btnContasAPagarExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Delete.png"))); // NOI18N
         btnContasAPagarExcluir.setText("Excluir");
@@ -292,6 +312,26 @@ public class ContasAPagarView extends javax.swing.JDialog {
             }
         });
         jScrollPane4.setViewportView(tblLancamentosPagos);
+        if (tblLancamentosPagos.getColumnModel().getColumnCount() > 0) {
+            tblLancamentosPagos.getColumnModel().getColumn(0).setMinWidth(60);
+            tblLancamentosPagos.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tblLancamentosPagos.getColumnModel().getColumn(0).setMaxWidth(60);
+            tblLancamentosPagos.getColumnModel().getColumn(1).setMinWidth(220);
+            tblLancamentosPagos.getColumnModel().getColumn(1).setPreferredWidth(220);
+            tblLancamentosPagos.getColumnModel().getColumn(1).setMaxWidth(220);
+            tblLancamentosPagos.getColumnModel().getColumn(2).setMinWidth(220);
+            tblLancamentosPagos.getColumnModel().getColumn(2).setPreferredWidth(220);
+            tblLancamentosPagos.getColumnModel().getColumn(2).setMaxWidth(220);
+            tblLancamentosPagos.getColumnModel().getColumn(3).setMinWidth(70);
+            tblLancamentosPagos.getColumnModel().getColumn(3).setPreferredWidth(70);
+            tblLancamentosPagos.getColumnModel().getColumn(3).setMaxWidth(70);
+            tblLancamentosPagos.getColumnModel().getColumn(4).setMinWidth(80);
+            tblLancamentosPagos.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tblLancamentosPagos.getColumnModel().getColumn(4).setMaxWidth(80);
+            tblLancamentosPagos.getColumnModel().getColumn(5).setMinWidth(80);
+            tblLancamentosPagos.getColumnModel().getColumn(5).setPreferredWidth(80);
+            tblLancamentosPagos.getColumnModel().getColumn(5).setMaxWidth(80);
+        }
 
         btnLancamentosPagosRevogar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Back.png"))); // NOI18N
         btnLancamentosPagosRevogar.setText("Revogar Recebimento");
