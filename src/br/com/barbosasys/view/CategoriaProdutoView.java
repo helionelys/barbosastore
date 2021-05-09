@@ -9,7 +9,10 @@ import br.com.barbosasys.controller.CategoriaProdutoController;
 import br.com.barbosasys.model.CategoriaProduto;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -51,7 +54,6 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
         txtPesquisarDescricaoCategoriaProduto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCategoriaProduto = new javax.swing.JTable();
-        btnPesquisarDescricaoCategoriaProduto = new javax.swing.JButton();
         btnIncluirCategoriaProduto = new javax.swing.JButton();
         btnAlterarCategoriaProduto = new javax.swing.JButton();
         btnExcluirCategoriaProduto = new javax.swing.JButton();
@@ -86,6 +88,12 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel1.setText("Descrição:");
 
+        txtPesquisarDescricaoCategoriaProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisarDescricaoCategoriaProdutoKeyReleased(evt);
+            }
+        });
+
         tblCategoriaProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -108,9 +116,6 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
             tblCategoriaProduto.getColumnModel().getColumn(0).setPreferredWidth(80);
             tblCategoriaProduto.getColumnModel().getColumn(0).setMaxWidth(80);
         }
-
-        btnPesquisarDescricaoCategoriaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-        btnPesquisarDescricaoCategoriaProduto.setText("Buscar");
 
         btnIncluirCategoriaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_incluir.png"))); // NOI18N
         btnIncluirCategoriaProduto.setText("Incluir");
@@ -155,9 +160,7 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpConsultarCategoriaProdutoLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPesquisarDescricaoCategoriaProduto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPesquisarDescricaoCategoriaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPesquisarDescricaoCategoriaProduto))
                     .addGroup(jpConsultarCategoriaProdutoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnIncluirCategoriaProduto)
@@ -178,8 +181,7 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpConsultarCategoriaProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtPesquisarDescricaoCategoriaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarDescricaoCategoriaProduto))
+                    .addComponent(txtPesquisarDescricaoCategoriaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
@@ -373,6 +375,15 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnAlterarCategoriaProdutoActionPerformed
 
+    private void txtPesquisarDescricaoCategoriaProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarDescricaoCategoriaProdutoKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblCategoriaProduto.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblCategoriaProduto.setRowSorter(pesquisa);
+        String text = txtPesquisarDescricaoCategoriaProduto.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtPesquisarDescricaoCategoriaProdutoKeyReleased
+
     private void carregarCategoriaProduto() {
         listaCategoriaProduto = categoriaProdutoController.getListaCategoriaProdutoController();
         DefaultTableModel modelo = (DefaultTableModel) tblCategoriaProduto.getModel();
@@ -463,7 +474,6 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
     private javax.swing.JButton btnExcluirCategoriaProduto;
     private javax.swing.JButton btnFecharCategoriaProduto;
     private javax.swing.JButton btnIncluirCategoriaProduto;
-    private javax.swing.JButton btnPesquisarDescricaoCategoriaProduto;
     private javax.swing.JButton btnSairCategoriaProduto;
     private javax.swing.JButton btnSalvarCategoriaProduto;
     private javax.swing.JLabel jLabel1;

@@ -9,7 +9,10 @@ import br.com.barbosasys.controller.CategoriaServicoController;
 import br.com.barbosasys.model.CategoriaServico;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -51,7 +54,6 @@ public class CategoriaServicoView extends javax.swing.JDialog {
         txtPesquisarDescricaoUndMedida = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCategoriaServico = new javax.swing.JTable();
-        btnPesquisarDescricaoCategoriaServico = new javax.swing.JButton();
         btnIncluirCategoriaServico = new javax.swing.JButton();
         btnAlterarCategoriaServico = new javax.swing.JButton();
         btnExcluirCategoriaServico = new javax.swing.JButton();
@@ -86,6 +88,12 @@ public class CategoriaServicoView extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel1.setText("Descrição:");
 
+        txtPesquisarDescricaoUndMedida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisarDescricaoUndMedidaKeyReleased(evt);
+            }
+        });
+
         tblCategoriaServico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -108,9 +116,6 @@ public class CategoriaServicoView extends javax.swing.JDialog {
             tblCategoriaServico.getColumnModel().getColumn(0).setPreferredWidth(80);
             tblCategoriaServico.getColumnModel().getColumn(0).setMaxWidth(80);
         }
-
-        btnPesquisarDescricaoCategoriaServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-        btnPesquisarDescricaoCategoriaServico.setText("Buscar");
 
         btnIncluirCategoriaServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_incluir.png"))); // NOI18N
         btnIncluirCategoriaServico.setText("Incluir");
@@ -155,9 +160,7 @@ public class CategoriaServicoView extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpConsultarCategoriaServicoLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPesquisarDescricaoUndMedida)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPesquisarDescricaoCategoriaServico, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPesquisarDescricaoUndMedida))
                     .addGroup(jpConsultarCategoriaServicoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnIncluirCategoriaServico)
@@ -178,8 +181,7 @@ public class CategoriaServicoView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpConsultarCategoriaServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtPesquisarDescricaoUndMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarDescricaoCategoriaServico))
+                    .addComponent(txtPesquisarDescricaoUndMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
@@ -372,6 +374,15 @@ public class CategoriaServicoView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSalvarCategoriaServicoActionPerformed
 
+    private void txtPesquisarDescricaoUndMedidaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarDescricaoUndMedidaKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblCategoriaServico.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblCategoriaServico.setRowSorter(pesquisa);
+        String text = txtPesquisarDescricaoUndMedida.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtPesquisarDescricaoUndMedidaKeyReleased
+
     private void carregarCategoriaServico() {
         listaCategoriaServico = categoriaServicoController.getListaCategoriaServicoController();
         DefaultTableModel modelo = (DefaultTableModel) tblCategoriaServico.getModel();
@@ -462,7 +473,6 @@ public class CategoriaServicoView extends javax.swing.JDialog {
     private javax.swing.JButton btnExcluirCategoriaServico;
     private javax.swing.JButton btnFecharCategoriaServico;
     private javax.swing.JButton btnIncluirCategoriaServico;
-    private javax.swing.JButton btnPesquisarDescricaoCategoriaServico;
     private javax.swing.JButton btnSairCategoriaServico;
     private javax.swing.JButton btnSalvarCategoriaServico;
     private javax.swing.JLabel jLabel1;

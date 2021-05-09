@@ -11,7 +11,10 @@ import br.com.barbosasys.model.UsuarioSessao;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -59,8 +62,6 @@ public class UsuariosView extends javax.swing.JDialog {
         txtPesquisarLoginCadUsuarios = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCadUsuarios = new javax.swing.JTable();
-        cbxInativosUndMedida = new javax.swing.JCheckBox();
-        btnPesquisarLoginCadUsuarios = new javax.swing.JButton();
         btnIncluirCadUsuarios = new javax.swing.JButton();
         btnAlterarCadUsuarios = new javax.swing.JButton();
         btnExcluirCadUsuarios = new javax.swing.JButton();
@@ -107,6 +108,12 @@ public class UsuariosView extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel1.setText("Descrição:");
 
+        txtPesquisarLoginCadUsuarios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisarLoginCadUsuariosKeyReleased(evt);
+            }
+        });
+
         tblCadUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -124,12 +131,14 @@ public class UsuariosView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblCadUsuarios);
-
-        cbxInativosUndMedida.setFont(new java.awt.Font("Cantarell", 0, 13)); // NOI18N
-        cbxInativosUndMedida.setText("Exibir Inativos");
-
-        btnPesquisarLoginCadUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-        btnPesquisarLoginCadUsuarios.setText("Buscar");
+        if (tblCadUsuarios.getColumnModel().getColumnCount() > 0) {
+            tblCadUsuarios.getColumnModel().getColumn(0).setMinWidth(80);
+            tblCadUsuarios.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tblCadUsuarios.getColumnModel().getColumn(0).setMaxWidth(80);
+            tblCadUsuarios.getColumnModel().getColumn(1).setMinWidth(150);
+            tblCadUsuarios.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tblCadUsuarios.getColumnModel().getColumn(1).setMaxWidth(150);
+        }
 
         btnIncluirCadUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_incluir.png"))); // NOI18N
         btnIncluirCadUsuarios.setText("Incluir");
@@ -170,25 +179,20 @@ public class UsuariosView extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConsultarCadUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpConsultarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpConsultarCadUsuariosLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPesquisarLoginCadUsuarios)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPesquisarLoginCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPesquisarLoginCadUsuarios))
                     .addGroup(jpConsultarCadUsuariosLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jpConsultarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxInativosUndMedida, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConsultarCadUsuariosLayout.createSequentialGroup()
-                                .addComponent(btnIncluirCadUsuarios)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAlterarCadUsuarios)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExcluirCadUsuarios)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSairCadUsuarios)))))
+                        .addComponent(btnIncluirCadUsuarios)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlterarCadUsuarios)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluirCadUsuarios)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSairCadUsuarios)))
                 .addContainerGap())
         );
 
@@ -200,12 +204,9 @@ public class UsuariosView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpConsultarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtPesquisarLoginCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarLoginCadUsuarios))
+                    .addComponent(txtPesquisarLoginCadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbxInativosUndMedida)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpConsultarCadUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSairCadUsuarios)
@@ -512,6 +513,15 @@ public class UsuariosView extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnBucarNomePerfilCadUsuariosActionPerformed
 
+    private void txtPesquisarLoginCadUsuariosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarLoginCadUsuariosKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblCadUsuarios.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblCadUsuarios.setRowSorter(pesquisa);
+        String text = txtPesquisarLoginCadUsuarios.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtPesquisarLoginCadUsuariosKeyReleased
+
     private void carregarUsuarios() {
         listaUsuario = usuarioController.getListaUsuarioController();
         DefaultTableModel modelo = (DefaultTableModel) tblCadUsuarios.getModel();
@@ -679,10 +689,8 @@ public class UsuariosView extends javax.swing.JDialog {
     private javax.swing.JButton btnExcluirCadUsuarios;
     private javax.swing.JButton btnFecharCadUsuarios;
     private javax.swing.JButton btnIncluirCadUsuarios;
-    private javax.swing.JButton btnPesquisarLoginCadUsuarios;
     private javax.swing.JButton btnSairCadUsuarios;
     private javax.swing.JButton btnSalvarCadUsuarios;
-    private javax.swing.JCheckBox cbxInativosUndMedida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -91,6 +91,14 @@ public class BuscarProdutosView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblProdutos);
+        if (tblProdutos.getColumnModel().getColumnCount() > 0) {
+            tblProdutos.getColumnModel().getColumn(0).setMinWidth(80);
+            tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tblProdutos.getColumnModel().getColumn(0).setMaxWidth(80);
+            tblProdutos.getColumnModel().getColumn(1).setMinWidth(280);
+            tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(280);
+            tblProdutos.getColumnModel().getColumn(1).setMaxWidth(280);
+        }
 
         jLabel1.setText("Descrição");
 

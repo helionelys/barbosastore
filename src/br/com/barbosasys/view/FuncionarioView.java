@@ -56,7 +56,6 @@ public class FuncionarioView extends javax.swing.JDialog {
         tblFuncionarios = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         txtBuscarNomeFuncionario = new javax.swing.JTextField();
-        btnBuscarFuncionario = new javax.swing.JButton();
         btnExcluirFuncionario = new javax.swing.JButton();
         btnCancelarBuscaFuncionario = new javax.swing.JButton();
         btnIncluirFuncionario = new javax.swing.JButton();
@@ -198,13 +197,6 @@ public class FuncionarioView extends javax.swing.JDialog {
             }
         });
 
-        btnBuscarFuncionario.setText("Buscar");
-        btnBuscarFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarFuncionarioActionPerformed(evt);
-            }
-        });
-
         btnExcluirFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_excluir.png"))); // NOI18N
         btnExcluirFuncionario.setText("Excluir");
         btnExcluirFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -248,11 +240,9 @@ public class FuncionarioView extends javax.swing.JDialog {
                     .addGroup(jpBuscaFuncionarioLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscarNomeFuncionario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscarFuncionario))
+                        .addComponent(txtBuscarNomeFuncionario))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBuscaFuncionarioLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 228, Short.MAX_VALUE)
                         .addComponent(btnIncluirFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAlterarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,10 +261,9 @@ public class FuncionarioView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpBuscaFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txtBuscarNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarFuncionario))
+                    .addComponent(txtBuscarNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpBuscaFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluirFuncionario)
@@ -826,16 +815,6 @@ public class FuncionarioView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
-    private void btnBuscarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFuncionarioActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel tabela = (DefaultTableModel) this.tblFuncionarios.getModel();
-        final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tabela);
-        this.tblFuncionarios.setRowSorter(sorter);
-        String texto = txtBuscarNomeFuncionario.getText();
-        sorter.setRowFilter(RowFilter.regexFilter(texto, 1));
-
-    }//GEN-LAST:event_btnBuscarFuncionarioActionPerformed
-
     private void btnExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFuncionarioActionPerformed
         // TODO add your handling code here:
         if (testarSelecao() == true) {
@@ -1196,7 +1175,6 @@ public class FuncionarioView extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarFuncionario;
-    private javax.swing.JButton btnBuscarFuncionario;
     private javax.swing.JButton btnCancelarBuscaFuncionario;
     private javax.swing.JButton btnCancelarFuncionario;
     private javax.swing.JButton btnExcluirFuncionario;

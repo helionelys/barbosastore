@@ -100,9 +100,6 @@ public class BuscarClientesAReceberView extends javax.swing.JDialog {
             tblCliente.getColumnModel().getColumn(1).setMinWidth(260);
             tblCliente.getColumnModel().getColumn(1).setPreferredWidth(260);
             tblCliente.getColumnModel().getColumn(1).setMaxWidth(260);
-            tblCliente.getColumnModel().getColumn(2).setMinWidth(100);
-            tblCliente.getColumnModel().getColumn(2).setPreferredWidth(100);
-            tblCliente.getColumnModel().getColumn(2).setMaxWidth(100);
         }
 
         jLabel1.setText("Cliente:");

@@ -100,9 +100,6 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
             tblFornecedores.getColumnModel().getColumn(1).setMinWidth(26);
             tblFornecedores.getColumnModel().getColumn(1).setPreferredWidth(260);
             tblFornecedores.getColumnModel().getColumn(1).setMaxWidth(260);
-            tblFornecedores.getColumnModel().getColumn(2).setMinWidth(100);
-            tblFornecedores.getColumnModel().getColumn(2).setPreferredWidth(100);
-            tblFornecedores.getColumnModel().getColumn(2).setMaxWidth(100);
         }
 
         jLabel1.setText("Fornecedor");

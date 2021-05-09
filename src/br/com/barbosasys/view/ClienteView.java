@@ -55,7 +55,6 @@ public class ClienteView extends javax.swing.JDialog {
         tblClientes = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         txtBuscarNomeCliente = new javax.swing.JTextField();
-        btnBuscarCliente = new javax.swing.JButton();
         btnExcluirCliente = new javax.swing.JButton();
         btnCancelarBuscaCliente = new javax.swing.JButton();
         btnIncluirCliente = new javax.swing.JButton();
@@ -192,13 +191,6 @@ public class ClienteView extends javax.swing.JDialog {
             }
         });
 
-        btnBuscarCliente.setText("Buscar");
-        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarClienteActionPerformed(evt);
-            }
-        });
-
         btnExcluirCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_excluir.png"))); // NOI18N
         btnExcluirCliente.setText("Excluir");
         btnExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -242,11 +234,9 @@ public class ClienteView extends javax.swing.JDialog {
                     .addGroup(jpBuscaClienteLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscarNomeCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscarCliente))
+                        .addComponent(txtBuscarNomeCliente))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBuscaClienteLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 228, Short.MAX_VALUE)
                         .addComponent(btnIncluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAlterarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,10 +255,9 @@ public class ClienteView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpBuscaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txtBuscarNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarCliente))
+                    .addComponent(txtBuscarNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpBuscaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluirCliente)
@@ -809,16 +798,6 @@ public class ClienteView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnAlterarClienteActionPerformed
 
-    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel tabela = (DefaultTableModel) this.tblClientes.getModel();
-        final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tabela);
-        this.tblClientes.setRowSorter(sorter);
-        String texto = txtBuscarNomeCliente.getText();
-        sorter.setRowFilter(RowFilter.regexFilter(texto, 1));
-
-    }//GEN-LAST:event_btnBuscarClienteActionPerformed
-
     private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
         // TODO add your handling code here:
         if(testarSelecao() == true ){
@@ -1210,7 +1189,6 @@ public class ClienteView extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarCliente;
-    private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnCancelarBuscaCliente;
     private javax.swing.JButton btnCancelarCliente;
     private javax.swing.JButton btnExcluirCliente;

@@ -55,7 +55,6 @@ public class FornecedorView extends javax.swing.JDialog {
         tblFornecedores = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         txtBuscarNomeFornecedor = new javax.swing.JTextField();
-        btnBuscarFornecedor = new javax.swing.JButton();
         btnExcluirFornecedor = new javax.swing.JButton();
         btnCancelarBuscaFornecedor = new javax.swing.JButton();
         btnIncluirFornecedor = new javax.swing.JButton();
@@ -190,13 +189,6 @@ public class FornecedorView extends javax.swing.JDialog {
             }
         });
 
-        btnBuscarFornecedor.setText("Buscar");
-        btnBuscarFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarFornecedorActionPerformed(evt);
-            }
-        });
-
         btnExcluirFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_excluir.png"))); // NOI18N
         btnExcluirFornecedor.setText("Excluir");
         btnExcluirFornecedor.addActionListener(new java.awt.event.ActionListener() {
@@ -240,11 +232,9 @@ public class FornecedorView extends javax.swing.JDialog {
                     .addGroup(jpBuscaFornecedorLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscarNomeFornecedor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscarFornecedor))
+                        .addComponent(txtBuscarNomeFornecedor))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBuscaFornecedorLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 228, Short.MAX_VALUE)
                         .addComponent(btnIncluirFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAlterarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,10 +253,9 @@ public class FornecedorView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpBuscaFornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txtBuscarNomeFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarFornecedor))
+                    .addComponent(txtBuscarNomeFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpBuscaFornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluirFornecedor)
@@ -774,16 +763,6 @@ public class FornecedorView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnAlterarFornecedorActionPerformed
 
-    private void btnBuscarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFornecedorActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel tabela = (DefaultTableModel) this.tblFornecedores.getModel();
-        final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tabela);
-        this.tblFornecedores.setRowSorter(sorter);
-        String texto = txtBuscarNomeFornecedor.getText();
-        sorter.setRowFilter(RowFilter.regexFilter(texto, 1));
-
-    }//GEN-LAST:event_btnBuscarFornecedorActionPerformed
-
     private void btnExcluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFornecedorActionPerformed
         // TODO add your handling code here:
         if (testarSelecao() == true) {
@@ -1133,7 +1112,6 @@ public class FornecedorView extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarFornecedor;
-    private javax.swing.JButton btnBuscarFornecedor;
     private javax.swing.JButton btnCancelarBuscaFornecedor;
     private javax.swing.JButton btnCancelarFornecedor;
     private javax.swing.JButton btnExcluirFornecedor;

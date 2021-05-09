@@ -9,7 +9,10 @@ import br.com.barbosasys.controller.UnidadeMedidaController;
 import br.com.barbosasys.model.UnidadeMedida;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -51,7 +54,6 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
         txtPesquisarDescricaoUndMedida = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUnidadeMedida = new javax.swing.JTable();
-        btnPesquisarDescricaoUndMedida = new javax.swing.JButton();
         btnIncluirUndMedida = new javax.swing.JButton();
         btnAlterarUndMedida = new javax.swing.JButton();
         btnExcluirUndMedida = new javax.swing.JButton();
@@ -88,6 +90,12 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel1.setText("Descrição:");
 
+        txtPesquisarDescricaoUndMedida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisarDescricaoUndMedidaKeyReleased(evt);
+            }
+        });
+
         tblUnidadeMedida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -110,9 +118,6 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
             tblUnidadeMedida.getColumnModel().getColumn(0).setPreferredWidth(80);
             tblUnidadeMedida.getColumnModel().getColumn(0).setMaxWidth(80);
         }
-
-        btnPesquisarDescricaoUndMedida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
-        btnPesquisarDescricaoUndMedida.setText("Buscar");
 
         btnIncluirUndMedida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/produto_incluir.png"))); // NOI18N
         btnIncluirUndMedida.setText("Incluir");
@@ -157,9 +162,7 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpConsultarUnidadeMedidaLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPesquisarDescricaoUndMedida)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPesquisarDescricaoUndMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPesquisarDescricaoUndMedida))
                     .addGroup(jpConsultarUnidadeMedidaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnIncluirUndMedida)
@@ -180,8 +183,7 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpConsultarUnidadeMedidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtPesquisarDescricaoUndMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarDescricaoUndMedida))
+                    .addComponent(txtPesquisarDescricaoUndMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -384,6 +386,15 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSalvarUnidadeMedidaActionPerformed
 
+    private void txtPesquisarDescricaoUndMedidaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarDescricaoUndMedidaKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblUnidadeMedida.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblUnidadeMedida.setRowSorter(pesquisa);
+        String text = txtPesquisarDescricaoUndMedida.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtPesquisarDescricaoUndMedidaKeyReleased
+
     private void carregarUnidadeMedida() {
         listaUnidadeMedida = unidadeMedidaController.getListaUnidadeMedidaController();
         DefaultTableModel modelo = (DefaultTableModel) tblUnidadeMedida.getModel();
@@ -479,7 +490,6 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
     private javax.swing.JButton btnExcluirUndMedida;
     private javax.swing.JButton btnFecharUnidadeMedida;
     private javax.swing.JButton btnIncluirUndMedida;
-    private javax.swing.JButton btnPesquisarDescricaoUndMedida;
     private javax.swing.JButton btnSairUndMedida;
     private javax.swing.JButton btnSalvarUnidadeMedida;
     private javax.swing.JLabel jLabel1;

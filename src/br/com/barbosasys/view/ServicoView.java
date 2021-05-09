@@ -15,7 +15,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -62,6 +65,8 @@ public class ServicoView extends javax.swing.JDialog {
         btnAlterarServico = new javax.swing.JButton();
         bntExcluirServico = new javax.swing.JButton();
         btnCancelarServicos = new javax.swing.JButton();
+        txtBuscarDescricaoServico = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtCodigoServico = new javax.swing.JTextField();
@@ -167,21 +172,36 @@ public class ServicoView extends javax.swing.JDialog {
             }
         });
 
+        txtBuscarDescricaoServico.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarDescricaoServicoKeyReleased(evt);
+            }
+        });
+
+        jLabel9.setText("Descrição:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
-                .addComponent(btnIncluirServico)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAlterarServico)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bntExcluirServico)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelarServicos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnIncluirServico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlterarServico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bntExcluirServico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelarServicos))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBuscarDescricaoServico)))
+                .addContainerGap())
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bntExcluirServico, btnAlterarServico, btnCancelarServicos, btnIncluirServico});
@@ -189,14 +209,18 @@ public class ServicoView extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtBuscarDescricaoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIncluirServico)
                     .addComponent(btnAlterarServico)
                     .addComponent(bntExcluirServico)
-                    .addComponent(btnCancelarServicos))
-                .addGap(0, 6, Short.MAX_VALUE))
+                    .addComponent(btnCancelarServicos)))
         );
 
         jTabbedPaneServico.addTab("Busca de Serviços", jPanel1);
@@ -439,6 +463,15 @@ public class ServicoView extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_btnCancelarServicoActionPerformed
 
+    private void txtBuscarDescricaoServicoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarDescricaoServicoKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblServicos.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblServicos.setRowSorter(pesquisa);
+        String text = txtBuscarDescricaoServico.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtBuscarDescricaoServicoKeyReleased
+
     private void carregarServicos() {
         listaServico = servicoController.getListaServicoController();
         DefaultTableModel modelo = (DefaultTableModel) tblServicos.getModel();
@@ -608,6 +641,7 @@ public class ServicoView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -616,6 +650,7 @@ public class ServicoView extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPaneServico;
     private javax.swing.JTable tblServicos;
+    private javax.swing.JTextField txtBuscarDescricaoServico;
     private javax.swing.JTextField txtCodigoServico;
     private javax.swing.JFormattedTextField txtDataCadastroServico;
     private javax.swing.JTextField txtDescricaoServico;

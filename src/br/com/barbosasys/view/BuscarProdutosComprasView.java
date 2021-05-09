@@ -80,7 +80,7 @@ public class BuscarProdutosComprasView extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Descrição", "Valor de Compra", "Valor de Vendas"
+                "Código", "Descrição", "Valor de Compra", "Valor de Venda"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -92,8 +92,22 @@ public class BuscarProdutosComprasView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblProdutos);
+        if (tblProdutos.getColumnModel().getColumnCount() > 0) {
+            tblProdutos.getColumnModel().getColumn(0).setMinWidth(60);
+            tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tblProdutos.getColumnModel().getColumn(0).setMaxWidth(60);
+            tblProdutos.getColumnModel().getColumn(1).setMinWidth(240);
+            tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(240);
+            tblProdutos.getColumnModel().getColumn(1).setMaxWidth(240);
+            tblProdutos.getColumnModel().getColumn(2).setMinWidth(100);
+            tblProdutos.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblProdutos.getColumnModel().getColumn(2).setMaxWidth(100);
+            tblProdutos.getColumnModel().getColumn(3).setMinWidth(100);
+            tblProdutos.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tblProdutos.getColumnModel().getColumn(3).setMaxWidth(100);
+        }
 
-        jLabel1.setText("Perfil:");
+        jLabel1.setText("Descrição:");
 
         btnProdutoSelecionar.setText("Selecionar");
         btnProdutoSelecionar.addActionListener(new java.awt.event.ActionListener() {
