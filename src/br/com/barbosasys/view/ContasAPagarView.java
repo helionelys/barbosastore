@@ -766,7 +766,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
         final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
         this.tblLancamentosAPagar.setRowSorter(pesquisa);
         String text = txtLancamentoPagosPesquisar.getText();
-        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 2));
     }//GEN-LAST:event_txtLancamentoAPagarPesquisarKeyReleased
 
     private void txtLancamentoPagosPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLancamentoPagosPesquisarKeyReleased
@@ -775,7 +775,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
         final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
         this.tblLancamentosPagos.setRowSorter(pesquisa);
         String text = txtLancamentoAPagarPesquisar.getText();
-        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 2));
     }//GEN-LAST:event_txtLancamentoPagosPesquisarKeyReleased
 
     private void DadosLimpeza() {

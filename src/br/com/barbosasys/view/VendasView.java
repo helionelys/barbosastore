@@ -509,6 +509,9 @@ public class VendasView extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtConsultaVendaKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtConsultaVendaKeyTyped(evt);
+            }
         });
 
         tblVendasRealizadas.setModel(new javax.swing.table.DefaultTableModel(
@@ -941,8 +944,16 @@ public class VendasView extends javax.swing.JDialog {
         final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
         this.tblVendasRealizadas.setRowSorter(pesquisa);
         String text = txtConsultaVenda.getText();
-        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 0));
     }//GEN-LAST:event_txtConsultaVendaKeyReleased
+
+    private void txtConsultaVendaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConsultaVendaKeyTyped
+        // TODO add your handling code here:
+        String caracteres = "0987654321";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtConsultaVendaKeyTyped
 
         
 
