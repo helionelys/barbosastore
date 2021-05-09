@@ -597,7 +597,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="7" max="32767" attributes="0"/>
-                              <Component id="txtConsultaVenda" min="-2" pref="436" max="-2" attributes="0"/>
+                              <Component id="txtConsultaCompra" min="-2" pref="436" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnConsultaComprasPesquisar" min="-2" pref="113" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -633,7 +633,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtConsultaVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtConsultaCompra" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnConsultaCompraImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnConsultaComprasPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -664,7 +664,10 @@
                 <Property name="text" type="java.lang.String" value="Codigo:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtConsultaVenda">
+            <Component class="javax.swing.JTextField" name="txtConsultaCompra">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtConsultaCompraKeyReleased"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">
               <AuxValues>

@@ -186,6 +186,12 @@ public class ClienteView extends javax.swing.JDialog {
 
         jLabel9.setText("Nome:");
 
+        txtBuscarNomeCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarNomeClienteKeyReleased(evt);
+            }
+        });
+
         btnBuscarCliente.setText("Buscar");
         btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -836,6 +842,15 @@ public class ClienteView extends javax.swing.JDialog {
         
         }
     }//GEN-LAST:event_btnExcluirClienteActionPerformed
+
+    private void txtBuscarNomeClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarNomeClienteKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblClientes.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblClientes.setRowSorter(pesquisa);
+        String text = txtBuscarNomeCliente.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtBuscarNomeClienteKeyReleased
     
     private void carregarCliente() {
         listaCliente = clienteController.getListaClienteController();

@@ -23,7 +23,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -128,7 +131,7 @@ public class ComprasView extends javax.swing.JDialog {
         btnCompraCancelar = new javax.swing.JButton();
         jPanelConsultarVendas = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        txtConsultaVenda = new javax.swing.JTextField();
+        txtConsultaCompra = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblComprasRealizadas = new javax.swing.JTable();
         btnConsultaCompraImprimir = new javax.swing.JButton();
@@ -504,6 +507,12 @@ public class ComprasView extends javax.swing.JDialog {
 
         jLabel9.setText("Codigo:");
 
+        txtConsultaCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtConsultaCompraKeyReleased(evt);
+            }
+        });
+
         tblComprasRealizadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -611,7 +620,7 @@ public class ComprasView extends javax.swing.JDialog {
                     .addGroup(jPanelConsultarVendasLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addComponent(txtConsultaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtConsultaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConsultaComprasPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -644,7 +653,7 @@ public class ComprasView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanelConsultarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txtConsultaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtConsultaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultaCompraImprimir)
                     .addComponent(btnConsultaComprasPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -939,6 +948,15 @@ public class ComprasView extends javax.swing.JDialog {
             carregarCompras();
         }
     }//GEN-LAST:event_btnCompraReprovarActionPerformed
+
+    private void txtConsultaCompraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConsultaCompraKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblComprasRealizadas.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblComprasRealizadas.setRowSorter(pesquisa);
+        String text = txtConsultaCompra.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtConsultaCompraKeyReleased
 
     private void carregarComprasAguardando() {
         listaCompras = comprasController.getListaCompraStatusAguardandoController();
@@ -1433,6 +1451,6 @@ public class ComprasView extends javax.swing.JDialog {
     private javax.swing.JTextField txtCompraQuantidade;
     private javax.swing.JTextField txtCompraStatus;
     private javax.swing.JTextField txtCompraTotal;
-    private javax.swing.JTextField txtConsultaVenda;
+    private javax.swing.JTextField txtConsultaCompra;
     // End of variables declaration//GEN-END:variables
 }

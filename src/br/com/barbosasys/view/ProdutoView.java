@@ -21,7 +21,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -165,6 +168,12 @@ public class ProdutoView extends javax.swing.JDialog {
         }
 
         jLabel1.setText("Descrição:");
+
+        txtPesquisaProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisaProdutoKeyReleased(evt);
+            }
+        });
 
         btnBuscarProduto.setText("Buscar");
 
@@ -596,6 +605,15 @@ public class ProdutoView extends javax.swing.JDialog {
     private void txtValorProdutoCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorProdutoCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorProdutoCompraActionPerformed
+
+    private void txtPesquisaProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaProdutoKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblProdutos.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblProdutos.setRowSorter(pesquisa);
+        String text = txtPesquisaProduto.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtPesquisaProdutoKeyReleased
 
     private void carregarProdutos() {
         listaProduto = produtoController.getListaProdutoController();

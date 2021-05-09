@@ -184,6 +184,12 @@ public class FornecedorView extends javax.swing.JDialog {
 
         jLabel9.setText("Nome:");
 
+        txtBuscarNomeFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarNomeFornecedorKeyReleased(evt);
+            }
+        });
+
         btnBuscarFornecedor.setText("Buscar");
         btnBuscarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -801,6 +807,15 @@ public class FornecedorView extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
+
+    private void txtBuscarNomeFornecedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarNomeFornecedorKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblFornecedores.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblFornecedores.setRowSorter(pesquisa);
+        String text = txtBuscarNomeFornecedor.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtBuscarNomeFornecedorKeyReleased
 
     private void carregarFornecedor() {
         listaFornecedor = fornecedorController.getListaFornecedorController();

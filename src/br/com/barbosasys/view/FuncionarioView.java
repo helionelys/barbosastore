@@ -192,6 +192,12 @@ public class FuncionarioView extends javax.swing.JDialog {
 
         jLabel9.setText("Nome:");
 
+        txtBuscarNomeFuncionario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarNomeFuncionarioKeyReleased(evt);
+            }
+        });
+
         btnBuscarFuncionario.setText("Buscar");
         btnBuscarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -865,6 +871,15 @@ public class FuncionarioView extends javax.swing.JDialog {
     private void txtDepartamentoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepartamentoFuncionarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDepartamentoFuncionarioActionPerformed
+
+    private void txtBuscarNomeFuncionarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarNomeFuncionarioKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblFuncionarios.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblFuncionarios.setRowSorter(pesquisa);
+        String text = txtBuscarNomeFuncionario.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtBuscarNomeFuncionarioKeyReleased
 
     private void carregarFuncionario() {
         listaFuncionario = funcionarioController.getListaFuncionarioController();

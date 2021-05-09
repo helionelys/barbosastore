@@ -23,7 +23,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -502,6 +505,12 @@ public class VendasView extends javax.swing.JDialog {
 
         jLabel9.setText("Codigo:");
 
+        txtConsultaVenda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtConsultaVendaKeyReleased(evt);
+            }
+        });
+
         tblVendasRealizadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -923,9 +932,19 @@ public class VendasView extends javax.swing.JDialog {
         if (testarSelecaoVendas() == true) {
             recuperarVendaFaturameto();
             carregarVendas();
+        }
     }//GEN-LAST:event_btnCompraAprovar1ActionPerformed
 
-    }    
+    private void txtConsultaVendaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConsultaVendaKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblVendasRealizadas.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblVendasRealizadas.setRowSorter(pesquisa);
+        String text = txtConsultaVenda.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtConsultaVendaKeyReleased
+
+        
 
     private void carregarVendasAguardando() {
         listaVendas = vendasController.getListaVendaStatusAguardandoController();

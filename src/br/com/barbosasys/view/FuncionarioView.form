@@ -218,6 +218,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtBuscarNomeFuncionario">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBuscarNomeFuncionarioKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnBuscarFuncionario">
               <Properties>
