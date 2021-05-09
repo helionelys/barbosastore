@@ -176,7 +176,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         btnClientes.setText("Clientes");
         btnClientes.setDefaultCapable(false);
         btnClientes.setFocusable(false);
-        btnClientes.setHideActionText(true);
         btnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnClientes.addActionListener(new java.awt.event.ActionListener() {

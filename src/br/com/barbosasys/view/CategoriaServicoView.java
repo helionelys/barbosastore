@@ -51,7 +51,6 @@ public class CategoriaServicoView extends javax.swing.JDialog {
         txtPesquisarDescricaoUndMedida = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCategoriaServico = new javax.swing.JTable();
-        cbxInativosUndMedida = new javax.swing.JCheckBox();
         btnPesquisarDescricaoCategoriaServico = new javax.swing.JButton();
         btnIncluirCategoriaServico = new javax.swing.JButton();
         btnAlterarCategoriaServico = new javax.swing.JButton();
@@ -104,9 +103,11 @@ public class CategoriaServicoView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblCategoriaServico);
-
-        cbxInativosUndMedida.setFont(new java.awt.Font("Cantarell", 0, 13)); // NOI18N
-        cbxInativosUndMedida.setText("Exibir Inativos");
+        if (tblCategoriaServico.getColumnModel().getColumnCount() > 0) {
+            tblCategoriaServico.getColumnModel().getColumn(0).setMinWidth(80);
+            tblCategoriaServico.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tblCategoriaServico.getColumnModel().getColumn(0).setMaxWidth(80);
+        }
 
         btnPesquisarDescricaoCategoriaServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
         btnPesquisarDescricaoCategoriaServico.setText("Buscar");
@@ -159,16 +160,13 @@ public class CategoriaServicoView extends javax.swing.JDialog {
                         .addComponent(btnPesquisarDescricaoCategoriaServico, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpConsultarCategoriaServicoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jpConsultarCategoriaServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxInativosUndMedida, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConsultarCategoriaServicoLayout.createSequentialGroup()
-                                .addComponent(btnIncluirCategoriaServico)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAlterarCategoriaServico)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExcluirCategoriaServico)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSairCategoriaServico)))))
+                        .addComponent(btnIncluirCategoriaServico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlterarCategoriaServico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluirCategoriaServico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSairCategoriaServico)))
                 .addContainerGap())
         );
 
@@ -183,16 +181,14 @@ public class CategoriaServicoView extends javax.swing.JDialog {
                     .addComponent(txtPesquisarDescricaoUndMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisarDescricaoCategoriaServico))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbxInativosUndMedida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addGroup(jpConsultarCategoriaServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSairCategoriaServico)
                     .addComponent(btnExcluirCategoriaServico)
                     .addComponent(btnAlterarCategoriaServico)
                     .addComponent(btnIncluirCategoriaServico))
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         jTabbedPaneCategoriaServico.addTab("Consultar", jpConsultarCategoriaServico);
@@ -469,7 +465,6 @@ public class CategoriaServicoView extends javax.swing.JDialog {
     private javax.swing.JButton btnPesquisarDescricaoCategoriaServico;
     private javax.swing.JButton btnSairCategoriaServico;
     private javax.swing.JButton btnSalvarCategoriaServico;
-    private javax.swing.JCheckBox cbxInativosUndMedida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

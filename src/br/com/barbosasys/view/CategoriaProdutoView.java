@@ -104,6 +104,11 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblCategoriaProduto);
+        if (tblCategoriaProduto.getColumnModel().getColumnCount() > 0) {
+            tblCategoriaProduto.getColumnModel().getColumn(0).setMinWidth(80);
+            tblCategoriaProduto.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tblCategoriaProduto.getColumnModel().getColumn(0).setMaxWidth(80);
+        }
 
         cbxInativosUndMedida.setFont(new java.awt.Font("Cantarell", 0, 13)); // NOI18N
         cbxInativosUndMedida.setText("Exibir Inativos");

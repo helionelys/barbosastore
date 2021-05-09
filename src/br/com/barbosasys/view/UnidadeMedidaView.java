@@ -51,7 +51,6 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
         txtPesquisarDescricaoUndMedida = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUnidadeMedida = new javax.swing.JTable();
-        cbxInativosUndMedida = new javax.swing.JCheckBox();
         btnPesquisarDescricaoUndMedida = new javax.swing.JButton();
         btnIncluirUndMedida = new javax.swing.JButton();
         btnAlterarUndMedida = new javax.swing.JButton();
@@ -106,9 +105,11 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblUnidadeMedida);
-
-        cbxInativosUndMedida.setFont(new java.awt.Font("Cantarell", 0, 13)); // NOI18N
-        cbxInativosUndMedida.setText("Exibir Inativos");
+        if (tblUnidadeMedida.getColumnModel().getColumnCount() > 0) {
+            tblUnidadeMedida.getColumnModel().getColumn(0).setMinWidth(80);
+            tblUnidadeMedida.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tblUnidadeMedida.getColumnModel().getColumn(0).setMaxWidth(80);
+        }
 
         btnPesquisarDescricaoUndMedida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
         btnPesquisarDescricaoUndMedida.setText("Buscar");
@@ -161,16 +162,13 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
                         .addComponent(btnPesquisarDescricaoUndMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpConsultarUnidadeMedidaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jpConsultarUnidadeMedidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxInativosUndMedida, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConsultarUnidadeMedidaLayout.createSequentialGroup()
-                                .addComponent(btnIncluirUndMedida)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAlterarUndMedida)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExcluirUndMedida)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSairUndMedida)))))
+                        .addComponent(btnIncluirUndMedida)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlterarUndMedida)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluirUndMedida)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSairUndMedida)))
                 .addContainerGap())
         );
 
@@ -185,10 +183,8 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
                     .addComponent(txtPesquisarDescricaoUndMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisarDescricaoUndMedida))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbxInativosUndMedida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpConsultarUnidadeMedidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSairUndMedida)
                     .addComponent(btnExcluirUndMedida)
@@ -486,7 +482,6 @@ public class UnidadeMedidaView extends javax.swing.JDialog {
     private javax.swing.JButton btnPesquisarDescricaoUndMedida;
     private javax.swing.JButton btnSairUndMedida;
     private javax.swing.JButton btnSalvarUnidadeMedida;
-    private javax.swing.JCheckBox cbxInativosUndMedida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
