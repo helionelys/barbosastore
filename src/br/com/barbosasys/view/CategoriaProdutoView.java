@@ -51,7 +51,6 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
         txtPesquisarDescricaoCategoriaProduto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCategoriaProduto = new javax.swing.JTable();
-        cbxInativosUndMedida = new javax.swing.JCheckBox();
         btnPesquisarDescricaoCategoriaProduto = new javax.swing.JButton();
         btnIncluirCategoriaProduto = new javax.swing.JButton();
         btnAlterarCategoriaProduto = new javax.swing.JButton();
@@ -110,9 +109,6 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
             tblCategoriaProduto.getColumnModel().getColumn(0).setMaxWidth(80);
         }
 
-        cbxInativosUndMedida.setFont(new java.awt.Font("Cantarell", 0, 13)); // NOI18N
-        cbxInativosUndMedida.setText("Exibir Inativos");
-
         btnPesquisarDescricaoCategoriaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/pesquisar.png"))); // NOI18N
         btnPesquisarDescricaoCategoriaProduto.setText("Buscar");
 
@@ -164,16 +160,13 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
                         .addComponent(btnPesquisarDescricaoCategoriaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpConsultarCategoriaProdutoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jpConsultarCategoriaProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxInativosUndMedida, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConsultarCategoriaProdutoLayout.createSequentialGroup()
-                                .addComponent(btnIncluirCategoriaProduto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAlterarCategoriaProduto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExcluirCategoriaProduto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSairCategoriaProduto)))))
+                        .addComponent(btnIncluirCategoriaProduto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlterarCategoriaProduto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluirCategoriaProduto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSairCategoriaProduto)))
                 .addContainerGap())
         );
 
@@ -188,16 +181,14 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
                     .addComponent(txtPesquisarDescricaoCategoriaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisarDescricaoCategoriaProduto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbxInativosUndMedida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
                 .addGroup(jpConsultarCategoriaProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSairCategoriaProduto)
-                    .addComponent(btnExcluirCategoriaProduto)
+                    .addComponent(btnIncluirCategoriaProduto)
                     .addComponent(btnAlterarCategoriaProduto)
-                    .addComponent(btnIncluirCategoriaProduto))
-                .addContainerGap())
+                    .addComponent(btnExcluirCategoriaProduto)
+                    .addComponent(btnSairCategoriaProduto))
+                .addGap(15, 15, 15))
         );
 
         jTabbedPaneCategoriaProduto.addTab("Consultar", jpConsultarCategoriaProduto);
@@ -475,7 +466,6 @@ public class CategoriaProdutoView extends javax.swing.JDialog {
     private javax.swing.JButton btnPesquisarDescricaoCategoriaProduto;
     private javax.swing.JButton btnSairCategoriaProduto;
     private javax.swing.JButton btnSalvarCategoriaProduto;
-    private javax.swing.JCheckBox cbxInativosUndMedida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

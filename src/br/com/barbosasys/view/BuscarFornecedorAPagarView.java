@@ -10,7 +10,10 @@ import br.com.barbosasys.controller.UsuarioController;
 import br.com.barbosasys.model.Fornecedor;
 import br.com.barbosasys.model.PerfilUsuario;
 import java.util.ArrayList;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -90,8 +93,25 @@ public class BuscarFornecedorAPagarView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblFornecedores);
+        if (tblFornecedores.getColumnModel().getColumnCount() > 0) {
+            tblFornecedores.getColumnModel().getColumn(0).setMinWidth(100);
+            tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblFornecedores.getColumnModel().getColumn(0).setMaxWidth(100);
+            tblFornecedores.getColumnModel().getColumn(1).setMinWidth(260);
+            tblFornecedores.getColumnModel().getColumn(1).setPreferredWidth(260);
+            tblFornecedores.getColumnModel().getColumn(1).setMaxWidth(260);
+            tblFornecedores.getColumnModel().getColumn(2).setMinWidth(100);
+            tblFornecedores.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblFornecedores.getColumnModel().getColumn(2).setMaxWidth(100);
+        }
 
-        jLabel1.setText("Perfil:");
+        jLabel1.setText("Fornecedor");
+
+        txtPesquisarFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisarFornecedorKeyReleased(evt);
+            }
+        });
 
         btnFornecedorSelecionar.setText("Selecionar");
         btnFornecedorSelecionar.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +124,7 @@ public class BuscarFornecedorAPagarView extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
@@ -167,6 +187,15 @@ public class BuscarFornecedorAPagarView extends javax.swing.JDialog {
         recuperarFornecedor();
         this.dispose();
     }//GEN-LAST:event_btnFornecedorSelecionarActionPerformed
+
+    private void txtPesquisarFornecedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarFornecedorKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblFornecedores.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblFornecedores.setRowSorter(pesquisa);
+        String text = txtPesquisarFornecedor.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtPesquisarFornecedorKeyReleased
     
     private boolean recuperarFornecedor(){
         

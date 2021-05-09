@@ -10,7 +10,10 @@ import br.com.barbosasys.controller.UsuarioController;
 import br.com.barbosasys.model.Cliente;
 import br.com.barbosasys.model.PerfilUsuario;
 import java.util.ArrayList;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -53,7 +56,7 @@ public class BuscarClientesAReceberView extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        txtPesquisarPerfil = new javax.swing.JTextField();
+        txtPesquisarCliente = new javax.swing.JTextField();
         btnClienteSelecionar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
@@ -90,8 +93,25 @@ public class BuscarClientesAReceberView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblCliente);
+        if (tblCliente.getColumnModel().getColumnCount() > 0) {
+            tblCliente.getColumnModel().getColumn(0).setMinWidth(100);
+            tblCliente.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblCliente.getColumnModel().getColumn(0).setMaxWidth(100);
+            tblCliente.getColumnModel().getColumn(1).setMinWidth(260);
+            tblCliente.getColumnModel().getColumn(1).setPreferredWidth(260);
+            tblCliente.getColumnModel().getColumn(1).setMaxWidth(260);
+            tblCliente.getColumnModel().getColumn(2).setMinWidth(100);
+            tblCliente.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblCliente.getColumnModel().getColumn(2).setMaxWidth(100);
+        }
 
-        jLabel1.setText("Perfil:");
+        jLabel1.setText("Cliente:");
+
+        txtPesquisarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisarClienteKeyReleased(evt);
+            }
+        });
 
         btnClienteSelecionar.setText("Selecionar");
         btnClienteSelecionar.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +129,7 @@ public class BuscarClientesAReceberView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtPesquisarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPesquisarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnClienteSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -120,7 +140,7 @@ public class BuscarClientesAReceberView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtPesquisarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPesquisarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClienteSelecionar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,6 +187,15 @@ public class BuscarClientesAReceberView extends javax.swing.JDialog {
         recuperarCliente();
         this.dispose();
     }//GEN-LAST:event_btnClienteSelecionarActionPerformed
+
+    private void txtPesquisarClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarClienteKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblCliente.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblCliente.setRowSorter(pesquisa);
+        String text = txtPesquisarCliente.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
+    }//GEN-LAST:event_txtPesquisarClienteKeyReleased
     
     private boolean recuperarCliente(){
         
@@ -233,6 +262,6 @@ public class BuscarClientesAReceberView extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblCliente;
-    private javax.swing.JTextField txtPesquisarPerfil;
+    private javax.swing.JTextField txtPesquisarCliente;
     // End of variables declaration//GEN-END:variables
 }

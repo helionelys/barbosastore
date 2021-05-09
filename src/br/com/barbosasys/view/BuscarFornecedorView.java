@@ -10,18 +10,21 @@ import br.com.barbosasys.controller.UsuarioController;
 import br.com.barbosasys.model.Fornecedor;
 import br.com.barbosasys.model.PerfilUsuario;
 import java.util.ArrayList;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author Helionelys
  */
 public class BuscarFornecedorView extends javax.swing.JDialog {
-    
-     //Variavel para armazemar Código e Nome do perfil do usuario
+
+    //Variavel para armazemar Código e Nome do perfil do usuario
     private int codigoFornecedor;
     private String nomeRazaoSocialFornecedor;
-    
+
     Fornecedor fornecedor = new Fornecedor();
     FornecedorController fornecedorController = new FornecedorController();
     ArrayList<Fornecedor> listaFornecedor = new ArrayList<>();
@@ -90,8 +93,25 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tblFornecedores);
+        if (tblFornecedores.getColumnModel().getColumnCount() > 0) {
+            tblFornecedores.getColumnModel().getColumn(0).setMinWidth(80);
+            tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tblFornecedores.getColumnModel().getColumn(0).setMaxWidth(80);
+            tblFornecedores.getColumnModel().getColumn(1).setMinWidth(26);
+            tblFornecedores.getColumnModel().getColumn(1).setPreferredWidth(260);
+            tblFornecedores.getColumnModel().getColumn(1).setMaxWidth(260);
+            tblFornecedores.getColumnModel().getColumn(2).setMinWidth(100);
+            tblFornecedores.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblFornecedores.getColumnModel().getColumn(2).setMaxWidth(100);
+        }
 
-        jLabel1.setText("Perfil:");
+        jLabel1.setText("Fornecedor");
+
+        txtPesquisarFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisarFornecedorKeyReleased(evt);
+            }
+        });
 
         btnFornecedorSelecionar.setText("Selecionar");
         btnFornecedorSelecionar.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +124,7 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
@@ -167,26 +187,34 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
         recuperarFornecedor();
         this.dispose();
     }//GEN-LAST:event_btnFornecedorSelecionarActionPerformed
-    
-    private boolean recuperarFornecedor(){
-        
-       //Armazena a linha selecionada
-       int linhaTabela = this.tblFornecedores.getSelectedRow();
-       
-       //Captura valor código do funcionário da linha selecionada
-       int codigo = (Integer) tblFornecedores.getValueAt(linhaTabela, 0);
-       
+
+    private void txtPesquisarFornecedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarFornecedorKeyReleased
+        DefaultTableModel dadosPesquisar = (DefaultTableModel) this.tblFornecedores.getModel();
+        final TableRowSorter<TableModel> pesquisa = new TableRowSorter<TableModel>(dadosPesquisar);
+        this.tblFornecedores.setRowSorter(pesquisa);
+        String text = txtPesquisarFornecedor.getText();
+        pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesquisarFornecedorKeyReleased
+
+    private boolean recuperarFornecedor() {
+
+        //Armazena a linha selecionada
+        int linhaTabela = this.tblFornecedores.getSelectedRow();
+
+        //Captura valor código do funcionário da linha selecionada
+        int codigo = (Integer) tblFornecedores.getValueAt(linhaTabela, 0);
+
         try {
-        //retorna os dados do banco de dados
-        fornecedor = fornecedorController.getFornecedorControllerSimples(codigo);
-        this.codigoFornecedor = Integer.valueOf(fornecedor.getCodigo());
-        this.nomeRazaoSocialFornecedor = (fornecedor.getNomeRazaoSocial());
-        return true;
+            //retorna os dados do banco de dados
+            fornecedor = fornecedorController.getFornecedorControllerSimples(codigo);
+            this.codigoFornecedor = Integer.valueOf(fornecedor.getCodigo());
+            this.nomeRazaoSocialFornecedor = (fornecedor.getNomeRazaoSocial());
+            return true;
         } catch (Exception e) {
             return false;
         }
-    }    
-    
+    }
+
     private void carregarFornecedores() {
         listaFornecedor = fornecedorController.getListaFornecedorController();
         DefaultTableModel modelo = (DefaultTableModel) tblFornecedores.getModel();
@@ -197,18 +225,13 @@ public class BuscarFornecedorView extends javax.swing.JDialog {
             modelo.addRow(new Object[]{
                 listaFornecedor.get(i).getCodigo(),
                 listaFornecedor.get(i).getNomeRazaoSocial(),
-                listaFornecedor.get(i).getCpfCnpj(),
-            });
+                listaFornecedor.get(i).getCpfCnpj(),});
         }
     }
-    
-    
-
 
     /**
      * @param args the command line arguments
      */
-
     public int getCodigoFornecedor() {
         return codigoFornecedor;
     }
