@@ -89,9 +89,8 @@ public class TelaVendasView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblListaItensVendas = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         lblSatusOperacao = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         txtTotalVendaPVD = new javax.swing.JTextField();
@@ -440,37 +439,31 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         jPanel6.setToolTipText("");
 
-        jLabel8.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
-        jLabel8.setText("Operador:");
-
-        jLabel9.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
-        jLabel9.setText("Status:");
-
         lblSatusOperacao.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
         lblSatusOperacao.setText("StatusCaixa");
+
+        jLabel14.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
+        jLabel14.setText("Status:");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel9)
+                .addContainerGap()
+                .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSatusOperacao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(123, 123, 123))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8)
-                    .addComponent(lblSatusOperacao))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblSatusOperacao)
+                    .addComponent(jLabel14))
+                .addContainerGap())
         );
 
         jLabel10.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
@@ -833,10 +826,15 @@ public class TelaVendasView extends javax.swing.JFrame {
 
     private void MenuComandoItSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuComandoItSairActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        MenuPrincipalView telaprincipal = new MenuPrincipalView();
-        telaprincipal.setLocationRelativeTo(this);
-        telaprincipal.setVisible(true);
+        int confirma = JOptionPane.showConfirmDialog(null, "Deseja finalizar modulo PDV ?", "Atenção",
+                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (confirma == 0) {
+            MenuPrincipalView telaprincipal = new MenuPrincipalView();
+            this.dispose();
+            telaprincipal.setLocationRelativeTo(this);
+            telaprincipal.setVisible(true);
+        }
+
     }//GEN-LAST:event_MenuComandoItSairActionPerformed
 
     private void AtalhoRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtalhoRemoverProdutoActionPerformed
@@ -983,14 +981,23 @@ public class TelaVendasView extends javax.swing.JFrame {
     private void removerProduto() {
         if (testarSelecaoProduto() == true) {
             int linhaSelecionada = tblListaItensVendas.getSelectedRow();
-            DefaultTableModel modelo = (DefaultTableModel) tblListaItensVendas.getModel();
-            // Remove a linha
-            modelo.removeRow(linhaSelecionada);
-            Double valorTotalRetorno = (this.atualizarValorTotal());
-            DecimalFormat df = new DecimalFormat("#,##0.00");
-            String valorTotalTela = df.format(valorTotalRetorno);
-            this.txtTotalVendaPVD.setText(valorTotalTela);
-            this.txtQtdItensTotal.setText(String.valueOf(atualizarQuantidadeItens()));
+            String descricaoProduto = (String) tblListaItensVendas.getValueAt(linhaSelecionada, 2);
+
+            // Questiona a exclusão
+            int opcao = JOptionPane.showConfirmDialog(this, "Confirma a remoção do item: \n"
+                    + descricaoProduto + " ?", "Confirme", JOptionPane.YES_NO_OPTION);
+            //se sim exclui, se não não faz nada    
+            if (opcao == JOptionPane.OK_OPTION) {
+                DefaultTableModel modelo = (DefaultTableModel) tblListaItensVendas.getModel();
+                // Remove a linha
+                modelo.removeRow(linhaSelecionada);
+                Double valorTotalRetorno = (this.atualizarValorTotal());
+                DecimalFormat df = new DecimalFormat("#,##0.00");
+                String valorTotalTela = df.format(valorTotalRetorno);
+                this.txtTotalVendaPVD.setText(valorTotalTela);
+                this.txtQtdItensTotal.setText(String.valueOf(atualizarQuantidadeItens()));
+            }
+
         }
     }
 
@@ -1071,7 +1078,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtQtdItensTotal.setText("");
 
     }
-    
+
     private void limparTabela() {
         carrinhos = (DefaultTableModel) tblListaItensVendas.getModel();
         carrinhos.setNumRows(0);
@@ -1093,6 +1100,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1103,8 +1111,6 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
