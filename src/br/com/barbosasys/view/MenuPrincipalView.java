@@ -94,7 +94,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuFinanceiroContaPagar = new javax.swing.JMenuItem();
         MenuFinanceiroContaReceber = new javax.swing.JMenuItem();
         MenuFinanceiroFluxoCaixa = new javax.swing.JMenuItem();
-        MenuRelatorio = new javax.swing.JMenu();
         MenuSeguranca = new javax.swing.JMenu();
         MenuSegurancaUsuarios = new javax.swing.JMenuItem();
         MenuSegurancaPerfis = new javax.swing.JMenuItem();
@@ -493,10 +492,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
         BarraDeMenuPrincipal.add(MenuFinanceiro);
 
-        MenuRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Report.png"))); // NOI18N
-        MenuRelatorio.setText("Relatorios");
-        BarraDeMenuPrincipal.add(MenuRelatorio);
-
         MenuSeguranca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Lock.png"))); // NOI18N
         MenuSeguranca.setText("Segurança");
 
@@ -842,7 +837,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 MenuCadastro.setEnabled(false);
                 MenuMovimento.setEnabled(false);
                 MenuFinanceiro.setEnabled(false);
-                MenuRelatorio.setEnabled(false);
                 MenuSeguranca.setEnabled(false);
 
                 // Botoes Rapidos
@@ -861,7 +855,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 MenuMovimento.setEnabled(false);
                 MenuFinanceiro.setEnabled(true);
                 // Item Menu Financeiro
-                MenuRelatorio.setEnabled(false);
                 MenuSeguranca.setEnabled(false);
 
                 // Botoes Rapidos
@@ -877,7 +870,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 MenuCadastro.setEnabled(true);
                 MenuMovimento.setEnabled(true);
                 MenuFinanceiro.setEnabled(true);
-                MenuRelatorio.setEnabled(true);
                 MenuSeguranca.setEnabled(false);
                 break;
             case 2:
@@ -889,7 +881,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 MenuMovimentoAjusteEstoque.setEnabled(false);
                 MenuMovimentoVendaPdv.setEnabled(false);
                 MenuFinanceiro.setEnabled(false);
-                MenuRelatorio.setEnabled(false);
                 MenuSeguranca.setEnabled(false);
                 
                 // Botoes Rapidos
@@ -906,14 +897,12 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 MenuCadastro.setEnabled(true);
                 MenuMovimento.setEnabled(true);
                 MenuFinanceiro.setEnabled(true);
-                MenuRelatorio.setEnabled(true);
                 MenuSeguranca.setEnabled(true);
                 break;
             default:
                 MenuCadastro.setEnabled(false);
                 MenuMovimento.setEnabled(false);
                 MenuFinanceiro.setEnabled(false);
-                MenuRelatorio.setEnabled(false);
                 MenuSeguranca.setEnabled(false);
                 
                 // Botoes Rapidos
@@ -967,7 +956,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuOpcoesLogff;
     private javax.swing.JMenuItem MenuOpcoesSair;
     private javax.swing.JMenuItem MenuOpcoesSobre;
-    private javax.swing.JMenu MenuRelatorio;
     private javax.swing.JMenu MenuSeguranca;
     private javax.swing.JMenuItem MenuSegurancaDadosEmpresas;
     private javax.swing.JMenuItem MenuSegurancaPerfis;
