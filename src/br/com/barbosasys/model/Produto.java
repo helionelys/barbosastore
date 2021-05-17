@@ -11,7 +11,6 @@ public class Produto {
     private int codCategoriaProduto;
     private Double valor;
     private Double valorCompra;
-    private int estoque;
     private int codFornecedor;
     private String fabricante;
     private int codUnidadeMedida;
@@ -88,14 +87,6 @@ public class Produto {
         this.valorCompra = valorCompra;
     }
     
-    public int getEstoque(){
-        return estoque;
-    }
-    
-    public void setEstoque(int estoque){
-        this.estoque = estoque;
-    }
-
     public int getCodFornecedor() {
         return codFornecedor;
     }
@@ -146,7 +137,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto{" + "codProduto=" + codProduto + ", statusProduto=" + statusProduto + ", dataCadastramento=" + dataCadastramento + ", descricao=" + descricao + ", codCategoriaProduto=" + codCategoriaProduto + ", valor=" + valor +", valorCompra=" + valorCompra + ", fabricante=" + fabricante + ", codUnidadeMedida=" + codUnidadeMedida + ", descricaoUnidadeMedida=" + descricaoUnidadeMedida + ", observacao=" + observacao + ", estoque= "+ estoque +'}';
+        return "Produto{" + "codProduto=" + codProduto + ", statusProduto=" + statusProduto + ", dataCadastramento=" + dataCadastramento + ", descricao=" + descricao + ", codCategoriaProduto=" + codCategoriaProduto + ", valor=" + valor +", valorCompra=" + valorCompra + ", fabricante=" + fabricante + ", codUnidadeMedida=" + codUnidadeMedida + ", descricaoUnidadeMedida=" + descricaoUnidadeMedida + ", observacao=" + observacao + ", quantidade= "+ quantidade +'}';
     }
     
     public String getDataEstoqueAtualizacao() {

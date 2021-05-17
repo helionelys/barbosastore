@@ -180,19 +180,18 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel8))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblCodTipodePagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel4))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblCodFornecedor)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)))
+                                .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel5))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
@@ -422,19 +421,23 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         lancamentoFaturar.setCodTipoLancamento(2);
         lancamentoFaturar.setCodStatusLancamento(2);
 
-        int codigoProduto, quantidadeProduto, quantidadeEstoque;
+        int codigoProduto, quantidadeProduto, novaQuantidadeEstoque, quantidadeEstoqueAtual;
         listaItensCompras = compraController.getListaItensCompraController(Integer.parseInt(this.lblNumeroDaCompra.getText()));
         int cont = listaItensCompras.size();
         for (int i = 0; i < cont; i++) {
+            Produto objProduto = new Produto();
             codigoProduto = listaItensCompras.get(i).getProduto().getCodProduto();
             quantidadeProduto = listaItensCompras.get(i).getQuantidade();
-            quantidadeEstoque = produtoController.getProdutoControllerVendaQuantidadeEstoque(codigoProduto) + quantidadeProduto;
-            produto.setCodProduto(codigoProduto);
-            produto.setQuantidade(quantidadeEstoque);
-            listaProdutosCompras.add(produto);
-            System.out.println(listaItensCompras.get(i).getProduto().getCodProduto());
-            System.out.println(listaItensCompras.get(i).getQuantidade());
-            System.out.println(quantidadeEstoque);
+            //quantidadeEstoqueAtual = produtoController.getProdutoControllerVendaQuantidadeEstoque(listaItensCompras.get(i).getProduto().getCodProduto());
+            quantidadeEstoqueAtual = produtoController.getProdutoController(codigoProduto).getQuantidade();
+            novaQuantidadeEstoque = quantidadeProduto + quantidadeEstoqueAtual;
+            objProduto.setCodProduto(codigoProduto);
+            objProduto.setQuantidade(novaQuantidadeEstoque);
+            listaProdutosCompras.add(objProduto);
+//            System.out.println(listaItensCompras.get(i).getProduto().getCodProduto());
+//            System.out.println(listaItensCompras.get(i).getQuantidade());
+//            System.out.println(quantidadeEstoqueAtual);
+//            System.out.println(novaQuantidadeEstoque);
         }
         produto.setListaItens(listaProdutosCompras);
 

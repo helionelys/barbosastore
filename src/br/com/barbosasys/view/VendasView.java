@@ -49,7 +49,7 @@ public class VendasView extends javax.swing.JDialog {
     TipoPagamento tipoPagamento = new TipoPagamento();
     TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
     ArrayList<TipoPagamento> listaTipoPagamento = new ArrayList<>();
-    FaturamentoView telaFaturamento = new FaturamentoView(this, rootPaneCheckingEnabled);
+    FaturamentoVendaView telaFaturamento = new FaturamentoVendaView(this, rootPaneCheckingEnabled);
 
     DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
 
@@ -1144,7 +1144,7 @@ public class VendasView extends javax.swing.JDialog {
     }
 
     private boolean recuperarVendaFaturameto() {
-        telaFaturamento = new FaturamentoView(this, rootPaneCheckingEnabled);
+        telaFaturamento = new FaturamentoVendaView(this, rootPaneCheckingEnabled);
         try {
             int linha = this.tblVendasRealizadas.getSelectedRow();
             String nomeCliente = (String) tblVendasRealizadas.getValueAt(linha, 1);
