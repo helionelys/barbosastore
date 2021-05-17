@@ -56,8 +56,8 @@ public class ProdutoController {
         return this.produtoDAO.atualizarEstoqueProduto(produto);
     }
     
-    public boolean atualizarProdutoBaixarEstoqueController(Produto produto){
-        return this.produtoDAO.baixarEstoqueProduto(produto);
+    public boolean atualizarProdutoCompraVendaEstoqueController(Produto produto){
+        return this.produtoDAO.atualizarCompraVendaEstoqueProduto(produto);
     }
     
     public boolean excluirProdutoController(int codigo){

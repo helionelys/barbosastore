@@ -18,7 +18,15 @@ public class Produto {
     private String descricaoUnidadeMedida;
     private String observacao;
     private int quantidade;
-    private ArrayList<Produto> listaItensVendas;
+    private ArrayList<Produto> listaItens;
+
+    public ArrayList<Produto> getListaItens() {
+        return listaItens;
+    }
+
+    public void setListaItens(ArrayList<Produto> listaItens) {
+        this.listaItens = listaItens;
+    }
     private String dataEstoqueAtualizacao;
     
     public Produto() {
@@ -141,10 +149,6 @@ public class Produto {
         return "Produto{" + "codProduto=" + codProduto + ", statusProduto=" + statusProduto + ", dataCadastramento=" + dataCadastramento + ", descricao=" + descricao + ", codCategoriaProduto=" + codCategoriaProduto + ", valor=" + valor +", valorCompra=" + valorCompra + ", fabricante=" + fabricante + ", codUnidadeMedida=" + codUnidadeMedida + ", descricaoUnidadeMedida=" + descricaoUnidadeMedida + ", observacao=" + observacao + ", estoque= "+ estoque +'}';
     }
     
-    public void setListaItensVendas(ArrayList<Produto> listaItensVendas){
-        this.listaItensVendas = listaItensVendas;
-    }
-
     public String getDataEstoqueAtualizacao() {
         return dataEstoqueAtualizacao;
     }

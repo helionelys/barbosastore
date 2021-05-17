@@ -24,6 +24,7 @@ public class ProdutoDAO extends ConexaoBanco {
                     //+ "CODPRODUTO,"
                     //+ "CODSTATUSPRODUTO,"
                     + "DATACADASTRAMENTO,"
+                    + "DATAATUALIZACAOESTOQUE,"
                     + "DESCRICAO,"
                     + "CODCATEGORIA,"
                     + "VALOR,"
@@ -36,10 +37,11 @@ public class ProdutoDAO extends ConexaoBanco {
                     // + "'" + produto.getCodProduto() + "',"
                     // + "'" + produto.getStatusProduto() + "',"
                     + "'" + produto.getDataCadastramento() + "',"
+                    + "'" + produto.getDataEstoqueAtualizacao()+ "',"
                     + "'" + produto.getDescricao() + "',"
                     + "'" + produto.getCodCategoriaProduto() + "',"
                     + "'" + produto.getValor() + "',"
-                    + "'" + produto.getValorCompra()+ "',"
+                    + "'" + produto.getValorCompra() + "',"
                     + "'" + produto.getCodFornecedor() + "',"
                     + "'" + produto.getFabricante() + "',"
                     + "'" + produto.getCodUnidadeMedida() + "',"
@@ -53,8 +55,8 @@ public class ProdutoDAO extends ConexaoBanco {
             this.fecharConexao();
         }
     }
-    
-        // Recupera funcionario através do codigo para uso no cadastro de produtos, retorna apenas código e nome
+
+    // Recupera funcionario através do codigo para uso no cadastro de produtos, retorna apenas código e nome
     public Produto getProdutoSimplesDAO(int codigo) {
         Produto produto = new Produto();
         try {
@@ -70,22 +72,22 @@ public class ProdutoDAO extends ConexaoBanco {
                     + " CODPRODUTO = '" + codigo + "'"
                     + ";"
             );
-            
-             while (this.getResultSet().next()) {
 
-            produto.setCodProduto(this.getResultSet().getInt(1));
-            produto.setDescricao(this.getResultSet().getString(2));
-            produto.setValor(Double.parseDouble(this.getResultSet().getString(3)));
-        }
+            while (this.getResultSet().next()) {
+
+                produto.setCodProduto(this.getResultSet().getInt(1));
+                produto.setDescricao(this.getResultSet().getString(2));
+                produto.setValor(Double.parseDouble(this.getResultSet().getString(3)));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             this.fecharConexao();
-        } 
-        return produto;
         }
-    
-        public Produto getProdutoCompraSimplesDAO(int codigo) {
+        return produto;
+    }
+
+    public Produto getProdutoCompraSimplesDAO(int codigo) {
         Produto produto = new Produto();
         try {
             this.conectar();
@@ -100,21 +102,21 @@ public class ProdutoDAO extends ConexaoBanco {
                     + " CODPRODUTO = '" + codigo + "'"
                     + ";"
             );
-            
-             while (this.getResultSet().next()) {
 
-            produto.setCodProduto(this.getResultSet().getInt(1));
-            produto.setDescricao(this.getResultSet().getString(2));
-            produto.setValorCompra(Double.parseDouble(this.getResultSet().getString(3)));
-        }
+            while (this.getResultSet().next()) {
+
+                produto.setCodProduto(this.getResultSet().getInt(1));
+                produto.setDescricao(this.getResultSet().getString(2));
+                produto.setValorCompra(Double.parseDouble(this.getResultSet().getString(3)));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             this.fecharConexao();
-        } 
-        return produto;
         }
-    
+        return produto;
+    }
+
     // Recupera produto através do codigo
     public Produto getProdutoDAO(int codigo) {
         Produto produto = new Produto();
@@ -185,7 +187,7 @@ public class ProdutoDAO extends ConexaoBanco {
 
             while (this.getResultSet().next()) {
 
-                quantidadeEstoque =(this.getResultSet().getInt(1));
+                quantidadeEstoque = (this.getResultSet().getInt(1));
 
             }
         } catch (Exception e) {
@@ -195,7 +197,7 @@ public class ProdutoDAO extends ConexaoBanco {
         }
         return quantidadeEstoque;
     }
-    
+
     // Recupera produto através do codigo
     public Produto getProdutoVendaDAO(int codigo) {
         Produto produto = new Produto();
@@ -205,7 +207,7 @@ public class ProdutoDAO extends ConexaoBanco {
             this.executarSQL(
                     "SELECT "
                     + "DESCRICAO," //1
-                    + "VALOR," //2
+                    + "VALOR" //2
                     + " FROM"
                     + " TBL_PRODUTO"
                     + " WHERE"
@@ -226,7 +228,7 @@ public class ProdutoDAO extends ConexaoBanco {
         }
         return produto;
     }
-    
+
     public Produto getProdutoDAO(String nome) {
         Produto produto = new Produto();
         try {
@@ -272,7 +274,6 @@ public class ProdutoDAO extends ConexaoBanco {
         return produto;
     }
 
-
     public ArrayList<Produto> getListaProdutoDAO() {
         ArrayList<Produto> listaProduto = new ArrayList();
         Produto produto = new Produto();
@@ -289,7 +290,7 @@ public class ProdutoDAO extends ConexaoBanco {
                     + " TBL_PRODUTO "
                     + "INNER JOIN TBL_UNIDADEMEDIDA "
                     + "ON TBL_PRODUTO.CODUNIDADEMEDIDA = TBL_UNIDADEMEDIDA.CODUNIDADE"
-                    + ";"
+                    + " ORDER BY TBL_PRODUTO.CODPRODUTO ASC;"
             );
 
             while (this.getResultSet().next()) {
@@ -308,8 +309,8 @@ public class ProdutoDAO extends ConexaoBanco {
         }
         return listaProduto;
     }
-    
-       public ArrayList<Produto> getListaProdutoSimplesDAO() {
+
+    public ArrayList<Produto> getListaProdutoSimplesDAO() {
         ArrayList<Produto> listaProduto = new ArrayList();
         Produto produto = new Produto();
 
@@ -342,8 +343,8 @@ public class ProdutoDAO extends ConexaoBanco {
         }
         return listaProduto;
     }
-       
-       public ArrayList<Produto> getListaProdutoSimplesComprasDAO() {
+
+    public ArrayList<Produto> getListaProdutoSimplesComprasDAO() {
         ArrayList<Produto> listaProduto = new ArrayList();
         Produto produto = new Produto();
 
@@ -378,8 +379,7 @@ public class ProdutoDAO extends ConexaoBanco {
         }
         return listaProduto;
     }
- 
-         
+
     public boolean atualizarProdutoDAO(Produto produto) {
         try {
             this.conectar();
@@ -387,11 +387,11 @@ public class ProdutoDAO extends ConexaoBanco {
                     "UPDATE TBL_PRODUTO SET "
                     //+ "CODSTATUSPRODUTO = '" + produto.getStatusProduto() + "',"
                     + "DESCRICAO = '" + produto.getDescricao() + "',"
-                    + "CODUNIDADEMEDIDA = '" + produto.getCodUnidadeMedida()+ "',"
+                    + "CODUNIDADEMEDIDA = '" + produto.getCodUnidadeMedida() + "',"
                     + "CODCATEGORIA = '" + produto.getCodCategoriaProduto() + "',"
-                    + "VALOR = '" + produto.getValor()+ "',"
-                    + "VALORCOMPRA = '" + produto.getValorCompra()+ "',"
-                    + "CODFORNECEDOR = '" + produto.getCodFornecedor()+ "',"
+                    + "VALOR = '" + produto.getValor() + "',"
+                    + "VALORCOMPRA = '" + produto.getValorCompra() + "',"
+                    + "CODFORNECEDOR = '" + produto.getCodFornecedor() + "',"
                     + "FABRICANTE = '" + produto.getFabricante() + "',"
                     + "OBSERVACAO = '" + produto.getObservacao() + "'"
                     + "WHERE "
@@ -406,17 +406,17 @@ public class ProdutoDAO extends ConexaoBanco {
             this.fecharConexao();
         }
     }
-    
-    public boolean atualizarEstoqueProduto(Produto produto){
+
+    public boolean atualizarEstoqueProduto(Produto produto) {
         try {
             this.conectar();
             this.executarUpdateDeleteSQL(
                     "UPDATE TBL_PRODUTO SET "
                     + "QUANTIDADE = '" + produto.getQuantidade() + "',"
-                    + "DATAATUALIZACAOESTOQUE = '" + produto.getDataEstoqueAtualizacao()+ "'"
+                    + "DATAATUALIZACAOESTOQUE = '" + produto.getDataEstoqueAtualizacao() + "'"
                     + "WHERE CODPRODUTO = '" + produto.getCodProduto() + "'"
                     + ";"
-                    );
+            );
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -425,24 +425,30 @@ public class ProdutoDAO extends ConexaoBanco {
             this.fecharConexao();
         }
     }
-    
-        public boolean baixarEstoqueProduto(Produto produto){
+
+    public boolean atualizarCompraVendaEstoqueProduto(Produto produto) {
         try {
             this.conectar();
-            this.executarUpdateDeleteSQL(
-                    "UPDATE TBL_PRODUTO SET "
-                    + "QUANTIDADE = '" + produto.getQuantidade() + "'"
-                    + "WHERE CODPRODUTO = '" + produto.getCodProduto() + "'"
-                    + ";"
-                    );
-            return true;
-        } catch (Exception e) {
+            int tamanhoLista = produto.getListaItens().size();
+            for (int i = 0; i < tamanhoLista; i++) {
+                this.executarUpdateDeleteSQL(
+                        "UPDATE TBL_PRODUTO SET "
+                        + "QUANTIDADE = '" + produto.getListaItens().get(i).getQuantidade() + "'"
+                        + "WHERE CODPRODUTO = '" + produto.getListaItens().get(i).getCodProduto() + "'"
+                        + ";"
+                );
+            }
+                return true;
+
+            }catch (Exception e) {
             e.printStackTrace();
             return false;
-        } finally {
+        }finally {
             this.fecharConexao();
         }
-    }
+        }
+
+    
 
     public boolean excluirProdutoDAO(int codigo) {
         try {
@@ -460,5 +466,5 @@ public class ProdutoDAO extends ConexaoBanco {
             this.fecharConexao();
         }
     }
-    
+
 }

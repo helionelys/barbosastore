@@ -757,6 +757,7 @@ public class ProdutoView extends javax.swing.JDialog {
         SimpleDateFormat formatarData = new SimpleDateFormat(formatoDataMysql);
         String dataMysql = formatarData.format(dataCadastramentoCliente);
         produto.setDataCadastramento(dataMysql);
+        produto.setDataEstoqueAtualizacao(dataMysql);
         produto.setDescricao(this.txtDescricaoProduto.getText());
 
         produto.setCodUnidadeMedida(unidadeMedidaController.getUnidadeMedidaController(this.cbUnidadeProduto.getSelectedItem().toString()).getCodigo());

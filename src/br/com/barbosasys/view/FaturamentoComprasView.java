@@ -7,11 +7,15 @@ package br.com.barbosasys.view;
 
 import br.com.barbosasys.controller.CompraController;
 import br.com.barbosasys.controller.LancamentoController;
+import br.com.barbosasys.controller.ProdutoController;
 import br.com.barbosasys.model.Compra;
+import br.com.barbosasys.model.Item;
 import br.com.barbosasys.model.Lancamento;
 import br.com.barbosasys.model.Pessoa;
+import br.com.barbosasys.model.Produto;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,17 +23,23 @@ import javax.swing.JOptionPane;
  * @author helionelys
  */
 public class FaturamentoComprasView extends javax.swing.JDialog {
+
     // Variaveis para armazenar dados da venda
     private int codigoCompra, codTipoPagamento;
-    private String nomeFornecedor, dataLancamento,tipoPagamento, valorDesconto, 
-                   dataVencimento, dataPagamento, valorLancamemto;
-    
+    private String nomeFornecedor, dataLancamento, tipoPagamento, valorDesconto,
+            dataVencimento, dataPagamento, valorLancamemto;
+
     Pessoa pessoa = new Pessoa();
-    
+
     Lancamento lancamentoFaturar = new Lancamento();
     LancamentoController lancamentoController = new LancamentoController();
+    ArrayList<Item> listaItensCompras = new ArrayList<>();
+    ArrayList<Produto> listaProdutosCompras = new ArrayList<>();
     CompraController compraController = new CompraController();
     Compra compra = new Compra();
+    Produto produto = new Produto();
+    ProdutoController produtoController = new ProdutoController();
+
     /**
      * Creates new form FaturamentoView
      */
@@ -39,7 +49,6 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         lblCodTipodePagamento.setVisible(false);
         lblCodFornecedor.setVisible(false);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -381,22 +390,20 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
 //    public void setValorLancamemto(String valorLancamemto) {
 //        this.valorLancamemto = valorLancamemto;
 //    }
-    
-    private boolean salvarLancamentoCompras(){
+    private boolean salvarLancamentoCompras() {
         pessoa.setCodigo(Integer.parseInt(this.lblCodFornecedor.getText()));
         lancamentoFaturar.setPessoa(pessoa);
         compra.setCodCompra(Integer.parseInt(this.lblNumeroDaCompra.getText()));
-        String descricaoLancamento = "LANÇAMENTO REFERENTE A COMPRA Nº: " + lblNumeroDaCompra.getText() + " NO VALOR DE: "+ lblValorTotal.getText();
+        String descricaoLancamento = "LANÇAMENTO REFERENTE A COMPRA Nº: " + lblNumeroDaCompra.getText() + " NO VALOR DE: " + lblValorTotal.getText();
         lancamentoFaturar.setDescricaoLancamento(descricaoLancamento);
-        
+
         String dataLancamento = this.lblDataCompra.getText();
         DateTimeFormatter dataLancamentoRecebida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter dataLancamentoFormatada = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(dataLancamento, dataLancamentoRecebida);
         String dataLacamentoBanco = localDate.format(dataLancamentoFormatada);
         lancamentoFaturar.setDataLancamento(dataLacamentoBanco);
-        
-        
+
         String dataLancamentoVencimento = this.txtDataVencimentoCompra.getText();
         DateTimeFormatter dataRecebida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter dataFormatada = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -404,78 +411,86 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         String dataLacamentoVencimentoBanco = localDate2.format(dataFormatada);
         lancamentoFaturar.setDataVencimento(dataLacamentoVencimentoBanco);
 
-
-//        String dataLancamentoPagamento = this.txtDataPagamentoCompra.getText();
-//        DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//        LocalDate localDate3 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
-//        String dataLacamentoPagamentoBanco = localDate3.format(dataFormatada2);
-//        lancamentoFaturar.setDataPagamento(dataLacamentoPagamentoBanco);
-        
         String valorLancamentoOriginal = lblValorTotal.getText();
         String valorLancamentoFormatado = valorLancamentoOriginal.replace(".", "");
         String valorLancamentoFormatado2 = valorLancamentoFormatado.replace(",", ".");
         Double valorBanco = Double.parseDouble(valorLancamentoFormatado2);
         lancamentoFaturar.setValorLancamento(valorBanco);
-        
+
         lancamentoFaturar.setCodTipoPagamento(Integer.parseInt(lblCodTipodePagamento.getText()));
         lancamentoFaturar.setObservacao("");
         lancamentoFaturar.setCodTipoLancamento(2);
         lancamentoFaturar.setCodStatusLancamento(2);
 
-                
+        int codigoProduto, quantidadeProduto, quantidadeEstoque;
+        listaItensCompras = compraController.getListaItensCompraController(Integer.parseInt(this.lblNumeroDaCompra.getText()));
+        int cont = listaItensCompras.size();
+        for (int i = 0; i < cont; i++) {
+            codigoProduto = listaItensCompras.get(i).getProduto().getCodProduto();
+            quantidadeProduto = listaItensCompras.get(i).getQuantidade();
+            quantidadeEstoque = produtoController.getProdutoControllerVendaQuantidadeEstoque(codigoProduto) + quantidadeProduto;
+            produto.setCodProduto(codigoProduto);
+            produto.setQuantidade(quantidadeEstoque);
+            listaProdutosCompras.add(produto);
+            System.out.println(listaItensCompras.get(i).getProduto().getCodProduto());
+            System.out.println(listaItensCompras.get(i).getQuantidade());
+            System.out.println(quantidadeEstoque);
+        }
+        produto.setListaItens(listaProdutosCompras);
+
         if (lancamentoController.salvarLancamentoControllerAPagar(lancamentoFaturar) > 0) {
-            //lancamentoController.
+            produtoController.atualizarProdutoCompraVendaEstoqueController(produto);
             compraController.atualizarComprasFaturamentoController(compra);
             JOptionPane.showMessageDialog(this, "Lancamento incluído com sucesso!");
             JOptionPane.showMessageDialog(this, "Compra Faturada!");
-            
+
             this.dispose();
             return true;
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             return false;
         }
     }
-    
-    public void setLblNumeroCompra(int numeroDaCompra){
-        this.lblNumeroDaCompra.setText(String.valueOf(numeroDaCompra)); 
+
+    public void setLblNumeroCompra(int numeroDaCompra) {
+        this.lblNumeroDaCompra.setText(String.valueOf(numeroDaCompra));
     }
-    public void setLblCodFornecedor(int codFornecedor){
-        this.lblCodFornecedor.setText(String.valueOf(codFornecedor)); 
+
+    public void setLblCodFornecedor(int codFornecedor) {
+        this.lblCodFornecedor.setText(String.valueOf(codFornecedor));
     }
-    
-    public void setLblNomeFornecedor(String nomeFornecedor){
-        this.lblNomeFornecedor.setText(String.valueOf(nomeFornecedor)); 
+
+    public void setLblNomeFornecedor(String nomeFornecedor) {
+        this.lblNomeFornecedor.setText(String.valueOf(nomeFornecedor));
     }
-    
-    public void setLblDataCompra(String dataCompra){
-        this.lblDataCompra.setText(String.valueOf(dataCompra)); 
+
+    public void setLblDataCompra(String dataCompra) {
+        this.lblDataCompra.setText(String.valueOf(dataCompra));
     }
-    
-    public void setLblCodTipoPagamento(int tipoPagamento){
-        this.lblCodTipodePagamento.setText(String.valueOf(tipoPagamento)); 
+
+    public void setLblCodTipoPagamento(int tipoPagamento) {
+        this.lblCodTipodePagamento.setText(String.valueOf(tipoPagamento));
     }
-    
-    public void setLblTipoPagamentoDescricao(String tipoPagamentoDescricao){
-        this.lblTipodePagamentoDescricao.setText(String.valueOf(tipoPagamentoDescricao)); 
+
+    public void setLblTipoPagamentoDescricao(String tipoPagamentoDescricao) {
+        this.lblTipodePagamentoDescricao.setText(String.valueOf(tipoPagamentoDescricao));
     }
-    
-    public void setLblValorDesconto(String valorDesconto){
-        this.lblValorDesconto.setText(String.valueOf(valorDesconto)); 
+
+    public void setLblValorDesconto(String valorDesconto) {
+        this.lblValorDesconto.setText(String.valueOf(valorDesconto));
     }
-    
-    public void setLblDataVencimento(String dataCompraVencimento){
-        this.lblDataCompra.setText(String.valueOf(dataCompraVencimento)); 
+
+    public void setLblDataVencimento(String dataCompraVencimento) {
+        this.lblDataCompra.setText(String.valueOf(dataCompraVencimento));
     }
-       
-    public void setLblValorTotal(String valorTotal){
-        this.lblValorTotal.setText(String.valueOf(valorTotal)); 
+
+    public void setLblValorTotal(String valorTotal) {
+        this.lblValorTotal.setText(String.valueOf(valorTotal));
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGerarLancamento;
     private javax.swing.JLabel jLabel1;

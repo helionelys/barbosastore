@@ -290,9 +290,7 @@ public class EstoqueView extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,20 +308,16 @@ public class EstoqueView extends javax.swing.JDialog {
 
     private void btnBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaProdutoActionPerformed
         // TODO add your handling code here:
-        testarCodigoProduto();
-    }//GEN-LAST:event_btnBuscaProdutoActionPerformed
-
-    private void txtCodProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProdutoKeyTyped
-        // TODO add your handling code here:
-        String caracteres = "0987654321";
-        if (!caracteres.contains(evt.getKeyChar() + "")) {
-            evt.consume();
+        if(testarCodigoProduto() == true){
+//            int codProduto = (Integer.parseInt(this.txtCodProduto.getText()));
+//            System.out.println(codProduto); 
+        buscaInformacoesProdutos();
         }
-    }//GEN-LAST:event_txtCodProdutoKeyTyped
+    }//GEN-LAST:event_btnBuscaProdutoActionPerformed
 
     private void txtCodProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProdutoActionPerformed
         // TODO add your handling code here:
-        testarCodigoProduto();
+        btnBuscaProdutoActionPerformed(evt);
     }//GEN-LAST:event_txtCodProdutoActionPerformed
 
     private void txtNovaQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNovaQuantidadeKeyTyped
@@ -338,21 +332,20 @@ public class EstoqueView extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (testarSelecaoCamposSalvar() == true) {
             int codProduto = (Integer.parseInt(this.txtCodProduto.getText()));
-            String descricaoProduto= this.txtDescricaoProduto.getText();
+            String descricaoProduto = this.txtDescricaoProduto.getText();
             int quantidadeAtual = Integer.parseInt(this.txtQuantidadeAtual.getText());
             int novaQuantidade = Integer.parseInt(this.txtNovaQuantidade.getText());
             // Questiona a exclusão
             int opcao = JOptionPane.showConfirmDialog(this, "Confirma a atualização na quantidade do produto ?\n"
                     + codProduto + " - " + descricaoProduto + "\n"
-                    +"Quantidade Atual: " + quantidadeAtual + "\n"        
-                    +"Nova  Quantidade: " + novaQuantidade + "\n"        
-                    +"", "Confirme", JOptionPane.YES_NO_OPTION);
+                    + "Quantidade Atual: " + quantidadeAtual + "\n"
+                    + "Nova  Quantidade: " + novaQuantidade + "\n"
+                    + "", "Confirme", JOptionPane.YES_NO_OPTION);
             //se sim exclui, se não não faz nada    
-            if(opcao == JOptionPane.OK_OPTION){
+            if (opcao == JOptionPane.OK_OPTION) {
                 this.atualizarEstoqueProduto();
                 this.limparCampos();
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Erro ao e os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -363,22 +356,29 @@ public class EstoqueView extends javax.swing.JDialog {
         btnAtualizarEstoqueActionPerformed(evt);
     }//GEN-LAST:event_txtNovaQuantidadeActionPerformed
 
+    private void txtCodProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProdutoKeyTyped
+        // TODO add your handling code here:
+        String caracteres = "0987654321";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodProdutoKeyTyped
+
     private boolean testarCodigoProduto() {
         if (txtCodProduto.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "É necessário informar o código do produto!");
             this.btnAtualizarEstoque.setEnabled(false);
             return false;
+
         }
-        buscaInformacoesProdutos();
         return true;
     }
 
-    private boolean buscaInformacoesProdutos() {
+    private void buscaInformacoesProdutos() {
 
-        int codigoProduto = Integer.parseInt(txtCodProduto.getText());
-
+        int codigo = Integer.parseInt(txtCodProduto.getText());
         try {
-            produto = produtoController.getProdutoController(codigoProduto);
+            produto = produtoController.getProdutoController(codigo);
             this.txtDescricaoProduto.setText(produto.getDescricao());
             this.txtDescricaoCategoria.setText(categoriaProdutoController.getCategoriaProdutoController(produto.getCodCategoriaProduto()).getDescricao());
             this.txtDescricaoUniMedida.setText((unidadeMedidaController.getUnidadeMedidaController(produto.getCodUnidadeMedida()).getDescricao()));
@@ -387,7 +387,7 @@ public class EstoqueView extends javax.swing.JDialog {
             DecimalFormat df2 = new DecimalFormat("#,##0.00");
             String valorCompraTela = df2.format(valorRetorno2);
             this.txtValorCompra.setText(valorCompraTela);
-
+            
             Double valorRetorno = produto.getValor();
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String valorTela = df.format(valorRetorno);
@@ -403,13 +403,14 @@ public class EstoqueView extends javax.swing.JDialog {
             this.lblDataUltimaAtualizacao.setText(dataUltimaAtualizacao);
 
             this.btnAtualizarEstoque.setEnabled(true);
+            //return true;
 
-            return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Produto não localizado, valide o código!");
+            
             btnAtualizarEstoque.setEnabled(false);
             limparCampos();
-            return false;
+           // return false;
 
         }
     }
@@ -431,32 +432,31 @@ public class EstoqueView extends javax.swing.JDialog {
 
         if (txtCodProduto.getText().equals("") || (txtNovaQuantidade.getText().equals(""))) {
             JOptionPane.showMessageDialog(this, "Valide o código do produto e a Nova quantidade!");
-           return false;
-            }
+            return false;
+        }
         {
             return true;
         }
     }
-    
-    private boolean atualizarEstoqueProduto(){
+
+    private boolean atualizarEstoqueProduto() {
         produto.setCodProduto(Integer.parseInt(this.txtCodProduto.getText()));
         produto.setQuantidade(Integer.parseInt(this.txtNovaQuantidade.getText()));
-        
+
         Date dataCadastramentoCliente = new Date();
         String formatoDataMysql = ("yyyy-MM-dd");
         SimpleDateFormat formatarData = new SimpleDateFormat(formatoDataMysql);
         String dataMysql = formatarData.format(dataCadastramentoCliente);
         produto.setDataEstoqueAtualizacao(dataMysql);
-        
-        if(produtoController.atualizarProdutoEstoqueController(produto)){
+
+        if (produtoController.atualizarProdutoEstoqueController(produto)) {
             JOptionPane.showMessageDialog(this, "Quantidade Atualizada com sucesso!");
             return true;
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao gravar os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-    }        
-    
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

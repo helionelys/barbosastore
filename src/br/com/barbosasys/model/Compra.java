@@ -8,6 +8,7 @@ package br.com.barbosasys.model;
 import br.com.barbosasys.model.Fornecedor;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,6 +26,7 @@ public class Compra {
     private Double valorDesconto;
     private int tipoPagamento;
     private ArrayList<Compra> listaCompra;
+    private ArrayList<Item> itens;
     private int codStatusCompra;
     private String descricaoStatus;
     private String observacao;
@@ -139,6 +141,14 @@ public class Compra {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public ArrayList<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(ArrayList<Item> itens) {
+        this.itens = itens;
     }
     
     public String getDescricaStatus() {

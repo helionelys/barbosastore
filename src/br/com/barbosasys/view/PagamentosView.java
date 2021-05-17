@@ -373,7 +373,7 @@ public class PagamentosView extends javax.swing.JDialog {
                 quantidadeVendida = Integer.parseInt(itensDaVenda.getValueAt(i, 3).toString());
                 quantidadeAtualizada = quantidadeEstoque - quantidadeVendida;
                 objProdutoVenda.setQuantidade(quantidadeAtualizada);
-                produtoController.atualizarProdutoBaixarEstoqueController(objProdutoVenda);
+                produtoController.atualizarProdutoCompraVendaEstoqueController(objProdutoVenda);
                 listaItensVendas.add(objItemVenda);
         }
         
