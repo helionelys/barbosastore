@@ -41,6 +41,8 @@ public class ContasReceberView extends javax.swing.JDialog {
     ArrayList<TipoPagamento> listaTipoPagamentos = new ArrayList<>();
     String tipoCadastro = "cadastro";
     DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
+    DetalheLancamentoRecebidoView telaDetalheLancamentoRecebido = new DetalheLancamentoRecebidoView(this, rootPaneCheckingEnabled);
+
 
     /**
      * Creates new form ContasPagarView
@@ -78,6 +80,7 @@ public class ContasReceberView extends javax.swing.JDialog {
         btnLancamentosRecebidosRevogar = new javax.swing.JButton();
         btnLancamentosRecebidosCancelar = new javax.swing.JButton();
         btnLancamentosRecebidosImprimir = new javax.swing.JButton();
+        btnLancamentosRecebidosDetalhe = new javax.swing.JButton();
         jpLancamentosContasAPagar = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtLancamentoCodCliente = new javax.swing.JTextField();
@@ -338,6 +341,14 @@ public class ContasReceberView extends javax.swing.JDialog {
         btnLancamentosRecebidosImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/print22.png"))); // NOI18N
         btnLancamentosRecebidosImprimir.setText("Imprimir");
 
+        btnLancamentosRecebidosDetalhe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Report.png"))); // NOI18N
+        btnLancamentosRecebidosDetalhe.setText("Detalhe ");
+        btnLancamentosRecebidosDetalhe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLancamentosRecebidosDetalheActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpContasPagasLayout = new javax.swing.GroupLayout(jpContasPagas);
         jpContasPagas.setLayout(jpContasPagasLayout);
         jpContasPagasLayout.setHorizontalGroup(
@@ -352,6 +363,8 @@ public class ContasReceberView extends javax.swing.JDialog {
                         .addComponent(txtLancamentoRecebidosPesquisar))
                     .addGroup(jpContasPagasLayout.createSequentialGroup()
                         .addComponent(btnLancamentosRecebidosImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLancamentosRecebidosDetalhe)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLancamentosRecebidosRevogar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -372,7 +385,9 @@ public class ContasReceberView extends javax.swing.JDialog {
                     .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnLancamentosRecebidosRevogar)
                         .addComponent(btnLancamentosRecebidosCancelar))
-                    .addComponent(btnLancamentosRecebidosImprimir))
+                    .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnLancamentosRecebidosImprimir)
+                        .addComponent(btnLancamentosRecebidosDetalhe)))
                 .addContainerGap())
         );
 
@@ -729,6 +744,20 @@ public class ContasReceberView extends javax.swing.JDialog {
         pesquisa.setRowFilter(RowFilter.regexFilter(text, 2));
     }//GEN-LAST:event_txtLancamentoRecebidosPesquisarKeyReleased
 
+    private void btnLancamentosRecebidosDetalheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancamentosRecebidosDetalheActionPerformed
+        // TODO add your handling code here:
+        //        if (testarSelecaoLancamentosBaixados()== true) {
+            //            int linha = tblLancamentosPagos.getSelectedRow();
+            //            int codLancamento = (Integer) tblLancamentosPagos.getValueAt(linha, 0);
+            //            System.out.println(codLancamento);
+            //            DetalheLancamentoPagoView telaDetalheLancamentoPago = new DetalheLancamentoPagoView(this, rootPaneCheckingEnabled);
+            //            telaDetalheLancamentoPago.setLblCodLancamento(codLancamento);
+            //        telaDetalheLancamentoPago.setVisible(true);
+            if (testarSelecaoLancamentosBaixados() == true) {
+                recuperarLancamentoBaixadoDetalhe();
+            }
+    }//GEN-LAST:event_btnLancamentosRecebidosDetalheActionPerformed
+
     private void DadosLimpeza() {
         listaTiposPagamento();
         carregarLancamentosAReceberAberto();
@@ -981,6 +1010,55 @@ public class ContasReceberView extends javax.swing.JDialog {
             return false;
         }
     }
+    
+    private boolean recuperarLancamentoBaixadoDetalhe() {
+        telaDetalheLancamentoRecebido = new DetalheLancamentoRecebidoView(this, rootPaneCheckingEnabled);
+        try {
+            int linha = this.tblLancamentosRecebidos.getSelectedRow();
+            String nomeFornecedor = (String) tblLancamentosRecebidos.getValueAt(linha, 2);
+            int codigoLancamento = (Integer) tblLancamentosRecebidos.getValueAt(linha, 0);
+            //Recupera os dados no banco de dados
+            lancamento = (lancamentoController.getLancamentoControllerAPagar(codigoLancamento));
+            telaDetalheLancamentoRecebido.setLblCodLancamento(codigoLancamento);
+            telaDetalheLancamentoRecebido.setTxtCodFornecedor(lancamento.getPessoa().getCodigo());
+            telaDetalheLancamentoRecebido.setTxtNomeFornecedor(nomeFornecedor);
+            telaDetalheLancamentoRecebido.setTxtDescricaoLancamento(lancamento.getDescricaoLancamento());
+
+            String dataLancamento = lancamento.getDataLancamento();
+            DateTimeFormatter dataLancamentoRecebida = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter dataLancamentoFormatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(dataLancamento, dataLancamentoRecebida);
+            String dataLacamentoTela = localDate.format(dataLancamentoFormatada);
+            telaDetalheLancamentoRecebido.setTextDataLancamento(dataLacamentoTela);
+
+            String dataLancamentoVencimento = lancamento.getDataVencimento();
+            DateTimeFormatter dataRecebida = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter dataFormatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate2 = LocalDate.parse(dataLancamentoVencimento, dataRecebida);
+            String dataLacamentoVencimentoTela = localDate2.format(dataFormatada);
+            telaDetalheLancamentoRecebido.setTxtDataVencimento(dataLacamentoVencimentoTela);
+
+            String dataLancamentoPagamento = lancamento.getDataPagamento();
+            DateTimeFormatter dataRecebida2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter dataFormatada2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate3 = LocalDate.parse(dataLancamentoPagamento, dataRecebida2);
+            String dataLacamentoPagamentoTela = localDate3.format(dataFormatada2);
+            telaDetalheLancamentoRecebido.setTxtDataPagamento(dataLacamentoPagamentoTela);
+
+            Double valorLancamentoRetorno = lancamento.getValorLancamento();
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            String valorLancamentoTela = df.format(valorLancamentoRetorno);
+            telaDetalheLancamentoRecebido.setTxtValorLancamento(valorLancamentoTela);
+
+            telaDetalheLancamentoRecebido.setTxtTipoPagamento(String.valueOf(tipoPagamentoController.getTipoPagamentController(lancamento.getCodTipoPagamento()).getDescricao()));
+            telaDetalheLancamentoRecebido.setTxtObservacao(lancamento.getObservacao());
+            telaDetalheLancamentoRecebido.setVisible(true);
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -997,6 +1075,7 @@ public class ContasReceberView extends javax.swing.JDialog {
     private javax.swing.JButton btnLancamentosAReceberImprimir;
     private javax.swing.JButton btnLancamentosReceber;
     private javax.swing.JButton btnLancamentosRecebidosCancelar;
+    private javax.swing.JButton btnLancamentosRecebidosDetalhe;
     private javax.swing.JButton btnLancamentosRecebidosImprimir;
     private javax.swing.JButton btnLancamentosRecebidosRevogar;
     private javax.swing.JComboBox<String> cbLancamentoTipoPagamento;

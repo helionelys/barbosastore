@@ -305,6 +305,8 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnLancamentosRecebidosImprimir" min="-2" pref="108" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnLancamentosRecebidosDetalhe" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnLancamentosRecebidosRevogar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -331,7 +333,10 @@
                               <Component id="btnLancamentosRecebidosRevogar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnLancamentosRecebidosCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="btnLancamentosRecebidosImprimir" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="btnLancamentosRecebidosImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLancamentosRecebidosDetalhe" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -435,6 +440,17 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Imprimir"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnLancamentosRecebidosDetalhe">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/barbosasys/images/Report.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Detalhe "/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLancamentosRecebidosDetalheActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

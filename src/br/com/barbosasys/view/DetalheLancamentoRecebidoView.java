@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author helionelys
  */
-public class DetalheLancamentoPagoView extends javax.swing.JDialog {
+public class DetalheLancamentoRecebidoView extends javax.swing.JDialog {
     Lancamento lancamentoDetalhe = new Lancamento();
     LancamentoController lancamentoController = new LancamentoController();
     TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
@@ -26,7 +26,7 @@ public class DetalheLancamentoPagoView extends javax.swing.JDialog {
     /**
      * Creates new form DetalheLancamentoPago
      */
-    public DetalheLancamentoPagoView(ContasAPagarView owner,  boolean modal) {
+    public DetalheLancamentoRecebidoView(ContasReceberView owner,  boolean modal) {
         super(owner, modal);
         //recuperarLancamento();
         initComponents();
