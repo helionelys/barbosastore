@@ -14,6 +14,7 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import util.ValidarCpfCnpj;
 
 /**
  *
@@ -78,6 +79,7 @@ public class FornecedorView extends javax.swing.JDialog {
         rbTipoPFisicaFornecedor = new javax.swing.JRadioButton();
         rbTipoPJuridicaFornecedor = new javax.swing.JRadioButton();
         txtNomeRepresentanteFornecedor = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jPanelEnderecoCliente = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         txtCepFornecedor = new javax.swing.JFormattedTextField();
@@ -255,7 +257,7 @@ public class FornecedorView extends javax.swing.JDialog {
                     .addComponent(jLabel9)
                     .addComponent(txtBuscarNomeFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpBuscaFornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluirFornecedor)
@@ -283,6 +285,11 @@ public class FornecedorView extends javax.swing.JDialog {
         }
         txtCpfFornecedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCpfFornecedor.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
+        txtCpfFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfFornecedorActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel6.setText("Nome / Razão Social:");
@@ -336,6 +343,8 @@ public class FornecedorView extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/valid.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelDadosPessoaisClienteLayout = new javax.swing.GroupLayout(jPanelDadosPessoaisCliente);
         jPanelDadosPessoaisCliente.setLayout(jPanelDadosPessoaisClienteLayout);
         jPanelDadosPessoaisClienteLayout.setHorizontalGroup(
@@ -345,20 +354,22 @@ public class FornecedorView extends javax.swing.JDialog {
                 .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCpfFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel3)
-                        .addGap(6, 6, 6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtRgFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(6, 6, 6)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCnpjFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtInscricaoEstadualFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))
+                        .addComponent(txtInscricaoEstadualFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
                     .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
                         .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,14 +421,15 @@ public class FornecedorView extends javax.swing.JDialog {
                 .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtCpfFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtRgFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtCnpjFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtInscricaoEstadualFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtInscricaoEstadualFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRgFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -796,6 +808,21 @@ public class FornecedorView extends javax.swing.JDialog {
         pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
     }//GEN-LAST:event_txtBuscarNomeFornecedorKeyReleased
 
+    private void txtCpfFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfFornecedorActionPerformed
+        // TODO add your handling code here:
+         util.ValidarCpfCnpj validarCpCnpj = new ValidarCpfCnpj(txtCpfFornecedor.getText());
+        if(validarCpCnpj.verificarValidadeCpfCnpj() == true)
+        {
+            // se sim entao usamos um JOptionPane e apresentamos a mensagem "é um CPF valido !"
+            JOptionPane.showMessageDialog(null, "é um CPF valido !");
+        }
+        else 
+        {
+            // se nao entao usamos um JOptionPane e apresentamos a mensagem "é um CPF invalido !"
+            JOptionPane.showMessageDialog(null, "é um CPF invalido !");
+        }
+    }//GEN-LAST:event_txtCpfFornecedorActionPerformed
+
     private void carregarFornecedor() {
         listaFornecedor = fornecedorController.getListaFornecedorController();
         DefaultTableModel modelo = (DefaultTableModel) tblFornecedores.getModel();
@@ -1118,6 +1145,7 @@ public class FornecedorView extends javax.swing.JDialog {
     private javax.swing.JButton btnIncluirFornecedor;
     private javax.swing.JButton btnSalvarFornecedor;
     protected javax.swing.JComboBox<String> cbUfFornecedor;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
