@@ -26,6 +26,9 @@ public class ClienteController {
     public Cliente getClienteController(String nome){
         return this.clienteDAO.getClienteDAO(nome);
     }
+    public boolean getClienteCpfCnpjontroller(String cpfCnpj){
+        return this.clienteDAO.getClienteBuscarCfpCnpjDAO(cpfCnpj);
+    }
     
     public ArrayList<Cliente> getListaClienteController(){
         return this.clienteDAO.getListaClienteDAO();

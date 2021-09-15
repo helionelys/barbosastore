@@ -2,6 +2,7 @@ package br.com.barbosasys.view;
 
 import br.com.barbosasys.controller.ClienteController;
 import br.com.barbosasys.model.Cliente;
+import br.com.barbosasys.utilitarios.ValidarCpfCnpj;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -78,6 +79,8 @@ public class ClienteView extends javax.swing.JDialog {
         txtInscricaoEstadualCliente = new javax.swing.JTextField();
         rbTipoPFisicaCliente = new javax.swing.JRadioButton();
         rbTipoPJuridicaCliente = new javax.swing.JRadioButton();
+        btnValidarCpf = new javax.swing.JButton();
+        btnValidarCnpj = new javax.swing.JButton();
         jPanelEnderecoCliente = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         txtCepCliente = new javax.swing.JFormattedTextField();
@@ -230,13 +233,13 @@ public class ClienteView extends javax.swing.JDialog {
             .addGroup(jpBuscaClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpBuscaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
                     .addGroup(jpBuscaClienteLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscarNomeCliente))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBuscaClienteLayout.createSequentialGroup()
-                        .addGap(0, 228, Short.MAX_VALUE)
+                        .addGap(0, 243, Short.MAX_VALUE)
                         .addComponent(btnIncluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAlterarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,7 +260,7 @@ public class ClienteView extends javax.swing.JDialog {
                     .addComponent(jLabel9)
                     .addComponent(txtBuscarNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpBuscaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluirCliente)
@@ -293,13 +296,18 @@ public class ClienteView extends javax.swing.JDialog {
         }
         txtCpfCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCpfCliente.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
+        txtCpfCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfClienteActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel6.setText("Nome / Razão Social:");
 
         txtApelidoNomeFantasiaCliente.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
 
-        txtNomeRazaoSocialCliente.setFont(new java.awt.Font("Cantarell", 0, 11)); // NOI18N
+        txtNomeRazaoSocialCliente.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel20.setText("Tipo Cliente:");
@@ -314,6 +322,11 @@ public class ClienteView extends javax.swing.JDialog {
         }
         txtCnpjCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCnpjCliente.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
+        txtCnpjCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCnpjClienteActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel5.setText("CNPJ:");
@@ -346,6 +359,20 @@ public class ClienteView extends javax.swing.JDialog {
             }
         });
 
+        btnValidarCpf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/valid.png"))); // NOI18N
+        btnValidarCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarCpfActionPerformed(evt);
+            }
+        });
+
+        btnValidarCnpj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/valid.png"))); // NOI18N
+        btnValidarCnpj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarCnpjActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelDadosPessoaisClienteLayout = new javax.swing.GroupLayout(jPanelDadosPessoaisCliente);
         jPanelDadosPessoaisCliente.setLayout(jPanelDadosPessoaisClienteLayout);
         jPanelDadosPessoaisClienteLayout.setHorizontalGroup(
@@ -354,44 +381,43 @@ public class ClienteView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(20, 20, 20)
-                        .addComponent(txtCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addGap(6, 6, 6)
-                        .addComponent(txtRgCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel20)
+                        .addGap(94, 94, 94)
+                        .addComponent(rbTipoPFisicaCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbTipoPJuridicaCliente)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel2)
                         .addGap(18, 18, 18)
+                        .addComponent(txtDataNascimentoCliente))
+                    .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
+                        .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtApelidoNomeFantasiaCliente)
+                            .addComponent(txtNomeRazaoSocialCliente)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosPessoaisClienteLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(btnValidarCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 48, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRgCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCnpjCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnValidarCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtInscricaoEstadualCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
-                    .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
-                        .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosPessoaisClienteLayout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(45, 45, 45))
-                                .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
-                                    .addComponent(jLabel20)
-                                    .addGap(94, 94, 94)))
-                            .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addGap(14, 14, 14)))
-                        .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
-                                .addComponent(rbTipoPFisicaCliente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbTipoPJuridicaCliente)
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDataNascimentoCliente))
-                            .addComponent(txtApelidoNomeFantasiaCliente)
-                            .addComponent(txtNomeRazaoSocialCliente))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtInscricaoEstadualCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(9, 9, 9))
         );
         jPanelDadosPessoaisClienteLayout.setVerticalGroup(
@@ -423,12 +449,14 @@ public class ClienteView extends javax.swing.JDialog {
                         .addComponent(txtCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtRgCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCnpjCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRgCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCnpjCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtInscricaoEstadualCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtInscricaoEstadualCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnValidarCpf)
+                    .addComponent(btnValidarCnpj))
                 .addContainerGap())
         );
 
@@ -492,7 +520,7 @@ public class ClienteView extends javax.swing.JDialog {
                 .addGroup(jPanelEnderecoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtComplementoCliente)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEnderecoClienteLayout.createSequentialGroup()
-                        .addComponent(txtCepCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                        .addComponent(txtCepCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -648,7 +676,7 @@ public class ClienteView extends javax.swing.JDialog {
                         .addComponent(txtDataCadastramentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSalvarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelarCliente))
                     .addComponent(jPanelEnderecoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelContatoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -685,10 +713,7 @@ public class ClienteView extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jTabbedPaneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPaneCliente, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -711,6 +736,8 @@ public class ClienteView extends javax.swing.JDialog {
         txtCpfCliente.setEnabled(false);
         txtRgCliente.setEnabled(false);
         txtDataNascimentoCliente.setEnabled(false);
+        btnValidarCpf.setEnabled(false);
+        btnValidarCnpj.setEnabled(true);
     }//GEN-LAST:event_rbTipoPJuridicaClienteActionPerformed
 
     private void btnSalvarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarClienteActionPerformed
@@ -772,6 +799,8 @@ public class ClienteView extends javax.swing.JDialog {
         txtCpfCliente.setEnabled(true);
         txtRgCliente.setEnabled(true);
         txtDataNascimentoCliente.setEnabled(true);
+        btnValidarCpf.setEnabled(true);
+        btnValidarCnpj.setEnabled(false);
     }//GEN-LAST:event_rbTipoPFisicaClienteActionPerformed
 
     private void btnIncluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirClienteActionPerformed
@@ -780,6 +809,9 @@ public class ClienteView extends javax.swing.JDialog {
         this.camposAtivadosPessoaFisica();
         txtCnpjCliente.setEnabled(false);
         txtInscricaoEstadualCliente.setEnabled(false);
+        btnValidarCpf.setEnabled(true);
+        btnValidarCnpj.setEnabled(false);
+
 
     }//GEN-LAST:event_btnIncluirClienteActionPerformed
 
@@ -830,6 +862,69 @@ public class ClienteView extends javax.swing.JDialog {
         String text = txtBuscarNomeCliente.getText();
         pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
     }//GEN-LAST:event_txtBuscarNomeClienteKeyReleased
+
+    private void btnValidarCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarCpfActionPerformed
+        // TODO add your handling code here:
+        validarCpf();
+    }//GEN-LAST:event_btnValidarCpfActionPerformed
+
+    private void txtCpfClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfClienteActionPerformed
+        // TODO add your handling code here:
+        validarCpf();
+    }//GEN-LAST:event_txtCpfClienteActionPerformed
+
+    private void btnValidarCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarCnpjActionPerformed
+        // TODO add your handling code here:
+        validarCnpj();
+    }//GEN-LAST:event_btnValidarCnpjActionPerformed
+
+    private void txtCnpjClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCnpjClienteActionPerformed
+        // TODO add your handling code here:
+        validarCnpj();
+    }//GEN-LAST:event_txtCnpjClienteActionPerformed
+    
+     private void validarCpf() {
+        ValidarCpfCnpj validarCpf = new ValidarCpfCnpj();
+        String numeroCpf = txtCpfCliente.getText();
+        
+        if (clienteController.getClienteCpfCnpjontroller(numeroCpf) == true) {
+            JOptionPane.showMessageDialog(null, "CPF já cadastrado, valide o numero!");
+            btnSalvarCliente.setEnabled(false);
+        } else if (validarCpf.isCPF(numeroCpf) == false) {
+            JOptionPane.showMessageDialog(null, "é um CPF invalido !");
+            txtCpfCliente.setText("000.000.000-00");
+            txtCpfCliente.grabFocus();
+            btnSalvarCliente.setEnabled(false);
+        } else {
+            // se nao entao usamos um JOptionPane e apresentamos a mensagem "é um CPF invalido !"
+            JOptionPane.showMessageDialog(null, "é um CPF valido !");
+            txtRgCliente.grabFocus();
+            btnSalvarCliente.setEnabled(true);
+            //System.out.println(fornecedorController.getFornecedorCpfCnpjontroller(numeroCpf));
+        }
+    }
+     
+    private void validarCnpj() {
+        ValidarCpfCnpj validarCnpj = new ValidarCpfCnpj();
+        String numeroCnpj = txtCnpjCliente.getText();
+
+        if (clienteController.getClienteCpfCnpjontroller(numeroCnpj) == true) {
+            JOptionPane.showMessageDialog(null, "CNPJ já cadastrado, valide o numero!");
+            btnSalvarCliente.setEnabled(false);
+        } else if (validarCnpj.isCNPJ(numeroCnpj) == false) {
+            JOptionPane.showMessageDialog(null, "é um CNPJ invalido !");
+            txtCnpjCliente.setText("00.000.000/0000-00");
+            txtCnpjCliente.grabFocus();
+            btnSalvarCliente.setEnabled(false);
+        } else {
+            // se nao entao usamos um JOptionPane e apresentamos a mensagem "é um CPF invalido !"
+            JOptionPane.showMessageDialog(null, "é um CNPJ valido !");
+            txtInscricaoEstadualCliente.grabFocus();
+            btnSalvarCliente.setEnabled(true);
+            //System.out.println(fornecedorController.getFornecedorCpfCnpjontroller(numeroCpf));
+        }
+    }
+ 
     
     private void carregarCliente() {
         listaCliente = clienteController.getListaClienteController();
@@ -882,6 +977,8 @@ public class ClienteView extends javax.swing.JDialog {
                 this.txtCnpjCliente.setText(null);
                 this.txtInscricaoEstadualCliente.setEnabled(false);
                 this.txtInscricaoEstadualCliente.setText(null);
+                this.btnValidarCpf.setEnabled(true);
+                this.btnValidarCnpj.setEnabled(false);
 
             } else if (cliente.getPessoaTipo() == 2) {
                 this.camposAtivadosPessoaJuridica();
@@ -894,6 +991,8 @@ public class ClienteView extends javax.swing.JDialog {
                 this.txtRgCliente.setText(null);
                 this.txtCnpjCliente.setText(cliente.getCpfCnpj());
                 this.txtInscricaoEstadualCliente.setText(cliente.getRgInscricaoEstadual());
+                this.btnValidarCpf.setEnabled(false);
+                this.btnValidarCnpj.setEnabled(true);
             }
 
             this.txtNomeRazaoSocialCliente.setText(cliente.getNomeRazaoSocial());
@@ -1033,6 +1132,7 @@ public class ClienteView extends javax.swing.JDialog {
         txtCodigoCliente.setEnabled(true);
         txtDataCadastramentoCliente.setEnabled(true);
         btnSalvarCliente.setEnabled(true);
+        btnValidarCpf.setEnabled(true);
     }
     
         private void camposAtivadosPessoaJuridica(){
@@ -1083,6 +1183,8 @@ public class ClienteView extends javax.swing.JDialog {
         txtEmailCliente.setEnabled(false);
         txtCodigoCliente.setEnabled(false);
         txtDataCadastramentoCliente.setEnabled(false);
+        btnValidarCpf.setEnabled(false);
+        btnValidarCnpj.setEnabled(false);
         btnSalvarCliente.setEnabled(false);
     }
     
@@ -1194,6 +1296,8 @@ public class ClienteView extends javax.swing.JDialog {
     private javax.swing.JButton btnExcluirCliente;
     private javax.swing.JButton btnIncluirCliente;
     private javax.swing.JButton btnSalvarCliente;
+    private javax.swing.JButton btnValidarCnpj;
+    private javax.swing.JButton btnValidarCpf;
     protected javax.swing.JComboBox<String> cbUfCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

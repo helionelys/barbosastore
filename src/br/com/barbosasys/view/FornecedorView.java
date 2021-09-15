@@ -263,7 +263,7 @@ public class FornecedorView extends javax.swing.JDialog {
                     .addComponent(btnExcluirFornecedor)
                     .addComponent(btnCancelarBuscaFornecedor)
                     .addComponent(btnIncluirFornecedor)
-                    .addComponent(btnAlterarFornecedor)))
+                    .addComponent(btnAlterarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jpBuscaFornecedorLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCancelarBuscaFornecedor, btnExcluirFornecedor});
@@ -296,7 +296,7 @@ public class FornecedorView extends javax.swing.JDialog {
 
         txtApelidoNomeFantasiatxtNomeRazaoSocialFornecedor.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
 
-        txtNomeRazaoSocialFornecedor.setFont(new java.awt.Font("Cantarell", 0, 11)); // NOI18N
+        txtNomeRazaoSocialFornecedor.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel20.setText("Tipo Cliente:");
@@ -881,14 +881,20 @@ public class FornecedorView extends javax.swing.JDialog {
         ValidarCpfCnpj validarCnpj = new ValidarCpfCnpj();
         String numeroCnpj = txtCnpjFornecedor.getText();
 
-        if (validarCnpj.isCNPJ(numeroCnpj) == true) {
-            JOptionPane.showMessageDialog(null, "é um CNPJ valido !");
-            txtInscricaoEstadualFornecedor.grabFocus();
-        } else {
-            // se nao entao usamos um JOptionPane e apresentamos a mensagem "é um CPF invalido !"
+        if (fornecedorController.getFornecedorCpfCnpjontroller(numeroCnpj) == true) {
+            JOptionPane.showMessageDialog(null, "CNPJ já cadastrado, valide o numero!");
+            btnSalvarFornecedor.setEnabled(false);
+        } else if (validarCnpj.isCNPJ(numeroCnpj) == false) {
             JOptionPane.showMessageDialog(null, "é um CNPJ invalido !");
             txtCnpjFornecedor.setText("00.000.000/0000-00");
             txtCnpjFornecedor.grabFocus();
+            btnSalvarFornecedor.setEnabled(false);
+        } else {
+            // se nao entao usamos um JOptionPane e apresentamos a mensagem "é um CPF invalido !"
+            JOptionPane.showMessageDialog(null, "é um CNPJ valido !");
+            txtInscricaoEstadualFornecedor.grabFocus();
+            btnSalvarFornecedor.setEnabled(true);
+            //System.out.println(fornecedorController.getFornecedorCpfCnpjontroller(numeroCpf));
         }
     }
 
@@ -1062,6 +1068,7 @@ public class FornecedorView extends javax.swing.JDialog {
         txtEmailFornecedor.setEnabled(true);
         txtCodigoFornecedor.setEnabled(true);
         btnSalvarFornecedor.setEnabled(true);
+        
 
     }
 
