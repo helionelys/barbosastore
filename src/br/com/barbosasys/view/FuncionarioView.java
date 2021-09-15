@@ -2,6 +2,7 @@ package br.com.barbosasys.view;
 
 import br.com.barbosasys.controller.FuncionarioController;
 import br.com.barbosasys.model.Funcionario;
+import br.com.barbosasys.utilitarios.ValidarCpfCnpj;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -82,6 +83,7 @@ public class FuncionarioView extends javax.swing.JDialog {
         cbSexoFuncionario = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
         cbEstadoCivelFuncionario = new javax.swing.JComboBox<>();
+        btnValidarCpf = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         txtFuncaoFuncionario = new javax.swing.JTextField();
@@ -299,6 +301,11 @@ public class FuncionarioView extends javax.swing.JDialog {
         }
         txtCpfFuncionario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCpfFuncionario.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
+        txtCpfFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfFuncionarioActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel6.setText("Nome:");
@@ -345,6 +352,13 @@ public class FuncionarioView extends javax.swing.JDialog {
         cbEstadoCivelFuncionario.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
         cbEstadoCivelFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opção", "Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)" }));
 
+        btnValidarCpf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/valid.png"))); // NOI18N
+        btnValidarCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarCpfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelDadosPessoaisClienteLayout = new javax.swing.GroupLayout(jPanelDadosPessoaisCliente);
         jPanelDadosPessoaisCliente.setLayout(jPanelDadosPessoaisClienteLayout);
         jPanelDadosPessoaisClienteLayout.setHorizontalGroup(
@@ -364,16 +378,18 @@ public class FuncionarioView extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDataNascimentoFuncionario))
+                                .addComponent(txtDataNascimentoFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                             .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
-                                .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtMaeFuncionario, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadosPessoaisClienteLayout.createSequentialGroup()
-                                        .addComponent(cbSexoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtMaeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
+                                        .addComponent(cbSexoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtCpfFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCpfFuncionario)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnValidarCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
@@ -408,15 +424,19 @@ public class FuncionarioView extends javax.swing.JDialog {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCpfFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRgFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRgOrgaoExpedidorFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbSexoFuncionario))
+                .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCpfFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRgFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRgOrgaoExpedidorFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbSexoFuncionario))
+                    .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
+                        .addComponent(btnValidarCpf)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -751,7 +771,7 @@ public class FuncionarioView extends javax.swing.JDialog {
         } else if (tipoCadastro.equals("novo")) {
             salvarFuncionario();
             carregarFuncionario();
-            int opcao = JOptionPane.showConfirmDialog(this, "Deseje realiza Inclui um novo cliente ?\n"
+            int opcao = JOptionPane.showConfirmDialog(this, "Deseje realiza Inclui um novo funcionário ?\n"
                     + "", "Confirma", JOptionPane.YES_NO_OPTION);
             if (opcao == JOptionPane.OK_OPTION) {
                 this.incluirFuncionario();
@@ -860,6 +880,43 @@ public class FuncionarioView extends javax.swing.JDialog {
         pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
     }//GEN-LAST:event_txtBuscarNomeFuncionarioKeyReleased
 
+    private void btnValidarCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarCpfActionPerformed
+        // TODO add your handling code here:
+         validarCpf();
+    }//GEN-LAST:event_btnValidarCpfActionPerformed
+
+    private void txtCpfFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfFuncionarioActionPerformed
+        // TODO add your handling code here:
+        validarCpf();
+    }//GEN-LAST:event_txtCpfFuncionarioActionPerformed
+    
+    private void validarCpf() {
+        ValidarCpfCnpj validarCpf = new ValidarCpfCnpj();
+        String numeroCpf = txtCpfFuncionario.getText();
+        
+//        if (validarCpf.isCPF(numeroCpf) == false) {
+//            JOptionPane.showMessageDialog(null, "é um CPF invalido !");
+//            txtCpfFornecedor.setText("000.000.000-00");
+//            txtCpfFornecedor.grabFocus();
+//        } 
+        if (funcionarioController.getFuncionarioCpfController(numeroCpf) == true) {
+            JOptionPane.showMessageDialog(null, "CPF já cadastrado, valide o numero!");
+            btnSalvarFuncionario.setEnabled(false);
+        } else if (validarCpf.isCPF(numeroCpf) == false) {
+            JOptionPane.showMessageDialog(null, "é um CPF invalido !");
+            txtCpfFuncionario.setText("000.000.000-00");
+            txtCpfFuncionario.grabFocus();
+            btnSalvarFuncionario.setEnabled(false);
+        } else {
+            // se nao entao usamos um JOptionPane e apresentamos a mensagem "é um CPF invalido !"
+            JOptionPane.showMessageDialog(null, "é um CPF valido !");
+            txtRgFuncionario.grabFocus();
+            btnSalvarFuncionario.setEnabled(true);
+            //System.out.println(fornecedorController.getFornecedorCpfCnpjontroller(numeroCpf));
+        }
+    }
+
+    
     private void carregarFuncionario() {
         listaFuncionario = funcionarioController.getListaFuncionarioController();
         DefaultTableModel modelo = (DefaultTableModel) tblFuncionarios.getModel();
@@ -1099,6 +1156,8 @@ public class FuncionarioView extends javax.swing.JDialog {
         txtCelularFuncionario.setEnabled(true);
         txtEmailFuncionario.setEnabled(true);
         txtCodigoFuncionario.setEnabled(true);
+        btnValidarCpf.setEnabled(true);
+        btnSalvarFuncionario.setEnabled(true);
     }
 
     private void camposDesativados() {
@@ -1127,6 +1186,8 @@ public class FuncionarioView extends javax.swing.JDialog {
         txtCelularFuncionario.setEnabled(false);
         txtEmailFuncionario.setEnabled(false);
         txtCodigoFuncionario.setEnabled(false);
+        btnValidarCpf.setEnabled(false);
+        btnSalvarFuncionario.setEnabled(false);
     }
 
     // Salvar
@@ -1180,6 +1241,7 @@ public class FuncionarioView extends javax.swing.JDialog {
     private javax.swing.JButton btnExcluirFuncionario;
     private javax.swing.JButton btnIncluirFuncionario;
     private javax.swing.JButton btnSalvarFuncionario;
+    private javax.swing.JButton btnValidarCpf;
     protected javax.swing.JComboBox<String> cbEscolaridadeFuncionario;
     protected javax.swing.JComboBox<String> cbEstadoCivelFuncionario;
     protected javax.swing.JComboBox<String> cbSexoFuncionario;

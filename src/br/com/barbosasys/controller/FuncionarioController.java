@@ -24,6 +24,10 @@ public class FuncionarioController {
         return this.funcionarioDAO.getFuncionarioDAO(nome);
     }
     
+    public boolean getFuncionarioCpfController(String cpfCnpj){
+        return this.funcionarioDAO.getFuncionarioBuscarCfpDAO(cpfCnpj);
+    }
+    
     public ArrayList<Funcionario> getListaFuncionarioController(){
         return this.funcionarioDAO.getListaFuncionarioDAO();
     }

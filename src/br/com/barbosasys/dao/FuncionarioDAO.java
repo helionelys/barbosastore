@@ -249,6 +249,31 @@ public class FuncionarioDAO extends ConexaoBanco {
         }
         return funcionario;
     }
+    
+    public boolean getFuncionarioBuscarCfpDAO(String cpfCnpj) {
+        boolean result = false;
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "CPF"
+                    + " FROM"
+                    + " TBL_FUNCIONARIO"
+                    + " WHERE CPF = '" + cpfCnpj + "'"
+                    + ";"
+            );
+
+            if (this.getResultSet().next()) {
+                //fornecedor.setCpfCnpj(this.getResultSet().getString(1));
+                result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return result;
+    }
 
 //    public ArrayList<Funcionario> getListaTodosFuncionarioDAO() {
 //        ArrayList<Funcionario> listaFuncionario = new ArrayList();
