@@ -2,6 +2,7 @@ package br.com.barbosasys.view;
 
 import br.com.barbosasys.controller.FornecedorController;
 import br.com.barbosasys.model.Fornecedor;
+import br.com.barbosasys.utilitarios.ValidarCpfCnpj;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -14,7 +15,6 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import util.ValidarCpfCnpj;
 
 /**
  *
@@ -23,7 +23,6 @@ import util.ValidarCpfCnpj;
 public class FornecedorView extends javax.swing.JDialog {
 
     Fornecedor fornecedor = new Fornecedor();
-
     FornecedorController fornecedorController = new FornecedorController();
     ArrayList<Fornecedor> listaFornecedor = new ArrayList<>();
     String tipoCadastro;
@@ -79,7 +78,8 @@ public class FornecedorView extends javax.swing.JDialog {
         rbTipoPFisicaFornecedor = new javax.swing.JRadioButton();
         rbTipoPJuridicaFornecedor = new javax.swing.JRadioButton();
         txtNomeRepresentanteFornecedor = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnValidarCpf = new javax.swing.JButton();
+        btnValidarCnpj = new javax.swing.JButton();
         jPanelEnderecoCliente = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         txtCepFornecedor = new javax.swing.JFormattedTextField();
@@ -230,13 +230,13 @@ public class FornecedorView extends javax.swing.JDialog {
             .addGroup(jpBuscaFornecedorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpBuscaFornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
                     .addGroup(jpBuscaFornecedorLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscarNomeFornecedor))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBuscaFornecedorLayout.createSequentialGroup()
-                        .addGap(0, 228, Short.MAX_VALUE)
+                        .addGap(0, 243, Short.MAX_VALUE)
                         .addComponent(btnIncluirFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAlterarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,6 +311,11 @@ public class FornecedorView extends javax.swing.JDialog {
         }
         txtCnpjFornecedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCnpjFornecedor.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
+        txtCnpjFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCnpjFornecedorActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Cantarell", 1, 13)); // NOI18N
         jLabel5.setText("CNPJ:");
@@ -343,7 +348,19 @@ public class FornecedorView extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/valid.png"))); // NOI18N
+        btnValidarCpf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/valid.png"))); // NOI18N
+        btnValidarCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarCpfActionPerformed(evt);
+            }
+        });
+
+        btnValidarCnpj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/valid.png"))); // NOI18N
+        btnValidarCnpj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarCnpjActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelDadosPessoaisClienteLayout = new javax.swing.GroupLayout(jPanelDadosPessoaisCliente);
         jPanelDadosPessoaisCliente.setLayout(jPanelDadosPessoaisClienteLayout);
@@ -357,19 +374,21 @@ public class FornecedorView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCpfFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addComponent(btnValidarCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtRgFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel5)
+                        .addComponent(txtRgFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCnpjFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnValidarCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtInscricaoEstadualFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtInscricaoEstadualFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDadosPessoaisClienteLayout.createSequentialGroup()
                         .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelDadosPessoaisClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,7 +448,8 @@ public class FornecedorView extends javax.swing.JDialog {
                         .addComponent(txtInscricaoEstadualFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtRgFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
+                    .addComponent(btnValidarCpf)
+                    .addComponent(btnValidarCnpj))
                 .addContainerGap())
         );
 
@@ -493,7 +513,7 @@ public class FornecedorView extends javax.swing.JDialog {
                 .addGroup(jPanelEnderecoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtComplementoFornecedor)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEnderecoClienteLayout.createSequentialGroup()
-                        .addComponent(txtCepFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                        .addComponent(txtCepFornecedor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -634,7 +654,7 @@ public class FornecedorView extends javax.swing.JDialog {
                         .addComponent(txtCodigoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSalvarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelarFornecedor))
                     .addComponent(jPanelEnderecoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelContatoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -669,10 +689,7 @@ public class FornecedorView extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jTabbedPaneFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPaneFornecedor, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -695,6 +712,8 @@ public class FornecedorView extends javax.swing.JDialog {
         txtCpfFornecedor.setEnabled(false);
         txtRgFornecedor.setEnabled(false);
         txtNomeRepresentanteFornecedor.setEnabled(true);
+        btnValidarCpf.setEnabled(false);
+        btnValidarCnpj.setEnabled(true);
     }//GEN-LAST:event_rbTipoPJuridicaFornecedorActionPerformed
 
     private void btnSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarFornecedorActionPerformed
@@ -748,6 +767,8 @@ public class FornecedorView extends javax.swing.JDialog {
         txtCpfFornecedor.setEnabled(true);
         txtRgFornecedor.setEnabled(true);
         txtNomeRepresentanteFornecedor.setEnabled(false);
+        btnValidarCpf.setEnabled(true);
+        btnValidarCnpj.setEnabled(false);
     }//GEN-LAST:event_rbTipoPFisicaFornecedorActionPerformed
 
     private void btnIncluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirFornecedorActionPerformed
@@ -757,6 +778,8 @@ public class FornecedorView extends javax.swing.JDialog {
         txtCnpjFornecedor.setEnabled(false);
         txtInscricaoEstadualFornecedor.setEnabled(false);
         txtNomeRepresentanteFornecedor.setEnabled(false);
+        btnValidarCpf.setEnabled(true);
+        btnValidarCnpj.setEnabled(false);
 
 
     }//GEN-LAST:event_btnIncluirFornecedorActionPerformed
@@ -808,20 +831,66 @@ public class FornecedorView extends javax.swing.JDialog {
         pesquisa.setRowFilter(RowFilter.regexFilter(text, 1));
     }//GEN-LAST:event_txtBuscarNomeFornecedorKeyReleased
 
+    private void btnValidarCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarCpfActionPerformed
+        // TODO add your handling code here:
+        validarCpf();
+    }//GEN-LAST:event_btnValidarCpfActionPerformed
+
     private void txtCpfFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfFornecedorActionPerformed
         // TODO add your handling code here:
-         util.ValidarCpfCnpj validarCpCnpj = new ValidarCpfCnpj(txtCpfFornecedor.getText());
-        if(validarCpCnpj.verificarValidadeCpfCnpj() == true)
-        {
-            // se sim entao usamos um JOptionPane e apresentamos a mensagem "é um CPF valido !"
-            JOptionPane.showMessageDialog(null, "é um CPF valido !");
-        }
-        else 
-        {
-            // se nao entao usamos um JOptionPane e apresentamos a mensagem "é um CPF invalido !"
-            JOptionPane.showMessageDialog(null, "é um CPF invalido !");
-        }
+        validarCpf();
     }//GEN-LAST:event_txtCpfFornecedorActionPerformed
+
+    private void btnValidarCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarCnpjActionPerformed
+        // TODO add your handling code here:
+        validarCnpj();
+    }//GEN-LAST:event_btnValidarCnpjActionPerformed
+
+    private void txtCnpjFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCnpjFornecedorActionPerformed
+        // TODO add your handling code here:
+        validarCnpj();
+    }//GEN-LAST:event_txtCnpjFornecedorActionPerformed
+
+    private void validarCpf() {
+        ValidarCpfCnpj validarCpf = new ValidarCpfCnpj();
+        String numeroCpf = txtCpfFornecedor.getText();
+        
+//        if (validarCpf.isCPF(numeroCpf) == false) {
+//            JOptionPane.showMessageDialog(null, "é um CPF invalido !");
+//            txtCpfFornecedor.setText("000.000.000-00");
+//            txtCpfFornecedor.grabFocus();
+//        } 
+        if (fornecedorController.getFornecedorCpfCnpjontroller(numeroCpf) == true) {
+            JOptionPane.showMessageDialog(null, "CPF já cadastrado, valide o numero!");
+            btnSalvarFornecedor.setEnabled(false);
+        } else if (validarCpf.isCPF(numeroCpf) == false) {
+            JOptionPane.showMessageDialog(null, "é um CPF invalido !");
+            txtCpfFornecedor.setText("000.000.000-00");
+            txtCpfFornecedor.grabFocus();
+            btnSalvarFornecedor.setEnabled(false);
+        } else {
+            // se nao entao usamos um JOptionPane e apresentamos a mensagem "é um CPF invalido !"
+            JOptionPane.showMessageDialog(null, "é um CPF valido !");
+            txtRgFornecedor.grabFocus();
+            btnSalvarFornecedor.setEnabled(true);
+            //System.out.println(fornecedorController.getFornecedorCpfCnpjontroller(numeroCpf));
+        }
+    }
+
+    private void validarCnpj() {
+        ValidarCpfCnpj validarCnpj = new ValidarCpfCnpj();
+        String numeroCnpj = txtCnpjFornecedor.getText();
+
+        if (validarCnpj.isCNPJ(numeroCnpj) == true) {
+            JOptionPane.showMessageDialog(null, "é um CNPJ valido !");
+            txtInscricaoEstadualFornecedor.grabFocus();
+        } else {
+            // se nao entao usamos um JOptionPane e apresentamos a mensagem "é um CPF invalido !"
+            JOptionPane.showMessageDialog(null, "é um CNPJ invalido !");
+            txtCnpjFornecedor.setText("00.000.000/0000-00");
+            txtCnpjFornecedor.grabFocus();
+        }
+    }
 
     private void carregarFornecedor() {
         listaFornecedor = fornecedorController.getListaFornecedorController();
@@ -866,6 +935,8 @@ public class FornecedorView extends javax.swing.JDialog {
                 this.txtCnpjFornecedor.setText(null);
                 this.txtInscricaoEstadualFornecedor.setEnabled(false);
                 this.txtInscricaoEstadualFornecedor.setText(null);
+                this.btnValidarCpf.setEnabled(true);
+                this.btnValidarCnpj.setEnabled(false);
 
             } else if (fornecedor.getPessoaTipo() == 2) {
                 this.camposAtivadosPessoaJuridica();
@@ -877,6 +948,8 @@ public class FornecedorView extends javax.swing.JDialog {
                 this.txtRgFornecedor.setText(null);
                 this.txtCnpjFornecedor.setText(fornecedor.getCpfCnpj());
                 this.txtInscricaoEstadualFornecedor.setText(fornecedor.getRgInscricaoEstadual());
+                this.btnValidarCpf.setEnabled(false);
+                this.btnValidarCnpj.setEnabled(true);
             }
 
             this.txtNomeRazaoSocialFornecedor.setText(fornecedor.getNomeRazaoSocial());
@@ -934,6 +1007,8 @@ public class FornecedorView extends javax.swing.JDialog {
         txtEmailFornecedor.setText(null);
         txtCodigoFornecedor.setText("Novo");
         tipoCadastro = "novo";
+        //btnValidarCpf.setEnabled(true);
+
     }
 
     private void camposDesativados() {
@@ -958,6 +1033,9 @@ public class FornecedorView extends javax.swing.JDialog {
         txtTelefoneFornecedor.setEnabled(false);
         txtEmailFornecedor.setEnabled(false);
         txtCodigoFornecedor.setEnabled(false);
+        btnValidarCpf.setEnabled(false);
+        btnValidarCnpj.setEnabled(false);
+        btnSalvarFornecedor.setEnabled(false);
 
     }
 
@@ -983,6 +1061,7 @@ public class FornecedorView extends javax.swing.JDialog {
         txtTelefoneFornecedor.setEnabled(true);
         txtEmailFornecedor.setEnabled(true);
         txtCodigoFornecedor.setEnabled(true);
+        btnSalvarFornecedor.setEnabled(true);
 
     }
 
@@ -1008,6 +1087,7 @@ public class FornecedorView extends javax.swing.JDialog {
         txtTelefoneFornecedor.setEnabled(true);
         txtEmailFornecedor.setEnabled(true);
         txtCodigoFornecedor.setEnabled(true);
+        btnSalvarFornecedor.setEnabled(true);
 
     }
 
@@ -1144,8 +1224,9 @@ public class FornecedorView extends javax.swing.JDialog {
     private javax.swing.JButton btnExcluirFornecedor;
     private javax.swing.JButton btnIncluirFornecedor;
     private javax.swing.JButton btnSalvarFornecedor;
+    private javax.swing.JButton btnValidarCnpj;
+    private javax.swing.JButton btnValidarCpf;
     protected javax.swing.JComboBox<String> cbUfFornecedor;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

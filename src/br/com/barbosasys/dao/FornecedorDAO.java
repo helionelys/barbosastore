@@ -190,6 +190,31 @@ public class FornecedorDAO extends ConexaoBanco {
         return fornecedor;
     }
 
+    public boolean getFornecedorBuscarCfpCnpjDAO(String cpfCnpj) {
+        boolean result = false;
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "CPF_CNPJ"
+                    + " FROM"
+                    + " TBL_FORNECEDOR"
+                    + " WHERE CPF_CNPJ = '" + cpfCnpj + "'"
+                    + ";"
+            );
+
+            if (this.getResultSet().next()) {
+                //fornecedor.setCpfCnpj(this.getResultSet().getString(1));
+                result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return result;
+    }
+
 //    public ArrayList<Fornecedor> getListaTodosFornecedorDAO() {
 //        ArrayList<Fornecedor> listaFornecedor = new ArrayList();
 //        Fornecedor fornecedor = new Fornecedor();

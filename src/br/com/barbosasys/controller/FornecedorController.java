@@ -20,6 +20,10 @@ public class FornecedorController {
         return this.fornecedorDAO.getFornecedorDAO(nome);
     }
     
+    public boolean getFornecedorCpfCnpjontroller(String cpfCnpj){
+        return this.fornecedorDAO.getFornecedorBuscarCfpCnpjDAO(cpfCnpj);
+    }
+    
     public ArrayList<Fornecedor> getListaFornecedorController(){
         return this.fornecedorDAO.getListaFornecedorDAO();
     }
