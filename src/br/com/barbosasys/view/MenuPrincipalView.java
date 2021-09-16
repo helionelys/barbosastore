@@ -98,6 +98,19 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuSegurancaUsuarios = new javax.swing.JMenuItem();
         MenuSegurancaPerfis = new javax.swing.JMenuItem();
         MenuSegurancaDadosEmpresas = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         MenuOpcoes = new javax.swing.JMenu();
         MenuOpcoesLogff = new javax.swing.JMenuItem();
         MenuOpcoesSair = new javax.swing.JMenuItem();
@@ -520,6 +533,51 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuSeguranca.add(MenuSegurancaDadosEmpresas);
 
         BarraDeMenuPrincipal.add(MenuSeguranca);
+
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Report.png"))); // NOI18N
+        jMenu2.setText("Relatórios");
+
+        jMenu3.setText("Produtos");
+
+        jMenuItem1.setText("Saldo Estoque");
+        jMenu3.add(jMenuItem1);
+
+        jMenuItem2.setText("Lista de Produtos");
+        jMenu3.add(jMenuItem2);
+
+        jMenu2.add(jMenu3);
+
+        jMenu4.setText("Vendas");
+
+        jMenuItem3.setText("Vendas no Período");
+        jMenu4.add(jMenuItem3);
+
+        jMenuItem4.setText("Vendas por Cliente");
+        jMenu4.add(jMenuItem4);
+
+        jMenu2.add(jMenu4);
+
+        jMenu6.setText("Compras");
+
+        jMenuItem5.setText("Compras por fornecedor");
+        jMenu6.add(jMenuItem5);
+
+        jMenuItem8.setText("Compras no período");
+        jMenu6.add(jMenuItem8);
+
+        jMenu2.add(jMenu6);
+
+        jMenu5.setText("Financeiro");
+
+        jMenuItem6.setText("Contas à Receber");
+        jMenu5.add(jMenuItem6);
+
+        jMenuItem7.setText("Contas à Pagar");
+        jMenu5.add(jMenuItem7);
+
+        jMenu2.add(jMenu5);
+
+        BarraDeMenuPrincipal.add(jMenu2);
 
         MenuOpcoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Application.png"))); // NOI18N
         MenuOpcoes.setText("Opções");
@@ -972,8 +1030,21 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
