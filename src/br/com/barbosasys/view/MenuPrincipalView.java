@@ -6,6 +6,7 @@
 package br.com.barbosasys.view;
 
 import br.com.barbosasys.controller.ClienteController;
+import br.com.barbosasys.controller.ProdutoController;
 import br.com.barbosasys.model.DadosEmpresa;
 import br.com.barbosasys.model.UsuarioSessao;
 import javax.swing.ImageIcon;
@@ -101,8 +102,8 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuSegurancaDadosEmpresas = new javax.swing.JMenuItem();
         MenuRelatorio = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        MenuRelatorioProdutosItSaldoEstoque = new javax.swing.JMenuItem();
+        MenuRelatorioProdutosItListaProdutos = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -541,11 +542,21 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
         jMenu3.setText("Produtos");
 
-        jMenuItem1.setText("Saldo Estoque");
-        jMenu3.add(jMenuItem1);
+        MenuRelatorioProdutosItSaldoEstoque.setText("Saldo Estoque");
+        MenuRelatorioProdutosItSaldoEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuRelatorioProdutosItSaldoEstoqueActionPerformed(evt);
+            }
+        });
+        jMenu3.add(MenuRelatorioProdutosItSaldoEstoque);
 
-        jMenuItem2.setText("Lista de Produtos");
-        jMenu3.add(jMenuItem2);
+        MenuRelatorioProdutosItListaProdutos.setText("Lista de Produtos");
+        MenuRelatorioProdutosItListaProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuRelatorioProdutosItListaProdutosActionPerformed(evt);
+            }
+        });
+        jMenu3.add(MenuRelatorioProdutosItListaProdutos);
 
         MenuRelatorio.add(jMenu3);
 
@@ -871,6 +882,18 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         clienteController.gerarRelatorioCliente();
     }//GEN-LAST:event_MenuRelatorioClientesActionPerformed
 
+    private void MenuRelatorioProdutosItListaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRelatorioProdutosItListaProdutosActionPerformed
+        // TODO add your handling code here:
+        ProdutoController produtoController = new ProdutoController();
+        produtoController.gerarRelatorioProduto();
+    }//GEN-LAST:event_MenuRelatorioProdutosItListaProdutosActionPerformed
+
+    private void MenuRelatorioProdutosItSaldoEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRelatorioProdutosItSaldoEstoqueActionPerformed
+        // TODO add your handling code here:
+        ProdutoController produtoController = new ProdutoController();
+        produtoController.gerarRelatorioProdutoSaldoEstoque();
+    }//GEN-LAST:event_MenuRelatorioProdutosItSaldoEstoqueActionPerformed
+
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;
     }
@@ -1032,6 +1055,8 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuOpcoesSobre;
     private javax.swing.JMenu MenuRelatorio;
     private javax.swing.JMenuItem MenuRelatorioClientes;
+    private javax.swing.JMenuItem MenuRelatorioProdutosItListaProdutos;
+    private javax.swing.JMenuItem MenuRelatorioProdutosItSaldoEstoque;
     private javax.swing.JMenu MenuSeguranca;
     private javax.swing.JMenuItem MenuSegurancaDadosEmpresas;
     private javax.swing.JMenuItem MenuSegurancaPerfis;
@@ -1054,8 +1079,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
