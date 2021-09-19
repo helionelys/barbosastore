@@ -5,6 +5,7 @@
  */
 package br.com.barbosasys.view;
 
+import br.com.barbosasys.controller.ClienteController;
 import br.com.barbosasys.model.DadosEmpresa;
 import br.com.barbosasys.model.UsuarioSessao;
 import javax.swing.ImageIcon;
@@ -98,7 +99,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuSegurancaUsuarios = new javax.swing.JMenuItem();
         MenuSegurancaPerfis = new javax.swing.JMenuItem();
         MenuSegurancaDadosEmpresas = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        MenuRelatorio = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -111,6 +112,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        MenuRelatorioClientes = new javax.swing.JMenuItem();
         MenuOpcoes = new javax.swing.JMenu();
         MenuOpcoesLogff = new javax.swing.JMenuItem();
         MenuOpcoesSair = new javax.swing.JMenuItem();
@@ -534,8 +536,8 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
         BarraDeMenuPrincipal.add(MenuSeguranca);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Report.png"))); // NOI18N
-        jMenu2.setText("Relatórios");
+        MenuRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Report.png"))); // NOI18N
+        MenuRelatorio.setText("Relatórios");
 
         jMenu3.setText("Produtos");
 
@@ -545,7 +547,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuItem2.setText("Lista de Produtos");
         jMenu3.add(jMenuItem2);
 
-        jMenu2.add(jMenu3);
+        MenuRelatorio.add(jMenu3);
 
         jMenu4.setText("Vendas");
 
@@ -555,7 +557,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuItem4.setText("Vendas por Cliente");
         jMenu4.add(jMenuItem4);
 
-        jMenu2.add(jMenu4);
+        MenuRelatorio.add(jMenu4);
 
         jMenu6.setText("Compras");
 
@@ -565,7 +567,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuItem8.setText("Compras no período");
         jMenu6.add(jMenuItem8);
 
-        jMenu2.add(jMenu6);
+        MenuRelatorio.add(jMenu6);
 
         jMenu5.setText("Financeiro");
 
@@ -575,9 +577,17 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuItem7.setText("Contas à Pagar");
         jMenu5.add(jMenuItem7);
 
-        jMenu2.add(jMenu5);
+        MenuRelatorio.add(jMenu5);
 
-        BarraDeMenuPrincipal.add(jMenu2);
+        MenuRelatorioClientes.setText("Clientes");
+        MenuRelatorioClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuRelatorioClientesActionPerformed(evt);
+            }
+        });
+        MenuRelatorio.add(MenuRelatorioClientes);
+
+        BarraDeMenuPrincipal.add(MenuRelatorio);
 
         MenuOpcoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Application.png"))); // NOI18N
         MenuOpcoes.setText("Opções");
@@ -855,6 +865,12 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         telaSobre.setVisible(true);
     }//GEN-LAST:event_MenuOpcoesSobreActionPerformed
 
+    private void MenuRelatorioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRelatorioClientesActionPerformed
+        // TODO add your handling code here:
+        ClienteController clienteController = new ClienteController();
+        clienteController.gerarRelatorioCliente();
+    }//GEN-LAST:event_MenuRelatorioClientesActionPerformed
+
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;
     }
@@ -1014,6 +1030,8 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuOpcoesLogff;
     private javax.swing.JMenuItem MenuOpcoesSair;
     private javax.swing.JMenuItem MenuOpcoesSobre;
+    private javax.swing.JMenu MenuRelatorio;
+    private javax.swing.JMenuItem MenuRelatorioClientes;
     private javax.swing.JMenu MenuSeguranca;
     private javax.swing.JMenuItem MenuSegurancaDadosEmpresas;
     private javax.swing.JMenuItem MenuSegurancaPerfis;
@@ -1030,7 +1048,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
