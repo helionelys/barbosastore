@@ -104,9 +104,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         MenuRelatorioProdutosItSaldoEstoque = new javax.swing.JMenuItem();
         MenuRelatorioProdutosItListaProdutos = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -114,6 +111,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         MenuRelatorioClientes = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         MenuOpcoes = new javax.swing.JMenu();
         MenuOpcoesLogff = new javax.swing.JMenuItem();
         MenuOpcoesSair = new javax.swing.JMenuItem();
@@ -560,16 +558,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
         MenuRelatorio.add(jMenu3);
 
-        jMenu4.setText("Vendas");
-
-        jMenuItem3.setText("Vendas no Período");
-        jMenu4.add(jMenuItem3);
-
-        jMenuItem4.setText("Vendas por Cliente");
-        jMenu4.add(jMenuItem4);
-
-        MenuRelatorio.add(jMenu4);
-
         jMenu6.setText("Compras");
 
         jMenuItem5.setText("Compras por fornecedor");
@@ -597,6 +585,14 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             }
         });
         MenuRelatorio.add(MenuRelatorioClientes);
+
+        jMenuItem1.setText("Vendas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        MenuRelatorio.add(jMenuItem1);
 
         BarraDeMenuPrincipal.add(MenuRelatorio);
 
@@ -894,6 +890,12 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         produtoController.gerarRelatorioProdutoSaldoEstoque();
     }//GEN-LAST:event_MenuRelatorioProdutosItSaldoEstoqueActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        RelatorioVendasView telaRrelatorioVendas = new RelatorioVendasView(this, rootPaneCheckingEnabled);
+        telaRrelatorioVendas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;
     }
@@ -1074,13 +1076,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
