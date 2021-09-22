@@ -1,6 +1,7 @@
 package br.com.barbosasys.view;
 
 import br.com.barbosasys.controller.ClienteController;
+import br.com.barbosasys.controller.VendaController;
 import br.com.barbosasys.model.Cliente;
 import java.util.ArrayList;
 
@@ -18,7 +19,8 @@ public class RelatorioVendasView extends javax.swing.JDialog {
         carregarCliente();
         setLocationRelativeTo(null);
         btnGerarRelatorio.setEnabled(false);
-        jdcRelatorioData.setEnabled(false);
+        jdcRelatorioDataInicio.setEnabled(false);
+        jdcRelatorioDataFim.setEnabled(false);
         cbRelatorioVendaListaClientes.setEnabled(false);
     }
 
@@ -34,18 +36,19 @@ public class RelatorioVendasView extends javax.swing.JDialog {
         rbGroupTipoBuscaVenda = new javax.swing.ButtonGroup();
         rbRelatorioVendasPorData = new javax.swing.JRadioButton();
         rbRelatorioVendasPorCliente = new javax.swing.JRadioButton();
-        jdcRelatorioData = new com.toedter.calendar.JDateChooser();
+        jdcRelatorioDataInicio = new com.toedter.calendar.JDateChooser();
         cbRelatorioVendaListaClientes = new javax.swing.JComboBox<>();
         btnGerarRelatorio = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         rbRelatorioVendasGeral = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
+        jdcRelatorioDataFim = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Barbosa Store - Relatórios Vendas");
 
         rbGroupTipoBuscaVenda.add(rbRelatorioVendasPorData);
-        rbRelatorioVendasPorData.setText("Buscar Data");
+        rbRelatorioVendasPorData.setText("Intervalo datas");
         rbRelatorioVendasPorData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbRelatorioVendasPorDataActionPerformed(evt);
@@ -62,6 +65,11 @@ public class RelatorioVendasView extends javax.swing.JDialog {
 
         btnGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Report.png"))); // NOI18N
         btnGerarRelatorio.setText("Gerar Relatório");
+        btnGerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGerarRelatorioActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -85,27 +93,35 @@ public class RelatorioVendasView extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(rbRelatorioVendasPorCliente)
-                            .addGap(27, 27, 27)
-                            .addComponent(cbRelatorioVendaListaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnGerarRelatorio)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnCancelar)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(rbRelatorioVendasPorData)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbRelatorioVendasPorData)
-                            .addComponent(rbRelatorioVendasGeral))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jdcRelatorioData, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(20, 20, 20))
+                            .addComponent(rbRelatorioVendasGeral)
+                            .addComponent(rbRelatorioVendasPorCliente))
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addGap(195, 195, 195))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnGerarRelatorio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCancelar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jdcRelatorioDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jdcRelatorioDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbRelatorioVendaListaClientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnGerarRelatorio});
@@ -118,18 +134,19 @@ public class RelatorioVendasView extends javax.swing.JDialog {
                     .addComponent(rbRelatorioVendasGeral)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbRelatorioVendaListaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbRelatorioVendasPorCliente))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbRelatorioVendasPorData)
-                    .addComponent(jdcRelatorioData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdcRelatorioDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdcRelatorioDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbRelatorioVendasPorCliente)
-                    .addComponent(cbRelatorioVendaListaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGerarRelatorio)
-                    .addComponent(btnCancelar))
-                .addGap(22, 22, 22))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnGerarRelatorio))
+                .addGap(18, 18, 18))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCancelar, btnGerarRelatorio});
@@ -141,15 +158,17 @@ public class RelatorioVendasView extends javax.swing.JDialog {
     private void rbRelatorioVendasPorDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioVendasPorDataActionPerformed
         // TODO add your handling code here:
         btnGerarRelatorio.setEnabled(true);
-        jdcRelatorioData.setEnabled(true);
-        jdcRelatorioData.grabFocus();
+        jdcRelatorioDataInicio.setEnabled(true);
+        jdcRelatorioDataFim.setEnabled(true);
+        jdcRelatorioDataInicio.grabFocus();
         cbRelatorioVendaListaClientes.setEnabled(false);
     }//GEN-LAST:event_rbRelatorioVendasPorDataActionPerformed
 
     private void rbRelatorioVendasPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioVendasPorClienteActionPerformed
         // TODO add your handling code here:
         btnGerarRelatorio.setEnabled(true);
-        jdcRelatorioData.setEnabled(false);
+        jdcRelatorioDataInicio.setEnabled(false);
+        jdcRelatorioDataFim.setEnabled(false);
         cbRelatorioVendaListaClientes.setEnabled(true);
 
     }//GEN-LAST:event_rbRelatorioVendasPorClienteActionPerformed
@@ -157,7 +176,8 @@ public class RelatorioVendasView extends javax.swing.JDialog {
     private void rbRelatorioVendasGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioVendasGeralActionPerformed
         // TODO add your handling code here:
         btnGerarRelatorio.setEnabled(true);
-        jdcRelatorioData.setEnabled(false);
+        jdcRelatorioDataInicio.setEnabled(false);
+        jdcRelatorioDataFim.setEnabled(false);
         cbRelatorioVendaListaClientes.setEnabled(false);
     }//GEN-LAST:event_rbRelatorioVendasGeralActionPerformed
 
@@ -165,6 +185,18 @@ public class RelatorioVendasView extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarRelatorioActionPerformed
+        // TODO add your handling code here:
+        VendaController vendaController = new VendaController();
+        if(rbRelatorioVendasGeral.isSelected()){
+            vendaController.gerarRelatorioVendasGeral();
+        } if (rbRelatorioVendasPorCliente.isSelected()){
+            int codigo = (clienteController.getClienteController(this.cbRelatorioVendaListaClientes.getSelectedItem().toString()).getCodigo());
+            vendaController.gerarRelatorioVendasPorCliente(codigo);
+            System.out.println(codigo);
+        }
+    }//GEN-LAST:event_btnGerarRelatorioActionPerformed
 
     private void carregarCliente() {
         listaClientes = clienteController.getListaClienteController();
@@ -174,12 +206,15 @@ public class RelatorioVendasView extends javax.swing.JDialog {
 
         }
     }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGerarRelatorio;
     private javax.swing.JComboBox<String> cbRelatorioVendaListaClientes;
     private javax.swing.JLabel jLabel1;
-    private com.toedter.calendar.JDateChooser jdcRelatorioData;
+    private com.toedter.calendar.JDateChooser jdcRelatorioDataFim;
+    private com.toedter.calendar.JDateChooser jdcRelatorioDataInicio;
     private javax.swing.ButtonGroup rbGroupTipoBuscaVenda;
     protected javax.swing.JRadioButton rbRelatorioVendasGeral;
     protected javax.swing.JRadioButton rbRelatorioVendasPorCliente;

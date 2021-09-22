@@ -16,7 +16,7 @@ public class Cliente extends Pessoa {
     
   @Override
   public String toString(){
-      return this.getNomeRazaoSocial() + this.getCpfCnpj() 
+      return this.getNomeRazaoSocial() + this.getCpfCnpj() + this.getCodigo()
               + this.getCelular();
   }
   

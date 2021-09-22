@@ -105,7 +105,7 @@ public class ContasReceberView extends javax.swing.JDialog {
         txtLancamentoValor = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Barbosa Store - Contas a pagar");
+        setTitle("Barbosa Store - Contas a receber");
 
         jPanel4.setBackground(new java.awt.Color(51, 153, 255));
 

@@ -5,6 +5,7 @@
  */
 package br.com.barbosasys.controller;
 
+import br.com.barbosasys.dao.RelatoriosDAO;
 import br.com.barbosasys.dao.VendaDAO;
 import br.com.barbosasys.model.Item;
 import br.com.barbosasys.model.Venda;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class VendaController {
     
     private VendaDAO vendaDAO = new VendaDAO();
+    private RelatoriosDAO relatoriosDAO = new RelatoriosDAO();
     
     public int SalvarVendaController(Venda venda){
         return this.vendaDAO.salvarVendasDAO(venda);
@@ -64,5 +66,13 @@ public class VendaController {
     
     public int getUltimaVendaDAO(){
         return this.vendaDAO.getUltimaVendaDAO();
+    }
+    
+    public boolean gerarRelatorioVendasGeral(){
+        return this.relatoriosDAO.gerarRelatorioVendasGeral();
+    }
+    
+    public boolean gerarRelatorioVendasPorCliente(int codigo){
+        return this.relatoriosDAO.gerarRelatorioVendasPorCliente(codigo);
     }
 }
