@@ -178,7 +178,7 @@ public class RelatoriosDAO extends ConexaoBanco {
                     + " INNER JOIN TBL_TIPOPAGAMENTO"
                     + " ON TBL_VENDA.CODTIPOPAGAMENTO = TBL_TIPOPAGAMENTO.CODTIPOPAGAMENTO"
                     + " WHERE TBL_VENDA.CODSTATUSVENDA = '1' AND TBL_VENDA.CODCLIENTE = '"+ codigo + "'"
-                    + "ORDER BY TBL_VENDA.CODVENDA ASC;");
+                    + "ORDER BY TBL_VENDA.DATAVENDA DESC;");
             JRResultSetDataSource jResultSDS = new JRResultSetDataSource(getResultSet());
             InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioVendaPorClientel.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(diretorioDoRelatorio, new HashMap(), jResultSDS);
@@ -219,7 +219,7 @@ public class RelatoriosDAO extends ConexaoBanco {
                     + " INNER JOIN TBL_TIPOPAGAMENTO"
                     + " ON TBL_VENDA.CODTIPOPAGAMENTO = TBL_TIPOPAGAMENTO.CODTIPOPAGAMENTO"
                     + " WHERE TBL_VENDA.CODSTATUSVENDA = '1' AND TBL_VENDA.DATAVENDA BETWEEN '"+ dataInicio +"' AND '"+dataFim+"'"
-                    + " ORDER BY TBL_VENDA.CODVENDA ASC;");
+                    + " ORDER BY TBL_VENDA.DATAVENDA, TBL_VENDA.CODVENDA ASC;");
             JRResultSetDataSource jResultSDS = new JRResultSetDataSource(getResultSet());
             InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioVendaGeralPorData.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(diretorioDoRelatorio, new HashMap(), jResultSDS);
