@@ -9,6 +9,7 @@ import br.com.barbosasys.dao.RelatoriosDAO;
 import br.com.barbosasys.dao.VendaDAO;
 import br.com.barbosasys.model.Item;
 import br.com.barbosasys.model.Venda;
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -74,5 +75,9 @@ public class VendaController {
     
     public boolean gerarRelatorioVendasPorCliente(int codigo){
         return this.relatoriosDAO.gerarRelatorioVendasPorCliente(codigo);
+    }
+    
+    public boolean gerarRelatorioVendasPorDatas(Date dataInicio, Date dataFim){
+        return this.relatoriosDAO.gerarRelatorioVendasGeralPorData(dataInicio, dataFim);
     }
 }

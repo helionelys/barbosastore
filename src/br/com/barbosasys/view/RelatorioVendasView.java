@@ -3,7 +3,13 @@ package br.com.barbosasys.view;
 import br.com.barbosasys.controller.ClienteController;
 import br.com.barbosasys.controller.VendaController;
 import br.com.barbosasys.model.Cliente;
+import br.com.barbosasys.utilitarios.UtilDatas;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RelatorioVendasView extends javax.swing.JDialog {
 
@@ -189,12 +195,24 @@ public class RelatorioVendasView extends javax.swing.JDialog {
     private void btnGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarRelatorioActionPerformed
         // TODO add your handling code here:
         VendaController vendaController = new VendaController();
-        if(rbRelatorioVendasGeral.isSelected()){
+        UtilDatas utilDatas = new UtilDatas();
+        if (rbRelatorioVendasGeral.isSelected()) {
             vendaController.gerarRelatorioVendasGeral();
-        } if (rbRelatorioVendasPorCliente.isSelected()){
+        }
+        if (rbRelatorioVendasPorCliente.isSelected()) {
             int codigo = (clienteController.getClienteController(this.cbRelatorioVendaListaClientes.getSelectedItem().toString()).getCodigo());
             vendaController.gerarRelatorioVendasPorCliente(codigo);
             System.out.println(codigo);
+        }
+        if (rbRelatorioVendasPorData.isSelected()) {
+            Date dataInicio = null, dataFim = null;
+            try {
+               dataInicio = utilDatas.TransformaDataParaFormatoAmericanoS((jdcRelatorioDataInicio.getDate()));
+               dataFim = utilDatas.TransformaDataParaFormatoAmericanoS((jdcRelatorioDataFim.getDate()));
+            } catch (Exception e) {
+                Logger.getLogger(VendasView.class.getName()).log(Level.SEVERE, null, e);
+            }
+            vendaController.gerarRelatorioVendasPorDatas(dataInicio, dataFim);
         }
     }//GEN-LAST:event_btnGerarRelatorioActionPerformed
 
@@ -206,8 +224,8 @@ public class RelatorioVendasView extends javax.swing.JDialog {
 
         }
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGerarRelatorio;

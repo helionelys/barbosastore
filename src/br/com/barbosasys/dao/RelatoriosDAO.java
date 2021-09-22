@@ -4,6 +4,7 @@ import br.com.barbosasys.jdbc.ConexaoBanco;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.InputStream;
+import java.sql.Date;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
@@ -198,4 +199,45 @@ public class RelatoriosDAO extends ConexaoBanco {
         }
         return true;
     }
+    
+    public boolean gerarRelatorioVendasGeralPorData(Date dataInicio, Date dataFim) {
+        // Query usada no relatório de lista de vendas num intervalo datas 
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + " TBL_VENDA.CODVENDA,"
+                    + " TBL_CLIENTE.NOME_RAZAOSOCIAL,"
+                    + " TBL_TIPOPAGAMENTO.DESCRICAO AS TIPOPAGAMENTO,"
+                    + " TBL_VENDA.DESCONTO, TBL_VENDA.TOTALVENDA,"
+                    + " date_format(TBL_VENDA.DATAVENDA, '%d/%m/%Y') AS DATAVENDA,"
+                    + " TBL_STATUSVENDA.DESCRICAO"
+                    + " FROM TBL_VENDA"
+                    + " INNER JOIN TBL_CLIENTE ON TBL_VENDA.CODCLIENTE = TBL_CLIENTE.CODCLIENTE"
+                    + " INNER JOIN TBL_STATUSVENDA"
+                    + " ON TBL_VENDA.CODSTATUSVENDA = TBL_STATUSVENDA.CODSTATUSVENDA"
+                    + " INNER JOIN TBL_TIPOPAGAMENTO"
+                    + " ON TBL_VENDA.CODTIPOPAGAMENTO = TBL_TIPOPAGAMENTO.CODTIPOPAGAMENTO"
+                    + " WHERE TBL_VENDA.CODSTATUSVENDA = '1' AND TBL_VENDA.DATAVENDA BETWEEN '"+ dataInicio +"' AND '"+dataFim+"'"
+                    + " ORDER BY TBL_VENDA.CODVENDA ASC;");
+            JRResultSetDataSource jResultSDS = new JRResultSetDataSource(getResultSet());
+            InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioVendaGeralPorData.jasper");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(diretorioDoRelatorio, new HashMap(), jResultSDS);
+
+            String fileName = "C://BarbosaStore//Relatorios/RelatorioVendasGeralPorData.pdf";
+            JasperExportManager.exportReportToPdfFile(jasperPrint, fileName);
+            File arquivo = new File(fileName);
+            try {
+                Desktop.getDesktop().open(arquivo);
+            } catch (Exception e) {
+                JOptionPane.showConfirmDialog(null, e);
+            }
+            arquivo.deleteOnExit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro:", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }    
 }
