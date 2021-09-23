@@ -1,33 +1,33 @@
 package br.com.barbosasys.view;
 
-import br.com.barbosasys.controller.FornecedorController;
+import br.com.barbosasys.controller.ClienteController;
 import br.com.barbosasys.controller.LancamentoController;
 import br.com.barbosasys.controller.VendaController;
-import br.com.barbosasys.model.Fornecedor;
+import br.com.barbosasys.model.Cliente;
 import br.com.barbosasys.utilitarios.UtilDatas;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RelatorioContaAPagarView extends javax.swing.JDialog {
+public class RelatorioContaAReceberView extends javax.swing.JDialog {
 
-    ArrayList<Fornecedor> listaFornecedores = new ArrayList<>();
-    FornecedorController FornecedorController = new FornecedorController();
+    ArrayList<Cliente> listaClientes = new ArrayList<>();
+    ClienteController clienteController = new ClienteController();
     LancamentoController lancamentoController = new LancamentoController();
 
     /**
      * Creates new form RelatorioVendasView
      */
-    public RelatorioContaAPagarView(java.awt.Frame parent, boolean modal) {
+    public RelatorioContaAReceberView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        carregarFornecedor();
+        carregarClientes();
         setLocationRelativeTo(null);
         btnGerarRelatorio.setEnabled(false);
         jdcRelatorioDataInicio.setEnabled(false);
         jdcRelatorioDataFim.setEnabled(false);
-        cbRelatorioContasAPagarFornecedores.setEnabled(false);
+        cbRelatorioContasAReceberClientes.setEnabled(false);
     }
 
     /**
@@ -40,32 +40,32 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
     private void initComponents() {
 
         rbGroupTipoBuscaVenda = new javax.swing.ButtonGroup();
-        rbRelatorioContasAPagarPorData = new javax.swing.JRadioButton();
-        rbRelatorioContasAPagarPorFornecedor = new javax.swing.JRadioButton();
+        rbRelatorioContasAReceberPorData = new javax.swing.JRadioButton();
+        rbRelatorioContasAReceberPorCliente = new javax.swing.JRadioButton();
         jdcRelatorioDataInicio = new com.toedter.calendar.JDateChooser();
-        cbRelatorioContasAPagarFornecedores = new javax.swing.JComboBox<>();
+        cbRelatorioContasAReceberClientes = new javax.swing.JComboBox<>();
         btnGerarRelatorio = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        rbRelatorioContasAPagarGeral = new javax.swing.JRadioButton();
+        rbRelatorioContasAReceberGeral = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jdcRelatorioDataFim = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Barbosa Store - Relatórios Contas à Pagar");
 
-        rbGroupTipoBuscaVenda.add(rbRelatorioContasAPagarPorData);
-        rbRelatorioContasAPagarPorData.setText("Intervalo datas");
-        rbRelatorioContasAPagarPorData.addActionListener(new java.awt.event.ActionListener() {
+        rbGroupTipoBuscaVenda.add(rbRelatorioContasAReceberPorData);
+        rbRelatorioContasAReceberPorData.setText("Intervalo datas");
+        rbRelatorioContasAReceberPorData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbRelatorioContasAPagarPorDataActionPerformed(evt);
+                rbRelatorioContasAReceberPorDataActionPerformed(evt);
             }
         });
 
-        rbGroupTipoBuscaVenda.add(rbRelatorioContasAPagarPorFornecedor);
-        rbRelatorioContasAPagarPorFornecedor.setText("Buscar Fornecedor");
-        rbRelatorioContasAPagarPorFornecedor.addActionListener(new java.awt.event.ActionListener() {
+        rbGroupTipoBuscaVenda.add(rbRelatorioContasAReceberPorCliente);
+        rbRelatorioContasAReceberPorCliente.setText("Buscar Cliente");
+        rbRelatorioContasAReceberPorCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbRelatorioContasAPagarPorFornecedorActionPerformed(evt);
+                rbRelatorioContasAReceberPorClienteActionPerformed(evt);
             }
         });
 
@@ -85,11 +85,11 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
             }
         });
 
-        rbGroupTipoBuscaVenda.add(rbRelatorioContasAPagarGeral);
-        rbRelatorioContasAPagarGeral.setText("Geral");
-        rbRelatorioContasAPagarGeral.addActionListener(new java.awt.event.ActionListener() {
+        rbGroupTipoBuscaVenda.add(rbRelatorioContasAReceberGeral);
+        rbRelatorioContasAReceberGeral.setText("Geral");
+        rbRelatorioContasAReceberGeral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbRelatorioContasAPagarGeralActionPerformed(evt);
+                rbRelatorioContasAReceberGeralActionPerformed(evt);
             }
         });
 
@@ -103,16 +103,16 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(rbRelatorioContasAPagarPorData)
+                        .addComponent(rbRelatorioContasAReceberPorData)
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbRelatorioContasAPagarGeral)
-                            .addComponent(rbRelatorioContasAPagarPorFornecedor))
+                            .addComponent(rbRelatorioContasAReceberGeral)
+                            .addComponent(rbRelatorioContasAReceberPorCliente))
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                         .addGap(195, 195, 195))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -125,8 +125,8 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
                                     .addComponent(jdcRelatorioDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jdcRelatorioDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(cbRelatorioContasAPagarFornecedores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(cbRelatorioContasAReceberClientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, 0))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnGerarRelatorio});
@@ -136,15 +136,15 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbRelatorioContasAPagarGeral)
+                    .addComponent(rbRelatorioContasAReceberGeral)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbRelatorioContasAPagarFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbRelatorioContasAPagarPorFornecedor))
+                    .addComponent(cbRelatorioContasAReceberClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbRelatorioContasAReceberPorCliente))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbRelatorioContasAPagarPorData)
+                    .addComponent(rbRelatorioContasAReceberPorData)
                     .addComponent(jdcRelatorioDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jdcRelatorioDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -160,31 +160,31 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rbRelatorioContasAPagarPorDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAPagarPorDataActionPerformed
+    private void rbRelatorioContasAReceberPorDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAReceberPorDataActionPerformed
         // TODO add your handling code here:
         btnGerarRelatorio.setEnabled(true);
         jdcRelatorioDataInicio.setEnabled(true);
         jdcRelatorioDataFim.setEnabled(true);
         jdcRelatorioDataInicio.grabFocus();
-        cbRelatorioContasAPagarFornecedores.setEnabled(false);
-    }//GEN-LAST:event_rbRelatorioContasAPagarPorDataActionPerformed
+        cbRelatorioContasAReceberClientes.setEnabled(false);
+    }//GEN-LAST:event_rbRelatorioContasAReceberPorDataActionPerformed
 
-    private void rbRelatorioContasAPagarPorFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAPagarPorFornecedorActionPerformed
+    private void rbRelatorioContasAReceberPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAReceberPorClienteActionPerformed
         // TODO add your handling code here:
         btnGerarRelatorio.setEnabled(true);
         jdcRelatorioDataInicio.setEnabled(false);
         jdcRelatorioDataFim.setEnabled(false);
-        cbRelatorioContasAPagarFornecedores.setEnabled(true);
+        cbRelatorioContasAReceberClientes.setEnabled(true);
 
-    }//GEN-LAST:event_rbRelatorioContasAPagarPorFornecedorActionPerformed
+    }//GEN-LAST:event_rbRelatorioContasAReceberPorClienteActionPerformed
 
-    private void rbRelatorioContasAPagarGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAPagarGeralActionPerformed
+    private void rbRelatorioContasAReceberGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAReceberGeralActionPerformed
         // TODO add your handling code here:
         btnGerarRelatorio.setEnabled(true);
         jdcRelatorioDataInicio.setEnabled(false);
         jdcRelatorioDataFim.setEnabled(false);
-        cbRelatorioContasAPagarFornecedores.setEnabled(false);
-    }//GEN-LAST:event_rbRelatorioContasAPagarGeralActionPerformed
+        cbRelatorioContasAReceberClientes.setEnabled(false);
+    }//GEN-LAST:event_rbRelatorioContasAReceberGeralActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
@@ -195,15 +195,15 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
         // TODO add your handling code here:
         VendaController vendaController = new VendaController();
         UtilDatas utilDatas = new UtilDatas();
-        if (rbRelatorioContasAPagarGeral.isSelected()) {
-            lancamentoController.gerarRelatorioContasAPagarGeral();
+        if (rbRelatorioContasAReceberGeral.isSelected()) {
+            lancamentoController.gerarRelatorioContasAReceberGeral();
         }
-        if (rbRelatorioContasAPagarPorFornecedor.isSelected()) {
-            int codigo = (FornecedorController.getFornecedorController(this.cbRelatorioContasAPagarFornecedores.getSelectedItem().toString()).getCodigo());
-            lancamentoController.gerarRelatorioContasAPagarPorFornecedor(codigo);
+        if (rbRelatorioContasAReceberPorCliente.isSelected()) {
+            int codigo = (clienteController.getClienteController(this.cbRelatorioContasAReceberClientes.getSelectedItem().toString()).getCodigo());
+            lancamentoController.gerarRelatorioContasAReceberPorCliente(codigo);
             System.out.println(codigo);
         }
-        if (rbRelatorioContasAPagarPorData.isSelected()) {
+        if (rbRelatorioContasAReceberPorData.isSelected()) {
             Date dataInicio = null, dataFim = null;
             try {
                dataInicio = utilDatas.TransformaDataParaFormatoAmericanoS((jdcRelatorioDataInicio.getDate()));
@@ -211,15 +211,15 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
             } catch (Exception e) {
                 Logger.getLogger(VendasView.class.getName()).log(Level.SEVERE, null, e);
             }
-            lancamentoController.gerarRelatorioContasAPagarPorDatas(dataInicio, dataFim);
+            lancamentoController.gerarRelatorioContasAReceberPorDatas(dataInicio, dataFim);
         }
     }//GEN-LAST:event_btnGerarRelatorioActionPerformed
 
-    private void carregarFornecedor() {
-        listaFornecedores = FornecedorController.getListaFornecedorController();
-        cbRelatorioContasAPagarFornecedores.removeAllItems();
-        for (int i = 0; i < listaFornecedores.size(); i++) {
-            cbRelatorioContasAPagarFornecedores.addItem(listaFornecedores.get(i).getNomeRazaoSocial());
+    private void carregarClientes() {
+        listaClientes = clienteController.getListaClienteController();
+        cbRelatorioContasAReceberClientes.removeAllItems();
+        for (int i = 0; i < listaClientes.size(); i++) {
+            cbRelatorioContasAReceberClientes.addItem(listaClientes.get(i).getNomeRazaoSocial());
 
         }
     }
@@ -228,13 +228,13 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGerarRelatorio;
-    private javax.swing.JComboBox<String> cbRelatorioContasAPagarFornecedores;
+    private javax.swing.JComboBox<String> cbRelatorioContasAReceberClientes;
     private javax.swing.JLabel jLabel1;
     private com.toedter.calendar.JDateChooser jdcRelatorioDataFim;
     private com.toedter.calendar.JDateChooser jdcRelatorioDataInicio;
     private javax.swing.ButtonGroup rbGroupTipoBuscaVenda;
-    protected javax.swing.JRadioButton rbRelatorioContasAPagarGeral;
-    protected javax.swing.JRadioButton rbRelatorioContasAPagarPorData;
-    protected javax.swing.JRadioButton rbRelatorioContasAPagarPorFornecedor;
+    protected javax.swing.JRadioButton rbRelatorioContasAReceberGeral;
+    protected javax.swing.JRadioButton rbRelatorioContasAReceberPorCliente;
+    protected javax.swing.JRadioButton rbRelatorioContasAReceberPorData;
     // End of variables declaration//GEN-END:variables
 }

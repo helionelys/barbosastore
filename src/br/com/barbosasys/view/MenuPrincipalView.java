@@ -108,7 +108,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        MenuRelatorioFinanceiroItemConAReceber = new javax.swing.JMenuItem();
         MenuRelatorioFinanceiroItemConAPagar = new javax.swing.JMenuItem();
         MenuRelatorioClientes = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -570,8 +570,13 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
         jMenu5.setText("Financeiro");
 
-        jMenuItem6.setText("Contas à Receber");
-        jMenu5.add(jMenuItem6);
+        MenuRelatorioFinanceiroItemConAReceber.setText("Contas à Receber");
+        MenuRelatorioFinanceiroItemConAReceber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuRelatorioFinanceiroItemConAReceberActionPerformed(evt);
+            }
+        });
+        jMenu5.add(MenuRelatorioFinanceiroItemConAReceber);
 
         MenuRelatorioFinanceiroItemConAPagar.setText("Contas à Pagar");
         MenuRelatorioFinanceiroItemConAPagar.addActionListener(new java.awt.event.ActionListener() {
@@ -907,6 +912,12 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         telaRelatorioContasAPagar.setVisible(true);
     }//GEN-LAST:event_MenuRelatorioFinanceiroItemConAPagarActionPerformed
 
+    private void MenuRelatorioFinanceiroItemConAReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRelatorioFinanceiroItemConAReceberActionPerformed
+        // TODO add your handling code here:
+        RelatorioContaAReceberView telaRelatorioContasAReceber = new RelatorioContaAReceberView(this, rootPaneCheckingEnabled);
+        telaRelatorioContasAReceber.setVisible(true);
+    }//GEN-LAST:event_MenuRelatorioFinanceiroItemConAReceberActionPerformed
+
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;
     }
@@ -1069,6 +1080,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu MenuRelatorio;
     private javax.swing.JMenuItem MenuRelatorioClientes;
     private javax.swing.JMenuItem MenuRelatorioFinanceiroItemConAPagar;
+    private javax.swing.JMenuItem MenuRelatorioFinanceiroItemConAReceber;
     private javax.swing.JMenuItem MenuRelatorioProdutosItListaProdutos;
     private javax.swing.JMenuItem MenuRelatorioProdutosItSaldoEstoque;
     private javax.swing.JMenu MenuSeguranca;
@@ -1094,7 +1106,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

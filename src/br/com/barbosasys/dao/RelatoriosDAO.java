@@ -371,4 +371,135 @@ public class RelatoriosDAO extends ConexaoBanco {
         }
         return true;
     }
+    
+    public boolean gerarRelatorioContasAReceberGeral() {
+        // Query usada no relatório de lista de PRODUTOS 
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "date_format(TBL_LANCAMENTO.DATAVENCIMENTO, '%d/%m/%Y') AS VENCIMENTO,"
+                    + "TBL_LANCAMENTO.CODLANCAMENTO AS LANCAMENTO,"
+                    + "TBL_LANCAMENTO.DESCRICAO,"
+                    + "TBL_LANCAMENTO.CODCLIENTE,"
+                    + "TBL_CLIENTE.NOME_RAZAOSOCIAL AS CLIENTE,"
+                    + "date_format(TBL_LANCAMENTO.DATALANCAMENTO, '%d/%m/%Y') AS INCLUSAO,"
+                    + "TBL_LANCAMENTO.VALOR,"
+                    + "TBL_STATUSLANCAMENTO.DESCRICAO AS STATUS"
+                    + " FROM"
+                    + " TBL_LANCAMENTO"
+                    + " INNER JOIN TBL_CLIENTE"
+                    + " ON TBL_LANCAMENTO.CODCLIENTE = TBL_CLIENTE.CODCLIENTE"
+                    + " INNER JOIN TBL_STATUSLANCAMENTO"
+                    + " ON TBL_LANCAMENTO.CODSTATUSLANCAMENTO = TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO"
+                    + " WHERE TBL_LANCAMENTO.CODTIPOLANCAMENTO = 1 AND TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO = 2"
+                    + " ORDER BY TBL_LANCAMENTO.CODLANCAMENTO DESC;");
+            JRResultSetDataSource jResultSDS = new JRResultSetDataSource(getResultSet());
+            InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioContasAReceberGeral.jasper");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(diretorioDoRelatorio, new HashMap(), jResultSDS);
+
+            String fileName = "C://BarbosaStore//Relatorios/RelatorioContasAReceberGeral.pdf";
+            JasperExportManager.exportReportToPdfFile(jasperPrint, fileName);
+            File arquivo = new File(fileName);
+            try {
+                Desktop.getDesktop().open(arquivo);
+            } catch (Exception e) {
+                JOptionPane.showConfirmDialog(null, e);
+            }
+            arquivo.deleteOnExit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro:", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean gerarRelatorioContasAReceberPorCliente(int codigo) {
+        // Query usada no relatório de lista de PRODUTOS 
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "date_format(TBL_LANCAMENTO.DATAVENCIMENTO, '%d/%m/%Y') AS VENCIMENTO,"
+                    + "TBL_LANCAMENTO.CODLANCAMENTO AS LANCAMENTO,"
+                    + "TBL_LANCAMENTO.DESCRICAO,"
+                    + "TBL_LANCAMENTO.CODCLIENTE,"
+                    + "TBL_CLIENTE.NOME_RAZAOSOCIAL AS CLIENTE,"
+                    + "date_format(TBL_LANCAMENTO.DATALANCAMENTO, '%d/%m/%Y') AS INCLUSAO,"
+                    + "TBL_LANCAMENTO.VALOR,"
+                    + "TBL_STATUSLANCAMENTO.DESCRICAO AS STATUS"
+                    + " FROM"
+                    + " TBL_LANCAMENTO"
+                    + " INNER JOIN TBL_CLIENTE"
+                    + " ON TBL_LANCAMENTO.CODCLIENTE = TBL_CLIENTE.CODCLIENTE"
+                    + " INNER JOIN TBL_STATUSLANCAMENTO"
+                    + " ON TBL_LANCAMENTO.CODSTATUSLANCAMENTO = TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO"
+                    + " WHERE TBL_LANCAMENTO.CODTIPOLANCAMENTO = 1 AND TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO = 2"
+                    + " AND TBL_LANCAMENTO.CODCLIENTE = '"+codigo+"'"        
+                    + " ORDER BY TBL_LANCAMENTO.CODLANCAMENTO DESC;");
+            JRResultSetDataSource jResultSDS = new JRResultSetDataSource(getResultSet());
+            InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioContasAReceberPorCliente.jasper");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(diretorioDoRelatorio, new HashMap(), jResultSDS);
+
+            String fileName = "C://BarbosaStore//Relatorios/RelatorioContasAReceberPorCliente.pdf";
+            JasperExportManager.exportReportToPdfFile(jasperPrint, fileName);
+            File arquivo = new File(fileName);
+            try {
+                Desktop.getDesktop().open(arquivo);
+            } catch (Exception e) {
+                JOptionPane.showConfirmDialog(null, e);
+            }
+            arquivo.deleteOnExit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro:", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean gerarRelatorioContasAReceberPorData(Date dataInicio, Date dataFim) {
+        // Query usada no relatório de lista de vendas num intervalo datas 
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "date_format(TBL_LANCAMENTO.DATAVENCIMENTO, '%d/%m/%Y') AS VENCIMENTO,"
+                    + "TBL_LANCAMENTO.CODLANCAMENTO AS LANCAMENTO,"
+                    + "TBL_LANCAMENTO.DESCRICAO,"
+                    + "TBL_LANCAMENTO.CODCLIENTE,"
+                    + "TBL_CLIENTE.NOME_RAZAOSOCIAL AS CLIENTE,"
+                    + "date_format(TBL_LANCAMENTO.DATALANCAMENTO, '%d/%m/%Y') AS INCLUSAO,"
+                    + "TBL_LANCAMENTO.VALOR,"
+                    + "TBL_STATUSLANCAMENTO.DESCRICAO AS STATUS"
+                    + " FROM"
+                    + " TBL_LANCAMENTO"
+                    + " INNER JOIN TBL_CLIENTE"
+                    + " ON TBL_LANCAMENTO.CODCLIENTE = TBL_FORNECEDOR.CODCLIENTE"
+                    + " INNER JOIN TBL_STATUSLANCAMENTO"
+                    + " ON TBL_LANCAMENTO.CODSTATUSLANCAMENTO = TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO"
+                    + " WHERE TBL_LANCAMENTO.CODTIPOLANCAMENTO = 1 AND TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO = 2"
+                    + " AND TBL_LANCAMENTO.DATAVENCIMENTO BETWEEN '" + dataInicio + "' AND '" + dataFim + "'"
+                    + " ORDER BY TBL_LANCAMENTO.CODLANCAMENTO DESC;");
+            JRResultSetDataSource jResultSDS = new JRResultSetDataSource(getResultSet());
+            InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioContasAPagarGeralPorData.jasper");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(diretorioDoRelatorio, new HashMap(), jResultSDS);
+
+            String fileName = "C://BarbosaStore//Relatorios/RelatorioContasAReceberPorData.pdf";
+            JasperExportManager.exportReportToPdfFile(jasperPrint, fileName);
+            File arquivo = new File(fileName);
+            try {
+                Desktop.getDesktop().open(arquivo);
+            } catch (Exception e) {
+                JOptionPane.showConfirmDialog(null, e);
+            }
+            arquivo.deleteOnExit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro:", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
 }

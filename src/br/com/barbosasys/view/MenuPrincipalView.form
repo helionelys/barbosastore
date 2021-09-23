@@ -292,10 +292,13 @@
                 <Property name="text" type="java.lang.String" value="Financeiro"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+                <MenuItem class="javax.swing.JMenuItem" name="MenuRelatorioFinanceiroItemConAReceber">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Contas &#xe0; Receber"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuRelatorioFinanceiroItemConAReceberActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="MenuRelatorioFinanceiroItemConAPagar">
                   <Properties>
