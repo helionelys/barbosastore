@@ -1,12 +1,15 @@
 package br.com.barbosasys.controller;
 
 import br.com.barbosasys.dao.LancamentoDAO;
+import br.com.barbosasys.dao.RelatoriosDAO;
 import br.com.barbosasys.model.Lancamento;
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class LancamentoController {
 
     private LancamentoDAO lancamentoDAO = new LancamentoDAO();
+    private RelatoriosDAO relatoriosDAO = new RelatoriosDAO();
 
     public int salvarLancamentoControllerAPagar(Lancamento Lancamento) {
         return this.lancamentoDAO.salvarLancamentoAPagarDAO(Lancamento);
@@ -70,5 +73,17 @@ public class LancamentoController {
 
     public boolean excluirLancamentoController(int codigo) {
         return this.lancamentoDAO.excluirLancamentoDAO(codigo);
+    }
+    
+    public boolean gerarRelatorioContasAPagarGeral(){
+        return this.relatoriosDAO.gerarRelatorioContasAPagarGeral();
+    }
+    
+    public boolean gerarRelatorioContasAPagarPorFornecedor(int codigo){
+        return this.relatoriosDAO.gerarRelatorioContasAPagarPorFornecedor(codigo);
+    }
+    
+    public boolean gerarRelatorioContasAPagarPorDatas(Date dataInicio, Date dataFim){
+        return this.relatoriosDAO.gerarRelatorioContasAPagarPorData(dataInicio, dataFim);
     }
 }

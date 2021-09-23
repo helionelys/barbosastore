@@ -109,7 +109,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        MenuRelatorioFinanceiroItemConAPagar = new javax.swing.JMenuItem();
         MenuRelatorioClientes = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         MenuOpcoes = new javax.swing.JMenu();
@@ -573,8 +573,13 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuItem6.setText("Contas à Receber");
         jMenu5.add(jMenuItem6);
 
-        jMenuItem7.setText("Contas à Pagar");
-        jMenu5.add(jMenuItem7);
+        MenuRelatorioFinanceiroItemConAPagar.setText("Contas à Pagar");
+        MenuRelatorioFinanceiroItemConAPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuRelatorioFinanceiroItemConAPagarActionPerformed(evt);
+            }
+        });
+        jMenu5.add(MenuRelatorioFinanceiroItemConAPagar);
 
         MenuRelatorio.add(jMenu5);
 
@@ -896,6 +901,12 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         telaRrelatorioVendas.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void MenuRelatorioFinanceiroItemConAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRelatorioFinanceiroItemConAPagarActionPerformed
+        // TODO add your handling code here:
+        RelatorioContaAPagarView telaRelatorioContasAPagar = new RelatorioContaAPagarView(this, rootPaneCheckingEnabled);
+        telaRelatorioContasAPagar.setVisible(true);
+    }//GEN-LAST:event_MenuRelatorioFinanceiroItemConAPagarActionPerformed
+
     public String retornarUsuarioLogado() {
         return new UsuarioSessao().nome;
     }
@@ -1057,6 +1068,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuOpcoesSobre;
     private javax.swing.JMenu MenuRelatorio;
     private javax.swing.JMenuItem MenuRelatorioClientes;
+    private javax.swing.JMenuItem MenuRelatorioFinanceiroItemConAPagar;
     private javax.swing.JMenuItem MenuRelatorioProdutosItListaProdutos;
     private javax.swing.JMenuItem MenuRelatorioProdutosItSaldoEstoque;
     private javax.swing.JMenu MenuSeguranca;
@@ -1083,7 +1095,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
