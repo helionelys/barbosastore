@@ -290,25 +290,28 @@ public class RelatoriosDAO extends ConexaoBanco {
             this.conectar();
             this.executarSQL(
                     "SELECT "
-                    + " TBL_VENDA.CODVENDA,"
-                    + " TBL_CLIENTE.NOME_RAZAOSOCIAL,"
-                    + " TBL_TIPOPAGAMENTO.DESCRICAO AS TIPOPAGAMENTO,"
-                    + " TBL_VENDA.DESCONTO, TBL_VENDA.TOTALVENDA,"
-                    + " date_format(TBL_VENDA.DATAVENDA, '%d/%m/%Y') AS DATAVENDA,"
-                    + " TBL_STATUSVENDA.DESCRICAO"
-                    + " FROM TBL_VENDA"
-                    + " INNER JOIN TBL_CLIENTE ON TBL_VENDA.CODCLIENTE = TBL_CLIENTE.CODCLIENTE"
-                    + " INNER JOIN TBL_STATUSVENDA"
-                    + " ON TBL_VENDA.CODSTATUSVENDA = TBL_STATUSVENDA.CODSTATUSVENDA"
-                    + " INNER JOIN TBL_TIPOPAGAMENTO"
-                    + " ON TBL_VENDA.CODTIPOPAGAMENTO = TBL_TIPOPAGAMENTO.CODTIPOPAGAMENTO"
-                    + " WHERE TBL_VENDA.CODSTATUSVENDA = '1' AND TBL_VENDA.CODCLIENTE = '" + codigo + "'"
-                    + "ORDER BY TBL_VENDA.DATAVENDA DESC;");
+                    + "date_format(TBL_LANCAMENTO.DATAVENCIMENTO, '%d/%m/%Y') AS VENCIMENTO,"
+                    + "TBL_LANCAMENTO.CODLANCAMENTO AS LANCAMENTO,"
+                    + "TBL_LANCAMENTO.DESCRICAO,"
+                    + "TBL_LANCAMENTO.CODFORNECEDOR,"
+                    + "TBL_FORNECEDOR.NOME_RAZAOSOCIAL AS FORNECEDOR,"
+                    + "date_format(TBL_LANCAMENTO.DATALANCAMENTO, '%d/%m/%Y') AS INCLUSAO,"
+                    + "TBL_LANCAMENTO.VALOR,"
+                    + "TBL_STATUSLANCAMENTO.DESCRICAO AS STATUS"
+                    + " FROM"
+                    + " TBL_LANCAMENTO"
+                    + " INNER JOIN TBL_FORNECEDOR"
+                    + " ON TBL_LANCAMENTO.CODFORNECEDOR = TBL_FORNECEDOR.CODFORNECEDOR"
+                    + " INNER JOIN TBL_STATUSLANCAMENTO"
+                    + " ON TBL_LANCAMENTO.CODSTATUSLANCAMENTO = TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO"
+                    + " WHERE TBL_LANCAMENTO.CODTIPOLANCAMENTO = 2 AND TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO = 2"
+                    + " AND TBL_LANCAMENTO.CODFORNECEDOR = '"+codigo+"'"        
+                    + " ORDER BY TBL_LANCAMENTO.CODLANCAMENTO DESC;");
             JRResultSetDataSource jResultSDS = new JRResultSetDataSource(getResultSet());
-            InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioVendaPorClientel.jasper");
+            InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioContasAPagarPorFornecedor.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(diretorioDoRelatorio, new HashMap(), jResultSDS);
 
-            String fileName = "C://BarbosaStore//Relatorios/RelatorioVendasPorCliente.pdf";
+            String fileName = "C://BarbosaStore//Relatorios/RelatorioContasAPagarPorFornecedor.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, fileName);
             File arquivo = new File(fileName);
             try {
@@ -331,25 +334,28 @@ public class RelatoriosDAO extends ConexaoBanco {
             this.conectar();
             this.executarSQL(
                     "SELECT "
-                    + " TBL_VENDA.CODVENDA,"
-                    + " TBL_CLIENTE.NOME_RAZAOSOCIAL,"
-                    + " TBL_TIPOPAGAMENTO.DESCRICAO AS TIPOPAGAMENTO,"
-                    + " TBL_VENDA.DESCONTO, TBL_VENDA.TOTALVENDA,"
-                    + " date_format(TBL_VENDA.DATAVENDA, '%d/%m/%Y') AS DATAVENDA,"
-                    + " TBL_STATUSVENDA.DESCRICAO"
-                    + " FROM TBL_VENDA"
-                    + " INNER JOIN TBL_CLIENTE ON TBL_VENDA.CODCLIENTE = TBL_CLIENTE.CODCLIENTE"
-                    + " INNER JOIN TBL_STATUSVENDA"
-                    + " ON TBL_VENDA.CODSTATUSVENDA = TBL_STATUSVENDA.CODSTATUSVENDA"
-                    + " INNER JOIN TBL_TIPOPAGAMENTO"
-                    + " ON TBL_VENDA.CODTIPOPAGAMENTO = TBL_TIPOPAGAMENTO.CODTIPOPAGAMENTO"
-                    + " WHERE TBL_VENDA.CODSTATUSVENDA = '1' AND TBL_VENDA.DATAVENDA BETWEEN '" + dataInicio + "' AND '" + dataFim + "'"
-                    + " ORDER BY TBL_VENDA.DATAVENDA, TBL_VENDA.CODVENDA ASC;");
+                    + "date_format(TBL_LANCAMENTO.DATAVENCIMENTO, '%d/%m/%Y') AS VENCIMENTO,"
+                    + "TBL_LANCAMENTO.CODLANCAMENTO AS LANCAMENTO,"
+                    + "TBL_LANCAMENTO.DESCRICAO,"
+                    + "TBL_LANCAMENTO.CODFORNECEDOR,"
+                    + "TBL_FORNECEDOR.NOME_RAZAOSOCIAL AS FORNECEDOR,"
+                    + "date_format(TBL_LANCAMENTO.DATALANCAMENTO, '%d/%m/%Y') AS INCLUSAO,"
+                    + "TBL_LANCAMENTO.VALOR,"
+                    + "TBL_STATUSLANCAMENTO.DESCRICAO AS STATUS"
+                    + " FROM"
+                    + " TBL_LANCAMENTO"
+                    + " INNER JOIN TBL_FORNECEDOR"
+                    + " ON TBL_LANCAMENTO.CODFORNECEDOR = TBL_FORNECEDOR.CODFORNECEDOR"
+                    + " INNER JOIN TBL_STATUSLANCAMENTO"
+                    + " ON TBL_LANCAMENTO.CODSTATUSLANCAMENTO = TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO"
+                    + " WHERE TBL_LANCAMENTO.CODTIPOLANCAMENTO = 2 AND TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO = 2"
+                    + " AND TBL_LANCAMENTO.DATAVENCIMENTO BETWEEN '" + dataInicio + "' AND '" + dataFim + "'"
+                    + " ORDER BY TBL_LANCAMENTO.CODLANCAMENTO DESC;");
             JRResultSetDataSource jResultSDS = new JRResultSetDataSource(getResultSet());
-            InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioVendaGeralPorData.jasper");
+            InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioContasAPagarGeralPorData.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(diretorioDoRelatorio, new HashMap(), jResultSDS);
 
-            String fileName = "C://BarbosaStore//Relatorios/RelatorioVendasGeralPorData.pdf";
+            String fileName = "C://BarbosaStore//Relatorios/RelatorioContasAPagarPorData.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, fileName);
             File arquivo = new File(fileName);
             try {

@@ -54,7 +54,7 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
         jdcRelatorioDataFim = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Barbosa Store - Relatórios Vendas");
+        setTitle("Barbosa Store - Relatórios Contas à Pagar");
 
         rbGroupTipoBuscaVenda.add(rbRelatorioContasAPagarPorData);
         rbRelatorioContasAPagarPorData.setText("Intervalo datas");
@@ -214,7 +214,7 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
             } catch (Exception e) {
                 Logger.getLogger(VendasView.class.getName()).log(Level.SEVERE, null, e);
             }
-            vendaController.gerarRelatorioVendasPorDatas(dataInicio, dataFim);
+            lancamentoController.gerarRelatorioContasAPagarPorDatas(dataInicio, dataFim);
         }
     }//GEN-LAST:event_btnGerarRelatorioActionPerformed
 
