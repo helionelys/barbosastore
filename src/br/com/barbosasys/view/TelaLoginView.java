@@ -57,23 +57,23 @@ public class TelaLoginView extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Ubuntu Light", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Logo-SysVendas.png"))); // NOI18N
-        jLabel4.setText("Barbosa Store - Comercio e Serviços");
+        jLabel4.setText("Barbosa Store - Solução em Gestão Comercial");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 153, 255));
