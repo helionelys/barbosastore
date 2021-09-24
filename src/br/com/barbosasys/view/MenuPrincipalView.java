@@ -114,7 +114,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         MenuOpcoesSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Barbosa Store - Soluçao em Gestão Comercial");
+        setTitle("Barbosa Store - Solução em Gestão Comercial");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
