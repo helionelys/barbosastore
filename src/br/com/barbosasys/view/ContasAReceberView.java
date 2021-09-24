@@ -371,6 +371,9 @@ public class ContasAReceberView extends javax.swing.JDialog {
                         .addComponent(btnLancamentosRecebidosCancelar)))
                 .addContainerGap())
         );
+
+        jpContasPagasLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnLancamentosRecebidosDetalhe, btnLancamentosRecebidosImprimir});
+
         jpContasPagasLayout.setVerticalGroup(
             jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContasPagasLayout.createSequentialGroup()
@@ -390,6 +393,8 @@ public class ContasAReceberView extends javax.swing.JDialog {
                         .addComponent(btnLancamentosRecebidosDetalhe)))
                 .addContainerGap())
         );
+
+        jpContasPagasLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnLancamentosRecebidosDetalhe, btnLancamentosRecebidosImprimir});
 
         jTabbedPaneContaAPagar.addTab("Contas Recebidas", jpContasPagas);
 
@@ -1020,7 +1025,7 @@ public class ContasAReceberView extends javax.swing.JDialog {
             String nomeFornecedor = (String) tblLancamentosRecebidos.getValueAt(linha, 2);
             int codigoLancamento = (Integer) tblLancamentosRecebidos.getValueAt(linha, 0);
             //Recupera os dados no banco de dados
-            lancamento = (lancamentoController.getLancamentoControllerAPagar(codigoLancamento));
+            lancamento = (lancamentoController.getLancamentoControllerAReceber(codigoLancamento));
             telaDetalheLancamentoRecebido.setLblCodLancamento(codigoLancamento);
             telaDetalheLancamentoRecebido.setTxtCodFornecedor(lancamento.getPessoa().getCodigo());
             telaDetalheLancamentoRecebido.setTxtNomeFornecedor(nomeFornecedor);

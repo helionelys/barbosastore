@@ -304,9 +304,9 @@
                               <Component id="txtLancamentoRecebidosPesquisar" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnLancamentosRecebidosImprimir" min="-2" pref="108" max="-2" attributes="0"/>
+                              <Component id="btnLancamentosRecebidosImprimir" linkSize="6" min="-2" pref="108" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnLancamentosRecebidosDetalhe" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLancamentosRecebidosDetalhe" linkSize="6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnLancamentosRecebidosRevogar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -334,8 +334,8 @@
                               <Component id="btnLancamentosRecebidosCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="btnLancamentosRecebidosImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnLancamentosRecebidosDetalhe" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLancamentosRecebidosImprimir" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLancamentosRecebidosDetalhe" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>

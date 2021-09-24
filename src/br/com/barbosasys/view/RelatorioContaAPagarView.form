@@ -37,17 +37,14 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="rbRelatorioContasAPagarGeral" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbRelatorioContasAPagarGeralAberto" min="-2" max="-2" attributes="0"/>
                           <Component id="rbRelatorioContasAPagarPorFornecedor" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbRelatorioContasAPagarGeraBaixado" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel1" pref="185" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
@@ -64,7 +61,14 @@
                               <Component id="cbRelatorioContasAPagarFornecedores" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" max="32767" attributes="0"/>
+                          <Component id="jLabel2" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -75,15 +79,20 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="rbRelatorioContasAPagarGeral" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rbRelatorioContasAPagarGeralAberto" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="rbRelatorioContasAPagarGeraBaixado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cbRelatorioContasAPagarFornecedores" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rbRelatorioContasAPagarPorFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="rbRelatorioContasAPagarPorData" min="-2" max="-2" attributes="0"/>
                   <Component id="jdcRelatorioDataInicio" min="-2" max="-2" attributes="0"/>
@@ -162,15 +171,15 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rbRelatorioContasAPagarGeral">
+    <Component class="javax.swing.JRadioButton" name="rbRelatorioContasAPagarGeralAberto">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="rbGroupTipoBuscaVenda"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Geral"/>
+        <Property name="text" type="java.lang.String" value="Aberto"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbRelatorioContasAPagarGeralActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbRelatorioContasAPagarGeralAbertoActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
@@ -178,10 +187,29 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Relat&#xf3;rio geral de contas &#xe0; pagar"/>
+        <Property name="text" type="java.lang.String" value="Relat&#xf3;rio geral de contas &#xe0; pagar com Status Aberto"/>
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jdcRelatorioDataFim">
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="rbRelatorioContasAPagarGeraBaixado">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="rbGroupTipoBuscaVenda"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Baixado"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbRelatorioContasAPagarGeraBaixadoActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Relat&#xf3;rio geral de contas &#xe0; pagar com Status Baixado"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

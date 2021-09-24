@@ -46,9 +46,11 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
         cbRelatorioContasAPagarFornecedores = new javax.swing.JComboBox<>();
         btnGerarRelatorio = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        rbRelatorioContasAPagarGeral = new javax.swing.JRadioButton();
+        rbRelatorioContasAPagarGeralAberto = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jdcRelatorioDataFim = new com.toedter.calendar.JDateChooser();
+        rbRelatorioContasAPagarGeraBaixado = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Barbosa Store - Relatórios Contas à Pagar");
@@ -85,15 +87,25 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
             }
         });
 
-        rbGroupTipoBuscaVenda.add(rbRelatorioContasAPagarGeral);
-        rbRelatorioContasAPagarGeral.setText("Geral");
-        rbRelatorioContasAPagarGeral.addActionListener(new java.awt.event.ActionListener() {
+        rbGroupTipoBuscaVenda.add(rbRelatorioContasAPagarGeralAberto);
+        rbRelatorioContasAPagarGeralAberto.setText("Aberto");
+        rbRelatorioContasAPagarGeralAberto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbRelatorioContasAPagarGeralActionPerformed(evt);
+                rbRelatorioContasAPagarGeralAbertoActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Relatório geral de contas à pagar");
+        jLabel1.setText("Relatório geral de contas à pagar com Status Aberto");
+
+        rbGroupTipoBuscaVenda.add(rbRelatorioContasAPagarGeraBaixado);
+        rbRelatorioContasAPagarGeraBaixado.setText("Baixado");
+        rbRelatorioContasAPagarGeraBaixado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbRelatorioContasAPagarGeraBaixadoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Relatório geral de contas à pagar com Status Baixado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,13 +119,11 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbRelatorioContasAPagarGeral)
-                            .addComponent(rbRelatorioContasAPagarPorFornecedor))
+                            .addComponent(rbRelatorioContasAPagarGeralAberto)
+                            .addComponent(rbRelatorioContasAPagarPorFornecedor)
+                            .addComponent(rbRelatorioContasAPagarGeraBaixado))
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                        .addGap(195, 195, 195))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -126,7 +136,12 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
                                     .addGap(18, 18, 18)
                                     .addComponent(jdcRelatorioDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(cbRelatorioContasAPagarFornecedores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(22, 22, 22))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnGerarRelatorio});
@@ -136,8 +151,12 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbRelatorioContasAPagarGeral)
+                    .addComponent(rbRelatorioContasAPagarGeralAberto)
                     .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbRelatorioContasAPagarGeraBaixado)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbRelatorioContasAPagarFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,13 +197,13 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
 
     }//GEN-LAST:event_rbRelatorioContasAPagarPorFornecedorActionPerformed
 
-    private void rbRelatorioContasAPagarGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAPagarGeralActionPerformed
+    private void rbRelatorioContasAPagarGeralAbertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAPagarGeralAbertoActionPerformed
         // TODO add your handling code here:
         btnGerarRelatorio.setEnabled(true);
         jdcRelatorioDataInicio.setEnabled(false);
         jdcRelatorioDataFim.setEnabled(false);
         cbRelatorioContasAPagarFornecedores.setEnabled(false);
-    }//GEN-LAST:event_rbRelatorioContasAPagarGeralActionPerformed
+    }//GEN-LAST:event_rbRelatorioContasAPagarGeralAbertoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
@@ -195,8 +214,11 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
         // TODO add your handling code here:
         VendaController vendaController = new VendaController();
         UtilDatas utilDatas = new UtilDatas();
-        if (rbRelatorioContasAPagarGeral.isSelected()) {
-            lancamentoController.gerarRelatorioContasAPagarGeral();
+        if (rbRelatorioContasAPagarGeralAberto.isSelected()) {
+            lancamentoController.gerarRelatorioContasAPagarGeralAbertos();
+        }
+        if (rbRelatorioContasAPagarGeraBaixado.isSelected()) {
+            lancamentoController.gerarRelatorioContasAPagarGeralBaixados();
         }
         if (rbRelatorioContasAPagarPorFornecedor.isSelected()) {
             int codigo = (FornecedorController.getFornecedorController(this.cbRelatorioContasAPagarFornecedores.getSelectedItem().toString()).getCodigo());
@@ -206,14 +228,22 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
         if (rbRelatorioContasAPagarPorData.isSelected()) {
             Date dataInicio = null, dataFim = null;
             try {
-               dataInicio = utilDatas.TransformaDataParaFormatoAmericanoS((jdcRelatorioDataInicio.getDate()));
-               dataFim = utilDatas.TransformaDataParaFormatoAmericanoS((jdcRelatorioDataFim.getDate()));
+                dataInicio = utilDatas.TransformaDataParaFormatoAmericanoS((jdcRelatorioDataInicio.getDate()));
+                dataFim = utilDatas.TransformaDataParaFormatoAmericanoS((jdcRelatorioDataFim.getDate()));
             } catch (Exception e) {
                 Logger.getLogger(VendasView.class.getName()).log(Level.SEVERE, null, e);
             }
             lancamentoController.gerarRelatorioContasAPagarPorDatas(dataInicio, dataFim);
         }
     }//GEN-LAST:event_btnGerarRelatorioActionPerformed
+
+    private void rbRelatorioContasAPagarGeraBaixadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAPagarGeraBaixadoActionPerformed
+        // TODO add your handling code here:
+        btnGerarRelatorio.setEnabled(true);
+        jdcRelatorioDataInicio.setEnabled(false);
+        jdcRelatorioDataFim.setEnabled(false);
+        cbRelatorioContasAPagarFornecedores.setEnabled(false);
+    }//GEN-LAST:event_rbRelatorioContasAPagarGeraBaixadoActionPerformed
 
     private void carregarFornecedor() {
         listaFornecedores = FornecedorController.getListaFornecedorController();
@@ -230,10 +260,12 @@ public class RelatorioContaAPagarView extends javax.swing.JDialog {
     private javax.swing.JButton btnGerarRelatorio;
     private javax.swing.JComboBox<String> cbRelatorioContasAPagarFornecedores;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private com.toedter.calendar.JDateChooser jdcRelatorioDataFim;
     private com.toedter.calendar.JDateChooser jdcRelatorioDataInicio;
     private javax.swing.ButtonGroup rbGroupTipoBuscaVenda;
-    protected javax.swing.JRadioButton rbRelatorioContasAPagarGeral;
+    protected javax.swing.JRadioButton rbRelatorioContasAPagarGeraBaixado;
+    protected javax.swing.JRadioButton rbRelatorioContasAPagarGeralAberto;
     protected javax.swing.JRadioButton rbRelatorioContasAPagarPorData;
     protected javax.swing.JRadioButton rbRelatorioContasAPagarPorFornecedor;
     // End of variables declaration//GEN-END:variables
