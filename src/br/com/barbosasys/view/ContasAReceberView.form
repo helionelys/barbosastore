@@ -109,8 +109,6 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnLancamentosReceber" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnLancamentosAReceberImprimir" min="-2" pref="108" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnContasAReceberIncluir" linkSize="2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -141,8 +139,7 @@
                           <Component id="btnContasARecebrCancelar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnContasAReceberIncluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnContasAReceberEditar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnLancamentosAReceberImprimir" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnLancamentosReceber" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLancamentosReceber" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -261,14 +258,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContasAReceberEditarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnLancamentosAReceberImprimir">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/barbosasys/images/print22.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Imprimir"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="btnLancamentosReceber">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -304,9 +293,7 @@
                               <Component id="txtLancamentoRecebidosPesquisar" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnLancamentosRecebidosImprimir" linkSize="6" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnLancamentosRecebidosDetalhe" linkSize="6" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLancamentosRecebidosDetalhe" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnLancamentosRecebidosRevogar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -328,15 +315,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane4" pref="293" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="btnLancamentosRecebidosRevogar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnLancamentosRecebidosCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="btnLancamentosRecebidosImprimir" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnLancamentosRecebidosDetalhe" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnLancamentosRecebidosRevogar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLancamentosRecebidosCancelar" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLancamentosRecebidosDetalhe" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -432,14 +414,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLancamentosRecebidosCancelarActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnLancamentosRecebidosImprimir">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/barbosasys/images/print22.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Imprimir"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnLancamentosRecebidosDetalhe">
               <Properties>

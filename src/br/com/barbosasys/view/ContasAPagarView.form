@@ -109,8 +109,6 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnLancamentosPagar" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnLancamentosAPagarImprimir" min="-2" pref="108" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnContasAPagarIncluir" linkSize="2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -141,8 +139,7 @@
                           <Component id="btnContasAPagarCancelar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnContasAPagarIncluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnContasAPagarEditar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnLancamentosAPagarImprimir" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnLancamentosPagar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLancamentosPagar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -261,14 +258,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContasAPagarEditarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnLancamentosAPagarImprimir">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/barbosasys/images/print22.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Imprimir"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="btnLancamentosPagar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -304,9 +293,7 @@
                               <Component id="txtLancamentoPagosPesquisar" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnLancamentosPagosImprimir" linkSize="6" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnLancamentosPagosDetalhe" linkSize="6" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLancamentosPagosDetalhe" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnLancamentosPagosRevogar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -328,15 +315,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane4" pref="293" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="btnLancamentosPagosRevogar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnLancamentosPagosCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="btnLancamentosPagosImprimir" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnLancamentosPagosDetalhe" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnLancamentosPagosRevogar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLancamentosPagosCancelar" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLancamentosPagosDetalhe" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -432,14 +414,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLancamentosPagosCancelarActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnLancamentosPagosImprimir">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/barbosasys/images/print22.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Imprimir"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnLancamentosPagosDetalhe">
               <Properties>

@@ -70,7 +70,6 @@ public class ContasAReceberView extends javax.swing.JDialog {
         btnContasARecebrCancelar = new javax.swing.JButton();
         btnContasAReceberIncluir = new javax.swing.JButton();
         btnContasAReceberEditar = new javax.swing.JButton();
-        btnLancamentosAReceberImprimir = new javax.swing.JButton();
         btnLancamentosReceber = new javax.swing.JButton();
         jpContasPagas = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -79,7 +78,6 @@ public class ContasAReceberView extends javax.swing.JDialog {
         tblLancamentosRecebidos = new javax.swing.JTable();
         btnLancamentosRecebidosRevogar = new javax.swing.JButton();
         btnLancamentosRecebidosCancelar = new javax.swing.JButton();
-        btnLancamentosRecebidosImprimir = new javax.swing.JButton();
         btnLancamentosRecebidosDetalhe = new javax.swing.JButton();
         jpLancamentosContasAPagar = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -210,9 +208,6 @@ public class ContasAReceberView extends javax.swing.JDialog {
             }
         });
 
-        btnLancamentosAReceberImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/print22.png"))); // NOI18N
-        btnLancamentosAReceberImprimir.setText("Imprimir");
-
         btnLancamentosReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Dollar.png"))); // NOI18N
         btnLancamentosReceber.setText("Receber");
         btnLancamentosReceber.addActionListener(new java.awt.event.ActionListener() {
@@ -235,8 +230,6 @@ public class ContasAReceberView extends javax.swing.JDialog {
                         .addComponent(txtLancamentoAReceberPesquisar))
                     .addGroup(jpContasAPagarLayout.createSequentialGroup()
                         .addComponent(btnLancamentosReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLancamentosAReceberImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnContasAReceberIncluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -265,14 +258,11 @@ public class ContasAReceberView extends javax.swing.JDialog {
                     .addComponent(btnContasARecebrCancelar)
                     .addComponent(btnContasAReceberIncluir)
                     .addComponent(btnContasAReceberEditar)
-                    .addComponent(btnLancamentosAReceberImprimir)
                     .addComponent(btnLancamentosReceber))
                 .addContainerGap())
         );
 
-        jpContasAPagarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnContasAReceberEditar, btnContasAReceberExcluir, btnContasAReceberIncluir, btnContasARecebrCancelar});
-
-        jpContasAPagarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnLancamentosAReceberImprimir, btnLancamentosReceber});
+        jpContasAPagarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnContasAReceberEditar, btnContasAReceberExcluir, btnContasAReceberIncluir, btnContasARecebrCancelar, btnLancamentosReceber});
 
         jTabbedPaneContaAPagar.addTab("Contas a Receber", jpContasAPagar);
 
@@ -338,9 +328,6 @@ public class ContasAReceberView extends javax.swing.JDialog {
             }
         });
 
-        btnLancamentosRecebidosImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/print22.png"))); // NOI18N
-        btnLancamentosRecebidosImprimir.setText("Imprimir");
-
         btnLancamentosRecebidosDetalhe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Report.png"))); // NOI18N
         btnLancamentosRecebidosDetalhe.setText("Detalhe ");
         btnLancamentosRecebidosDetalhe.addActionListener(new java.awt.event.ActionListener() {
@@ -362,8 +349,6 @@ public class ContasAReceberView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtLancamentoRecebidosPesquisar))
                     .addGroup(jpContasPagasLayout.createSequentialGroup()
-                        .addComponent(btnLancamentosRecebidosImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLancamentosRecebidosDetalhe)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLancamentosRecebidosRevogar)
@@ -371,9 +356,6 @@ public class ContasAReceberView extends javax.swing.JDialog {
                         .addComponent(btnLancamentosRecebidosCancelar)))
                 .addContainerGap())
         );
-
-        jpContasPagasLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnLancamentosRecebidosDetalhe, btnLancamentosRecebidosImprimir});
-
         jpContasPagasLayout.setVerticalGroup(
             jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContasPagasLayout.createSequentialGroup()
@@ -384,17 +366,14 @@ public class ContasAReceberView extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnLancamentosRecebidosRevogar)
-                        .addComponent(btnLancamentosRecebidosCancelar))
-                    .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnLancamentosRecebidosImprimir)
-                        .addComponent(btnLancamentosRecebidosDetalhe)))
+                .addGroup(jpContasPagasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLancamentosRecebidosRevogar)
+                    .addComponent(btnLancamentosRecebidosCancelar)
+                    .addComponent(btnLancamentosRecebidosDetalhe))
                 .addContainerGap())
         );
 
-        jpContasPagasLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnLancamentosRecebidosDetalhe, btnLancamentosRecebidosImprimir});
+        jpContasPagasLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnLancamentosRecebidosCancelar, btnLancamentosRecebidosDetalhe});
 
         jTabbedPaneContaAPagar.addTab("Contas Recebidas", jpContasPagas);
 
@@ -1079,11 +1058,9 @@ public class ContasAReceberView extends javax.swing.JDialog {
     private javax.swing.JButton btnLancamentoBuscaCliente;
     private javax.swing.JButton btnLancamentoCancelar;
     private javax.swing.JButton btnLancamentoSalvar;
-    private javax.swing.JButton btnLancamentosAReceberImprimir;
     private javax.swing.JButton btnLancamentosReceber;
     private javax.swing.JButton btnLancamentosRecebidosCancelar;
     private javax.swing.JButton btnLancamentosRecebidosDetalhe;
-    private javax.swing.JButton btnLancamentosRecebidosImprimir;
     private javax.swing.JButton btnLancamentosRecebidosRevogar;
     private javax.swing.JComboBox<String> cbLancamentoTipoPagamento;
     private javax.swing.JLabel jLabel1;
