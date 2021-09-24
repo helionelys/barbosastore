@@ -311,7 +311,7 @@ public class FaturamentoVendaView extends javax.swing.JDialog {
         pessoa.setCodigo(Integer.parseInt(this.lblCodCliente.getText()));
         lancamentoFaturar.setPessoa(pessoa);
         venda.setCodVenda(Integer.parseInt(this.lblNumeroDaVenda.getText()));
-        String descricaoLancamento = "LANÇAMENTO REFERENTE A VENDA Nº: " + lblNumeroDaVenda.getText() + " NO VALOR DE: " + lblMoney.getText();
+        String descricaoLancamento = "LANÇAMENTO REFERENTE A VENDA Nº: " + lblNumeroDaVenda.getText() + " NO VALOR DE: R$ " + lblValorTotal.getText();
         lancamentoFaturar.setDescricaoLancamento(descricaoLancamento);
 
         String dataLancamento = this.lblDataVenda.getText();

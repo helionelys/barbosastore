@@ -893,7 +893,7 @@ public class ContasAPagarView extends javax.swing.JDialog {
             String dataLancamentoInclusao = localDate.format(formatter2);
             this.txtLancamentoDataInclusao.setText(dataLancamentoInclusao);
 
-            String dataRetorno2 = lancamento.getDataLancamento();
+            String dataRetorno2 = lancamento.getDataVencimento();
             DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate2 = LocalDate.parse(dataRetorno2, formatter3);

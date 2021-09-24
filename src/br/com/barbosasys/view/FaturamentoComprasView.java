@@ -393,7 +393,7 @@ public class FaturamentoComprasView extends javax.swing.JDialog {
         pessoa.setCodigo(Integer.parseInt(this.lblCodFornecedor.getText()));
         lancamentoFaturar.setPessoa(pessoa);
         compra.setCodCompra(Integer.parseInt(this.lblNumeroDaCompra.getText()));
-        String descricaoLancamento = "LANÇAMENTO REFERENTE A COMPRA Nº: " + lblNumeroDaCompra.getText() + " NO VALOR DE: " + lblValorTotal.getText();
+        String descricaoLancamento = "LANÇAMENTO REFERENTE A COMPRA Nº: " + lblNumeroDaCompra.getText() + " NO VALOR DE: R$ " + lblValorTotal.getText();
         lancamentoFaturar.setDescricaoLancamento(descricaoLancamento);
 
         String dataLancamento = this.lblDataCompra.getText();
