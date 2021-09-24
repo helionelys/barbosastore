@@ -46,9 +46,11 @@ public class RelatorioContaAReceberView extends javax.swing.JDialog {
         cbRelatorioContasAReceberClientes = new javax.swing.JComboBox<>();
         btnGerarRelatorio = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        rbRelatorioContasAReceberGeral = new javax.swing.JRadioButton();
+        rbRelatorioContasAReceberGeralAberto = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jdcRelatorioDataFim = new com.toedter.calendar.JDateChooser();
+        rbRelatorioContasAReceberGeralBaixado = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Barbosa Store - Relatórios Contas à Pagar");
@@ -85,15 +87,25 @@ public class RelatorioContaAReceberView extends javax.swing.JDialog {
             }
         });
 
-        rbGroupTipoBuscaVenda.add(rbRelatorioContasAReceberGeral);
-        rbRelatorioContasAReceberGeral.setText("Geral");
-        rbRelatorioContasAReceberGeral.addActionListener(new java.awt.event.ActionListener() {
+        rbGroupTipoBuscaVenda.add(rbRelatorioContasAReceberGeralAberto);
+        rbRelatorioContasAReceberGeralAberto.setText("Aberto");
+        rbRelatorioContasAReceberGeralAberto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbRelatorioContasAReceberGeralActionPerformed(evt);
+                rbRelatorioContasAReceberGeralAbertoActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Relatório geral de contas à pagar");
+        jLabel1.setText("Relatório geral de contas à receber com Status Aberto");
+
+        rbGroupTipoBuscaVenda.add(rbRelatorioContasAReceberGeralBaixado);
+        rbRelatorioContasAReceberGeralBaixado.setText("Baixado");
+        rbRelatorioContasAReceberGeralBaixado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbRelatorioContasAReceberGeralBaixadoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Relatório geral de contas à receber com Status Baixado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,20 +114,25 @@ public class RelatorioContaAReceberView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(rbRelatorioContasAReceberPorData)
+                            .addGap(12, 12, 12))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rbRelatorioContasAReceberGeralAberto)
+                                .addComponent(rbRelatorioContasAReceberPorCliente))
+                            .addGap(18, 18, 18)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(rbRelatorioContasAReceberPorData)
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbRelatorioContasAReceberGeral)
-                            .addComponent(rbRelatorioContasAReceberPorCliente))
-                        .addGap(18, 18, 18)))
+                        .addComponent(rbRelatorioContasAReceberGeralBaixado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                        .addGap(195, 195, 195))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnGerarRelatorio)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -125,8 +142,7 @@ public class RelatorioContaAReceberView extends javax.swing.JDialog {
                                     .addComponent(jdcRelatorioDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jdcRelatorioDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(cbRelatorioContasAReceberClientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, 0))))
+                                .addComponent(cbRelatorioContasAReceberClientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnGerarRelatorio});
@@ -136,8 +152,12 @@ public class RelatorioContaAReceberView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbRelatorioContasAReceberGeral)
+                    .addComponent(rbRelatorioContasAReceberGeralAberto)
                     .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbRelatorioContasAReceberGeralBaixado)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbRelatorioContasAReceberClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,13 +198,13 @@ public class RelatorioContaAReceberView extends javax.swing.JDialog {
 
     }//GEN-LAST:event_rbRelatorioContasAReceberPorClienteActionPerformed
 
-    private void rbRelatorioContasAReceberGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAReceberGeralActionPerformed
+    private void rbRelatorioContasAReceberGeralAbertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAReceberGeralAbertoActionPerformed
         // TODO add your handling code here:
         btnGerarRelatorio.setEnabled(true);
         jdcRelatorioDataInicio.setEnabled(false);
         jdcRelatorioDataFim.setEnabled(false);
         cbRelatorioContasAReceberClientes.setEnabled(false);
-    }//GEN-LAST:event_rbRelatorioContasAReceberGeralActionPerformed
+    }//GEN-LAST:event_rbRelatorioContasAReceberGeralAbertoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
@@ -195,8 +215,11 @@ public class RelatorioContaAReceberView extends javax.swing.JDialog {
         // TODO add your handling code here:
         VendaController vendaController = new VendaController();
         UtilDatas utilDatas = new UtilDatas();
-        if (rbRelatorioContasAReceberGeral.isSelected()) {
-            lancamentoController.gerarRelatorioContasAReceberGeral();
+        if (rbRelatorioContasAReceberGeralAberto.isSelected()) {
+            lancamentoController.gerarRelatorioContasAReceberGeralAbertos();
+        }
+        if (rbRelatorioContasAReceberGeralBaixado.isSelected()) {
+            lancamentoController.gerarRelatorioContasAReceberGeralBaixados();
         }
         if (rbRelatorioContasAReceberPorCliente.isSelected()) {
             int codigo = (clienteController.getClienteController(this.cbRelatorioContasAReceberClientes.getSelectedItem().toString()).getCodigo());
@@ -215,6 +238,14 @@ public class RelatorioContaAReceberView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnGerarRelatorioActionPerformed
 
+    private void rbRelatorioContasAReceberGeralBaixadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRelatorioContasAReceberGeralBaixadoActionPerformed
+        // TODO add your handling code here:
+        btnGerarRelatorio.setEnabled(true);
+        jdcRelatorioDataInicio.setEnabled(false);
+        jdcRelatorioDataFim.setEnabled(false);
+        cbRelatorioContasAReceberClientes.setEnabled(false);
+    }//GEN-LAST:event_rbRelatorioContasAReceberGeralBaixadoActionPerformed
+
     private void carregarClientes() {
         listaClientes = clienteController.getListaClienteController();
         cbRelatorioContasAReceberClientes.removeAllItems();
@@ -230,10 +261,12 @@ public class RelatorioContaAReceberView extends javax.swing.JDialog {
     private javax.swing.JButton btnGerarRelatorio;
     private javax.swing.JComboBox<String> cbRelatorioContasAReceberClientes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private com.toedter.calendar.JDateChooser jdcRelatorioDataFim;
     private com.toedter.calendar.JDateChooser jdcRelatorioDataInicio;
     private javax.swing.ButtonGroup rbGroupTipoBuscaVenda;
-    protected javax.swing.JRadioButton rbRelatorioContasAReceberGeral;
+    protected javax.swing.JRadioButton rbRelatorioContasAReceberGeralAberto;
+    protected javax.swing.JRadioButton rbRelatorioContasAReceberGeralBaixado;
     protected javax.swing.JRadioButton rbRelatorioContasAReceberPorCliente;
     protected javax.swing.JRadioButton rbRelatorioContasAReceberPorData;
     // End of variables declaration//GEN-END:variables

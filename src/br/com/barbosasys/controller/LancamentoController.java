@@ -87,8 +87,12 @@ public class LancamentoController {
         return this.relatoriosDAO.gerarRelatorioContasAPagarPorData(dataInicio, dataFim);
     }
     
-    public boolean gerarRelatorioContasAReceberGeral(){
-        return this.relatoriosDAO.gerarRelatorioContasAReceberGeral();
+    public boolean gerarRelatorioContasAReceberGeralAbertos(){
+        return this.relatoriosDAO.gerarRelatorioContasAReceberGeralAbertos();
+    }
+    
+    public boolean gerarRelatorioContasAReceberGeralBaixados(){
+        return this.relatoriosDAO.gerarRelatorioContasAReceberGeralBaixados();
     }
     
     public boolean gerarRelatorioContasAReceberPorCliente(int codigo){
