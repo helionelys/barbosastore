@@ -33,7 +33,7 @@ public class BuscarClientesAReceberView extends javax.swing.JDialog {
     /**
      * Creates new form BuscaClientes
      */
-    public BuscarClientesAReceberView(ContasReceberView owner, boolean modal) {
+    public BuscarClientesAReceberView(ContasAReceberView owner, boolean modal) {
         super(owner, modal);
         initComponents();
         this.carregarClientes();

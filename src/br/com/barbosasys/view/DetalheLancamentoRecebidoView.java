@@ -26,7 +26,7 @@ public class DetalheLancamentoRecebidoView extends javax.swing.JDialog {
     /**
      * Creates new form DetalheLancamentoPago
      */
-    public DetalheLancamentoRecebidoView(ContasReceberView owner,  boolean modal) {
+    public DetalheLancamentoRecebidoView(ContasAReceberView owner,  boolean modal) {
         super(owner, modal);
         //recuperarLancamento();
         initComponents();

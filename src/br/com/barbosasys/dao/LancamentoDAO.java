@@ -455,7 +455,7 @@ public class LancamentoDAO extends ConexaoBanco {
                     + "DESCRICAO = '" + lancamento.getDescricaoLancamento()+ "',"
                    // + "DATALANCAMENTO = '" + lancamento.getDataLancamento()+ "',"
                     + "DATAVENCIMENTO = '" + lancamento.getDataVencimento()+ "',"
-                    + "DATAPAGAMENTO = '" + lancamento.getDataPagamento()+ "',"
+                    //+ "DATAPAGAMENTO = '" + lancamento.getDataPagamento()+ "',"
                     + "VALOR = '" + lancamento.getValorLancamento()+ "',"
                     + "CODTIPOPAGAMENTO = '" + lancamento.getCodTipoPagamento()+ "',"
                     + "OBSERVACAO = '"+ lancamento.getObservacao()+ "'"

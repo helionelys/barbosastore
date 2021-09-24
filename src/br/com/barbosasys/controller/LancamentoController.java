@@ -96,6 +96,6 @@ public class LancamentoController {
     }
     
     public boolean gerarRelatorioContasAReceberPorDatas(Date dataInicio, Date dataFim){
-        return this.relatoriosDAO.gerarRelatorioContasAPagarPorData(dataInicio, dataFim);
+        return this.relatoriosDAO.gerarRelatorioContasAReceberPorData(dataInicio, dataFim);
     }
 }

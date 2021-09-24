@@ -777,7 +777,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
     private void MenuFinanceiroContaReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFinanceiroContaReceberActionPerformed
         // TODO add your handling code here:
-        ContasReceberView telaContasReceberView = new ContasReceberView(this, rootPaneCheckingEnabled);
+        ContasAReceberView telaContasReceberView = new ContasAReceberView(this, rootPaneCheckingEnabled);
         telaContasReceberView.setLocationRelativeTo(this);
         telaContasReceberView.setVisible(true);
     }//GEN-LAST:event_MenuFinanceiroContaReceberActionPerformed

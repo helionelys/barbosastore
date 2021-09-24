@@ -476,17 +476,17 @@ public class RelatoriosDAO extends ConexaoBanco {
                     + " FROM"
                     + " TBL_LANCAMENTO"
                     + " INNER JOIN TBL_CLIENTE"
-                    + " ON TBL_LANCAMENTO.CODCLIENTE = TBL_FORNECEDOR.CODCLIENTE"
+                    + " ON TBL_LANCAMENTO.CODCLIENTE = TBL_CLIENTE.CODCLIENTE"
                     + " INNER JOIN TBL_STATUSLANCAMENTO"
                     + " ON TBL_LANCAMENTO.CODSTATUSLANCAMENTO = TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO"
                     + " WHERE TBL_LANCAMENTO.CODTIPOLANCAMENTO = 1 AND TBL_STATUSLANCAMENTO.CODSTATUSLANCAMENTO = 2"
                     + " AND TBL_LANCAMENTO.DATAVENCIMENTO BETWEEN '" + dataInicio + "' AND '" + dataFim + "'"
                     + " ORDER BY TBL_LANCAMENTO.CODLANCAMENTO DESC;");
             JRResultSetDataSource jResultSDS = new JRResultSetDataSource(getResultSet());
-            InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioContasAPagarGeralPorData.jasper");
+            InputStream diretorioDoRelatorio = this.getClass().getClassLoader().getResourceAsStream("br/com/barbosasys/filereports/RelatorioContasAReceberGeralPorData.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(diretorioDoRelatorio, new HashMap(), jResultSDS);
 
-            String fileName = "C://BarbosaStore//Relatorios/RelatorioContasAReceberPorData.pdf";
+            String fileName = "C://BarbosaStore//Relatorios/RelatorioContasAReceberGeralPorData.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, fileName);
             File arquivo = new File(fileName);
             try {
