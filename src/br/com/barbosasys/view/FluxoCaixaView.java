@@ -14,15 +14,26 @@ import br.com.barbosasys.model.Fornecedor;
 import br.com.barbosasys.model.Lancamento;
 import br.com.barbosasys.model.Pessoa;
 import br.com.barbosasys.model.TipoPagamento;
+import br.com.barbosasys.utilitarios.UtilDatas;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author helionelys
  */
 public class FluxoCaixaView extends javax.swing.JDialog {
+
     Lancamento lancamento = new Lancamento();
     Fornecedor fornecedor = new Fornecedor();
     FornecedorController fornecedorController = new FornecedorController();
@@ -33,6 +44,7 @@ public class FluxoCaixaView extends javax.swing.JDialog {
     ArrayList<TipoPagamento> listaTipoPagamentos = new ArrayList<>();
     String tipoCadastro = "cadastro";
     DecimalFormat valoresMonentarios = new DecimalFormat("#,##0.00");
+
     /**
      * Creates new form FluxoCaixaView
      */
@@ -69,7 +81,6 @@ public class FluxoCaixaView extends javax.swing.JDialog {
         lblCenario = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        btnVisualizarDetalhe = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Barbosa Store - Fluxo de Caixa");
@@ -105,15 +116,13 @@ public class FluxoCaixaView extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/icon_login.png"))); // NOI18N
         jLabel1.setText("Fluxo de Caixa");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +226,7 @@ public class FluxoCaixaView extends javax.swing.JDialog {
                     .addComponent(lblTotalReceitas)
                     .addComponent(jLabel8)
                     .addComponent(lblCenario))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Exit.png"))); // NOI18N
@@ -228,33 +237,21 @@ public class FluxoCaixaView extends javax.swing.JDialog {
             }
         });
 
-        btnVisualizarDetalhe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/Report.png"))); // NOI18N
-        btnVisualizarDetalhe.setText("Detalhes");
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVisualizarDetalhe)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
-
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnVisualizarDetalhe, jButton1});
-
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btnVisualizarDetalhe))
+                .addComponent(jButton1)
                 .addContainerGap())
         );
-
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnVisualizarDetalhe, jButton1});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,7 +259,7 @@ public class FluxoCaixaView extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,16 +294,17 @@ public class FluxoCaixaView extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
     
-    private void carregarLancamentosAbertos(){
+    
+    private void carregarLancamentosAbertos() {
         listaLancamentoAbertos = lancamentoController.getListaLancamentosAbertos();
         DefaultTableModel modelo = (DefaultTableModel) tblFluxoCaixa.getModel();
         modelo.setNumRows(0);
         String nomePessoa = "";
         int cont = listaLancamentoAbertos.size();
-        for (int i=0;i < cont; i++){
+        for (int i = 0; i < cont; i++) {
             //if(listaLancamentoAbertos.get(i).getDescricaoTipoLancamento())
             modelo.addRow(new Object[]{
                 listaLancamentoAbertos.get(i).getCodLancamento(),
@@ -319,13 +317,13 @@ public class FluxoCaixaView extends javax.swing.JDialog {
             });
         }
     }
-    
-        private void somaEAtualizaValorTotal() {
+
+    private void somaEAtualizaValorTotal() {
         double totalPagar = 0;
         double totalReceber = 0;
         double valorPagar = 0;
         double valorReceber = 0;
-        
+
         int cont = tblFluxoCaixa.getRowCount();
         for (int i = 0; i < cont; i++) {
             if (tblFluxoCaixa.getValueAt(i, 6).equals("A PAGAR")) {
@@ -344,11 +342,19 @@ public class FluxoCaixaView extends javax.swing.JDialog {
         }
         lblTotalDespesas.setText(String.valueOf(valoresMonentarios.format(totalPagar)));
         lblTotalReceitas.setText(String.valueOf(valoresMonentarios.format(totalReceber)));
-        lblCenario.setText(String.valueOf(valoresMonentarios.format(totalReceber-totalPagar)));
+        lblCenario.setText(String.valueOf(valoresMonentarios.format(totalReceber - totalPagar)));
+    }
+    
+        private boolean testarSelecaoLancamentos() {
+        int linhaSelecionada = tblFluxoCaixa.getSelectedRow();
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha para operação");
+            return false;
+        }
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVisualizarDetalhe;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;

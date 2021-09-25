@@ -27,5 +27,21 @@ public class UtilDatas {
             throw e;  
         }  
         return date;  
+    }
+     
+    public java.sql.Date TransformaDataParaFormatoBR(Date data) throws Exception {   
+        SimpleDateFormat formatarDate = new SimpleDateFormat("dd/MM/yyyy");
+        String dataString = formatarDate.format(data);
+         if (data == null || data.equals(""))  
+            return null;  
+          
+        java.sql.Date date = null;  
+        try {  
+            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+            date = new java.sql.Date( ((java.util.Date)formatter.parse(dataString)).getTime() );  
+        } catch (ParseException e) {              
+            throw e;  
+        }  
+        return date;  
     } 
 }
