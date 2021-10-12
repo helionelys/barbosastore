@@ -112,10 +112,8 @@ public class TelaLoginView extends javax.swing.JDialog {
         jLabel3.setText("Senha:");
 
         txtUsuarioLogin.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txtUsuarioLogin.setText("lula");
 
         txtSenhaLogin.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txtSenhaLogin.setText("12345");
         txtSenhaLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSenhaLoginActionPerformed(evt);
