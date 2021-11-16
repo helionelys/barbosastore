@@ -666,7 +666,7 @@ public class ContasAReceberView extends javax.swing.JDialog {
             lancamento.setCodLancamento(codLancamento);
             lancamento.setDataPagamento(dataMysql);
 
-            // Questiona se realmente deseja excluir
+            // Questiona se realmente deseja receber
             int opcao = JOptionPane.showConfirmDialog(this, "Efetuar recebimento  do lancamento"
                     + "?\n" + "Codigo: " + codLancamento + "\n" + "Fornecedor: " + nomeFornecedor + "\n" + "Valor: R$ " + valor, "Atenção", JOptionPane.YES_NO_OPTION);
 
