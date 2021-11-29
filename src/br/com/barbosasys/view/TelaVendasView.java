@@ -274,7 +274,6 @@ public class TelaVendasView extends javax.swing.JFrame {
         });
 
         txtQuantidadeProdutoVenda.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        txtQuantidadeProdutoVenda.setForeground(new java.awt.Color(0, 0, 0));
         txtQuantidadeProdutoVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtQuantidadeProdutoVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,7 +291,6 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         txtDescricaoProdutoVenda.setEditable(false);
         txtDescricaoProdutoVenda.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        txtDescricaoProdutoVenda.setForeground(new java.awt.Color(0, 0, 0));
         txtDescricaoProdutoVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel12.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
@@ -312,7 +310,6 @@ public class TelaVendasView extends javax.swing.JFrame {
         });
 
         txtCodigoProdutoVenda.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        txtCodigoProdutoVenda.setForeground(new java.awt.Color(0, 0, 0));
         txtCodigoProdutoVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigoProdutoVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -471,7 +468,6 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         txtTotalVendaPVD.setEditable(false);
         txtTotalVendaPVD.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        txtTotalVendaPVD.setForeground(new java.awt.Color(0, 0, 0));
         txtTotalVendaPVD.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalVendaPVD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -484,7 +480,6 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         txtQtdItensTotal.setEditable(false);
         txtQtdItensTotal.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        txtQtdItensTotal.setForeground(new java.awt.Color(0, 0, 0));
         txtQtdItensTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtQtdItensTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -563,7 +558,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel18.setText("Opções");
 
         jLabel19.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel19.setText("F2 - Nova Vebda  F3 - Cancelar Venda  F4 - Finalizar Venda  F6 - Cancelar Produto  F7 - Sair");
+        jLabel19.setText("F2 - Nova Venda  F3 - Cancelar Venda  F4 - Finalizar Venda  F6 - Cancelar Produto  F7 - Sair");
 
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel20.setText("BARBOSA STORE");
@@ -615,7 +610,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jDesktop_Vendas, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
+                .addComponent(jDesktop_Vendas, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -682,7 +677,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(995, 767));
