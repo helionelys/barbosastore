@@ -223,7 +223,7 @@
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
           </Properties>
           <SubComponents>
-            <Menu class="javax.swing.JMenu" name="jMenu3">
+            <Menu class="javax.swing.JMenu" name="MenuRelatorioProdutos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Produtos"/>
               </Properties>
@@ -243,23 +243,6 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuRelatorioProdutosItListaProdutosActionPerformed"/>
                   </Events>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Compras"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Compras por fornecedor"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Compras no per&#xed;odo"/>
-                  </Properties>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -294,12 +277,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuRelatorioClientesActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuRelatorioVendas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Vendas"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuRelatorioVendasActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
