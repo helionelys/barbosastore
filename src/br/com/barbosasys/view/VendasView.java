@@ -139,8 +139,8 @@ public class VendasView extends javax.swing.JDialog {
         btnConsultaVendaExcluir = new javax.swing.JButton();
         btnConsultaVendaAlterar = new javax.swing.JButton();
         btnConsultaVendaCancelar = new javax.swing.JButton();
-        btnCompraReprovar1 = new javax.swing.JButton();
-        btnCompraAprovar1 = new javax.swing.JButton();
+        btnVendaReprovar = new javax.swing.JButton();
+        btnVendaAprovar = new javax.swing.JButton();
         rbVendaStatusAprovacaoTodos = new javax.swing.JRadioButton();
         rbVendaStatusAprovacaoAguardando = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
@@ -575,19 +575,19 @@ public class VendasView extends javax.swing.JDialog {
             }
         });
 
-        btnCompraReprovar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
-        btnCompraReprovar1.setText("Reprovar");
-        btnCompraReprovar1.addActionListener(new java.awt.event.ActionListener() {
+        btnVendaReprovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
+        btnVendaReprovar.setText("Reprovar");
+        btnVendaReprovar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompraReprovar1ActionPerformed(evt);
+                btnVendaReprovarActionPerformed(evt);
             }
         });
 
-        btnCompraAprovar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/aceitar.png"))); // NOI18N
-        btnCompraAprovar1.setText("Faturar");
-        btnCompraAprovar1.addActionListener(new java.awt.event.ActionListener() {
+        btnVendaAprovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/aceitar.png"))); // NOI18N
+        btnVendaAprovar.setText("Faturar");
+        btnVendaAprovar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompraAprovar1ActionPerformed(evt);
+                btnVendaAprovarActionPerformed(evt);
             }
         });
 
@@ -626,9 +626,9 @@ public class VendasView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConsultaVendaImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelConsultarVendasLayout.createSequentialGroup()
-                        .addComponent(btnCompraAprovar1)
+                        .addComponent(btnVendaAprovar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCompraReprovar1)
+                        .addComponent(btnVendaReprovar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnConsultaVendaExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -668,8 +668,8 @@ public class VendasView extends javax.swing.JDialog {
                     .addComponent(btnConsultaVendaExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultaVendaAlterar)
                     .addComponent(btnConsultaVendaCancelar)
-                    .addComponent(btnCompraAprovar1)
-                    .addComponent(btnCompraReprovar1))
+                    .addComponent(btnVendaAprovar)
+                    .addComponent(btnVendaReprovar))
                 .addContainerGap())
         );
 
@@ -934,13 +934,13 @@ public class VendasView extends javax.swing.JDialog {
         this.carregarVendas();
     }//GEN-LAST:event_rbVendaStatusAprovacaoTodosActionPerformed
 
-    private void btnCompraAprovar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraAprovar1ActionPerformed
+    private void btnVendaAprovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaAprovarActionPerformed
         // TODO add your handling code here:
         if (testarSelecaoVendas() == true) {
             recuperarVendaFaturameto();
             carregarVendas();
         }
-    }//GEN-LAST:event_btnCompraAprovar1ActionPerformed
+    }//GEN-LAST:event_btnVendaAprovarActionPerformed
 
     private void txtConsultaVendaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConsultaVendaKeyReleased
         // TODO add your handling code here:
@@ -959,13 +959,13 @@ public class VendasView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtConsultaVendaKeyTyped
 
-    private void btnCompraReprovar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraReprovar1ActionPerformed
+    private void btnVendaReprovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaReprovarActionPerformed
         // TODO add your handling code here:
         if(testarSelecaoVendas() == true){
             reprovarVenda();
             carregarVendas();
         }
-    }//GEN-LAST:event_btnCompraReprovar1ActionPerformed
+    }//GEN-LAST:event_btnVendaReprovarActionPerformed
 
     private void reprovarVenda(){
         int linha = this.tblVendasRealizadas.getSelectedRow();
@@ -1333,7 +1333,7 @@ public class VendasView extends javax.swing.JDialog {
         }
         String status = (String) tblVendasRealizadas.getValueAt(selecao, 4);
         if (!status.equals("PENDENTE")) {
-            JOptionPane.showMessageDialog(this, "Operação impossivel!\n Compra já 'FATURADA' ou 'CANCELADA' !");
+            JOptionPane.showMessageDialog(this, "Operação impossivel!\n venda já 'FATURADA' ou 'CANCELADA' !");
             return false;
         }
         return true;
@@ -1412,8 +1412,6 @@ public class VendasView extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProduto;
-    private javax.swing.JButton btnCompraAprovar1;
-    private javax.swing.JButton btnCompraReprovar1;
     private javax.swing.JButton btnConsultaVendaAlterar;
     private javax.swing.JButton btnConsultaVendaCancelar;
     private javax.swing.JButton btnConsultaVendaExcluir;
@@ -1421,9 +1419,11 @@ public class VendasView extends javax.swing.JDialog {
     private javax.swing.JButton btnConsultaVendaPesquisar;
     private javax.swing.JButton btnIncluirProduto;
     private javax.swing.JButton btnRemoverProduto;
+    private javax.swing.JButton btnVendaAprovar;
     private javax.swing.JButton btnVendaCalculaDesconto;
     private javax.swing.JButton btnVendaCancelar;
     private javax.swing.JButton btnVendaIncluir;
+    private javax.swing.JButton btnVendaReprovar;
     private javax.swing.JButton btnVendaSalvar;
     private javax.swing.JComboBox<String> cbVendaTipoPagamento;
     private javax.swing.JLabel jLabel1;

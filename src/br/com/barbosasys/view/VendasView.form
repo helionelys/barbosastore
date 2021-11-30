@@ -596,9 +596,9 @@
                               <Component id="btnConsultaVendaImprimir" pref="135" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnCompraAprovar1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnVendaAprovar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnCompraReprovar1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnVendaReprovar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnConsultaVendaExcluir" linkSize="5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -642,8 +642,8 @@
                           <Component id="btnConsultaVendaExcluir" linkSize="4" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="btnConsultaVendaAlterar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnConsultaVendaCancelar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCompraAprovar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCompraReprovar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnVendaAprovar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnVendaReprovar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -759,7 +759,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaVendaCancelarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCompraReprovar1">
+            <Component class="javax.swing.JButton" name="btnVendaReprovar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/cancelar.png"/>
@@ -767,10 +767,10 @@
                 <Property name="text" type="java.lang.String" value="Reprovar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompraReprovar1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendaReprovarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCompraAprovar1">
+            <Component class="javax.swing.JButton" name="btnVendaAprovar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/barbosasys/images/aceitar.png"/>
@@ -778,7 +778,7 @@
                 <Property name="text" type="java.lang.String" value="Faturar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompraAprovar1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendaAprovarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbVendaStatusAprovacaoTodos">
