@@ -974,8 +974,8 @@ public class VendasView extends javax.swing.JDialog {
         venda.setCodVenda(codigoVenda);
         // Questiona a reprovação
         int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja"
-                + " reprova a compra \nNumero: "
-                + codigoVenda + " \nFornecedor: " + nomeCliente + " ?", "Atenção", JOptionPane.YES_NO_OPTION);
+                + " reprova a venda \nNumero: "
+                + codigoVenda + " \nCliente: " + nomeCliente + " ?", "Atenção", JOptionPane.YES_NO_OPTION);
         //se sim exclui, se não não faz nada    
         if (opcao == JOptionPane.OK_OPTION) {
             if (vendasController.cancelarVendasController(venda)) {
