@@ -53,6 +53,10 @@ public class VendaController {
         return this.vendaDAO.atualizarVendaFaturamentoDAO(venda);
     }
     
+    public boolean cancelarVendasController(Venda venda){
+        return this.vendaDAO.cancelarVendaDAO(venda);
+    }
+    
     public boolean excluirVendaController(int codigo){
         return this.vendaDAO.excluirVendaDAO(codigo);
     }

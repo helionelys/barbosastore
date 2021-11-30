@@ -264,7 +264,6 @@ public class VendasView extends javax.swing.JDialog {
 
         txtVendaTotal.setEditable(false);
         txtVendaTotal.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        txtVendaTotal.setForeground(new java.awt.Color(0, 0, 0));
         txtVendaTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         txtVendaDescricaoProduto.setEditable(false);
@@ -578,6 +577,11 @@ public class VendasView extends javax.swing.JDialog {
 
         btnCompraReprovar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/cancelar.png"))); // NOI18N
         btnCompraReprovar1.setText("Reprovar");
+        btnCompraReprovar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompraReprovar1ActionPerformed(evt);
+            }
+        });
 
         btnCompraAprovar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/barbosasys/images/aceitar.png"))); // NOI18N
         btnCompraAprovar1.setText("Faturar");
@@ -955,7 +959,34 @@ public class VendasView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtConsultaVendaKeyTyped
 
-        
+    private void btnCompraReprovar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraReprovar1ActionPerformed
+        // TODO add your handling code here:
+        if(testarSelecaoVendas() == true){
+            reprovarVenda();
+            carregarVendas();
+        }
+    }//GEN-LAST:event_btnCompraReprovar1ActionPerformed
+
+    private void reprovarVenda(){
+        int linha = this.tblVendasRealizadas.getSelectedRow();
+        String nomeCliente = (String) tblVendasRealizadas.getValueAt(linha, 1);
+        int codigoVenda = (Integer) tblVendasRealizadas.getValueAt(linha, 0);
+        venda.setCodVenda(codigoVenda);
+        // Questiona a reprovação
+        int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja"
+                + " reprova a compra \nNumero: "
+                + codigoVenda + " \nFornecedor: " + nomeCliente + " ?", "Atenção", JOptionPane.YES_NO_OPTION);
+        //se sim exclui, se não não faz nada    
+        if (opcao == JOptionPane.OK_OPTION) {
+            if (vendasController.cancelarVendasController(venda)) {
+                JOptionPane.showMessageDialog(this, "Registro venda reprovada com suscesso!");
+                carregarVendas();
+                //incluirProduto();
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao e os dados!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }    
 
     private void carregarVendasAguardando() {
         listaVendas = vendasController.getListaVendaStatusAguardandoController();

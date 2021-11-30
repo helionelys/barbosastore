@@ -78,6 +78,25 @@ public class VendaDAO extends ConexaoBanco {
             this.fecharConexao();
         }
     }
+    
+        public boolean cancelarVendaDAO(Venda venda) {
+        try {
+            this.conectar();
+            this.executarUpdateDeleteSQL(
+                    "UPDATE TBL_VENDA SET "
+                    + "CODSTATUSVENDA = '3'"
+                    + "WHERE "
+                    + "CODVENDA = '" + venda.getCodVenda() + "'"
+                    + ";"
+            );
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            this.fecharConexao();
+        }
+    }
         
         public boolean excluirItensVendasDAO(int codigo){
             try {
